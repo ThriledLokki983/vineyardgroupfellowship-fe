@@ -1,0 +1,30 @@
+// Modern Sass architecture - re-export everything as @forward
+// This allows components to import everything with `@use 'styles.scss' as *`
+
+// Utilities (variables first since others depend on them)
+@forward './utils/__variables';
+@forward './utils/__open-props';
+@forward './utils/__react-aria';
+@forward './utils/__view-transitions';
+
+// Themes
+@forward './themes/__theme';
+
+// Base styles and resets
+@forward './utils/__reset';
+@forward './utils/__utilities';
+
+// Mixins (load after variables they depend on)
+@forward './mixins/__mixins';
+@forward './mixins/__font-mixins';
+
+// Primers (load after mixins and variables)
+@forward './primers/__forms';
+@forward './primers/__headings';
+@forward './primers/__hr';
+@forward './primers/__links';
+@forward './primers/__media';
+@forward './primers/__paragraphs';
+
+
+

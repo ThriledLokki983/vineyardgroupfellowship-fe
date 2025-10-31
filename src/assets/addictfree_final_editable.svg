@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 2000">
+  <defs>
+    <style>
+      .brand-color { fill: #613000; stroke: #613000; }
+      .wordmark { font-family: Poppins, sans-serif; font-weight: 600; fill: #613000; }
+      .tagline  { font-family: Poppins, sans-serif; font-weight: 400; fill: #613000; }
+    </style>
+  </defs>
+
+  <!-- FULL LOGO (symbol + wordmark + tagline) -->
+  <g id="logo_full" transform="translate(0, 80)">
+    <g id="symbol">
+      <path d="M 450 540
+               C 360 460, 360 340, 470 300
+               C 560 268, 650 320, 720 380
+               L 820 470
+               C 900 540, 1000 560, 1080 520"
+            fill="none" stroke="#613000" stroke-width="88"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <path d="M 1080 520
+               C 1160 480, 1200 410, 1180 360
+               C 1140 270, 1000 270, 900 350
+               L 800 430
+               C 700 510, 560 510, 470 430"
+            fill="none" stroke="#613000" stroke-width="88"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <path d="M 1065 365
+               C 1030 345, 990 340, 955 350"
+            fill="none" stroke="#613000" stroke-width="88"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <path d="M 1115 345 L 1160 332 L 1138 370 Z" class="brand-color"/>
+    </g>
+
+    <g id="typography" transform="translate(800, 0)">
+      <text class="wordmark" x="0" y="880" text-anchor="middle" font-size="164">Vineyard Group Fellowship</text>
+      <text class="tagline"  x="0" y="960" text-anchor="middle" font-size="64">Freedom starts within.</text>
+    </g>
+  </g>
+
+  <!-- SYMBOL-ONLY VERSION -->
+  <g id="logo_symbol_only" transform="translate(0, 1120)">
+    <g id="symbol_only">
+      <path d="M 450 540
+               C 360 460, 360 340, 470 300
+               C 560 268, 650 320, 720 380
+               L 820 470
+               C 900 540, 1000 560, 1080 520"
+            fill="none" stroke="#613000" stroke-width="96"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <path d="M 1080 520
+               C 1160 480, 1200 410, 1180 360
+               C 1140 270, 1000 270, 900 350
+               L 800 430
+               C 700 510, 560 510, 470 430"
+            fill="none" stroke="#613000" stroke-width="96"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <path d="M 1065 365
+               C 1030 345, 990 340, 955 350"
+            fill="none" stroke="#613000" stroke-width="96"
+            stroke-linecap="round" stroke-linejoin="round"/>
+
+      <path d="M 1115 345 L 1160 332 L 1138 370 Z" class="brand-color"/>
+    </g>
+  </g>
+</svg>

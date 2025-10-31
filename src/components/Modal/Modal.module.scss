@@ -1,0 +1,205 @@
+@use '../../styles/styles.scss' as *;
+
+// Modal Overlay
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: var(--visual-viewport-height, 100vh);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal, 1000);
+  padding: var(--size-4);
+
+  // Animation states
+  &[data-entering] {
+    animation: overlay-fade-in var(--animation-duration-normal) var(--animation-ease-out);
+  }
+
+  &[data-exiting] {
+    animation: overlay-fade-out var(--animation-duration-normal) var(--animation-ease-in);
+  }
+}
+
+// Modal Container
+.modal {
+  background: var(--surface-canvas);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-6);
+  max-height: calc(100vh - var(--size-8));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  // Size variants
+  &--sm {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  &--md {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  &--lg {
+    width: 100%;
+    max-width: 700px;
+  }
+
+  &--xl {
+    width: 100%;
+    max-width: 900px;
+  }
+
+  &--fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+  }
+
+  // Animation states
+  &[data-entering] {
+    animation: modal-scale-in var(--animation-duration-normal) var(--animation-ease-out);
+  }
+
+  &[data-exiting] {
+    animation: modal-scale-out var(--animation-duration-normal) var(--animation-ease-in);
+  }
+
+  // Mobile responsiveness
+  @include mobile {
+    margin: var(--size-2);
+    max-height: calc(100vh - var(--size-4));
+
+    &--fullscreen {
+      margin: 0;
+    }
+  }
+}
+
+// Dialog content
+.dialog {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  outline: none;
+}
+
+// Header
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--size-6) var(--size-6) var(--size-4);
+  border-bottom: var(--border-size-1) solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--font-lineheight-2);
+}
+
+.closeButton {
+  @include button-ghost;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  color: var(--text-secondary);
+  transition: all var(--animation-duration-fast) var(--animation-ease-out);
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--surface-elevated);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // Icon sizing
+  svg {
+    width: var(--size-4);
+    height: var(--size-4);
+  }
+}
+
+// Content
+.content {
+  padding: var(--size-6);
+  overflow-y: auto;
+  flex: 1;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: var(--radius-1);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+}
+
+// Animations
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modal-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes modal-scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+// Focus trap styling
+.modal :global(.react-aria-FocusScope) {
+  outline: none;
+}

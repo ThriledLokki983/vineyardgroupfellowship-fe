@@ -1,0 +1,206 @@
+@use '../../../styles/styles.scss' as *;
+
+.wizard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 60vh;
+  gap: var(--size-5);
+}
+
+.tabsContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.tabList {
+  display: flex;
+  gap: var(--size-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: var(--border-size-1) solid var(--border-subtle);
+  margin-bottom: var(--size-4);
+
+  @include mobile {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: var(--size-3) var(--size-4);
+  cursor: pointer;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  border-radius: var(--radius-2) var(--radius-2) 0 0;
+  position: relative;
+  transition: all var(--animation-duration-fast);
+  white-space: nowrap;
+  min-width: max-content;
+
+  &:hover {
+    background-color: var(--surface-elevated);
+    color: var(--text-primary);
+  }
+
+  &[data-selected="true"] {
+    color: var(--brand-primary);
+    background-color: var(--surface-canvas);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--brand-primary);
+    }
+  }
+
+  &[data-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background: none;
+      color: var(--text-secondary);
+    }
+  }
+}
+
+.tabPanel {
+  flex: 1;
+  outline: none;
+  animation: fadeIn var(--animation-duration-fast) ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--size-2));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stepContent {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  padding: var(--size-6);
+  min-height: 400px;
+
+  @include mobile {
+    padding: var(--size-4);
+    min-height: 300px;
+  }
+}
+
+.stepHeader {
+  margin-bottom: var(--size-5);
+}
+
+.stepTitle {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-2) 0;
+	max-inline-size: 100%;
+}
+
+.stepDescription {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--size-4) 0;
+  margin-top: var(--size-5);
+  border-top: var(--border-size-1) solid var(--border-subtle);
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--size-3);
+  }
+}
+
+.navButtons {
+  display: flex;
+  gap: var(--size-3);
+
+  @include mobile {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.progressIndicator {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-5);
+
+  @include mobile {
+    order: -1;
+  }
+}
+
+.button {
+  @include button-base;
+
+  &.primary {
+    @include button-primary;
+  }
+
+  &.secondary {
+    @include button-secondary;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Step completion indicators
+.completedSteps {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  margin-bottom: var(--size-4);
+}
+
+.completionIcon {
+  width: var(--size-4);
+  height: var(--size-4);
+  border-radius: 50%;
+  background-color: var(--accent-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+}
+
+.completionText {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+}

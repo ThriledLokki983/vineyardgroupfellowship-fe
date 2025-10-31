@@ -1,0 +1,98 @@
+@use '../../styles/styles.scss' as *;
+
+.root {
+    @include medium-text;
+    margin: var(--size-6) 0;
+    display: flex;
+    align-items: center;
+    padding: var(--size-3) var(--size-6);
+    border-radius: var(--radius-2);
+    transition: visibility 0.5s, opacity 0.5s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.root[data-hiding="true"] {
+    opacity: 0;
+    visibility: hidden;
+}
+.root > svg {
+    flex: 0 0 auto;
+    margin-right: var(--size-4);
+    height: 1.25rem;
+}
+.root > button {
+    @include bare-button;
+    flex: 0 0 auto;
+    margin: calc(-1 * var(--size-3)) 0;
+    padding: var(--size-3) var(--size-6) calc(var(--size-3) - 1px);
+    color: inherit;
+    line-height: 0;
+    transition: opacity 0.2s ease;
+}
+.root > button:hover {
+    opacity: 0.7;
+}
+.root > button > svg {
+    width: 13px;
+    height: 13px;
+}
+
+/**
+ * Content
+ */
+.root__content {
+    flex: 1 1 auto;
+    padding-right: var(--size-2);
+    line-height: 1.5;
+}
+.root__content p:first-of-type {
+    margin-top: 1px;
+}
+.root__content p:last-of-type {
+    margin-bottom: 0;
+    max-inline-size: 100%
+}
+.root__content a {
+    @include ui-font;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+    text-underline-offset: 2px;
+}
+
+/**
+ * Notice - Brand Primary
+ */
+.root[data-variation="notice"] {
+    background: var(--surface-elevated);
+    color: var(--brand-primary);
+    border-left: 4px solid var(--brand-primary);
+}
+
+/**
+ * Success - Warm Accent
+ */
+.root[data-variation="success"] {
+    background: var(--success-color-light);
+    color: var(--success-color);
+    // border-left: 4px solid var(--accent-warm);
+}
+.root[data-variation="success"] > svg {
+    color: var(--success-color);
+}
+
+/**
+ * Warning - Clay Red
+ */
+.root[data-variation="warning"] {
+    background: var(--warning-color-light);
+    color: var(--warning-color-text);
+}
+.root[data-variation="warning"] > svg {
+    color: var(--warning-color);
+}
+
+/**
+ * Misc - Stacking behavior
+ */
+[alert-bar]:not([hidden]) ~ [alert-bar]:not([hidden]) {
+    margin-top: calc(-1 * var(--size-4));
+}

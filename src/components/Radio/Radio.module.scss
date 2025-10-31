@@ -1,0 +1,122 @@
+@use '../../styles/styles.scss' as *;
+
+.radio {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-4);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  background: var(--surface-canvas);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+
+  &[data-selected] {
+    border-color: var(--brand-primary);
+    background: var(--surface-elevated);
+    box-shadow: 0 0 0 1px var(--brand-primary);
+  }
+
+  &[data-hovered] {
+    border-color: var(--brand-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &[data-pressed] {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: var(--size-1);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.radioIndicator {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-subtle);
+  border-radius: 50%;
+  background: var(--surface-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--animation-duration-fast);
+  flex-shrink: 0;
+  margin-top: 2px; // Align with text baseline
+
+  .radio[data-selected] & {
+    border-color: var(--brand-primary);
+    background: var(--surface-canvas);
+  }
+}
+
+.radioInner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--animation-duration-fast);
+
+  .radio[data-selected] & {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.radioContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  flex: 1;
+}
+
+.radioLabel {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-2);
+}
+
+.radioDescription {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  font-weight: var(--font-weight-3);
+}
+
+// Mobile responsive adjustments
+@include mobile {
+  .radio {
+    padding: var(--size-3);
+    gap: var(--size-2);
+  }
+
+  .radioIndicator {
+    width: 18px;
+    height: 18px;
+  }
+
+  .radioInner {
+    width: 6px;
+    height: 6px;
+  }
+
+  .radioLabel {
+    font-size: var(--font-size-1);
+  }
+
+  .radioDescription {
+    font-size: var(--font-size-0);
+  }
+}

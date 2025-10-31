@@ -1,0 +1,62 @@
+/**
+ * View Transitions API animations
+ * Provides smooth slide transitions between pages
+ */
+
+/* Set view-transition-name on the root for page transitions */
+:root::view-transition-old(root),
+:root::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-3, ease-in-out);
+}
+
+/* Slide out to left */
+::view-transition-old(root) {
+  animation-name: slide-out-left;
+}
+
+/* Slide in from right */
+::view-transition-new(root) {
+  animation-name: slide-in-right;
+}
+
+/* Keyframes for slide out left */
+@keyframes slide-out-left {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-100%);
+    opacity: 0.5;
+  }
+}
+
+/* Keyframes for slide in right */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Faster on mobile */
+@media (max-width: 768px) {
+  :root::view-transition-old(root),
+  :root::view-transition-new(root) {
+    animation-duration: 0.3s;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0.01ms !important;
+  }
+}

@@ -1,0 +1,210 @@
+@use '../../styles/styles.scss' as *;
+
+.toastRegion {
+  position: fixed;
+  top: var(--size-6);
+  right: var(--size-4);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  max-width: 400px;
+  width: calc(100vw - var(--size-8));
+  pointer-events: none;
+
+  @include bp-min($tablet) {
+    right: var(--size-6);
+    width: auto;
+  }
+
+  // Ensure toasts are pointer-events enabled
+  & > * {
+    pointer-events: auto;
+  }
+}
+
+.toast {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-4);
+  border: var(--border-size-1) solid var(--border-subtle);
+  overflow: hidden;
+  min-width: 320px;
+
+  // Smooth transitions
+  transition: all 0.3s var(--ease-3);
+
+  // CSS View Transition animation
+  @supports (view-transition-name: auto) {
+    ::view-transition-old(&) {
+      animation: slideOutRight 0.3s var(--ease-3);
+    }
+
+    ::view-transition-new(&) {
+      animation: slideInRight 0.3s var(--ease-3);
+    }
+  }
+
+  // Fallback animation for browsers without view transitions
+  @supports not (view-transition-name: auto) {
+    animation: slideInRight 0.3s var(--ease-3);
+  }
+
+  // Type-specific left border accent
+  &.success {
+    border-left: 4px solid var(--green-7);
+
+    .icon {
+      color: var(--green-7);
+    }
+  }
+
+  &.error {
+    border-left: 4px solid var(--accent-danger);
+
+    .icon {
+      color: var(--accent-danger);
+    }
+  }
+
+  &.warning {
+    border-left: 4px solid var(--accent-warm);
+
+    .icon {
+      color: var(--accent-warm);
+    }
+  }
+
+  &.info {
+    border-left: 4px solid var(--brand-primary);
+
+    .icon {
+      color: var(--brand-primary);
+    }
+  }
+
+  // Hover state
+  &[data-hovered] {
+    box-shadow: var(--shadow-5);
+    transform: translateY(-2px);
+  }
+
+  // Focus state for close button
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: var(--size-1);
+  }
+}
+
+.toastContent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-4);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  display: block;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-2);
+  margin: 0;
+}
+
+.description {
+  display: block;
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin-top: var(--size-1);
+}
+
+.closeButton {
+  background: transparent;
+  border: none;
+  padding: var(--size-1);
+  cursor: pointer;
+  border-radius: var(--radius-1);
+  color: var(--text-secondary);
+  transition: all 0.2s var(--ease-2);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  &[data-hovered] {
+    background: var(--surface-canvas);
+    color: var(--text-primary);
+  }
+
+  &[data-pressed] {
+    transform: scale(0.95);
+  }
+
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Animations
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+// Mobile responsiveness
+@include mobile {
+  .toastRegion {
+    top: var(--size-4);
+    right: var(--size-3);
+    left: var(--size-3);
+    width: auto;
+  }
+
+  .toast {
+    min-width: unset;
+    width: 100%;
+  }
+
+  .toastContent {
+    padding: var(--size-3);
+  }
+}

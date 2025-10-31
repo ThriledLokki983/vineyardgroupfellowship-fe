@@ -1,0 +1,243 @@
+// Documents View Component Styles
+@use '../../../../styles/styles.scss' as *;
+
+.documentsView {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--size-6);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+}
+
+// Documents Section
+.documentsSection {
+  margin-bottom: var(--size-8);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--size-6);
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--size-4);
+    align-items: stretch;
+  }
+}
+
+.sectionTitle {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+}
+
+// Upload Section
+.uploadSection {
+  position: relative;
+}
+
+.fileInput {
+  position: absolute;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  overflow: hidden;
+}
+
+.uploadButton {
+  @include button-primary;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-5);
+  transition: all var(--animation-duration-fast);
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-2);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Empty State
+.emptyState {
+  text-align: center;
+  padding: var(--size-8);
+  background-color: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  border: 2px dashed var(--border-subtle);
+}
+
+.emptyMessage {
+  color: var(--text-secondary);
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+}
+
+// Documents List
+.documentsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.documentItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--size-4);
+  background-color: var(--surface-elevated);
+  border-radius: var(--radius-2);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+
+  &:hover {
+    border-color: var(--accent-warm);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-1);
+  }
+
+  &.selected {
+    border-color: var(--brand-primary);
+    background-color: var(--color-blue-50);
+  }
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--size-3);
+    align-items: stretch;
+  }
+
+	button {
+		padding: var(--size-1);
+	}
+}
+
+.documentInfo {
+  flex: 1;
+
+	// button {
+	// 	padding: var(--size-1);
+	// }
+}
+
+.documentName {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin-bottom: var(--size-2);
+}
+
+.documentMeta {
+  display: flex;
+  gap: var(--size-4);
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--size-1);
+  }
+}
+
+.documentType,
+.documentSize,
+.uploadDate {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+}
+
+.documentType {
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+}
+
+.viewButton {
+  min-width: 80px;
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+// PDF Viewer Section
+.viewerSection {
+  background-color: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+}
+
+.viewerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--size-4);
+  background-color: var(--brand-primary);
+  color: white;
+
+  @include mobile {
+    flex-direction: column;
+    gap: var(--size-2);
+    align-items: stretch;
+  }
+}
+
+.viewerTitle {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  margin: 0;
+}
+
+.closeButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  @include mobile {
+    width: 100%;
+  }
+}
+
+// PDF Viewer
+.pdfViewer {
+  height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include mobile {
+    height: 400px;
+  }
+}
+
+.pdfFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.nonPdfViewer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4);
+  padding: var(--size-6);
+  text-align: center;
+}

@@ -1,0 +1,74 @@
+@use '../../styles/styles.scss' as *;
+
+.footer {
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--border-subtle);
+  padding: var(--size-6) var(--size-4);
+  margin-top: auto;
+
+  @include bp-min(tablet) {
+    padding: var(--size-8) var(--size-6);
+  }
+
+  @include bp-min(desktop) {
+    padding: var(--size-8) var(--size-8);
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-3);
+  text-align: center;
+}
+
+.text {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: var(--font-lineheight-3);
+
+  @include bp-min(tablet) {
+    font-size: var(--font-size-1);
+  }
+}
+
+.link {
+  color: var(--brand-primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-5);
+  transition: color 0.2s ease;
+  position: relative;
+  padding: var(--size-1) 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    color: var(--accent-warm);
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.copyright {
+  font-size: var(--font-size-00);
+  color: var(--text-secondary);
+  opacity: 0.7;
+  margin: 0;
+
+  @include bp-min(tablet) {
+    font-size: var(--font-size-0);
+  }
+}

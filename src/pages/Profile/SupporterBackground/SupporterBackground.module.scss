@@ -1,0 +1,570 @@
+@use '../../../styles/styles.scss' as *;
+
+// Tab Navigation Styles
+.tabNavigation {
+  inline-size: 70%;
+  margin-inline: auto;
+  display: flex;
+  border-bottom: 2px solid var(--surface-elevated);
+  margin-bottom: var(--size-6);
+
+  @include bp-min($tablet) {
+    justify-content: space-around;
+  }
+}
+
+.tab {
+  flex: 1;
+  padding: var(--size-4) var(--size-6);
+  background: none;
+  border: none;
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all var(--animation-duration-fast);
+
+  &:hover {
+    color: var(--brand-primary);
+    background-color: var(--surface-elevated);
+  }
+
+  &.active {
+    color: var(--brand-primary);
+    border-bottom-color: var(--brand-primary);
+    font-weight: var(--font-weight-6);
+  }
+
+  @include mobile {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+.tabContent {
+  min-height: 400px;
+}
+
+// File Upload Styles for Credentials
+.fileUploadSection {
+  margin-top: var(--size-3);
+  margin-bottom: var(--size-1);
+  min-width: 300px; // Ensure consistent width
+
+  @include mobile {
+    min-width: unset;
+    margin-top: var(--size-3);
+  }
+}
+
+.fileUploadContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  margin-top: var(--size-2);
+}
+
+.fileInput {
+  position: absolute;
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+  overflow: hidden;
+}
+
+.fileUploadLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  background-color: var(--surface-elevated);
+  border: 2px dashed var(--border-subtle);
+  border-radius: var(--radius-2);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  transition: all var(--animation-duration-fast);
+
+  &:hover {
+    border-color: var(--accent-warm);
+    background-color: var(--color-yellow-50);
+    color: var(--text-primary);
+  }
+
+  &.uploading {
+    opacity: 0.6;
+    cursor: not-allowed;
+    border-color: var(--accent-warm);
+    background-color: var(--color-yellow-100);
+  }
+}
+
+.uploadedFile {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  background-color: var(--color-green-100);
+  border: 1px solid var(--color-green-400);
+  border-radius: var(--radius-2);
+  color: var(--color-green-800);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+
+  span {
+    flex: 1;
+    // font-size: var(--font-size-1);
+    color: var(--text-secondary);
+  }
+}
+
+.viewDocumentBtn {
+  font-size: var(--font-size-0) !important;
+  padding: var(--size-1) var(--size-2) !important;
+  min-height: auto !important;
+  margin-left: var(--size-2);
+}
+
+.fileHelpText {
+  margin-top: var(--size-2);
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+// Rest of existing styles...
+
+.backgroundPage {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--size-4);
+
+  @include bp-min($tablet) {
+    padding: var(--size-6);
+  }
+
+  @include bp-min($desktop) {
+    padding: var(--size-8);
+  }
+}
+
+.pageHeader {
+  text-align: center;
+  margin-bottom: var(--size-6);
+
+  @include bp-min($tablet) {
+    margin-bottom: var(--size-8);
+  }
+
+  h1 {
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-7);
+    color: var(--brand-primary);
+    margin-bottom: var(--size-3);
+    max-inline-size: 100%;
+
+    @include bp-min($tablet) {
+      font-size: var(--font-size-6);
+    }
+  }
+}
+
+.pageDescription {
+  font-size: var(--font-size-2);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.statusBanner {
+  background: var(--accent-warm);
+  color: var(--brand-primary);
+  padding: var(--size-4);
+  border-radius: var(--radius-3);
+  margin-bottom: var(--size-6);
+  text-align: center;
+  font-weight: var(--font-weight-6);
+}
+
+.approvedBanner {
+  background: color-mix(in srgb, var(--accent-warm) 20%, var(--surface-canvas));
+  color: var(--brand-primary);
+  padding: var(--size-4);
+  border-radius: var(--radius-3);
+  margin-bottom: var(--size-6);
+  text-align: center;
+  font-weight: var(--font-weight-6);
+  border: 2px solid var(--accent-warm);
+}
+
+.loadingState {
+  text-align: center;
+  padding: var(--size-8);
+  color: var(--text-secondary);
+}
+
+.errorState {
+  text-align: center;
+  padding: var(--size-8);
+  color: var(--accent-danger);
+
+  button {
+    margin-top: var(--size-4);
+  }
+}
+
+.pageActions {
+  margin-top: var(--size-8);
+  text-align: center;
+}
+
+// Form Wizard Styles
+.wizardContainer {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-2);
+  padding: var(--size-4);
+  margin-bottom: var(--size-4);
+
+  @include bp-min($tablet) {
+    border-radius: var(--radius-3);
+    padding: var(--size-6);
+    margin-bottom: var(--size-6);
+  }
+}
+
+.wizardTabs {
+  margin-bottom: var(--size-6);
+}
+
+.wizardTabList {
+  display: flex;
+  gap: var(--size-1);
+  border-bottom: 2px solid var(--border-subtle);
+  margin-bottom: var(--size-4);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: var(--size-2);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include bp-min($tablet) {
+    gap: var(--size-2);
+    margin-bottom: var(--size-6);
+    padding-bottom: var(--size-3);
+    overflow-x: visible;
+  }
+}
+
+.wizardTab {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-2) var(--size-3);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+  white-space: nowrap;
+  min-width: max-content;
+
+  @include bp-min($tablet) {
+    gap: var(--size-2);
+    padding: var(--size-3) var(--size-4);
+    font-size: var(--font-size-1);
+  }
+
+  &[data-selected] {
+    background: var(--brand-primary);
+    color: white;
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover:not([data-disabled]) {
+    background: var(--surface-canvas);
+    color: var(--text-primary);
+  }
+
+  @include tablet {
+    padding: var(--size-2) var(--size-3);
+    font-size: var(--font-size-0);
+  }
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--surface-canvas);
+  border-radius: 50%;
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+
+  .wizardTab[data-selected] & {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+}
+
+.checkIcon {
+  color: var(--accent-warm);
+  width: 16px;
+  height: 16px;
+}
+
+.wizardTabPanel {
+  outline: none;
+}
+
+// Step Container Styles
+.stepContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--size-2);
+
+  @include bp-min($tablet) {
+    padding: 0;
+  }
+}
+
+.stepHeader {
+  text-align: center;
+  margin-bottom: var(--size-4);
+
+  @include bp-min($tablet) {
+    margin-bottom: var(--size-6);
+  }
+
+  h2 {
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-6);
+    color: var(--brand-primary);
+    margin-bottom: var(--size-2);
+    max-inline-size: 100%;
+
+    @include bp-min($tablet) {
+      font-size: var(--font-size-4);
+      margin-bottom: var(--size-3);
+    }
+  }
+}
+
+.stepActions {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: center;
+  margin-top: var(--size-4);
+
+  @include bp-min($tablet) {
+    margin-top: var(--size-6);
+  }
+
+  > button {
+    flex: 1;
+    max-width: fit-content;
+    padding: var(--size-3) var(--size-6);
+
+    @include bp-min($tablet) {
+      flex: initial;
+      padding: var(--size-3) var(--size-8);
+    }
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+
+    > button {
+      max-width: none;
+    }
+  }
+}
+
+// Form Field Styles
+.checkboxGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--size-3);
+  margin: var(--size-4) 0;
+
+  @include bp-min($tablet) {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+// Radio Group container
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  margin: var(--size-4) 0;
+
+  @include tablet {
+    gap: var(--size-2);
+  }
+}
+
+.characterCount {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  text-align: right;
+  margin-top: var(--size-1);
+}
+
+.credentialsList {
+  margin: var(--size-4) 0;
+}
+
+.credentialInput {
+  display: flex;
+  gap: var(--size-3);
+  align-items: start;
+  margin-bottom: var(--size-3);
+
+  @include mobile {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.removeCredentialBtn {
+  align-self: center !important;
+  margin-top: var(--size-2) !important;
+
+  @include mobile {
+    align-self: stretch !important;
+    margin-top: var(--size-3) !important;
+  }
+}
+
+.credentialInput > :first-child {
+  flex: 1;
+}
+
+.tagContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-2);
+  margin: var(--size-3) 0;
+}
+
+.tag {
+  background: var(--brand-primary);
+  color: white;
+  padding: var(--size-1) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+.tagRemove {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  font-size: var(--font-size-1);
+  line-height: 1;
+}
+
+.sliderContainer {
+  margin: var(--size-4) 0;
+}
+
+.sliderValue {
+  text-align: center;
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+  margin-bottom: var(--size-2);
+}
+
+// Review Step Styles
+.reviewSection {
+  background: var(--surface-canvas);
+  border-radius: var(--radius-3);
+  padding: var(--size-4);
+  margin-bottom: var(--size-4);
+}
+
+.reviewSectionTitle {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+  margin-bottom: var(--size-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editButton {
+  background: none;
+  border: 1px solid var(--brand-primary);
+  color: var(--brand-primary);
+  padding: var(--size-1) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+
+  &:hover {
+    background: var(--brand-primary);
+    color: white;
+  }
+}
+
+.reviewContent {
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+}
+
+.reviewList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: var(--size-1) 0;
+    border-bottom: 1px solid var(--border-subtle);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Responsive adjustments
+@include tablet {
+  .backgroundPage {
+    padding: var(--size-4);
+  }
+
+  .wizardContainer {
+    padding: var(--size-4);
+  }
+
+  .stepContainer {
+    max-width: 100%;
+  }
+}

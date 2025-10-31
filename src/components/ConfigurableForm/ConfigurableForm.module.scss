@@ -1,0 +1,620 @@
+@use '../../styles/styles.scss' as *;
+
+.configurableForm {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+
+// Removed - replaced with password strength meter
+
+  @include bp-min($tablet) {
+    gap: var(--size-4);
+  }
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+
+  :global([data-react-aria-label]) {
+    font-size: var(--font-size-1); // Smaller labels on mobile
+    font-weight: var(--font-weight-4);
+    color: var(--text-primary);
+    margin-bottom: var(--size-1);
+
+    @include bp-min($tablet) {
+      font-size: var(--font-size-2);
+    }
+  }
+
+  :global([data-react-aria-input]) {
+    @include input-base;
+    min-height: 48px; // Touch-friendly input height
+    font-size: 16px; // Prevents zoom on iOS
+    padding: var(--size-3) var(--size-4);
+
+    @include bp-min($tablet) {
+      min-height: 44px;
+      font-size: var(--font-size-1);
+    }
+  }
+
+  :global(.react-aria-FieldError) {
+    font-size: var(--font-size-0);
+    color: var(--red-7);
+    margin-top: var(--size-1);
+  }
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3); // More space for easier tapping
+  font-size: var(--font-size-1);
+  color: var(--text-1);
+  margin: var(--size-3) 0;
+  cursor: pointer;
+  padding: var(--size-2); // Extra padding for touch area
+  border-radius: var(--radius-1);
+
+  @include bp-min($tablet) {
+    gap: var(--size-2);
+    padding: 0;
+  }
+}
+
+.checkboxIndicator {
+  width: 20px; // Larger checkbox for mobile
+  height: 20px;
+  border: var(--border-size-2) solid var(--border-subtle);
+  border-radius: var(--radius-1);
+
+  @include bp-min($tablet) {
+    width: 18px;
+    height: 18px;
+  }
+  background: var(--surface-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--animation-duration-fast);
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transition: opacity var(--animation-duration-fast);
+  }
+}
+
+// React Aria data attribute styling
+.checkboxField[data-selected] .checkboxIndicator {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+
+  svg {
+    opacity: 1;
+  }
+}
+
+.checkboxField[data-hovered] .checkboxIndicator {
+  border-color: var(--brand-primary);
+}
+
+.checkboxField[data-pressed] .checkboxIndicator {
+  transform: scale(0.95);
+}
+
+.checkboxField[data-focus-visible] .checkboxIndicator {
+  outline: var(--border-size-2) solid var(--brand-primary);
+  outline-offset: var(--size-1);
+}
+
+.checkboxField[data-focus] .checkboxIndicator {
+  border-color: var(--brand-primary);
+}
+
+// Radio Group Styles
+.radioGroupContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin: 0 0;
+}
+
+.fieldLabel {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin-bottom: var(--size-1);
+}
+
+.fieldDescription {
+  font-size: var(--font-size-1);
+  color: var(--text-2);
+  margin-bottom: var(--size-3);
+  line-height: var(--font-lineheight-3);
+}
+
+.radioGroup {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: var(--size-3);
+}
+
+.radioOption {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-4);
+  border: var(--border-size-2) solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  background: var(--surface-canvas);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+
+  &[data-selected] {
+    border-color: var(--brand-primary);
+    background: var(--surface-elevated);
+    box-shadow: 0 0 0 1px var(--brand-primary);
+  }
+
+  &[data-hovered] {
+    border-color: var(--brand-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &[data-pressed] {
+    transform: translateY(0);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: var(--size-1);
+  }
+}
+
+.radioIndicator {
+  width: 20px;
+  height: 20px;
+  border: var(--border-size-2) solid var(--border-subtle);
+  border-radius: 50%;
+  background: var(--surface-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--animation-duration-fast);
+  flex-shrink: 0;
+  margin-top: 2px; // Align with text baseline
+}
+
+.radioInner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--animation-duration-fast);
+}
+
+.radioOption[data-selected] .radioIndicator {
+  border-color: var(--brand-primary);
+  background: var(--surface-canvas);
+}
+
+.radioOption[data-selected] .radioInner {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.radioContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  flex: 1;
+}
+
+.radioLabel {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-2);
+}
+
+.radioDescription {
+  font-size: var(--font-size-1);
+  color: var(--text-2);
+  line-height: var(--font-lineheight-3);
+  font-weight: var(--font-weight-3);
+}
+
+.fieldError {
+  color: var(--red-7);
+  font-size: var(--font-size-0);
+  margin-top: var(--size-1);
+  padding-left: var(--size-1);
+}
+
+.fieldGroup {
+  display: flex;
+  gap: var(--size-4);
+
+  &.horizontal {
+    flex-direction: row;
+
+    .formField {
+      flex: 1;
+    }
+  }
+
+  &.vertical {
+    flex-direction: column;
+  }
+}
+
+// Password Strength Meter Styles
+.passwordStrengthMeter {
+  margin-top: var(--size-2);
+  opacity: 0;
+  animation: fadeInMeter 0.4s var(--ease-3) forwards;
+
+  @keyframes fadeInMeter {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.strengthBar {
+  width: 100%;
+  height: 6px;
+  background: var(--surface-elevated);
+  border-radius: var(--radius-1);
+  overflow: hidden;
+  margin-bottom: var(--size-2);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.strengthFill {
+  height: 100%;
+  border-radius: var(--radius-1);
+  transition: all 0.6s var(--ease-4);
+  transform-origin: left;
+  animation: strengthGrow 0.8s var(--ease-4) forwards;
+
+  @keyframes strengthGrow {
+    from {
+      width: 0% !important;
+      opacity: 0.5;
+    }
+    to {
+      width: var(--strength-percentage);
+      opacity: 1;
+    }
+  }
+
+  // Strength level colors
+  &.very-weak {
+    background: linear-gradient(90deg, #C25A5A, #E67E7E);
+  }
+
+  &.weak {
+    background: linear-gradient(90deg, #D97706, #F59E0B);
+  }
+
+  &.fair {
+    background: linear-gradient(90deg, #F4C77B, #FCD34D);
+  }
+
+  &.strong {
+    background: linear-gradient(90deg, #10B981, #34D399);
+  }
+
+  &.very-strong {
+    background: linear-gradient(90deg, #059669, #10B981);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  }
+}
+
+.strengthFeedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.strengthLabel {
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  transition: color 0.4s var(--ease-3);
+
+  &.very-weak {
+    color: #C25A5A;
+  }
+
+  &.weak {
+    color: #D97706;
+  }
+
+  &.fair {
+    color: #B45309;
+  }
+
+  &.strong {
+    color: #10B981;
+  }
+
+  &.very-strong {
+    color: #059669;
+  }
+}
+
+.errorMessage {
+  background: var(--red-2);
+  color: var(--red-9);
+  padding: var(--size-4);
+  border-radius: var(--radius-2);
+  border: var(--border-size-1) solid var(--red-4);
+  font-size: var(--font-size-1);
+  text-align: center;
+  margin-top: var(--size-2);
+}
+
+.footer {
+  text-align: center;
+  margin-top: var(--size-6);
+  padding-top: var(--size-4);
+  border-top: var(--border-size-1) solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-1);
+
+  :global(.react-aria-Text) {
+    color: var(--text-2);
+    font-size: var(--font-size-1);
+    font-weight: 200;
+  }
+}
+
+// Radio Group Styles
+.radioGroupContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin: 0 0;
+}
+
+.fieldLabel {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin-bottom: var(--size-1);
+}
+
+.fieldDescription {
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+  margin-bottom: var(--size-3);
+  line-height: var(--font-lineheight-3);
+}
+
+.radioGroup {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: var(--size-3);
+}
+
+.radioOption {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-4);
+  border: var(--border-size-1) solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+  background: var(--surface-canvas);
+
+  &:hover {
+    border-color: var(--brand-primary);
+    background: var(--surface-elevated);
+  }
+
+  &[data-selected] {
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--accent-warm) 100%);
+    color: white;
+
+    .radioLabel {
+      color: white;
+      font-weight: var(--font-weight-6);
+    }
+
+    .radioDescription {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .radioIndicator {
+      border-color: white;
+      background: white;
+
+      .radioInner {
+        background: var(--brand-primary);
+        transform: scale(1);
+      }
+    }
+  }
+
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: var(--size-1);
+  }
+}
+
+.radioIndicator {
+  width: 20px;
+  height: 20px;
+  border: var(--border-size-2) solid var(--border-subtle);
+  border-radius: 50%;
+  background: var(--surface-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--animation-duration-fast);
+  flex-shrink: 0;
+  margin-top: 2px; // Align with first line of text
+}
+
+.radioInner {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  transform: scale(0);
+  transition: transform var(--animation-duration-fast);
+}
+
+.radioContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  flex: 1;
+}
+
+.radioLabel {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-2);
+}
+
+.radioDescription {
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+  line-height: var(--font-lineheight-3);
+}
+
+.fieldError {
+  font-size: var(--font-size-0);
+  color: var(--red-7);
+  margin-top: var(--size-1);
+  padding: var(--size-2) var(--size-3);
+  background: var(--red-2);
+  border-radius: var(--radius-1);
+  border: var(--border-size-1) solid var(--red-4);
+}
+
+// Checkbox Group Styles
+.checkboxGroupContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin: var(--size-4) 0;
+}
+
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+
+.checkboxGroupOption {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  border: var(--border-size-1) solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+  background: var(--surface-canvas);
+
+  &:hover {
+    border-color: var(--brand-primary);
+    background: var(--surface-elevated);
+  }
+
+  &[data-selected] {
+    border-color: var(--brand-primary);
+    background: rgba(var(--brand-primary-rgb), 0.05);
+
+    .checkboxIndicator {
+      background: var(--brand-primary);
+      border-color: var(--brand-primary);
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    .checkboxLabel {
+      color: var(--brand-primary);
+      font-weight: var(--font-weight-6);
+    }
+  }
+
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: var(--size-1);
+  }
+}
+
+.checkboxContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  flex: 1;
+}
+
+.checkboxLabel {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-2);
+}
+
+.checkboxDescription {
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+  line-height: var(--font-lineheight-3);
+}
+
+// Responsive design
+@include mobile {
+  .fieldGroup.horizontal {
+    flex-direction: column;
+    gap: var(--size-3);
+  }
+
+  .radioOption {
+    padding: var(--size-3);
+  }
+
+  .radioIndicator {
+    width: 22px;
+    height: 22px;
+  }
+}

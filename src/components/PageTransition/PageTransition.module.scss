@@ -1,0 +1,44 @@
+@use '../../styles/styles.scss' as *;
+
+.pageTransition {
+  width: 100%;
+  min-height: 100%;
+  will-change: transform, opacity;
+}
+
+// No animation on initial mount/page refresh
+.none {
+  opacity: 1; // Ensure content is visible without animation
+}
+
+// Enter animations (page sliding in from right)
+.enter {
+  // animation: var(--animation-slide-in-right);
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-3);
+  animation-fill-mode: both;
+
+  // Faster transitions on mobile
+  @include mobile {
+    animation-duration: 0.3s;
+  }
+}
+
+// Exit animations (page sliding out to left)
+.exit {
+  // animation: var(--animation-slide-out-left);
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-3);
+  animation-fill-mode: both;
+
+  // Faster transitions on mobile
+  @include mobile {
+    animation-duration: 0.3s;
+  }
+}
+
+// Smooth GPU-accelerated transitions
+.pageTransition * {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}

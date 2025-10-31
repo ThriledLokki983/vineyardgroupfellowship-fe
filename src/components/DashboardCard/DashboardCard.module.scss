@@ -1,0 +1,140 @@
+@use '../../styles/styles.scss' as *;
+
+.dashboardCard {
+  background: var(--surface-elevated, #EAE6E1);
+  border-radius: var(--radius-3, 16px);
+  padding: var(--size-6, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4, 16px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all var(--animation-duration-fast, 0.2s) ease-out;
+  height: 100%;
+  min-height: 240px;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  &.accent {
+    background: linear-gradient(135deg, #F4C77B20 0%, #EAE6E1 100%);
+    border: 1px solid #F4C77B40;
+  }
+}
+
+.illustration {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-8, 72px);
+  height: 100px;
+  margin-bottom: var(--size-2, 8px);
+
+  // For SVG illustrations
+  svg {
+    width: 100%;
+    height: 100%;
+    max-width: 120px;
+    max-height: 100px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3, 12px);
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3, 12px);
+}
+
+.icon {
+  font-size: var(--font-size-5, 24px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-2, 8px);
+  background: var(--brand-primary, #3A4F41);
+  color: white;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-3, 18px);
+  font-weight: var(--font-weight-6, 600);
+  color: var(--text-primary, #2A2A2A);
+  margin: 0;
+}
+
+.message {
+  font-size: var(--font-size-1, 16px);
+  font-weight: var(--font-weight-4, 400);
+  color: var(--text-secondary, #6E7673);
+  line-height: var(--font-lineheight-3, 1.5);
+  margin: 0;
+  flex: 1;
+}
+
+.action {
+  margin-top: auto;
+  padding: var(--size-2, 8px) var(--size-4, 16px);
+  background: var(--brand-primary, #3A4F41);
+  color: white;
+  border: none;
+  border-radius: var(--radius-2, 8px);
+  font-size: var(--font-size-0, 14px);
+  font-weight: var(--font-weight-6, 600);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast, 0.2s) ease-out;
+  align-self: flex-start;
+
+  &:hover {
+    background: var(--accent-warm, #F4C77B);
+    color: var(--text-primary, #2A2A2A);
+    transform: translateX(4px);
+  }
+
+  &:active {
+    transform: translateX(2px);
+  }
+}
+
+// Responsive adjustments
+@include mobile {
+  .dashboardCard {
+    min-height: 200px;
+    padding: var(--size-4, 16px);
+  }
+
+  .illustration {
+    height: 80px;
+    font-size: var(--font-size-7, 48px);
+
+    svg {
+      max-width: 100px;
+      max-height: 80px;
+    }
+  }
+
+  .icon {
+    width: 36px;
+    height: 36px;
+    font-size: var(--font-size-4, 20px);
+  }
+
+  .title {
+    font-size: var(--font-size-2, 17px);
+  }
+
+  .message {
+    font-size: var(--font-size-0, 14px);
+  }
+}

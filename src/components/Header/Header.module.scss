@@ -1,0 +1,460 @@
+@use '../../styles/styles.scss' as *;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface-canvas);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  background: rgba(248, 245, 240, 0.95);
+
+  @include bp-min(tablet) {
+    background: rgba(248, 245, 240, 0.98);
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--size-3) var(--size-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-4);
+
+  @include bp-min(tablet) {
+    padding: var(--size-4) var(--size-6);
+  }
+
+  @include bp-min(desktop) {
+    padding: var(--size-4) var(--size-8);
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  text-decoration: none;
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-7);
+  font-size: var(--font-size-4);
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 4px;
+    border-radius: var(--radius-2);
+  }
+
+  &.logoOnly {
+    gap: 0; // No gap needed when text is hidden
+    justify-content: center;
+  }
+}
+
+.logoImage {
+  height: var(--size-8); // 32px equivalent
+  width: auto;
+  flex-shrink: 0;
+
+  @include bp-min(tablet) {
+    height: var(--size-9); // 36px equivalent
+  }
+
+  .logoOnly & {
+    height: var(--size-7); // Slightly smaller when logo-only
+
+    @include bp-min(tablet) {
+      height: var(--size-8);
+    }
+  }
+}
+
+.logoText {
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+
+  @include mobile {
+    display: none; // Hide text on mobile to save space
+  }
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+}
+
+// Right-aligned navigation container for authenticated users
+.rightNav {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  margin-left: auto;
+
+  @include bp-min(tablet) {
+    gap: var(--size-6);
+  }
+}
+
+// Navigation links for authenticated users
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+
+  @include bp-min(tablet) {
+    gap: var(--size-4);
+  }
+}
+
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+  transition: all 0.2s ease;
+  font-size: var(--font-size-1);
+  white-space: nowrap;
+  position: relative;
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--surface-elevated);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &.navLinkActive {
+    color: var(--brand-primary);
+    font-weight: var(--font-weight-6);
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: var(--size-3);
+      right: var(--size-3);
+      height: 2px;
+      background: var(--brand-primary);
+      border-radius: 1px;
+    }
+  }
+
+  @include bp-min(tablet) {
+    padding: var(--size-2) var(--size-4);
+    font-size: var(--font-size-1);
+  }
+}
+
+// Auth buttons for non-authenticated users
+.authButtons {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+
+  @include bp-min(tablet) {
+    gap: var(--size-3);
+  }
+}
+
+// Base styles for auth links (styled as buttons)
+.authLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  border: 2px solid transparent;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  // Compact on mobile - MOBILE FIRST
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-0);
+  min-height: 44px;
+
+  @include bp-min(tablet) {
+    padding: var(--size-3) var(--size-4);
+    font-size: var(--font-size-1);
+    min-height: auto;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+.loginLink {
+  background: transparent;
+  color: var(--brand-primary);
+  border-color: transparent;
+
+  &:hover {
+    background: var(--surface-elevated);
+    color: var(--brand-primary);
+  }
+
+  &:active {
+    background: var(--border-subtle);
+    transform: scale(0.98);
+  }
+}
+
+.registerLink {
+  background: var(--brand-primary);
+  color: var(--surface-canvas);
+  border-color: var(--brand-primary);
+
+  @include bp-min(tablet) {
+    padding: var(--size-3) var(--size-5);
+  }
+
+  &:hover {
+    background: var(--accent-warm);
+    border-color: var(--accent-warm);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(58, 79, 65, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(58, 79, 65, 0.1);
+  }
+}
+
+// Profile section for authenticated users
+.profileWrapper {
+  position: relative;
+}
+
+.profileButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2);
+  min-height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-3);
+  transition: background-color 0.2s ease;
+  color: var(--text-primary);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    background: transparent;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    background: transparent;
+    transform: scale(0.98);
+  }
+
+  @include bp-min(tablet) {
+    padding: var(--size-2) var(--size-3);
+    gap: var(--size-3);
+    min-height: auto;
+  }
+}
+
+.profileIcon {
+  inline-size: calc(var(--size-8) - 4px);
+  block-size: calc(var(--size-8) - 4px);
+  border-radius: 50%;
+  background: var(--brand-primary);
+  color: var(--surface-canvas);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-2);
+  text-transform: uppercase;
+  flex-shrink: 0;
+  border: 4px solid var(--surface-elevated);
+  transition: border 0.3s ease-in-out;
+  overflow: hidden;
+
+  &:hover {
+    border: 4px solid var(--accent-warm);
+  }
+
+  @include bp-min(tablet) {
+    inline-size: var(--size-8);
+    block-size: var(--size-8);
+    border: 4px solid transparent;
+  }
+}
+
+.profileImage {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.userName {
+  display: none;
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+
+  @include bp-min(tablet) {
+    display: block;
+  }
+}
+
+.chevron {
+  inline-size: 16px; block-size: 16px;
+  margin-inline-start: var(--size-2);
+  color: var(--text-secondary);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+
+  &.chevronOpen {
+    transform: rotate(180deg);
+  }
+}
+
+// Mobile Navigation Styles
+.mobileMenuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  transition: background-color 0.2s ease;
+
+  @include bp-min($tablet) {
+    display: none;
+  }
+
+  &:hover {
+    background: var(--surface-elevated);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+.rightNav {
+  display: none;
+
+  @include bp-min($tablet) {
+    display: flex;
+    align-items: center;
+    gap: var(--size-4);
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--surface-canvas);
+  border-top: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+  background: rgba(248, 245, 240, 0.98);
+  z-index: 50;
+  animation: slideDown 0.2s ease-out;
+
+  @include bp-min($tablet) {
+    display: none;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobileMenuContent {
+  padding: var(--size-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-2);
+  transition: all 0.2s ease;
+  min-height: 48px; // Touch-friendly
+
+  &:hover {
+    background: var(--surface-elevated);
+    color: var(--brand-primary);
+  }
+
+  &.mobileNavLinkActive {
+    background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
+    color: var(--brand-primary);
+    font-weight: var(--font-weight-6);
+  }
+}
+
+.mobileLogoutButton {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--accent-danger);
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 48px; // Touch-friendly
+  margin-top: var(--size-2);
+  border-top: 1px solid var(--border-subtle);
+  font-family: inherit;
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent-danger) 10%, transparent);
+  }
+}

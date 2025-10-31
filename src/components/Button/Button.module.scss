@@ -1,0 +1,156 @@
+@use '../../styles/styles.scss' as *;
+
+.button {
+  // Base button styles
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-2);
+
+  font-family: inherit;
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  border-radius: var(--radius-2);
+  transition: all var(--animation-duration-fast) ease-out;
+  text-decoration: none;
+
+  // Touch-friendly minimum sizes (iOS/Android guidelines)
+  min-height: 44px; // iOS minimum touch target
+  min-width: 44px;
+
+  // Better touch interaction
+  touch-action: manipulation; // Prevents zoom on double-tap
+  -webkit-tap-highlight-color: transparent; // Remove iOS tap highlight
+
+  // Focus styles are handled globally in __react-aria.scss
+
+  &[data-disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// Size variants - Mobile optimized
+.small {
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-0);
+  border-radius: var(--radius-1);
+  min-height: 36px; // Slightly smaller but still accessible
+
+  @include bp-min($tablet) {
+    min-height: 32px; // Can be smaller on desktop
+  }
+}
+
+.medium {
+  padding: var(--size-3) var(--size-4);
+  font-size: var(--font-size-1);
+  min-height: 48px; // Extra space for easier tapping
+
+  @include bp-min($tablet) {
+    min-height: 40px;
+    padding: var(--size-3) var(--size-4);
+  }
+}
+
+.large {
+  padding: var(--size-4) var(--size-6);
+  font-size: var(--font-size-2);
+  border-radius: var(--radius-2);
+  min-height: 56px; // Large touch targets
+
+  @include bp-min($tablet) {
+    min-height: 48px;
+  }
+}
+
+// Variant styles
+.primary {
+  background: var(--brand-primary);
+  color: var(--surface-canvas);
+  border: var(--border-size-1) solid var(--brand-primary);
+
+  &:hover:not([data-disabled]) {
+    background: var(--btn-hover-clr);
+    border-color: var(--btn-hover-clr);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(96, 48, 0, 0.2);
+  }
+
+  &[data-pressed]:not([data-disabled]) {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(96, 48, 0, 0.2);
+  }
+}
+
+.secondary {
+  background: transparent;
+  color: var(--brand-primary);
+  border: var(--border-size-2) solid var(--brand-primary);
+
+  &:hover:not([data-disabled]) {
+    background: var(--brand-primary);
+    color: var(--surface-canvas);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(96, 48, 0, 0.15);
+  }
+
+  &[data-pressed]:not([data-disabled]) {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(96, 48, 0, 0.15);
+  }
+}
+
+.tertiary {
+  background: transparent;
+  color: var(--brand-primary);
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: var(--size-2) var(--size-1);
+
+  &:hover:not([data-disabled]) {
+    color: var(--btn-hover-clr);
+    text-decoration-color: var(--btn-hover-clr);
+    transform: translateY(-1px);
+  }
+
+  &[data-pressed]:not([data-disabled]) {
+    transform: translateY(0);
+  }
+
+  // Override padding for tertiary variant sizes
+  &.small {
+    padding: var(--size-1) var(--size-1);
+    font-size: var(--font-size-0);
+  }
+
+  &.medium {
+    padding: var(--size-2) var(--size-1);
+    font-size: var(--font-size-1);
+  }
+
+  &.large {
+    padding: var(--size-3) var(--size-2);
+    font-size: var(--font-size-2);
+  }
+}
+
+// Full width modifier
+.fullWidth {
+  width: 100%;
+}
+
+// Responsive adjustments
+@include mobile {
+  .button {
+    &.large {
+      padding: var(--size-3) var(--size-5);
+      font-size: var(--font-size-1);
+    }
+  }
+}

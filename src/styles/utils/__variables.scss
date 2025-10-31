@@ -1,0 +1,77 @@
+$line_height: 1.2;
+
+/**
+ * Breakpoints
+ */
+$tiny: 480;
+$large: 1200;
+$huge: 1600;
+$mobile: 768px;
+$tablet: 1024px;
+$desktop: 1280px;
+$small: $mobile; // Alias for consistency with mixins
+$medium: $tablet; // Alias for consistency with mixins
+
+// Font families - using actual Open Props font stacks
+$body-font: var(--font-system-ui); // Clean, readable system fonts
+$heading-font: var(--font-geometric-humanist); // Modern, professional look for headings
+$title-font: var(--font-neo-grotesque); // Clean, modern for important titles
+$ui-font: var(--font-system-ui); // Interface elements - consistent with body
+
+// Color variables for text
+$text-color-light: var(--text-secondary); // Maps to our design system
+
+/**
+ * Colors › Shades
+ */
+$white: #FFFFFF;
+$whitish: #F7F7FA;
+$whitish-alt: #60300004;
+$grey: hsl(0, 0%, 92%);
+$grey-light: #818181; // @TODO: These should be swapped...
+$grey-lightest: #DDDDDD;
+$grey-dark: #D1D1D1; // @TODO: These should be swapped...
+$grey-darker: #757575;
+$grey-darkest: #474747;
+$blackish: #252525;
+$black: #000000;
+
+// SCSS Variables for easier use in modules
+$brand-primary: #603000;
+$accent-warm: #F4C77B;
+$accent-danger: #C25A5A;
+$surface-canvas: #F8F5F0;
+$surface-elevated: #EAE6E1;
+$text-primary: #2A2A2A;
+$text-secondary: #6E7673;
+$border-subtle: #DAD5CF;
+
+$background-color: $white;
+
+$text-color-light: $grey-darker;
+$text-color-regular: $grey-darkest;
+
+$text-color: $text-color-regular;
+
+/**
+ * Colors › Status
+ */
+$error-color: #C52A1A;
+$error-color-light: #F3D4D1;
+$error-color-dark: #822720;
+
+$warning-color: #EB8C00; // #FFBF1F
+$warning-color-light: #FFECBD; // #FFF4D9
+$warning-color-text: #C34C2F;
+
+$success-color: #175D2D; // #22992E
+$success-color-light: #D4EBE9;
+
+
+/*************************************************
+ * Colors › Other
+ ************************************************/
+$border-radius: var(--radius-2); // Standard border radius using Open Props
+$input-border-color: $grey-dark;
+$input-focus-color: $brand-primary;
+$input-disabled-color: $whitish;

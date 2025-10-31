@@ -1,0 +1,220 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: var(--size-4);
+}
+
+.errorSection {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.icon {
+  font-size: 4rem;
+  margin-bottom: var(--size-4);
+}
+
+.title {
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  margin-bottom: var(--size-3);
+}
+
+.message {
+  font-size: var(--font-size-2);
+  color: var(--text-primary);
+  margin-bottom: var(--size-3);
+  font-weight: var(--font-weight-5);
+}
+
+.subtitle {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin-bottom: var(--size-4);
+}
+
+.redirect {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  margin-bottom: var(--size-4);
+  font-style: italic;
+}
+
+.button {
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-2);
+  padding: var(--size-3) var(--size-5);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--brand-primary) 90%, black);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Resend verification styles
+.actions {
+  margin: var(--size-4) 0;
+}
+
+.resendButton {
+  background: var(--accent-warm);
+  color: var(--text-primary);
+  border: none;
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent-warm) 85%, black);
+  }
+
+  &:focus {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 2px;
+  }
+}
+
+.resendForm {
+  margin: var(--size-4) 0;
+  padding: var(--size-4);
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  border: 1px solid var(--border-subtle);
+}
+
+.inputGroup {
+  margin-bottom: var(--size-3);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  margin-bottom: var(--size-1);
+}
+
+.input {
+  width: 100%;
+  padding: var(--size-2) var(--size-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--brand-primary) 20%, transparent);
+  }
+
+  &:disabled {
+    background: var(--surface-elevated);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+
+.successMessage {
+  background: color-mix(in srgb, var(--accent-warm) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-warm) 30%, transparent);
+  color: var(--text-primary);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  margin-bottom: var(--size-3);
+}
+
+.errorMessage {
+  background: color-mix(in srgb, var(--accent-danger) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent-danger) 30%, transparent);
+  color: var(--accent-danger);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  margin-bottom: var(--size-3);
+}
+
+.formActions {
+  display: flex;
+  gap: var(--size-2);
+  justify-content: center;
+}
+
+.submitButton {
+  background: var(--brand-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--brand-primary) 90%, black);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: var(--text-secondary);
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+  }
+
+  &:focus {
+    outline: 2px solid var(--border-subtle);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

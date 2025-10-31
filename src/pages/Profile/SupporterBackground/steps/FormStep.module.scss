@@ -1,0 +1,246 @@
+@use '../../../../styles/styles.scss' as *;
+
+.stepContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-5);
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+
+.textField,
+.textArea {
+  @include input-base;
+
+  &[data-invalid="true"] {
+    border-color: var(--accent-danger);
+    box-shadow: 0 0 0 1px var(--accent-danger);
+  }
+
+  &[data-focused="true"] {
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 2px rgba(from var(--brand-primary) r g b / 0.2);
+  }
+}
+
+.textArea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.label {
+  @include label-base;
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin-bottom: var(--size-2);
+}
+
+.description {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin-top: var(--size-1);
+}
+
+.fieldText {
+  @extend .description;
+}
+
+.errorMessage {
+  font-size: var(--font-size-0);
+  color: var(--accent-danger);
+  margin-top: var(--size-1);
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+.checkboxGroup,
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+
+.checkboxItem,
+.radioItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: background-color var(--animation-duration-fast);
+
+  &:hover {
+    background-color: var(--surface-elevated);
+  }
+
+  &[data-selected="true"] {
+    background-color: rgba(from var(--brand-primary) r g b / 0.1);
+    border: var(--border-size-1) solid var(--brand-primary);
+  }
+}
+
+.checkboxIndicator,
+.radioIndicator {
+  width: var(--size-4);
+  height: var(--size-4);
+  border: 2px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: var(--size-1);
+
+  &[data-selected="true"] {
+    border-color: var(--brand-primary);
+    background-color: var(--brand-primary);
+    color: white;
+  }
+}
+
+.checkboxIndicator {
+  border-radius: var(--radius-1);
+}
+
+.radioIndicator {
+  border-radius: 50%;
+
+  &[data-selected="true"]::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: white;
+  }
+}
+
+.itemContent {
+  flex: 1;
+}
+
+.itemLabel {
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  margin-bottom: var(--size-1);
+}
+
+.itemDescription {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+}
+
+// Multi-column layout for larger option sets
+.multiColumn {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--size-3);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Special styling for availability step
+.availabilityGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--size-3);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.availabilityItem {
+  background: var(--surface-canvas);
+  border: var(--border-size-1) solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  padding: var(--size-4);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+
+  &:hover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 2px 8px rgba(from var(--brand-primary) r g b / 0.1);
+  }
+
+  &[data-selected="true"] {
+    border-color: var(--brand-primary);
+    background-color: rgba(from var(--brand-primary) r g b / 0.1);
+  }
+}
+
+// Review step specific styles
+.reviewSection {
+  border: var(--border-size-1) solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  padding: var(--size-4);
+  margin-bottom: var(--size-4);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.reviewTitle {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-3) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editButton {
+  @include button-secondary;
+  font-size: var(--font-size-0);
+  padding: var(--size-1) var(--size-2);
+}
+
+.reviewContent {
+  line-height: var(--font-lineheight-3);
+}
+
+.reviewItem {
+  margin-bottom: var(--size-2);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.reviewLabel {
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  font-size: var(--font-size-0);
+}
+
+.reviewValue {
+  color: var(--text-primary);
+  margin-top: var(--size-1);
+}
+
+.reviewList {
+  list-style: none;
+  padding: 0;
+  margin: var(--size-1) 0 0 0;
+}
+
+.reviewListItem {
+  padding: var(--size-1) 0;
+  border-bottom: var(--border-size-1) solid var(--border-subtle);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

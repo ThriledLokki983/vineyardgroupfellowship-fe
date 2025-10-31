@@ -1,0 +1,81 @@
+@use '../../styles/styles.scss' as *;
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-3) var(--size-4);
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+  white-space: nowrap;
+  min-width: max-content;
+
+  &[data-selected="true"] {
+    background: var(--brand-primary);
+    color: white;
+  }
+
+  &[data-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:hover:not([data-disabled="true"]) {
+    background: var(--surface-canvas);
+    color: var(--text-primary);
+  }
+
+  &[data-selected="true"]:hover {
+    background: var(--brand-primary);
+    color: white;
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  @include tablet {
+    padding: var(--size-2) var(--size-3);
+    font-size: var(--font-size-0);
+  }
+}
+
+.stepNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: var(--surface-canvas);
+  border-radius: 50%;
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+
+  .tab[data-selected="true"] & {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+}
+
+.tabLabel {
+  flex: 1;
+}
+
+.completedIcon {
+  color: var(--accent-warm);
+  width: 16px;
+  height: 16px;
+  margin-left: var(--size-1);
+
+  .tab[data-selected="true"] & {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}

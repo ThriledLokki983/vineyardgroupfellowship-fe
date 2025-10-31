@@ -1,0 +1,7 @@
+export const LOADING_STATE = 'loading';
+
+export const USER_PURPOSE_GROUP_LEADER = 'PROVIDING_SUPPORT';
+export const  USER_PURPOSE_GROUP_MEMBER = 'SEEKING_SUPPORT';
+export const USER_PURPOSE_UNKNOWN = 'UNKNOWN_PURPOSE';
+
+export type UserPurposeType = 'SEEKING_SUPPORT' | 'PROVIDING_SUPPORT' | 'UNKNOWN_PURPOSE' | null

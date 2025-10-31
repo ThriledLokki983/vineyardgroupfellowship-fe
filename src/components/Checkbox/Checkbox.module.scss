@@ -1,0 +1,110 @@
+@use '../../styles/styles.scss' as *;
+
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  margin: var(--size-2) 0;
+  cursor: pointer;
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  transition: background-color var(--animation-duration-fast);
+  background: var(--surface-canvas);
+
+  &[data-selected] {
+    background-color: rgba(from var(--brand-primary) r g b / 0.08);
+    border-color: var(--brand-primary);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &[data-focus-visible] .checkboxIndicator {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &[data-pressed] .checkboxIndicator {
+    transform: scale(0.95);
+  }
+}
+
+.checkboxIndicator {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-1);
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--animation-duration-fast);
+  flex-shrink: 0;
+  margin-top: 2px; /* Align with text baseline */
+
+  svg {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: white;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0;
+    transition: opacity var(--animation-duration-fast);
+  }
+
+  .checkbox[data-selected] & {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+
+    svg {
+      opacity: 1;
+    }
+  }
+
+  .checkbox[data-hovered] & {
+    border-color: var(--brand-primary);
+  }
+}
+
+.checkboxContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.checkboxLabel {
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-3);
+}
+
+.checkboxDescription {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+}
+
+// Mobile responsive adjustments
+@include mobile {
+  .checkbox {
+    gap: var(--size-2);
+    padding: var(--size-2);
+  }
+
+  .checkboxIndicator {
+    width: 18px;
+    height: 18px;
+
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+}

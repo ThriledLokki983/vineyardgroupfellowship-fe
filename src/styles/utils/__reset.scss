@@ -1,0 +1,35 @@
+:root {
+  font-family: var(--font-sans);
+  line-height: var(--font-lineheight-3);
+  font-weight: var(--font-weight-4);
+
+  color-scheme: light dark;
+  color: var(--text-1);
+  background-color: var(--surface-1);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: var(--bg-surface);
+	margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+	position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}

@@ -1,0 +1,423 @@
+@use '../../styles/styles.scss' as *;
+
+.onboardingModal {
+  // Override modal size for onboarding
+  overflow: auto;
+  .modal {
+    inline-size: 90vw;
+    max-inline-size: 800px;
+    max-block-size: 85vh;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 500px;
+  overflow: hidden; // Prevent container overflow
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--size-6);
+  padding-bottom: var(--size-8);
+  overflow-y: scroll; // Make content scrollable
+  // overflow-x: hidden;
+
+  @include mobile {
+    padding: var(--size-4);
+    padding-bottom: var(--size-6);
+  }
+}
+
+.imageContainer {
+  margin-bottom: var(--size-6);
+
+  @include mobile {
+    margin-bottom: var(--size-4);
+  }
+}
+
+.image {
+  inline-size: 280px;
+  block-size: auto;
+  object-fit: cover;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-3);
+
+  @include mobile {
+    inline-size: 240px;
+    block-size: 170px;
+  }
+
+  @include tablet {
+    inline-size: 260px;
+    block-size: 185px;
+  }
+}
+
+.imagePlaceholder {
+  inline-size: 280px;
+  block-size: auto;
+	padding: var(--size-4);
+  background: linear-gradient(135deg, var(--brand-primary), var(--accent-warm));
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-3);
+  color: white;
+
+  svg {
+    inline-size: var(--size-8);
+    block-size: var(--size-8);
+  }
+
+  span {
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-6);
+  }
+
+  @include mobile {
+    inline-size: 240px;
+    block-size: 170px;
+
+    svg {
+      inline-size: var(--size-6);
+      block-size: var(--size-6);
+    }
+
+    span {
+      font-size: var(--font-size-2);
+    }
+  }
+
+  @include tablet {
+    inline-size: 260px;
+    block-size: 185px;
+  }
+}
+
+.textContent {
+  max-inline-size: 600px;
+	display: flex; flex: 1;
+  justify-content: space-around;
+	flex-direction: column;
+	place-items: center;
+}
+
+.title {
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-4) 0;
+  line-height: var(--font-lineheight-2);
+
+  @include mobile {
+    font-size: var(--font-size-5);
+    margin-bottom: var(--size-3);
+  }
+}
+
+.description {
+  font-size: var(--font-size-2);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+
+  @include mobile {
+    font-size: var(--font-size-1);
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+  padding: var(--size-6);
+  border-top: var(--border-size-1) solid var(--surface-canvas, #f9f9f9);
+  flex-shrink: 0; // Prevent navigation from shrinking
+  background-color: var(--surface-canvas); // Ensure background is solid
+
+  @include mobile {
+    gap: var(--size-4);
+    padding: var(--size-4);
+  }
+}
+
+.stepIndicators {
+  display: flex;
+  justify-content: center;
+  gap: var(--size-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepIndicator {
+  @include button-reset;
+  inline-size: 12px;
+  block-size: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--border-subtle);
+  background: transparent;
+  cursor: pointer;
+  transition: all var(--animation-duration-normal) var(--animation-ease-out);
+  position: relative;
+
+  &:hover {
+    border-color: var(--accent-warm);
+    transform: scale(1.1);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &.active {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    max-inline-size: var(--size-12);
+    inline-size: var(--size-6);
+    border-radius: var(--radius-3);
+  }
+
+  span {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+  }
+}
+
+.actions {
+  display: flex; justify-content: center;
+  gap: var(--size-6);
+  align-items: center;
+}
+
+.primaryButton {
+  @include button-primary;
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-3) var(--size-6);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  min-inline-size: 200px;
+  justify-content: center;
+
+  // Override hover to use warm accent color instead of green
+  &:hover {
+    // color: var(--white, #f9f9f9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(244, 199, 123, 0.3);
+  }
+
+  svg {
+    inline-size: var(--size-4);
+    block-size: var(--size-4);
+    transition: transform var(--animation-duration-fast) var(--animation-ease-out);
+  }
+
+  &:hover svg {
+    transform: translateX(2px);
+  }
+
+  @include mobile {
+    min-inline-size: 160px;
+    padding: var(--size-3) var(--size-4);
+  }
+}
+
+.skipButton {
+  @include button-ghost;
+  color: var(--brand-primary);
+  font-size: var(--font-size-1);
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-2);
+  min-inline-size: 200px;
+  min-block-size: 58px;
+  padding: var(--size-3) var(--size-6);
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--surface-canvas);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+}
+
+// Animation for step transitions
+.content {
+  animation: step-fade-in var(--animation-duration-normal) var(--animation-ease-out);
+}
+
+@keyframes step-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@include tablet {
+  .onboardingModal .modal {
+    inline-size: 85vw;
+    max-inline-size: 700px;
+  }
+}
+
+// Recovery Approach Styles
+.recoveryApproach {
+  margin-top: var(--size-4);
+  text-align: left;
+  inline-size: 100%;
+  max-inline-size: 500px;
+  // Ensure it can scroll if content is too long
+  flex-shrink: 0;
+}
+
+.approachSection,
+.faithSection {
+  margin-bottom: var(--size-5);
+
+  h3 {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-6);
+    color: var(--text-primary);
+    margin-bottom: var(--size-3);
+    text-align: center;
+  }
+}
+
+.faithSection {
+  margin-top: var(--size-4);
+  margin-bottom: var(--size-5);
+
+  h3 {
+    font-size: var(--font-size-1);
+    color: var(--text-secondary);
+    margin-bottom: var(--size-3);
+  }
+}
+
+.optionGroup {
+  display: flex;
+  flex-flow: column wrap;
+  gap: var(--size-2);
+}
+
+.option {
+  // flex: 1 1 49%;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease;
+  background-color: var(--surface-canvas);
+
+  &:hover {
+    border-color: var(--brand-primary);
+    background-color: var(--surface-elevated);
+  }
+
+  &.selected {
+    border-color: var(--brand-primary);
+    background-color: var(--surface-elevated);
+    box-shadow: 0 0 0 1px var(--brand-primary);
+  }
+
+  input[type="radio"] {
+    appearance: none;
+    inline-size: 20px;
+    block-size: 20px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 50%;
+    margin-top: 2px;
+    flex-shrink: 0;
+    position: relative;
+    transition: all var(--animation-duration-fast) ease;
+
+    &:checked {
+      border-color: var(--brand-primary);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        inline-size: 10px;
+        block-size: 10px;
+        border-radius: 50%;
+        background-color: var(--brand-primary);
+      }
+    }
+  }
+}
+
+.optionContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-0);
+  flex: 1;
+}
+
+.optionTitle {
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  font-size: var(--font-size-1);
+}
+
+.optionDescription {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+}
+
+// Responsive adjustments
+@include mobile {
+  .onboardingModal .modal {
+    inline-size: 95vw;
+    max-block-size: 90vh;
+  }
+
+  .container {
+    min-block-size: 400px;
+  }
+
+  // Recovery approach mobile adjustments
+  .recoveryApproach {
+    margin-top: var(--size-3);
+  }
+
+  .option {
+    padding: var(--size-2);
+    gap: var(--size-2);
+  }
+
+  .optionTitle {
+    font-size: var(--font-size-0);
+  }
+
+  .optionDescription {
+    font-size: var(--font-size-00);
+  }
+}

@@ -1,0 +1,17 @@
+@use '../../styles/styles.scss' as *;
+
+.tabPanel {
+  outline: none;
+  animation: fadeIn var(--animation-duration-fast) ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--size-2));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

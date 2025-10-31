@@ -1,0 +1,247 @@
+@use '../utils/__variables' as *;
+
+@mixin card {
+  background: var(--surface-1);
+  border-radius: var(--radius-4);
+  border: var(--border-size-1) solid var(--border-1);
+  box-shadow: var(--shadow-4);
+  padding: var(--size-8);
+}
+
+// ******************************************** //
+//         BUTTON MIXINS
+// ******************************************** //
+@mixin button-base {
+  --primary-btn-bg: hsla(30, 100%, 19%, 0.85);
+  --primary-btn-pressed-bg: hsla(30, 100%, 19%, 0.8);
+  --primary-btn-hover-bg: hsla(30, 100%, 19%, 0.85);
+
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-2);
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-2);
+  border: var(--border-size-1) solid var(--border-1);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  cursor: pointer;
+  transition: all var(--ease-in-4);
+}
+
+
+@mixin button-primary {
+  @include button-base;
+  background: var(--primary-btn-bg);
+  color: var(--surface-canvas);
+  border-color: var(--brand-primary);
+  font-weight: var(--font-weight-6);
+
+  &:hover {
+    background: var(--primary-btn-hover-bg);
+    border-color: var(--border-2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(96, 48, 0, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: var(--surface-3);
+    color: var(--text-2);
+    border-color: var(--border-1);
+    opacity: 0.7;
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: var(--surface-1);
+  color: var(--text-1);
+  border-color: var(--border-2);
+  font-weight: var(--font-weight-5);
+
+  &:hover {
+    background: var(--surface-2);
+    border-color: var(--brand-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(42, 42, 42, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    background: var(--surface-2);
+    color: var(--text-2);
+    border-color: var(--border-1);
+    opacity: 0.5;
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-ghost {
+  all: unset;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-2);
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-2);
+  border: none;
+  background: transparent;
+  color: var(--text-2);
+  font-family: inherit;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+
+  &:hover {
+    background: var(--surface-2);
+    color: var(--text-1);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-reset {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+
+// ******************************************** //
+//         INPUT MIXINS
+// ******************************************** //
+@mixin input-base {
+  all: unset;
+  box-sizing: border-box;
+  padding: var(--size-4);
+  border-radius: var(--radius-2);
+  border: var(--border-size-1) solid var(--border-1);
+  background: var(--surface-1);
+  color: var(--text-1);
+  font-family: inherit;
+  font-size: 16px; // Prevents zoom on iOS
+  min-height: 48px; // Touch-friendly minimum height
+  transition: all var(--animation-duration-fast);
+
+  // Mobile optimizations
+  -webkit-appearance: none; // Remove iOS styling
+  -moz-appearance: none; // Remove Firefox styling
+  appearance: none;
+  touch-action: manipulation; // Better touch handling
+  -webkit-tap-highlight-color: transparent;
+
+  @include bp-min($tablet) {
+    font-size: var(--font-size-1);
+    min-height: 44px;
+  }
+
+  &:focus {
+    border-color: var(--brand-primary);
+    outline: var(--border-size-2) solid rgba(96, 48, 0, 0.1);
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
+  }
+
+  &::placeholder {
+    color: var(--text-2);
+  }
+}
+
+
+// ******************************************** //
+//         RESPONSIVE BREAKPOINTS MIXINS
+// ******************************************** //
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}
+
+// Minimum breakpoint mixin (for mobile-first design)
+@mixin bp-min($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// Font smoothing for better typography on screens
+@mixin font-smoothing($antialiased: true) {
+  @if $antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+// Bare button mixin for text-like buttons
+@mixin bare-button {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+// Accessible focus ring for interactive elements
+@mixin focus-ring {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-2);
+}
+
+/*
+ * Get rid of list-style and padding.
+ */
+@mixin bare-list {
+  margin: 0; padding: 0; list-style-type: none;
+  & > li {
+    margin: 0;
+  }
+}
+
+/**
+ * Clamp lines/rows of text to a fixed amount.
+ */
+@mixin line-clamp($amount: 3) {
+  overflow: hidden;
+  display: -webkit-box; text-overflow: ellipsis;
+  -webkit-line-clamp: $amount; -webkit-box-orient: vertical;
+}

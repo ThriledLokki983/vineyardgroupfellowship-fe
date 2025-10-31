@@ -1,0 +1,205 @@
+@use '../mixins/_mixins' as *;
+
+// Global consistent focus outline color
+:root {
+  --outline-clr: var(--brand-primary);
+}
+
+/* React Aria Components base styles */
+.react-aria-Button {
+  --primary-btn-bg: hsla(30, 100%, 19%, 0.75);
+  --primary-btn-pressed-bg: hsla(30, 100%, 19%, 0.8);
+  --primary-btn-hover-bg: hsla(30, 100%, 19%, 0.85);
+
+  @include bare-button;
+  all: unset;
+  box-sizing: border-box;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-2);
+
+  padding: var(--size-3) var(--size-4);
+  border-radius: var(--radius-2);
+  border: var(--border-size-1) solid var(--border-1);
+
+  background: var(--primary-btn-bg);
+  color: var(--text-1);
+
+  font-family: inherit;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+
+  cursor: pointer;
+  transition: all var(--animation-duration-fast);
+
+  &[data-hovered] {
+    background: var(--primary-btn-hover-bg);
+    border-color: var(--border-2);
+  }
+
+  &[data-pressed] {
+    background: var(--primary-btn-pressed-bg);
+    transform: translateY(1px);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--outline-clr) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+  }
+
+  &[data-focus] {
+    outline: var(--border-size-2) solid var(--outline-clr) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Global Button focus styles with higher specificity */
+button[data-focus-visible] {
+  outline: var(--border-size-2) solid var(--outline-clr) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+}
+
+button[data-focus] {
+  outline: var(--border-size-2) solid var(--outline-clr) !important;
+  outline-offset: 2px !important;
+}
+
+.react-aria-TextField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.react-aria-Label {
+  font-weight: var(--font-weight-6);
+  font-size: var(--font-size-1);
+  color: var(--text-1);
+}
+
+.react-aria-Input {
+  all: unset;
+  box-sizing: border-box;
+
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  border: var(--border-size-1) solid var(--border-1);
+
+  background: var(--surface-1);
+  color: var(--text-1);
+
+  font-family: inherit;
+  font-size: var(--font-size-1);
+
+  transition: all var(--animation-duration-fast);
+
+  &:focus {
+    border-color: var(--accent-7);
+    outline: var(--border-size-2) solid var(--accent-3);
+  }
+
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--outline-clr) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+  }
+
+  &[data-focus] {
+    outline: var(--border-size-2) solid var(--outline-clr) !important;
+    outline-offset: 2px !important;
+  }
+
+  &[data-invalid] {
+    border-color: var(--red-7);
+  }
+
+  &::placeholder {
+    color: var(--text-2);
+  }
+}
+
+/* Global Input focus styles with higher specificity */
+input[data-focus-visible] {
+  outline: var(--border-size-2) solid var(--outline-clr) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+}
+
+input[data-focus] {
+  outline: var(--border-size-2) solid var(--outline-clr) !important;
+  outline-offset: 2px !important;
+}
+
+.react-aria-FieldError {
+  font-size: var(--font-size-0);
+  color: var(--red-7);
+  margin-top: var(--size-1);
+}
+
+.react-aria-Text {
+  color: var(--text-2);
+  font-size: var(--font-size-1);
+}
+
+/* Global Checkbox focus styles */
+.react-aria-Checkbox {
+  &[data-focus-visible] {
+    outline: var(--border-size-2) solid var(--outline-clr) !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+  }
+
+  &[data-focus] {
+    outline: var(--border-size-2) solid var(--outline-clr) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Global focus styles for any element with data attributes */
+[data-focus-visible] {
+  outline: var(--border-size-2) solid var(--outline-clr) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+}
+
+[data-focus]:not([data-focus-visible]) {
+  outline: var(--border-size-2) solid var(--outline-clr) !important;
+  outline-offset: 2px !important;
+}
+
+
+
+//**************************************************
+// CHECKBOX
+//**************************************************
+.react-aria-Checkbox {
+  &[data-invalid] {
+    .checkbox {
+      --checkmark-color: var(--gray-50);
+      border-color: var(--invalid-color);
+    }
+
+    &[data-pressed] .checkbox {
+      border-color: var(--invalid-color-pressed);
+    }
+
+    &[data-selected],
+    &[data-indeterminate] {
+      .checkbox {
+        background: var(--invalid-color);
+      }
+
+      &[data-pressed] .checkbox {
+        background: var(--invalid-color-pressed);
+      }
+    }
+  }
+}

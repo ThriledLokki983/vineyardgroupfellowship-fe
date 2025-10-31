@@ -1,0 +1,39 @@
+@use '../../styles/styles' as *;
+
+.pageLoader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  gap: var(--size-4);
+}
+
+.spinner {
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+
+.spinnerCircle {
+  position: absolute;
+  inset: 0;
+  border: 3px solid var(--border-subtle, #DAD5CF);
+  border-top-color: var(--brand-primary, #3A4F41);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingText {
+  margin: 0;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary, #6E7673);
+  letter-spacing: 0.5px;
+}

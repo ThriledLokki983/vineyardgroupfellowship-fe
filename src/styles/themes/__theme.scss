@@ -1,0 +1,58 @@
+// Vineyard Group Fellowship Design System - SCSS Variables and Mixins
+:root {
+  // Brand Colors
+  --brand-primary: #603000;
+  --btn-hover-clr: #4b2601;
+  --accent-warm: #F4C77B;
+  --accent-danger: #C25A5A;
+
+  // Surface Colors
+  --surface-canvas: #F8F5F0;
+  --surface-elevated: #EAE6E1;
+
+  // Text Colors
+  --text-primary: #2A2A2A;
+  --text-secondary: #6E7673;
+
+  // Border Colors
+  --border-subtle: #DAD5CF;
+
+
+  --error-color: #C52A1A;
+  --error-color-light: #F3D4D1;
+  --error-color-dark: #822720;
+
+  --warning-color: #EB8C00; // #FFBF1F
+  --warning-color-light: #FFECBD; // #FFF4D9
+  --warning-color-text: #C34C2F;
+
+  --success-color: #175D2D; // #22992E
+  --success-color-light: #D4EBE9;
+
+  // Component-specific color overrides
+  --accent-7: var(--brand-primary);
+  // --accent-8: #2d3e34;
+  --accent-0: #F8F5F0;
+  --accent-3: rgba(58, 79, 65, 0.1);
+
+  --surface-1: var(--surface-canvas);
+  --surface-2: var(--surface-elevated);
+  --surface-3: #d5cfc8;
+
+  --text-1: var(--text-primary);
+  --text-2: var(--text-secondary);
+
+  --border-1: var(--border-subtle);
+  --border-2: #c4beb7;
+
+  --red-7: var(--accent-danger);
+  --red-9: #8b3636;
+  --red-2: rgba(194, 90, 90, 0.1);
+  --red-4: rgba(194, 90, 90, 0.3);
+
+  // Gradients
+  --gradient-1: linear-gradient(135deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
+
+  // Shadows
+  --shadow-4: 0 8px 32px rgba(42, 42, 42, 0.08);
+}

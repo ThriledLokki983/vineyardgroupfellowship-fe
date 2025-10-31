@@ -1,0 +1,220 @@
+@use '../../../styles/styles.scss' as *;
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: var(--size-8);
+  text-align: center;
+}
+
+// Verifying State
+.verifying {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4);
+
+  h1 {
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-7);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-4);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+}
+
+// Loading Spinner
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 4px solid var(--surface-elevated);
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Success State
+.success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4);
+
+  h1 {
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-7);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-4);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .redirect {
+    font-size: var(--font-size-1);
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-top: var(--size-2);
+  }
+}
+
+.countdown {
+  display: inline-block;
+  font-weight: var(--font-weight-7);
+  color: var(--brand-primary);
+  font-size: var(--font-size-3);
+  font-style: normal;
+  min-width: 24px;
+  text-align: center;
+  animation: countdownPulse 1s ease-in-out infinite;
+
+  @keyframes countdownPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+}
+
+.iconSuccess {
+  width: 80px;
+  height: 80px;
+  background-color: var(--accent-warm);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-7);
+}
+
+.iconInfo {
+  width: 80px;
+  height: 80px;
+  background-color: var(--surface-elevated);
+  border: 3px solid var(--brand-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-7);
+}
+
+.emailInfo {
+  padding: var(--size-3) var(--size-4);
+  background-color: var(--surface-elevated);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+
+  strong {
+    color: var(--brand-primary);
+    font-weight: var(--font-weight-6);
+  }
+}
+
+// Error State
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4);
+
+  h1 {
+    font-size: var(--font-size-6);
+    font-weight: var(--font-weight-7);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    font-weight: var(--font-weight-4);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+}
+
+.iconError {
+  width: 80px;
+  height: 80px;
+  background-color: var(--accent-danger);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: white;
+  font-weight: var(--font-weight-7);
+}
+
+// Button
+.button {
+  @include button-primary;
+  margin-top: var(--size-4);
+  padding: var(--size-3) var(--size-6);
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@include mobile {
+  .container {
+    padding: var(--size-6);
+  }
+
+  .verifying,
+  .success,
+  .error {
+    h1 {
+      font-size: var(--font-size-5);
+    }
+  }
+
+  .iconSuccess,
+  .iconError {
+    width: 64px;
+    height: 64px;
+    font-size: 36px;
+  }
+
+  .spinner {
+    width: 48px;
+    height: 48px;
+  }
+}

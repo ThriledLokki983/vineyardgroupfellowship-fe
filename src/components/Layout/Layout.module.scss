@@ -1,0 +1,158 @@
+// Layout component styles with mobile-first responsive design
+@use '../../styles/styles.scss' as *;
+
+.layout {
+  min-height: 100vh;
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: var(--font-lineheight-3);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+// Layout variants - MOBILE FIRST APPROACH
+.default {
+  .main {
+    padding: var(--size-0);
+    width: 100dvw;
+    height: 90dvh;
+
+    @include bp-min($tablet) {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--size-6);
+    }
+  }
+}
+
+.centered {
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--size-3);
+    min-height: 100%;
+    background: var(--gradient-1);
+
+    @include bp-min($tablet) {
+      padding: var(--size-4);
+    }
+  }
+}
+
+.fullscreen {
+  .main {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Auth design - MOBILE FIRST: Single column by default, split on larger screens
+.authDesign {
+  .main {
+    padding: 0;
+  }
+}
+
+.authContainer {
+  display: flex;
+  flex-direction: column; // Mobile first: stack vertically
+  flex: 1; // Take remaining space after header/footer
+  width: 100%;
+
+  @include bp-min($tablet) {
+    flex-direction: row; // Tablet and up: side by side
+  }
+}
+
+.authContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // padding: var(--size-4) var(--size-3); // Padding on mobile for breathing room
+  background: var(--surface-canvas);
+
+  @include bp-min($tablet) {
+    // padding: var(--size-6);
+  }
+
+  .main {
+    width: 100%;
+    max-width: 420px; // Slightly smaller for mobile optimization
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--size-4) var(--size-3);
+    flex: 1;
+
+    @include mobile {
+      padding: 0;
+    }
+
+    @include bp-min($tablet) {
+      max-width: 480px;
+    }
+  }
+}
+
+
+.authHeader header {
+  border-bottom: none;
+}
+
+
+.authFooter,
+.authHeader {
+  width: 100%;
+  // max-width: 420px;
+  // padding: var(--size-4) 0;
+  margin-top: auto;
+
+  @include bp-min($tablet) {
+    // max-width: 480px;
+  }
+}
+
+
+// Auth form card styling - Mobile optimized
+.authFormCard {
+  background: rgba(248, 245, 240, 0.95);
+  border-radius: var(--radius-3);
+  padding: var(--size-6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: var(--size-2);
+
+  @include bp-min($tablet) {
+    border-radius: var(--radius-4);
+    padding: var(--size-8);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    margin: 0;
+  }
+}
+
+// Auth image - HIDDEN ON MOBILE, shown on tablet+
+.authImage {
+  display: none; // Hidden on mobile for single-column layout
+
+  @include bp-min($tablet) {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    background: #603000;
+    position: relative;
+    overflow: hidden;
+  }
+}
