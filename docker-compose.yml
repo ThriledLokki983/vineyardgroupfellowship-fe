@@ -1,0 +1,132 @@
+version: '3.8'
+
+services:
+  # Vineyardgroupfellowship Frontend Development Service
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base  # Use the base stage for development
+    container_name: vineyardgroupfellowship-frontend-dev
+    ports:
+      - "3000:3000"  # Development server port
+      - "3001:3001"  # HMR/Vite dev server
+    volumes:
+      # Mount source code for live reload
+      - .:/app
+      - /app/node_modules  # Prevent overwriting node_modules
+      - /app/dist          # Prevent overwriting dist
+    environment:
+      - NODE_ENV=development
+      - VITE_USE_LOCAL_ENDPOINT=true
+      - CHOKIDAR_USEPOLLING=true  # For Windows/WSL compatibility
+      - PORT=3000
+    command: yarn dev --host 0.0.0.0 --port 3000
+    networks:
+      - vineyardgroupfellowship-network
+    restart: unless-stopped
+
+  # Production-like Frontend Service (for testing)
+  frontend-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vineyardgroupfellowship-frontend-prod
+    ports:
+      - "8080:80"  # Nginx production server
+    environment:
+      - NODE_ENV=production
+    networks:
+      - vineyardgroupfellowship-network
+    profiles:
+      - production
+    restart: unless-stopped
+
+  # Redis (if needed for session storage in the future)
+  redis:
+    image: redis:7-alpine
+    container_name: vineyardgroupfellowship-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - vineyardgroupfellowship-network
+    profiles:
+      - full
+    restart: unless-stopped
+
+  # PostgreSQL (if needed for local database in the future)
+  postgres:
+    image: postgres:15-alpine
+    container_name: vineyardgroupfellowship-postgres
+    environment:
+      POSTGRES_DB: vineyardgroupfellowship_dev
+      POSTGRES_USER: vineyardgroupfellowship
+      POSTGRES_PASSWORD: dev_password_change_in_production
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - vineyardgroupfellowship-network
+    profiles:
+      - full
+    restart: unless-stopped
+
+  # Nginx Proxy (for complex local development)
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: vineyardgroupfellowship-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+    networks:
+      - vineyardgroupfellowship-network
+    profiles:
+      - proxy
+    restart: unless-stopped
+
+networks:
+  vineyardgroupfellowship-network:
+    driver: bridge
+    name: vineyardgroupfellowship-network
+
+volumes:
+  redis_data:
+    name: vineyardgroupfellowship_redis_data
+  postgres_data:
+    name: vineyardgroupfellowship_postgres_data
+
+# Usage Examples:
+#
+# Development (default):
+#   docker-compose up --build
+#   Access at: http://localhost:3000
+#
+# Production testing:
+#   docker-compose --profile production up --build
+#   Access at: http://localhost:8080
+#
+# Full stack (with Redis + PostgreSQL):
+#   docker-compose --profile full up --build
+#
+# With proxy:
+#   docker-compose --profile proxy up --build
+#   Access at: http://localhost
+#
+# Development with live reload:
+#   docker-compose up --build
+#   Edit files in ./src and see changes instantly
+#
+# Stop all services:
+#   docker-compose down
+#
+# Clean up everything:
+#   docker-compose down --rmi all --volumes --remove-orphans
