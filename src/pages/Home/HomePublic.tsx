@@ -5,53 +5,77 @@ import styles from './HomePage.module.scss'
 export default function HomePublic() {
   const navigate = useNavigate()
 
-  const pillars = [
+  const fellowshipFeatures = [
+    {
+      icon: '👥',
+      title: 'Join a Circle',
+      description: 'Connect with small, supportive groups led by trained facilitators for deeper fellowship.'
+    },
     {
       icon: '🤝',
-      title: 'Community Support',
-      description: 'Share experiences anonymously with people who understand your journey.'
-    },
-    {
-      icon: '📈',
-      title: 'Track Progress',
-      description: 'See your growth day by day with insights and milestones.'
-    },
-    {
-      icon: '📚',
-      title: 'Learn & Reflect',
-      description: 'Guides and resources curated by experts to support your recovery.'
-    }
-  ]
-
-  const previews = [
-    {
-      title: 'Your Dashboard',
-      description: 'Track your streak and see your progress at a glance',
-      preview: 'Day 15 Streak 🔥'
-    },
-    {
-      title: 'Community Feed',
-      description: 'Encouragement and stories from others on the same path',
-      preview: 'Anonymous Support'
-    }
-  ]
-
-  const learningTopics = [
-    {
-      icon: '🔒',
-      title: 'Your Privacy Matters',
-      excerpt: 'Learn how we protect your data and keep you anonymous'
+      title: 'Find Your Sponsor',
+      description: 'Get matched with experienced members who can guide you through your recovery journey.'
     },
     {
       icon: '�',
-      title: 'Community Guidelines',
-      excerpt: 'Understand our commitment to a safe, supportive space'
+      title: 'Meeting Finder',
+      description: 'Discover local and virtual meetings that fit your schedule and recovery needs.'
+    },
+    {
+      icon: '�',
+      title: '24/7 Support Chat',
+      description: 'Access peer support anytime through our moderated community chat rooms.'
     }
   ]
 
-  const privacyBadges = [
-    { icon: '🔒', text: 'Your data is never shared' },
-    { icon: '👤', text: 'Anonymous by default' }
+  const recoveryPaths = [
+    {
+      title: 'Addiction Recovery',
+      description: 'Evidence-based support for substance use recovery',
+      icon: '🌱',
+      color: 'green'
+    },
+    {
+      title: 'Mental Health',
+      description: 'Depression, anxiety, and emotional wellness support',
+      icon: '🧠',
+      color: 'blue'
+    },
+    {
+      title: 'Life Transitions',
+      description: 'Navigate major life changes with community support',
+      icon: '🛤️',
+      color: 'purple'
+    },
+    {
+      title: 'Grief & Loss',
+      description: 'Healing together through loss and bereavement',
+      icon: '💙',
+      color: 'teal'
+    }
+  ]
+
+  const communityHighlights = [
+    {
+      stat: '15,000+',
+      label: 'Active Members',
+      description: 'People supporting each other daily'
+    },
+    {
+      stat: '500+',
+      label: 'Weekly Meetings',
+      description: 'Virtual and in-person gatherings'
+    },
+    {
+      stat: '95%',
+      label: 'Feel Supported',
+      description: 'Members report feeling heard and understood'
+    },
+    {
+      stat: '24/7',
+      label: 'Peer Support',
+      description: 'Someone is always there when you need them'
+    }
   ]
 
   return (
@@ -60,61 +84,72 @@ export default function HomePublic() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
-            Freedom starts with one step.
+            Find Your Fellowship. Find Your Freedom.
           </h1>
           <p className={styles.heroSubtitle}>
-            Join thousands finding balance, purpose, and community.
+            Join a compassionate community where recovery, growth, and healing happen together.
           </p>
           <div className={styles.heroCTAs}>
             <Button
               variant="primary"
               onPress={() => navigate('/register')}
             >
-              Start My Journey
+              Join Our Fellowship
             </Button>
             <Button
               variant="secondary"
               onPress={() => {
-                document.getElementById('how-it-helps')?.scrollIntoView({ behavior: 'smooth' })
+                document.getElementById('fellowship-features')?.scrollIntoView({ behavior: 'smooth' })
               }}
             >
-              Learn More
+              Explore Community
             </Button>
           </div>
         </div>
       </section>
 
-      {/* How It Helps */}
-      <section id="how-it-helps" className={styles.section}>
-        <h2 className={styles.sectionTitle}>How Vineyard Group Fellowship Helps</h2>
-        <p className={styles.sectionSubtitle}>
-          A safe, private space designed to support your journey to recovery
-        </p>
-        <div className={styles.pillarsGrid}>
-          {pillars.map((pillar, index) => (
-            <div key={index} className={styles.pillarCard}>
-              <div className={styles.pillarIcon}>{pillar.icon}</div>
-              <h3 className={styles.pillarTitle}>{pillar.title}</h3>
-              <p className={styles.pillarDescription}>{pillar.description}</p>
+      {/* Community Stats */}
+      <section className={styles.section}>
+        <div className={styles.statsGrid}>
+          {communityHighlights.map((highlight, index) => (
+            <div key={index} className={styles.statCard}>
+              <div className={styles.statNumber}>{highlight.stat}</div>
+              <h3 className={styles.statLabel}>{highlight.label}</h3>
+              <p className={styles.statDescription}>{highlight.description}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Peek Inside */}
-      <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>A Peek Inside</h2>
+      {/* Fellowship Features */}
+      <section id="fellowship-features" className={styles.section}>
+        <h2 className={styles.sectionTitle}>Your Fellowship Experience</h2>
         <p className={styles.sectionSubtitle}>
-          Get a glimpse of what awaits when you join
+          Discover the power of authentic community support
         </p>
-        <div className={styles.previewGrid}>
-          {previews.map((preview, index) => (
-            <div key={index} className={styles.previewCard}>
-              <div className={styles.previewImage}>
-                {preview.preview}
-              </div>
-              <h3 className={styles.previewTitle}>{preview.title}</h3>
-              <p className={styles.previewDescription}>{preview.description}</p>
+        <div className={styles.pillarsGrid}>
+          {fellowshipFeatures.map((feature, index) => (
+            <div key={index} className={styles.pillarCard}>
+              <div className={styles.pillarIcon}>{feature.icon}</div>
+              <h3 className={styles.pillarTitle}>{feature.title}</h3>
+              <p className={styles.pillarDescription}>{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Recovery Paths */}
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Find Your Path</h2>
+        <p className={styles.sectionSubtitle}>
+          Whatever brings you here, there's a community waiting to support you
+        </p>
+        <div className={styles.pathsGrid}>
+          {recoveryPaths.map((path, index) => (
+            <div key={index} className={`${styles.pathCard} ${styles[`path-${path.color}`]}`}>
+              <div className={styles.pathIcon}>{path.icon}</div>
+              <h3 className={styles.pathTitle}>{path.title}</h3>
+              <p className={styles.pathDescription}>{path.description}</p>
             </div>
           ))}
         </div>
@@ -123,55 +158,64 @@ export default function HomePublic() {
             variant="tertiary"
             onPress={() => navigate('/register')}
           >
-            See How It Works →
+            Find Your Community →
           </Button>
         </div>
       </section>
 
-      {/* Learn & Grow */}
+      {/* How It Works */}
       <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>Learn & Grow</h2>
-        <p className={styles.sectionSubtitle}>
-          Expert-curated content to support your recovery journey
-        </p>
-        <div className={styles.contentGrid}>
-          {learningTopics.map((topic, index) => (
-            <div
-              key={index}
-              className={styles.contentCard}
-              onClick={() => navigate(index === 0 ? '/privacy-policy' : '/terms-of-use')}
-            >
-              <div className={styles.contentIcon}>{topic.icon}</div>
-              <div className={styles.contentInfo}>
-                <h3 className={styles.contentTitle}>{topic.title}</h3>
-                <p className={styles.contentExcerpt}>{topic.excerpt}</p>
-              </div>
-            </div>
-          ))}
+        <h2 className={styles.sectionTitle}>How Fellowship Works</h2>
+        <div className={styles.processGrid}>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>1</div>
+            <h3>Join Safely</h3>
+            <p>Create your anonymous profile and share only what you're comfortable with.</p>
+          </div>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>2</div>
+            <h3>Find Your Circle</h3>
+            <p>Get matched with small groups based on your journey and needs.</p>
+          </div>
+          <div className={styles.processStep}>
+            <div className={styles.stepNumber}>3</div>
+            <h3>Grow Together</h3>
+            <p>Share, listen, and support each other through every step forward.</p>
+          </div>
         </div>
       </section>
 
       {/* Safe & Private */}
       <section className={styles.privacySection}>
         <div className={styles.section} style={{ padding: 0 }}>
-          <h2 className={styles.sectionTitle}>Safe & Private</h2>
+          <h2 className={styles.sectionTitle}>Built on Trust & Safety</h2>
           <p className={styles.sectionSubtitle}>
-            Your privacy and safety are our top priorities
+            Your privacy and wellbeing are sacred to us
           </p>
           <div className={styles.privacyBadges}>
-            {privacyBadges.map((badge, index) => (
-              <div key={index} className={styles.privacyBadge}>
-                <span className={styles.badgeIcon}>{badge.icon}</span>
-                <span className={styles.badgeText}>{badge.text}</span>
-              </div>
-            ))}
+            <div className={styles.privacyBadge}>
+              <span className={styles.badgeIcon}>🔒</span>
+              <span className={styles.badgeText}>End-to-end encryption</span>
+            </div>
+            <div className={styles.privacyBadge}>
+              <span className={styles.badgeIcon}>👤</span>
+              <span className={styles.badgeText}>Anonymous by design</span>
+            </div>
+            <div className={styles.privacyBadge}>
+              <span className={styles.badgeIcon}>🛡️</span>
+              <span className={styles.badgeText}>Trained moderators</span>
+            </div>
+            <div className={styles.privacyBadge}>
+              <span className={styles.badgeIcon}>❤️</span>
+              <span className={styles.badgeText}>Trauma-informed care</span>
+            </div>
           </div>
           <div style={{ textAlign: 'center', marginTop: 'var(--size-6)' }}>
             <Button
               variant="tertiary"
               onPress={() => navigate('/privacy')}
             >
-              Read Our Privacy Promise
+              Read Our Community Promise
             </Button>
           </div>
         </div>
@@ -180,17 +224,17 @@ export default function HomePublic() {
       {/* CTA Footer */}
       <section className={styles.ctaFooter}>
         <h2 className={styles.ctaFooterTitle}>
-          Your journey can begin today — privately, safely, together.
+          You don't have to journey alone.
         </h2>
         <p className={styles.ctaFooterSubtitle}>
-          Join a community that understands and supports your path to freedom.
+          Join thousands who've found hope, healing, and authentic fellowship in our community.
         </p>
         <Button
           variant="primary"
           onPress={() => navigate('/register')}
           style={{ background: 'white', color: 'var(--brand-primary)' }}
         >
-          Join Vineyard Group Fellowship
+          Begin Your Fellowship Journey
         </Button>
       </section>
     </div>
