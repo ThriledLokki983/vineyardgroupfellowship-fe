@@ -30,3 +30,6 @@ export const GROUP_MEMBERS_URL = (id: string) => `/groups/${id}/members/`;
 export const GROUP_JOIN_URL = (id: string) => `/groups/${id}/join/`;
 export const GROUP_LEAVE_URL = (id: string) => `/groups/${id}/leave/`;
 export const GROUP_UPLOAD_PHOTO_URL = (id: string) => `/groups/${id}/upload_photo/`;
+export const GROUP_PENDING_REQUESTS_URL = (id: string) => `/groups/${id}/pending_requests/`;
+export const GROUP_APPROVE_REQUEST_URL = (id: string, membershipId: string) => `/groups/${id}/approve-request/${membershipId}/`;
+export const GROUP_REJECT_REQUEST_URL = (id: string, membershipId: string) => `/groups/${id}/reject-request/${membershipId}/`;

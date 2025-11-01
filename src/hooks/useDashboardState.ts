@@ -36,8 +36,7 @@ export const useDashboardState = (): DashboardStateData => {
 
   const dashboardData = useMemo(() => {
     // Helper function to determine user purpose
-    const getUserPurpose = (purpose: string = ''): UserPurposeType => {
-      // First check the new leadership_info structure (priority)
+    const getUserPurpose = (purpose: boolean = false): UserPurposeType => {
       if (user?.leadership_info?.can_lead_group === true) {
         return USER_PURPOSE_GROUP_LEADER;
       }
@@ -49,11 +48,9 @@ export const useDashboardState = (): DashboardStateData => {
 
       // Finally check user_purpose field
       switch (purpose) {
-        case 'group_leader':
-        case 'providing_support': // Legacy support
+        case true:
           return USER_PURPOSE_GROUP_LEADER
-        case 'group_member':
-        case 'seeking_recovery': // Legacy support
+        case false:
           return USER_PURPOSE_GROUP_MEMBER
         default:
           return USER_PURPOSE_UNKNOWN
@@ -74,14 +71,14 @@ export const useDashboardState = (): DashboardStateData => {
     if (!isOnboardingComplete) {
       return {
         state: 'onboarding-required' as DashboardState,
-        userPurpose: getUserPurpose(user.user_purpose),
+        userPurpose: getUserPurpose(user.leadership_info?.can_lead_group),
         isFirstVisit: false,
         isReturning: false,
         daysSinceLastActivity: 0
       }
     }
 
-    const userPurpose: UserPurposeType = getUserPurpose(user.user_purpose)
+    const userPurpose: UserPurposeType = getUserPurpose(user.leadership_info?.can_lead_group)
     // Use available timestamp fields for activity detection
     const lastActivityDate = user.updated_at || user.created_at
     const daysSinceLastActivity = lastActivityDate
@@ -95,36 +92,39 @@ export const useDashboardState = (): DashboardStateData => {
 
     // These will be determined by future API calls or user fields
     // For now, assume first visit if basic profile is incomplete
-    const hasGoals = false // TODO: Implement goals API
+    // const hasGoals = false // TODO: Implement goals API
     const hasMentees = false // TODO: Implement mentees API
     const hasGroups = false // TODO: Implement groups API
 
     // Check for returning user (more than 14 days inactive)
     const isReturning = daysSinceLastActivity >= 14
 
+    console.log({ userPurpose});
+
+
     // Determine dashboard state based on user purpose
     if (userPurpose === USER_PURPOSE_GROUP_MEMBER) {
-      const isFirstVisit = !hasGoals && !hasActivityData && !hasProfileData
+      // const isFirstVisit = !hasGoals && !hasActivityData && !hasProfileData
 
-      if (isFirstVisit) {
-        return {
-          state: 'first-visit-seeker' as DashboardState,
-          userPurpose,
-          isFirstVisit: true,
-          isReturning: false,
-          daysSinceLastActivity
-        }
-      }
+      // if (isFirstVisit) {
+      //   return {
+      //     state: 'first-visit-seeker' as DashboardState,
+      //     userPurpose,
+      //     isFirstVisit: true,
+      //     isReturning: false,
+      //     daysSinceLastActivity
+      //   }
+      // }
 
-      if (isReturning) {
-        return {
-          state: 'returning-seeker' as DashboardState,
-          userPurpose,
-          isFirstVisit: false,
-          isReturning: true,
-          daysSinceLastActivity
-        }
-      }
+      // if (isReturning) {
+      //   return {
+      //     state: 'returning-seeker' as DashboardState,
+      //     userPurpose,
+      //     isFirstVisit: false,
+      //     isReturning: true,
+      //     daysSinceLastActivity
+      //   }
+      // }
 
       return {
         state: 'active-seeker' as DashboardState,

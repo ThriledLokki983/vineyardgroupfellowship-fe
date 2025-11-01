@@ -18,19 +18,12 @@ export default function HomeAuthenticated() {
 
   // Mock data - replace with real API calls using TanStack Query
   const lastActive = 'Today at 9:42 AM'
-  const currentStreak = 23
+  // const currentStreak = 23
   const totalMeetingsAttended = 12
   const supportMessagesReceived = 47
 
   // Fellowship Dashboard Data
   const fellowshipStats = [
-    {
-      icon: '�',
-      value: `${currentStreak} days`,
-      label: 'Recovery Streak',
-      trend: '+3 from last week',
-      color: 'orange'
-    },
     {
       icon: '�',
       value: totalMeetingsAttended.toString(),
@@ -63,13 +56,6 @@ export default function HomeAuthenticated() {
       status: 'upcoming'
     },
     {
-      time: '2:00 PM',
-      title: 'Sponsor Meet: Sarah M.',
-      type: 'one-on-one',
-      participants: 1,
-      status: 'scheduled'
-    },
-    {
       time: '7:00 PM',
       title: 'Evening Reflection Group',
       type: 'group',
@@ -80,25 +66,11 @@ export default function HomeAuthenticated() {
 
   const quickActions = [
     {
-      icon: '✏️',
-      title: 'Daily Check-in',
-      description: 'Share how you\'re feeling today',
-      action: () => navigate('/checkin'),
-      urgency: 'high'
-    },
-    {
       icon: '�',
       title: 'Find Meeting',
       description: 'Join a live support meeting',
       action: () => navigate('/meetings'),
       urgency: 'medium'
-    },
-    {
-      icon: '�',
-      title: 'Message Sponsor',
-      description: 'Connect with your guide',
-      action: () => navigate('/messages'),
-      urgency: 'low'
     },
     {
       icon: '📚',
@@ -110,13 +82,13 @@ export default function HomeAuthenticated() {
   ]
 
   const communityHighlights = [
-    {
-      author: 'Anonymous Friend',
-      timeAgo: '2 hours ago',
-      content: 'Hit 90 days today! This community has been my anchor. Thank you all for showing me what fellowship really means. 🙏',
-      reactions: 24,
-      type: 'milestone'
-    },
+    // {
+    //   author: 'Anonymous Friend',
+    //   timeAgo: '2 hours ago',
+    //   content: 'Hit 90 days today! This community has been my anchor. Thank you all for showing me what fellowship really means. 🙏',
+    //   reactions: 24,
+    //   type: 'milestone'
+    // },
     {
       author: 'Circle Member',
       timeAgo: '4 hours ago',
@@ -124,13 +96,6 @@ export default function HomeAuthenticated() {
       reactions: 18,
       type: 'gratitude'
     },
-    {
-      author: 'Recovery Buddy',
-      timeAgo: '6 hours ago',
-      content: 'Struggling today but remembering what my sponsor said: "Progress, not perfection." Taking it one breath at a time.',
-      reactions: 31,
-      type: 'support'
-    }
   ]
 
   const dailyQuote = "Fellowship is the great medicine for recovery. Together we can do what none of us could do alone."

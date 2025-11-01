@@ -95,6 +95,24 @@
   font-weight: var(--font-weight-5);
 }
 
+.featureSection {
+  margin-bottom: var(--size-8);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.sectionTitle {
+  font-size: var(--font-size-4);
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-6);
+  margin: var(--size-6) 0 var(--size-4);
+  padding-bottom: var(--size-2);
+  border-bottom: 2px solid var(--accent-warm);
+  display: inline-block;
+}
+
 .featureList {
   list-style: none;
   padding: 0;
@@ -178,6 +196,16 @@
 
   .subMessage {
     font-size: var(--font-size-1);
+  }
+
+  .featureSection {
+    margin-bottom: var(--size-6);
+  }
+
+  .sectionTitle {
+    font-size: var(--font-size-3);
+    margin: var(--size-4) 0 var(--size-3);
+    padding-bottom: var(--size-1);
   }
 
   .featureList {

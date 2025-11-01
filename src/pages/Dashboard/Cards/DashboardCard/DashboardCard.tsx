@@ -1,10 +1,9 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
 import { Icon, InlineLoader, Button } from 'components';
-import { getGroupDetailsPath } from 'configs/paths';
+import { GroupSummaryCard } from '../GroupSummaryCard';
 
-type EMPTY_ICON_MAP = 'EmptyMailboxIcon' | 'EmptyWritingIcon' | 'EmptyGroupIcon';
-type TITLE_ICON_MAP = 'OutboxIcon' | 'InboxIcon';
+type EMPTY_ICON_MAP = 'EmptyMailboxIcon' | 'EmptyWritingIcon' | 'EmptyGroupIcon' | 'SearchIcon';
+type TITLE_ICON_MAP = 'OutboxIcon' | 'InboxIcon' | 'PeopleIcon' | 'ClockIcon' | 'SearchIcon' | 'DashboardIcon' | 'StatsIcon';
 
 interface GroupData {
 	id: string;
@@ -21,16 +20,17 @@ interface GroupData {
 	my_role: 'leader' | 'co_leader' | 'member';
 	created_by_me: boolean;
 	joined_at: string;
-	membership_status: 'pending' | 'active' | 'inactive' | 'removed';
+	membership_status: 'pending' | 'active' | 'leader' | 'co_leader' | null;
 }
 
 interface DashboardCarProps {
-	titleIconName: TITLE_ICON_MAP
-	emptyIconName: EMPTY_ICON_MAP;
+	titleIconName?: TITLE_ICON_MAP
+	emptyIconName?: EMPTY_ICON_MAP;
 	title: string
 	emptyMessage: string
 	isEmpty: boolean
 	showActionButton?: boolean
+	actionButtonText?: string
 	isLoading?: boolean
 	onActionClick?: () => void
 	groupData?: GroupData | null
@@ -47,6 +47,7 @@ export const DashboardCard = ({
 	isEmpty = false,
 	isLoading = false,
 	showActionButton = false,
+	actionButtonText,
 	onActionClick,
 	groupData,
 	children
@@ -54,11 +55,14 @@ export const DashboardCard = ({
 
 	const hasGroup = groupData && groupData.my_role === 'leader';
 
+	// Determine button text based on context
+	const buttonText = actionButtonText || (hasGroup ? 'Update Group' : 'Create Group');
+
 	return (
 		<div className={styles.contentCard}>
 			<header>
 				<h2 className={styles.contentCardTitle}>
-					<Icon name={titleIconName} />
+					<Icon name={titleIconName || 'DashboardIcon'} />
 					{title}
 				</h2>
 				<div>
@@ -73,7 +77,7 @@ export const DashboardCard = ({
 						data-create-button
 					>
 						<Icon name="MeetingIcon" />
-						<span>{hasGroup ? 'Update' : 'Create'}&nbsp;Group</span>
+						<span>{buttonText}</span>
 					</Button>
 					) : null }
 				</div>
@@ -82,7 +86,7 @@ export const DashboardCard = ({
 			<div className={styles.empty_content} hidden={!isEmpty || !!hasGroup}>
 				{isEmpty && !hasGroup ? (
 					<>
-						<Icon name={emptyIconName} />
+						<Icon name={emptyIconName || 'EmptyGroupIcon'} />
 						<p>{emptyMessage}</p>
 					</>
 				) : null }
@@ -91,7 +95,7 @@ export const DashboardCard = ({
 				{children}
 				{/* Show group info if group exists */}
 				{hasGroup && groupData && (
-					<GroupSummaryDetails groupData={groupData} />
+					<GroupSummaryCard groupData={groupData} showStatus={false} />
 				)}
 			</div>
 		</div>
@@ -100,58 +104,3 @@ export const DashboardCard = ({
 };
 
 export default DashboardCard;
-
-
-interface GroupSummaryDetailsProps {
-	groupData: GroupData;
-}
-
-const GroupSummaryDetails = ({ groupData }: GroupSummaryDetailsProps) => {
-
-	return (
-		<article className={styles.groupInfo}>
-			<div className={styles.groupHeader}>
-				<h3 className={styles.groupName}>{groupData.name}</h3>
-				<span className={styles.groupStatus}>
-					{/* <Icon name={groupData.is_open ? 'CheckMarkFillIcon' : 'CrossIcon'} /> */}
-					{groupData.is_open ? 'Open' : 'Closed'}
-				</span>
-			</div>
-			<p className={styles.groupDescription}>
-				{groupData.description.length > 150
-					? `${groupData.description.substring(0, 150)}...`
-					: groupData.description
-				}
-			</p>
-			<div className={styles.groupDetails}>
-				<div className={styles.groupDetail}>
-					<Icon name="LocationIcon" />
-					<span>{groupData.location_type === 'in_person' ? 'In Person' : groupData.location_type === 'virtual' ? 'Virtual' : 'Hybrid'}</span>
-				</div>
-				<div className={styles.groupDetail}>
-					<Icon name="ClockIcon" />
-					<span>{groupData.meeting_time}</span>
-				</div>
-				<div className={styles.groupDetail}>
-					<Icon name="PersonOutlineIcon" />
-					<span>{groupData.current_member_count}/{groupData.member_limit} members</span>
-				</div>
-			</div>
-			{/* <div className={styles.groupStats}>
-				<div className={styles.stat}>
-					<span className={styles.statValue}>{groupData.available_spots}</span>
-					<span className={styles.statLabel}>Available Spots</span>
-				</div>
-				<div className={styles.stat}>
-					<span className={styles.statValue}>{groupData.current_member_count}</span>
-					<span className={styles.statLabel}>Current Members</span>
-				</div>
-			</div> */}
-			<Link to={getGroupDetailsPath(groupData.id)} className={styles.viewDetailsLink}>
-				<span>View Full Details</span>
-				<Icon name="ArrowRight" />
-			</Link>
-		</article>
-	);
-
-};

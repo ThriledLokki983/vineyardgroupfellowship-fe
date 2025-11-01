@@ -8,11 +8,14 @@ import type { DashboardState } from 'hooks/useDashboardState';
 import type { User } from 'configs/hooks-interfaces';
 import { PATH_GROUP_LEADER_BACKGROUND } from 'configs/paths';
 import { useSupporterStatus } from 'hooks/useSupporterBackground';
+import { useLeaderGroups } from 'hooks/useMyGroups';
+import { useAllGroupsPendingRequests } from 'hooks/usePendingRequests';
 import { modals } from 'signals/ui-signals';
 
 import { Layout, Icon, AlertBar, CreateGroupModal } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import Action from '../Cards/ActionCard/Action';
+import { PendingRequestCard } from '../Cards/PendingRequestCard';
 
 import styles from './GroupLeaderDashboard.module.scss';
 
@@ -287,6 +290,11 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
   const groupData = user?.leadership_info?.group || null;
   const hasGroup = !!groupData;
 
+  // Fetch leader groups and pending requests
+  const { data: leaderGroups } = useLeaderGroups();
+  const groupIds = leaderGroups?.map((g) => g.id) || [];
+  const { pendingRequests, totalPending, isLoading: isLoadingRequests } = useAllGroupsPendingRequests(groupIds);
+
   return (
     <Fragment>
       {/* Create Group Modal */}
@@ -313,24 +321,57 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
           titleIconName='InboxIcon'
           title='Pending Actions'
           emptyMessage='You have no actions to take care of.'
-          isEmpty={MissingFields.length <= 0 && nextSteps.length <= 0}
+          isEmpty={MissingFields.length <= 0 && nextSteps.length <= 0 && totalPending <= 0}
+          isLoading={isLoadingRequests}
         >
-          {MissingFields ? (
+          {/* Pending join requests */}
+          {totalPending > 0 && (
+            <div style={{ marginBottom: 'var(--size-4)' }}>
+              <h4 style={{
+                fontSize: 'var(--font-size-2)',
+                fontWeight: 'var(--font-weight-6)',
+                color: 'var(--brand-primary)',
+                marginBottom: 'var(--size-3)'
+              }}>
+                Join Requests ({totalPending})
+              </h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--size-3)' }}>
+                {pendingRequests.map((request) => {
+                  // Find which group this request belongs to
+                  const requestGroupId = leaderGroups?.find((g) => g.id)?.id || '';
+                  const group = leaderGroups?.find((g) => g.id === requestGroupId);
+                  return (
+                    <PendingRequestCard
+                      key={request.id}
+                      request={request}
+                      groupId={requestGroupId}
+                      groupName={group?.name || 'Unknown Group'}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Missing profile fields */}
+          {MissingFields.length > 0 && (
             <ol>
               {MissingFields.map((action, i) => (
                 <li key={`${action}-${i}`}>
                   <Action action={action} type="missing"/>
                 </li>
               ))}
-            </ol>)
-          : null }
-          {nextSteps ? nextSteps.map((action, i) => (
-              <ol>
-                <li key={`${action}-${i}`}>
+            </ol>
+          )}
+
+          {/* Next steps */}
+          {nextSteps && nextSteps.length > 0 && nextSteps.map((action, i) => (
+              <ol key={`${action}-${i}`}>
+                <li>
                   <Action action={action} type="support"/>
                 </li>
               </ol>
-          )) : null}
+          ))}
         </DashboardCard>
         <DashboardCard
           emptyIconName='EmptyGroupIcon'

@@ -5,8 +5,8 @@ import { useAuthContext } from 'contexts/Auth/useAuthContext';
 import { useAccountStatus } from 'hooks/useAccountStatus';
 import type { OnboardingStepValue } from 'services/api';
 
-import SeekerDashboard from '../GroupMemberDashboard/SeekerDashboard';
-import SupporterDashboard from '../GroupLeaderDashboard/GroupLeaderDashboard';
+import GroupMemberDashboard from '../GroupMemberDashboard/GroupMemberDashboard';
+import GroupLeaderDashboard from '../GroupLeaderDashboard/GroupLeaderDashboard';
 
 import { Layout, Icon, LoadingState, OnboardingModal } from 'components';
 import {
@@ -67,15 +67,15 @@ export default function DashboardRouter() {
 
   // Route to appropriate dashboard based on user purpose
   if (userPurpose === USER_PURPOSE_GROUP_LEADER) {
-    return <SupporterDashboard dashboardState={state} />;
+    return <GroupLeaderDashboard dashboardState={state} />;
   }
 
   if (userPurpose === USER_PURPOSE_GROUP_MEMBER) {
-    return <SeekerDashboard dashboardState={state} />;
+    return <GroupMemberDashboard dashboardState={state} />;
   }
 
   // Fallback for unknown user purpose - default to seeker experience
   if (userPurpose === USER_PURPOSE_UNKNOWN) {
-    return <SeekerDashboard dashboardState={state} />
+    return <GroupMemberDashboard dashboardState={state} />
   }
 }

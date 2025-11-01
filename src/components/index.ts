@@ -11,6 +11,9 @@ export { ProtectedRoute, PublicRoute } from './Authentication';
 // BackLink
 export { default as BackLink } from './BackLink/BackLink';
 
+// BrowseGroupsModal
+export { default as BrowseGroupsModal } from './BrowseGroupsModal';
+
 // Button
 export { Button, type ButtonProps } from './Button';
 

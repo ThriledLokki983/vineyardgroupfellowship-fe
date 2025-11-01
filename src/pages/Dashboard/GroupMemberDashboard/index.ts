@@ -1,1 +1,1 @@
-export { default } from './SeekerDashboard'
+export { default } from './GroupMemberDashboard'

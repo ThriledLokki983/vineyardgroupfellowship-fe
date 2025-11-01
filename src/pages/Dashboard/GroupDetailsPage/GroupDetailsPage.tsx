@@ -6,7 +6,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useRef } from 'react';
-import { getGroup, uploadGroupPhoto } from '../../../services/groupApi';
+import { getGroup, uploadGroupPhoto, joinGroup } from '../../../services/groupApi';
 import { Layout, LoadingState, Icon, Button, GroupMemberCard } from 'components';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import { getEditGroupPath } from '../../../configs/paths';
@@ -42,21 +42,37 @@ export const GroupDetailsPage = () => {
     },
   });
 
+  // Mutation for joining a group
+  const joinGroupMutation = useMutation({
+    mutationFn: () => joinGroup(id!),
+    onSuccess: () => {
+      // Refresh group data to get updated membership status
+      queryClient.invalidateQueries({ queryKey: ['group', id] });
+      queryClient.invalidateQueries({ queryKey: ['groups'] });
+      console.log('✅ Join request sent successfully');
+      // TODO: Show success toast notification
+    },
+    onError: (error) => {
+      console.error('❌ Failed to join group:', error);
+      // TODO: Show error toast notification
+    },
+  });
+
   // Check if current user is the group leader
-  // Use user_membership.role for more reliable check
+  // SINGLE SOURCE OF TRUTH: user.leadership_info.can_lead_group
+  // This determines if the user has permission to perform any leader actions
+  const canLeadGroups = Boolean(user?.leadership_info?.can_lead_group);
+
+  // Check if user is the leader of THIS specific group
   const isGroupLeader = Boolean(
-    user &&
-    group &&
-    group.user_membership &&
-    group.user_membership.role === 'leader'
+    canLeadGroups && group &&
+    group.user_membership && group.user_membership.role === 'leader'
   );
 
-  // Check if user is a group member (has membership)
-  const isGroupMember = Boolean(
-    user &&
-    group &&
-    group.user_membership
-  );
+  // Check membership status using both membership_status (list view) and user_membership (detail view)
+  const membershipStatus = group?.membership_status || group?.user_membership?.status;
+  const hasPendingRequest = membershipStatus === 'pending';
+  const isActiveMember = membershipStatus === 'active' || membershipStatus === 'leader' || membershipStatus === 'co_leader';
 
   // Debug logging (development only)
   if (import.meta.env.DEV) {
@@ -64,13 +80,17 @@ export const GroupDetailsPage = () => {
       hasUser: !!user,
       hasGroup: !!group,
       userId: user?.id,
-      groupLeaderId: group?.leader,
+      canLeadGroups,
+      membershipStatus: group?.membership_status,
       userMembership: group?.user_membership,
-      isGroupLeader
+      myRole: group?.user_membership?.role,
+      isGroupLeader,
+      hasPendingRequest,
+      isActiveMember,
+      shouldShowJoinButton: !isActiveMember && !!user,
+      shouldShowLeaderButtons: isGroupLeader
     });
-  }
-
-  const handlePhotoClick = () => {
+  }  const handlePhotoClick = () => {
     if (isGroupLeader && fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -118,6 +138,11 @@ export const GroupDetailsPage = () => {
         // TODO: Show toast notification
       }
     }
+  };
+
+  const handleJoinGroup = async () => {
+    if (!group) return;
+    await joinGroupMutation.mutateAsync();
   };
 
   if (isLoading) {
@@ -214,6 +239,40 @@ export const GroupDetailsPage = () => {
             </div>
           )}
 
+          {/* Join Group Button - Visible to authenticated users who are not active members */}
+          {/* Shows "Request Pending" (disabled) if user has pending request */}
+          {/* Shows "Request to Join" if user has no membership */}
+          {!isActiveMember && user && (
+            <div className={styles.groupActions}>
+              <Button
+                variant="primary"
+                onPress={handleJoinGroup}
+                className={styles.actionButton}
+                isDisabled={
+                  hasPendingRequest ||
+                  joinGroupMutation.isPending ||
+                  !group.is_open ||
+                  group.available_spots === 0
+                }
+              >
+                <Icon
+                  name={hasPendingRequest ? "ClockIcon" : "HandIcon"}
+                  width={18}
+                  height={18}
+                />
+                {hasPendingRequest
+                  ? 'Request Pending'
+                  : joinGroupMutation.isPending
+                    ? 'Requesting...'
+                    : !group.is_open
+                      ? 'Group Closed'
+                      : group.available_spots === 0
+                        ? 'Group Full'
+                        : 'Request to Join'}
+              </Button>
+            </div>
+          )}
+
           {/* Hidden file input for photo upload */}
           {isGroupLeader && (
             <input
@@ -264,7 +323,7 @@ export const GroupDetailsPage = () => {
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Location</span>
                 <span className={styles.detailValue}>
-                  {getDisplayLocation(group.location, isGroupLeader, isGroupMember)}
+                  {getDisplayLocation(group.location, isGroupLeader, isActiveMember || hasPendingRequest)}
                 </span>
               </div>
 

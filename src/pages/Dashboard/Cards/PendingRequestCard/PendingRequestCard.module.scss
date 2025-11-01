@@ -1,0 +1,185 @@
+@use '../../../../styles/styles.scss' as *;
+
+.card {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  padding: var(--size-4);
+  border: 1px solid var(--border-subtle, #DAD5CF);
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    box-shadow: var(--shadow-2);
+    border-color: var(--accent-warm);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--size-3);
+  gap: var(--size-3);
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  flex: 1;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-round);
+  overflow: hidden;
+  background: var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: var(--surface-canvas);
+  }
+}
+
+.details {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  margin: 0;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.groupBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-1) var(--size-2);
+  background: var(--accent-warm);
+  color: var(--text-primary);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  white-space: nowrap;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.message {
+  display: flex;
+  gap: var(--size-2);
+  margin-bottom: var(--size-4);
+  padding: var(--size-3);
+  background: var(--surface-canvas);
+  border-radius: var(--radius-2);
+  border-left: 3px solid var(--accent-warm);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  p {
+    margin: 0;
+    font-size: var(--font-size-1);
+    color: var(--text-primary);
+    line-height: var(--font-lineheight-3);
+    font-style: italic;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: var(--size-2);
+  justify-content: flex-end;
+
+  button {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--size-1);
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+// Responsive styles
+@include mobile {
+  .card {
+    padding: var(--size-3);
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .groupBadge {
+    align-self: flex-start;
+  }
+
+  .avatar {
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .name {
+    font-size: var(--font-size-1);
+  }
+
+  .actions {
+    flex-direction: column;
+    width: 100%;
+
+    button {
+      flex: 1;
+      width: 100%;
+      justify-content: center;
+    }
+  }
+}

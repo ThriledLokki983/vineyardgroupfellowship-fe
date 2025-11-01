@@ -58,7 +58,8 @@ export interface Group {
   meeting_frequency: 'weekly' | 'biweekly' | 'monthly';
   focus_areas: string[];
   visibility: 'public' | 'community' | 'private';
-  user_membership: UserMembership | null;
+  membership_status?: 'pending' | 'active' | 'leader' | 'co_leader' | null; // User's relationship with this group (list view)
+  user_membership: UserMembership | null; // Detailed membership info (detail view)
   group_members?: GroupMember[];
   created_at: string;
   updated_at: string;
@@ -82,6 +83,8 @@ export interface GroupListItem {
   meeting_frequency: string;
   focus_areas: string[];
   created_at: string;
+  membership_status: 'pending' | 'active' | 'leader' | 'co_leader' | null; // User's relationship with this group
+  user_membership?: UserMembership; // Optional - only present in detail view
 }
 
 export interface CreateGroupData {
@@ -105,4 +108,18 @@ export interface JoinGroupData {
 export interface JoinGroupResponse {
   message: string;
   membership: UserMembership;
+}
+
+export interface PendingRequest extends GroupMember {
+  // Additional fields specific to pending requests can go here
+  message?: string; // Optional message from the user when requesting to join
+}
+
+export interface ApproveRequestResponse {
+  message: string;
+  membership: GroupMember;
+}
+
+export interface RejectRequestResponse {
+  message: string;
 }

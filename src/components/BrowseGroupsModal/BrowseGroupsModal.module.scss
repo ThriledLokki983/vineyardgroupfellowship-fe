@@ -1,0 +1,418 @@
+@use '../../styles/styles.scss' as *;
+
+.browseGroupsModal {
+  overflow: auto;
+  max-inline-size: 900px;
+
+  header {
+    border-bottom: none;
+    padding-inline: var(--size-8);
+
+    > button:hover {
+      background-color: transparent !important;
+      box-shadow: none !important;
+
+      > svg {
+        fill: var(--error-color) !important;
+      }
+    }
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 600px;
+  max-block-size: 80vh;
+  overflow: hidden;
+}
+
+// Filters Section
+.filtersSection {
+  padding: var(--size-6) var(--size-8);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-canvas);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+}
+
+.searchWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  margin-bottom: var(--size-4);
+
+  > svg {
+    position: absolute;
+    inset: auto auto var(--size-5) var(--size-3);
+    fill: var(--text-secondary);
+    inline-size: 20px;
+    block-size: 20px;
+  }
+}
+
+.searchInput {
+  inline-size: 100%;
+  padding: var(--size-3) var(--size-3) var(--size-3) var(--size-8) !important;
+  font-size: var(--font-size-1) !important;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-elevated);
+  color: var(--text-primary) !important;
+  transition: border-color 0.2s var(--ease-2) !important;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+
+.clearSearch {
+  position: absolute;
+  right: var(--size-2);
+  padding: var(--size-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-2);
+  transition: background-color 0.2s var(--ease-2);
+
+  svg {
+    fill: var(--text-secondary);
+    inline-size: 16px;
+    block-size: 16px;
+  }
+
+  &:hover {
+    background-color: var(--surface-elevated);
+
+    svg {
+      fill: var(--accent-danger);
+    }
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.filterLabel {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+}
+
+.filterButtons {
+  display: flex;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+
+  svg {
+    fill: currentColor;
+    inline-size: 16px;
+    block-size: 16px;
+  }
+
+  &:hover {
+    border-color: var(--brand-primary);
+    background: var(--surface-canvas);
+  }
+
+  &.active {
+    border-color: var(--brand-primary);
+    background: var(--brand-primary);
+    color: white;
+  }
+}
+
+.toggleFilters {
+  display: flex;
+  gap: var(--size-4);
+  flex-wrap: wrap;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  cursor: pointer;
+
+  input[type="checkbox"] {
+    inline-size: 18px;
+    block-size: 18px;
+    cursor: pointer;
+  }
+}
+
+.resetButton {
+  align-self: flex-start;
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+
+  &:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+    background: var(--surface-canvas);
+  }
+}
+
+// Results Section
+.resultsSection {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.resultsHeader {
+  padding: var(--size-4) var(--size-8);
+  border-bottom: 1px solid var(--border-subtle);
+
+  @include mobile {
+    padding: var(--size-3) var(--size-4);
+  }
+}
+
+.resultsCount {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.groupsList {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--size-4) var(--size-8);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+}
+
+// Group Card
+.groupCard {
+  display: flex;
+  flex-direction: column;
+  padding: var(--size-5);
+  margin-bottom: var(--size-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  background: var(--surface-elevated);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+  text-align: left;
+  inline-size: 100%;
+
+  &:hover {
+    border-color: var(--brand-primary);
+    box-shadow: 0 4px 12px rgba(96, 48, 0, 0.1);
+    transform: translateY(-2px);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.groupCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--size-3);
+  margin-bottom: var(--size-3);
+}
+
+.groupName {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-7);
+  color: var(--brand-primary);
+  margin: 0;
+}
+
+.badges {
+  display: flex;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+}
+
+.badge {
+  padding: var(--size-1) var(--size-3);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  white-space: nowrap;
+}
+
+.closedBadge {
+  background: var(--surface-canvas);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+.fullBadge {
+  background: var(--accent-danger);
+  color: white;
+}
+
+.almostFullBadge {
+  background: var(--accent-warm);
+  color: var(--brand-primary);
+}
+
+.groupDescription {
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-4);
+  line-height: var(--font-lineheight-3);
+}
+
+.groupMeta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--size-3);
+  margin-bottom: var(--size-4);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+
+  svg {
+    fill: var(--text-secondary);
+    inline-size: 16px;
+    block-size: 16px;
+    flex-shrink: 0;
+  }
+}
+
+.groupCardFooter {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--size-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.viewDetails {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+
+  svg {
+    fill: var(--brand-primary);
+    inline-size: 16px;
+    block-size: 16px;
+    transition: transform 0.2s var(--ease-2);
+  }
+
+  .groupCard:hover & svg {
+    transform: translateX(4px);
+  }
+}
+
+// State Components
+.loadingState,
+.errorState,
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--size-8);
+  text-align: center;
+
+  svg {
+    inline-size: 64px;
+    block-size: 64px;
+    fill: var(--text-secondary);
+    margin-bottom: var(--size-4);
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    color: var(--text-secondary);
+    margin: 0 0 var(--size-4);
+  }
+}
+
+.errorState {
+  svg {
+    fill: var(--accent-danger);
+  }
+}
+
+// Footer
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-3);
+  padding: var(--size-4) var(--size-8);
+  border-top: 1px solid var(--border-subtle);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+
+  > button {
+    min-inline-size: 120px;
+    padding: var(--size-2) var(--size-4);
+  }
+}

@@ -1,0 +1,155 @@
+@use '../../../../styles/styles.scss' as *;
+
+.groupSummaryCard {
+  position: relative;
+  // padding: var(--size-6);
+  // background: var(--surface-elevated);
+  // border-radius: var(--radius-3);
+  // border: 1px solid var(--border-subtle);
+  transition: all var(--animation-duration-fast) ease;
+
+  &:hover {
+    // border-color: var(--brand-primary);
+    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    // transform: translateY(-2px);
+  }
+}
+
+// Status Badges
+.pendingBadge,
+.leaderBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+  margin-bottom: var(--size-3);
+}
+
+.pendingBadge {
+  background: var(--accent-warm);
+  color: var(--surface-elevated);
+}
+
+.leaderBadge {
+  background: var(--brand-primary);
+  color: var(--surface-canvas);
+}
+
+// Group Header
+.groupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--size-3);
+  margin-bottom: var(--size-3);
+}
+
+.groupName {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  margin: 0;
+  line-height: var(--font-lineheight-2);
+}
+
+.groupStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  white-space: nowrap;
+}
+
+.statusOpen {
+  background: rgba(106, 168, 79, 0.1);
+  color: #6aa84f;
+}
+
+.statusClosed {
+  background: rgba(194, 90, 90, 0.1);
+  color: var(--accent-danger);
+}
+
+// Group Description
+.groupDescription {
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-secondary);
+  margin: 0 0 var(--size-4);
+}
+
+// Group Details
+.groupDetails {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-4);
+  margin-bottom: var(--size-4);
+  padding-bottom: var(--size-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.groupDetail {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+
+  svg {
+    color: var(--text-secondary);
+  }
+}
+
+// View Details Link
+.viewDetailsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+  text-decoration: none;
+  transition: all var(--animation-duration-fast) ease;
+
+  &:hover {
+    gap: var(--size-3);
+    color: var(--accent-warm);
+  }
+
+  svg {
+    transition: transform var(--animation-duration-fast) ease;
+  }
+
+  &:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+// Responsive Design
+@include mobile {
+  .groupSummaryCard {
+    padding: var(--size-4);
+  }
+
+  .groupDetails {
+    flex-direction: column;
+    gap: var(--size-2);
+  }
+
+  .groupHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@include tablet {
+  .groupSummaryCard {
+    padding: var(--size-5);
+  }
+}
