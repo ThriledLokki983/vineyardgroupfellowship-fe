@@ -58,7 +58,7 @@ export const EmailVerificationCompleteHandler = () => {
 
         // Show welcome screen for 2 seconds, then redirect
         setTimeout(() => {
-          navigate(`/dashboard?welcome=true&first_login=${isFirstLogin}`, { replace: true });
+          navigate(`/?welcome=true&first_login=${isFirstLogin}`, { replace: true });
         }, 2000);
 
       } catch (error: unknown) {

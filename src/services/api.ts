@@ -3,10 +3,10 @@ import {
   CSRF_URL,
   REFRESH_TOKEN_URL,
   TOKEN_EXCHANGE_URL,
-  // COMPLETE_ONBOARDING_URL,
-  // ONBOARDING_STEP_URL,
-  // ONBOARDING_STATUS_URL,
-  // RECOVERY_APPROACH_URL
+  COMPLETE_ONBOARDING_URL,
+  ONBOARDING_STEP_URL,
+  ONBOARDING_STATUS_URL,
+  RECOVERY_APPROACH_URL
 } from '../configs/api-endpoints';
 import { getCsrfTokenMatch } from '../configs/config-utils';
 
@@ -456,35 +456,42 @@ export const api = {
   },
 
   // Onboarding API endpoints
-  // completeOnboarding: async (signal?: AbortSignal): Promise<OnboardingCompleteResponse> => {
-  //   return apiRequest<OnboardingCompleteResponse>(COMPLETE_ONBOARDING_URL, {
-  //     method: 'POST',
-  //     signal,
-  //   })
-  // },
+  completeOnboarding: async (signal?: AbortSignal): Promise<OnboardingCompleteResponse> => {
+    return apiRequest<OnboardingCompleteResponse>(COMPLETE_ONBOARDING_URL, {
+      method: 'POST',
+      signal,
+    })
+  },
 
-  // updateOnboardingStep: async (step: OnboardingStepValue, signal?: AbortSignal): Promise<OnboardingStepResponse> => {
-  //   return apiRequest<OnboardingStepResponse>(ONBOARDING_STEP_URL, {
-  //     method: 'PATCH',
-  //     body: JSON.stringify({ step: step }),
-  //     signal,
-  //   })
-  // },
+  updateOnboardingStep: async (
+    stepName: OnboardingStepValue,
+    timeSpentMinutes: number = 0,
+    signal?: AbortSignal
+  ): Promise<OnboardingStepResponse> => {
+    return apiRequest<OnboardingStepResponse>(ONBOARDING_STEP_URL, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        step: stepName,
+        time_spent_minutes: timeSpentMinutes
+      }),
+      signal,
+    })
+  },
 
-  // updateRecoveryApproach: async (preferences: UpdateRecoveryApproachRequest, signal?: AbortSignal): Promise<RecoveryApproachResponse> => {
-  //   return apiRequest<RecoveryApproachResponse>(RECOVERY_APPROACH_URL, {
-  //     method: 'POST',
-  //     body: JSON.stringify(preferences),
-  //     signal,
-  //   })
-  // },
+  updateRecoveryApproach: async (preferences: UpdateRecoveryApproachRequest, signal?: AbortSignal): Promise<RecoveryApproachResponse> => {
+    return apiRequest<RecoveryApproachResponse>(RECOVERY_APPROACH_URL, {
+      method: 'POST',
+      body: JSON.stringify(preferences),
+      signal,
+    })
+  },
 
-  // getOnboardingStatus: async (signal?: AbortSignal): Promise<OnboardingStatusResponse> => {
-  //   return apiRequest<OnboardingStatusResponse>(ONBOARDING_STATUS_URL, {
-  //     method: 'GET',
-  //     signal,
-  //   })
-  // },
+  getOnboardingStatus: async (signal?: AbortSignal): Promise<OnboardingStatusResponse> => {
+    return apiRequest<OnboardingStatusResponse>(ONBOARDING_STATUS_URL, {
+      method: 'GET',
+      signal,
+    })
+  },
 }
 
 // Utility functions

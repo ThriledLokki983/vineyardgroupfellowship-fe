@@ -60,14 +60,14 @@ export const appRoutes = createBrowserRouter([
 			</Auth.PublicRoute>
 		),
 	},
-	// {
-	// 	path: PATH.PATH_DASHBOARD,
-	// 	element: (
-	// 		<Auth.ProtectedRoute>
-	// 			<Pages.Dashboard />
-	// 		</Auth.ProtectedRoute>
-	// 	),
-	// },
+	{
+		path: PATH.PATH_DASHBOARD,
+		element: (
+			<Auth.ProtectedRoute>
+				<Pages.Dashboard />
+			</Auth.ProtectedRoute>
+		),
+	},
 	{
 		path: PATH.PATH_PROFILE,
 		element: (

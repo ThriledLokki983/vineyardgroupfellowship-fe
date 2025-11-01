@@ -189,9 +189,9 @@ export default function ProfilePage() {
 
     try {
       const formData = new FormData();
-      formData.append('profile_photo', file);
+      formData.append('photo', file);
 
-      const response = await apiClient.patch('/profiles/me/', formData, {
+      const response = await apiClient.post('/profiles/me/photo/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -237,12 +237,12 @@ export default function ProfilePage() {
     }
   };
 
-  // const getFullName = (first: string = '', last: string = '') => {
-  //   if (!first && !last) {
-  //     return 'Not Specified'
-  //   }
-  //   return `${first} ${last}`
-  // }
+  const getFullName = (first: string = '', last: string = '') => {
+    if (!first && !last) {
+      return 'Not Specified'
+    }
+    return `${first} ${last}`
+  }
 
   const renderProfileContent = () => {
     const activeTabValue = profilePage.activeTab.value;
@@ -256,7 +256,7 @@ export default function ProfilePage() {
         return (
           <>
             {/* User Statistics */}
-            <div className={styles.profileSection}>
+            {/* <div className={styles.profileSection}>
               <h3 className={styles.sectionTitle}>User Statistics</h3>
               <div className={styles.statsGrid}>
                 <div className={styles.statItem}>
@@ -276,7 +276,7 @@ export default function ProfilePage() {
                   <div className={styles.statLabel}>Followers</div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Personal Information */}
             <div className={styles.profileSection}>
@@ -302,7 +302,8 @@ export default function ProfilePage() {
 
               {isEditingValue ? (
                 <form className={styles.profileForm} onSubmit={handleSaveProfile}>
-                  <div className={styles.formGroupFull}>
+
+                  <div className={styles.formGroupFull} style={{ marginBlockEnd: 'var(--size-2)'}}>
                     <label htmlFor="bio" className={styles.label}>Bio</label>
                     <textarea
                       id="bio"
@@ -312,6 +313,7 @@ export default function ProfilePage() {
                       className={styles.textarea}
                     />
                   </div>
+
                   <div className={styles.formGroup}>
                     <label htmlFor="firstName" className={styles.label}>First Name</label>
                     <input
@@ -363,42 +365,6 @@ export default function ProfilePage() {
                     />
                   </div>
 
-
-
-                  <div className={styles.formGroup}>
-                    <label htmlFor="recoveryStage" className={styles.label}>Recovery Stage</label>
-                    <select
-                      id="recoveryStage"
-                      name="recoveryStage"
-                      value={formData?.recoveryStage || ''}
-                      onChange={handleInputChange}
-                      className={styles.select}
-                    >
-                      <option value="">Select a stage</option>
-                      <option value="exploring">Exploring Recovery</option>
-                      <option value="early">Early Recovery (0-90 days)</option>
-                      <option value="sustained">Sustained Recovery (3-12 months)</option>
-                      <option value="stable">Stable Recovery (1+ years)</option>
-                      <option value="long_term">Long-term Recovery (5+ years)</option>
-                    </select>
-                  </div>
-
-                  <div className={styles.formGroup}>
-                    <label htmlFor="religiousContentPreference" className={styles.label}>Religious Content Preference</label>
-                    <select
-                      id="religiousContentPreference"
-                      name="religiousContentPreference"
-                      value={formData?.religiousContentPreference || ''}
-                      onChange={handleInputChange}
-                      className={styles.select}
-                    >
-                      <option value="high">High - Frequent religious content</option>
-                      <option value="moderate">Moderate - Balanced content</option>
-                      <option value="low">Low - Minimal religious content</option>
-                      <option value="none">None - Secular content only</option>
-                    </select>
-                  </div>
-
                   <div className={styles.formGroup}>
                     <label htmlFor="profileVisibility" className={styles.label}>Profile Visibility</label>
                     <select
@@ -410,7 +376,7 @@ export default function ProfilePage() {
                     >
                       <option value="public">Public - Visible to everyone</option>
                       <option value="community">Community - Visible to community members</option>
-                      <option value="private">Private - Visible to connections only</option>
+                      <option value="private">Private - Visible to only your Group</option>
                     </select>
                   </div>
 
@@ -430,43 +396,33 @@ export default function ProfilePage() {
                 </form>
               ) : (
                 <>
-                  <div className={styles.formGroup}>
-                    <div className={styles.label}>Bio</div>
-                    <div className={styles.value}>{formData?.bio || 'No bio provided'}</div>
+                  <div className={styles.formGroup} style={{ marginBottom: 'var(--size-6)' }}>
+                    <h5 className={styles.display_label}>Bio</h5>
+                    <span className={styles.display_value}>{formData?.bio || 'No bio provided'}</span>
                   </div>
                   <div className={styles.profileView}>
-                    {/* <div className={styles.formGroup}>
-                      <div className={styles.label}>Full Name</div>
-                      <div className={styles.value}>
+                    <div className={styles.formGroup}>
+                      <div className={styles.display_label}>Full Name</div>
+                      <div className={styles.display_value}>
                         {getFullName(formData?.firstName, formData?.lastName)}
                       </div>
-                    </div> */}
+                    </div>
 
                     {formData?.displayName && (
                       <div className={styles.formGroup}>
-                        <div className={styles.label}>Display Name</div>
-                        <div className={styles.value}>{formData.displayName}</div>
+                        <h5 className={styles.display_label}>Display Name</h5>
+                        <span className={styles.display_value}>@{user.display_name_or_email || ''}</span>
                       </div>
                     )}
 
                     <div className={styles.formGroup}>
-                      <div className={styles.label}>Location</div>
-                      <div className={styles.value}>{formData?.location || 'Not specified'}</div>
+                      <h5 className={styles.display_label}>Location</h5>
+                      <span className={styles.display_value}>{formData?.location || 'Not specified'}</span>
                     </div>
 
-
-                    {formData?.recoveryStage && (
-                      <div className={styles.formGroup}>
-                        <div className={styles.label}>Recovery Stage</div>
-                        <div className={styles.value}>
-                          {formData.recoveryStage.replace('_', ' ').replace(/\b\w/g, (l: string) => l.toUpperCase())}
-                        </div>
-                      </div>
-                    )}
-
                     <div className={styles.formGroup}>
-                      <div className={styles.label}>Profile Visibility</div>
-                      <div className={styles.value}>
+                      <div className={styles.display_label}>Profile Visibility</div>
+                      <div className={styles.display_value}>
                         {formData?.profileVisibility.replace(/\b\w/g, (l: string) => l.toUpperCase())}
                       </div>
                     </div>
@@ -476,18 +432,11 @@ export default function ProfilePage() {
             </div>
           </>
         );
-      case 'journey':
-        return (
-          <div className={styles.profileSection}>
-            <h3 className={styles.sectionTitle}>My Journey</h3>
-            <p className={styles.placeholder}>Your recovery journey milestones will appear here.</p>
-          </div>
-        );
       case 'groups':
         return (
           <div className={styles.profileSection}>
-            <h3 className={styles.sectionTitle}>Support Groups</h3>
-            <p className={styles.placeholder}>Your support groups will appear here.</p>
+            <h3 className={styles.sectionTitle}>My Group</h3>
+            <p className={styles.placeholder}>Your fellowship groups will appear here. Join or create a group to get started on your recovery journey together.</p>
           </div>
         );
       case 'settings':
@@ -686,27 +635,23 @@ export default function ProfilePage() {
             )}
 
             <h2 className={styles.profileName}>
-              {formData?.displayName || `${formData?.firstName || ''} ${formData?.lastName || ''}`.trim()}
+              {`${formData?.firstName || ''} ${formData?.lastName || ''}`.trim() || formData?.displayName || formData?.username}
             </h2>
-            <p className={styles.profileUsername}>@{formData?.username}</p>
+            <p className={styles.profileUsername}>
+              @{formData?.displayName || formData?.username || user.display_name_or_email}
+            </p>
 
             <ul className={styles.profileNavList}>
               <li className={profilePage.activeTab.value === 'profile' ? styles.profileNavItemActive : styles.profileNavItem}>
                 <button onClick={() => profilePage.activeTab.value = 'profile'}>
                   <Icon name="PersonOutlineIcon" width={18} height={18} />
-                  <span>Profile</span>
-                </button>
-              </li>
-              <li className={profilePage.activeTab.value === 'journey' ? styles.profileNavItemActive : styles.profileNavItem}>
-                <button onClick={() => profilePage.activeTab.value = 'journey'}>
-                  <Icon name="CalendarIcon" width={18} height={18} />
-                  <span>My Journey</span>
+                  <span>My Profile</span>
                 </button>
               </li>
               <li className={profilePage.activeTab.value === 'groups' ? styles.profileNavItemActive : styles.profileNavItem}>
                 <button onClick={() => profilePage.activeTab.value = 'groups'}>
                   <Icon name="PeopleIcon" width={18} height={18} />
-                  <span>Support Groups</span>
+                  <span>My Fellowship Group</span>
                 </button>
               </li>
               <li className={profilePage.activeTab.value === 'settings' ? styles.profileNavItemActive : styles.profileNavItem}>

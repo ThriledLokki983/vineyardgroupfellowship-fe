@@ -1,58 +1,70 @@
 // Vineyard Group Fellowship Design System - SCSS Variables and Mixins
 :root {
-  // Brand Colors
-  --brand-primary: #603000;
-  --btn-hover-clr: #4b2601;
-  --accent-warm: #F4C77B;
-  --accent-danger: #C25A5A;
+  // Brand Colors - New Vibrant Palette
+  --brand-primary: #20192f;      // Dark navy/charcoal (main brand color)
+  --brand-secondary: #6f42c1;    // Deep purple (secondary brand)
+  --brand-accent: #c1f705;       // Bright lime green (accent/highlights)
+  --btn-hover-clr: #151122;      // Even darker navy for hover states
+  --accent-warm: #6f42c1;        // Purple for warm accents
+  --accent-danger: #ff4757;      // Modern red for errors/alerts
 
-  // Surface Colors
-  --surface-canvas: #F8F5F0;
-  --surface-elevated: #EAE6E1;
+  // Surface Colors - Adapted for new palette
+  --surface-canvas: #fafafa;     // Clean light gray background
+  --surface-elevated: #FFFFFF;   // White for cards and elevated elements
+  --surface-dark: #20192f;       // Dark navy surface
 
   // Text Colors
-  --text-primary: #2A2A2A;
-  --text-secondary: #6E7673;
+  --text-primary: #20192f;       // Dark navy for primary text
+  --text-secondary: #6c757d;     // Medium gray for secondary text
+  --text-light: #FFFFFF;         // White text for dark backgrounds
+  --text-accent: #c1f705;        // Bright lime green for highlights
 
   // Border Colors
-  --border-subtle: #DAD5CF;
+  --border-subtle: #e9ecef;      // Light border
+  --border-medium: #dee2e6;      // Medium border
+  --border-accent: #6f42c1;      // Purple accent border
+  --link-color: #6f42c1;        // Purple for links
 
+  // Status Colors
+  --error-color: #ff4757;
+  --error-color-light: #ffe6ea;
+  --error-color-dark: #d63447;
 
-  --error-color: #C52A1A;
-  --error-color-light: #F3D4D1;
-  --error-color-dark: #822720;
+  --warning-color: #ffa502;
+  --warning-color-light: #fff3e0;
+  --warning-color-text: #e55100;
 
-  --warning-color: #EB8C00; // #FFBF1F
-  --warning-color-light: #FFECBD; // #FFF4D9
-  --warning-color-text: #C34C2F;
-
-  --success-color: #175D2D; // #22992E
-  --success-color-light: #D4EBE9;
+  --success-color: #2ed573;
+  --success-color-light: #e8f5e8;
 
   // Component-specific color overrides
-  --accent-7: var(--brand-primary);
-  // --accent-8: #2d3e34;
-  --accent-0: #F8F5F0;
-  --accent-3: rgba(58, 79, 65, 0.1);
+  --accent-7: var(--brand-primary);      // Dark navy
+  --accent-0: var(--surface-canvas);     // Light background
+  --accent-3: rgba(32, 25, 47, 0.1);     // Light navy tint
 
   --surface-1: var(--surface-canvas);
   --surface-2: var(--surface-elevated);
-  --surface-3: #d5cfc8;
+  --surface-3: var(--surface-dark);
 
   --text-1: var(--text-primary);
   --text-2: var(--text-secondary);
 
   --border-1: var(--border-subtle);
-  --border-2: #c4beb7;
+  --border-2: var(--border-medium);
 
   --red-7: var(--accent-danger);
-  --red-9: #8b3636;
-  --red-2: rgba(194, 90, 90, 0.1);
-  --red-4: rgba(194, 90, 90, 0.3);
+  --red-9: var(--error-color-dark);
+  --red-2: var(--error-color-light);
+  --red-4: rgba(255, 71, 87, 0.3);
 
-  // Gradients
-  --gradient-1: linear-gradient(135deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
+  // Gradients - Updated with new colors
+  --gradient-1: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
+  --gradient-2: linear-gradient(135deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
+  --gradient-dark: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 100%);
 
-  // Shadows
-  --shadow-4: 0 8px 32px rgba(42, 42, 42, 0.08);
+  // Shadows - Enhanced for modern look
+  --shadow-1: 0 2px 8px rgba(32, 25, 47, 0.08);
+  --shadow-2: 0 4px 16px rgba(32, 25, 47, 0.12);
+  --shadow-3: 0 8px 24px rgba(32, 25, 47, 0.16);
+  --shadow-4: 0 12px 32px rgba(32, 25, 47, 0.2);
 }

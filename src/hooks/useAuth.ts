@@ -144,9 +144,9 @@ export function useLogin() {
       return data // Return for onSuccess
     },
     onSuccess: () => {
-      // Navigate to the intended destination or dashboard
+      // Navigate to the intended destination or home page
       const state = location.state as LocationState
-      const from = state?.from?.pathname || '/dashboard'
+      const from = state?.from?.pathname || '/'
       navigate(from, { replace: true })
     },
     onError: (error) => {

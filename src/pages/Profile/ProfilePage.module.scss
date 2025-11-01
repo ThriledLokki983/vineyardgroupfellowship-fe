@@ -118,9 +118,10 @@
 .label {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-secondary);
+  color: var(--text-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  margin-block-end: 0.25rem;
 }
 
 .field {
@@ -363,6 +364,10 @@
     opacity: 1;
     background: rgba(0, 0, 0, 0.7);
   }
+
+  > svg {
+    fill: #fff;
+  }
 }
 
 .avatarImage {
@@ -558,6 +563,10 @@
   overflow-x: hidden;
   overflow-y: auto;
   gap: var(--size-4);
+  border-radius: var(--radius-3);
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow-2);
+  padding: var(--size-6);
 
   @include mobile {
     max-block-size: 90vh;
@@ -566,27 +575,22 @@
   }
 
   @include bp-min($tablet) {
-    gap: var(--size-6);
     max-inline-size: 100%;
     inline-size: 100%;
     block-size: auto;
     overflow-y: visible;
     display: flex;
-    flex-direction: column;
   }
 }
 
 .profileSection {
-  background: var(--surface-elevated);
-  border-radius: var(--radius-3);
-  padding: var(--size-4);
-  box-shadow: var(--shadow-2);
+  // padding: var(--size-4);
   inline-size: 100%;
   box-sizing: border-box;
   overflow-x: hidden;
 
   @include bp-min($tablet) {
-    padding: var(--size-6);
+    // padding: var(--size-6);
   }
 }
 
@@ -598,7 +602,7 @@
   gap: var(--size-3);
 
   @include bp-min($tablet) {
-    margin-bottom: var(--size-5);
+    margin-bottom: var(--size-6);
     gap: var(--size-4);
   }
 
@@ -617,11 +621,11 @@
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
   color: var(--text-primary);
-  margin: 0 0 var(--size-4) 0;
+  margin: 0;
 
   @include bp-min($tablet) {
     font-size: var(--font-size-4);
-    margin: 0 0 var(--size-6) 0;
+    margin: 0;
   }
 }
 
@@ -700,10 +704,13 @@
   grid-column: 1 / -1;
 }
 
-.label {
+.display_label {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0
 }
 
 .input,
@@ -767,7 +774,12 @@
 
     button {
       inline-size: 100%;
+      padding: var(--size-2) var(--size-3);
     }
+  }
+
+  button {
+    padding: var(--size-2) var(--size-3);
   }
 }
 
@@ -775,18 +787,27 @@
 .profileView {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--size-3);
+  column-gap: var(--size-3);
+  row-gap: var(--size-6);
 
   @include bp-min($tablet) {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--size-4);
+    column-gap: var(--size-3);
+    row-gap: var(--size-6);
   }
 }
 
-.value {
+.display_value {
   font-size: var(--font-size-1);
   color: var(--text-secondary);
-  padding: var(--size-3) 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.display_label {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
 }
 
 // Placeholder for empty states

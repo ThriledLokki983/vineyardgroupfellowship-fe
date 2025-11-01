@@ -1,0 +1,80 @@
+@use '../../../../styles/styles.scss' as *;
+
+.root {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	inline-size: 100%;
+	border-radius: var(--radius-2);
+	padding: var(--size-3) var(--size-3);
+	background-color: var(--surface-canvas);
+	gap: var(--size-2);
+	box-shadow: var(--shadow-1);
+}
+
+.root > span {
+	font-size: 0.9rem;
+	color: var(--text-secondary);
+}
+
+.root > a,
+.root > button {
+	padding: 4px 12px;
+	min-block-size: fit-content;
+	font-size: 0.85rem;
+	border-radius: var(--radius-1);
+}
+
+// Support type layout
+.content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-1);
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	gap: var(--size-1);
+
+	> svg {
+		inline-size: 1rem;
+		block-size: auto;
+		fill: var(--accent-danger);
+	}
+}
+
+.icon {
+	font-size: 1rem;
+}
+
+.title {
+	font-weight: var(--font-weight-6);
+	color: var(--text-primary);
+	font-size: 0.9rem;
+}
+
+.description {
+	font-size: 0.85rem;
+	color: var(--text-secondary);
+	margin: 0;
+	line-height: 1.4;
+}
+
+// Priority variants
+.high {
+	// border-left: 3px solid var(--accent-danger);
+	background-color: color-mix(in srgb, var(--accent-danger) 3%, var(--surface-canvas));
+}
+
+.medium {
+	border-left: 3px solid var(--accent-warm);
+	background-color: color-mix(in srgb, var(--accent-warm) 5%, var(--surface-canvas));
+}
+
+.low {
+	border-left: 3px solid var(--brand-primary);
+	background-color: color-mix(in srgb, var(--brand-primary) 5%, var(--surface-canvas));
+}

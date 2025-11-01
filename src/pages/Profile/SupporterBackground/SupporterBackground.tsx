@@ -82,7 +82,7 @@ export default function SupporterBackground() {
           'Background Submitted!',
           'Your information has been submitted for review.'
         );
-        navigate('/dashboard');
+        navigate('/');
       },
       onError: (error) => {
         console.error('❌ Background submission failed:', error);
@@ -233,10 +233,10 @@ export default function SupporterBackground() {
 
         <div className={styles.pageActions}>
           <Button
-            onPress={() => navigate('/dashboard')}
+            onPress={() => navigate('/')}
 						variant='tertiary'
           >
-            Back to Dashboard
+            Back to Home
           </Button>
         </div>
       </div>

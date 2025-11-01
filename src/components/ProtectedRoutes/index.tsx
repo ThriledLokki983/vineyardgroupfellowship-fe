@@ -41,7 +41,7 @@ export const SeekerRoute = ({ children, fallbackPath = '/dashboard' }: SeekerRou
 
 interface PurposeRouteProps {
   children: React.ReactNode
-  requiredPurpose: 'seeking_recovery' | 'providing_support'
+  requiredPurpose: 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' // Support legacy
   fallbackPath?: string
 }
 
@@ -55,7 +55,14 @@ export const PurposeRoute = ({
 }: PurposeRouteProps) => {
   const { userPurpose } = useUserPermissions()
 
-  if (userPurpose !== requiredPurpose) {
+  // Support both new and legacy values
+  const purposeMatches =
+    (requiredPurpose === 'group_member' && (userPurpose === 'group_member' || userPurpose === 'seeking_recovery')) ||
+    (requiredPurpose === 'seeking_recovery' && (userPurpose === 'group_member' || userPurpose === 'seeking_recovery')) ||
+    (requiredPurpose === 'group_leader' && (userPurpose === 'group_leader' || userPurpose === 'providing_support')) ||
+    (requiredPurpose === 'providing_support' && (userPurpose === 'group_leader' || userPurpose === 'providing_support'))
+
+  if (!purposeMatches) {
     return <Navigate to={fallbackPath} replace />
   }
 
@@ -63,7 +70,7 @@ export const PurposeRoute = ({
 }
 
 interface ConditionalComponentProps {
-  showFor: 'seeking_recovery' | 'providing_support' | 'both'
+  showFor: 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' | 'both' // Support legacy
   children: React.ReactNode
   fallback?: React.ReactNode
 }
@@ -83,7 +90,14 @@ export const ConditionalComponent = ({
     return <>{children}</>
   }
 
-  if (userPurpose === showFor) {
+  // Support both new and legacy values
+  const shouldShow =
+    (showFor === 'group_member' && (userPurpose === 'group_member' || userPurpose === 'seeking_recovery')) ||
+    (showFor === 'seeking_recovery' && (userPurpose === 'group_member' || userPurpose === 'seeking_recovery')) ||
+    (showFor === 'group_leader' && (userPurpose === 'group_leader' || userPurpose === 'providing_support')) ||
+    (showFor === 'providing_support' && (userPurpose === 'group_leader' || userPurpose === 'providing_support'))
+
+  if (shouldShow) {
     return <>{children}</>
   }
 

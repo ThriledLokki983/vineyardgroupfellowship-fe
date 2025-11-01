@@ -13,10 +13,10 @@ interface LocationState {
 
 /**
  * PublicRoute - Wraps auth pages (login, register, forgot-password)
- * Redirects authenticated users to dashboard or intended destination
+ * Redirects authenticated users to home page or intended destination
  * Allows unauthenticated users to access the page
  */
-export default function PublicRoute({ children, redirectTo = '/dashboard' }: PublicRouteProps) {
+export default function PublicRoute({ children, redirectTo = '/' }: PublicRouteProps) {
   const { isAuthenticated, isLoading } = useAuthContext();
   const location = useLocation();
 

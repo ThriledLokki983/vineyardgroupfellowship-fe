@@ -56,15 +56,21 @@
     text-decoration: underline;
     text-decoration-color: currentColor;
     text-underline-offset: 2px;
+    color: var(--link-color);
 }
 
 /**
  * Notice - Brand Primary
  */
 .root[data-variation="notice"] {
-    background: var(--surface-elevated);
+    // background: var(--surface-elevated);
+    background: color-mix(in srgb, var(--border-accent) 3%, transparent);
     color: var(--brand-primary);
-    border-left: 4px solid var(--brand-primary);
+    border-left: 4px solid var(--border-accent);
+
+    > svg {
+        color: var(--border-accent);
+    }
 }
 
 /**

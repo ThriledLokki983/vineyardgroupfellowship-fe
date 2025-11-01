@@ -15,6 +15,9 @@ export default function ProfileDropdown({ user, onClose }: ProfileDropdownProps)
   const dropdownRef = useRef<HTMLDivElement>(null)
   const { mutate: logout } = useLogout()
 
+  // Support both new and legacy user_purpose values
+  const userPurpose = user.user_purpose as 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' | undefined
+
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -92,7 +95,7 @@ export default function ProfileDropdown({ user, onClose }: ProfileDropdownProps)
         </button>
 
         {/* Show Background link only for supporters */}
-        {user.user_purpose === 'providing_support' && (
+        {(userPurpose === 'group_leader' || userPurpose === 'providing_support') && (
           <button className={styles.menuItem} onClick={handleBackgroundClick}>
             <Icon name="PencilIcon" className={styles.menuIcon} width={20} height={20} />
             Background

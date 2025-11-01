@@ -5,7 +5,7 @@ import { SupporterBackground } from "./Profile";
 
 // HomePage & Dashboard
 import Home from "./Home/Home";
-// import Dashboard from "./Dashboard/Dashboard/DashboardPage";
+import Dashboard from "./Dashboard/Dashboard/DashboardPage";
 
 // Features Page (Development only)
 import { Features } from "./Features";
@@ -27,7 +27,7 @@ import {
 
 export {
 	Home,
-	// Dashboard,
+	Dashboard,
 
 	// Authentication & Registration Pages
 	LoginPage,

@@ -35,6 +35,15 @@ export interface ResetPasswordData {
   confirmPassword: string
 }
 
+// Supporter Status Info - NEW SECTION
+export interface SupporterNextStep {
+  step: string;
+  title: string;
+  description: string;
+  url: string;
+  priority: 'high' | 'medium' | 'low';
+}
+
 // Profile Completeness Info
 export interface ProfileCompleteness {
   score: number;
@@ -69,8 +78,14 @@ export interface User {
   email_verified: boolean;
 
   // User purpose - determines app features and permissions
-  user_purpose?: 'seeking_recovery' | 'providing_support';
-  can_lead_groups?: boolean;
+  user_purpose?: 'group_member' | 'group_leader';
+  can_lead_groups?: boolean; // Legacy field
+  display_name_or_email?: string;
+
+  // Leadership info (new structure from backend)
+  leadership_info?: {
+    can_lead_group: boolean;
+  };
 
   // Profile fields
   display_name?: string;
@@ -96,10 +111,17 @@ export interface User {
   community_notifications?: boolean;
   emergency_notifications?: boolean;
 
-  // Onboarding status
-  onboarded?: boolean; // Legacy field - kept for compatibility
-  onboarding_completed_at?: string | null; // ISO timestamp when onboarding was completed
-  onboarding_step?: string | null; // Current step if not completed
+  // Onboarding status (new structure from backend)
+  onboarding?: {
+    completed: boolean;
+    current_step: string;
+    progress_percentage: number;
+  };
+
+  // Legacy onboarding fields - kept for backward compatibility
+  onboarded?: boolean;
+  onboarding_completed_at?: string | null;
+  onboarding_step?: string | null;
 
   // Timestamps
   created_at?: string;

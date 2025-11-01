@@ -1,0 +1,136 @@
+@use '../../../../styles/styles.scss' as *;
+
+@mixin dashboard-card {
+
+  position: relative;
+  display: flex; flex-direction: column; padding: 1.5rem;
+  background: var(--surface-2); border-radius: var(--radius-2);
+  border: 1px solid var(--surface-elevated);
+
+  & > header {
+    margin-bottom: 1.5rem; flex: 0 0 auto;
+    display: flex; justify-content: space-between; grid-gap: 0.5rem;
+  }
+  &[data-is-loading="true"] > header {
+    margin-bottom: 0;
+  }
+  & > header > div {
+    margin: -0.5rem 0; flex: 0 0 auto;
+    display: flex; align-items: center; grid-gap: 1rem;
+  }
+  & > header > div > * {
+    flex: 0 0 auto;
+  }
+
+  & > div,
+  & > ul,
+  & > ol {
+    flex: 1 0 auto;
+  }
+
+  & > header > h2 {
+    margin: -0.15em 0 0;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-inline-size: 100%;
+    inline-size: 100%;
+    color: var(--brand-primary);
+  }
+
+  & > header > h2 > svg {
+    fill: var(--brand-primary);
+  }
+}
+
+
+
+.root {
+    @include dashboard-card;
+    border-radius: var(--radius-2);
+    padding: var(--size-5);
+}
+
+.contentCard {
+  @include dashboard-card();
+  border-radius: var(--radius-2);
+  padding: var(--size-5);
+}
+
+.main_content {
+  position: relative;
+  padding: var(--size-3) var(--size-1)
+}
+
+/**
+ * Layout toggle
+ */
+.root__layouttoggle {
+    @include bare-button; line-height: 0;
+    margin: 0 -0.45rem; padding: 0.5rem;
+}
+.root__layouttoggle:hover {
+    opacity: 0.85;
+}
+.root__layouttoggle > svg {
+    width: 21px; height: 21px;
+}
+
+/**
+ * Create button
+ */
+.root__buttoncreate {
+    position: relative; z-index: 12;
+    display: flex; justify-content: flex-start; align-items: center;
+
+    // @include bp-max($small) {
+    //     min-width: 0;
+    //     & > span {
+    //         display: none;
+    //     }
+    // }
+}
+.root__buttoncreate > svg {
+    margin-right: 0.65rem
+}
+
+/**
+ * List
+ */
+.main_content > ol {
+    @include bare-list;
+}
+.main_content > ol > li:last-child {
+    margin-bottom: -0.65rem;
+    padding: 0;
+}
+
+/**
+ * Empty
+ */
+.empty_content {
+  margin: 1.25rem 0 1rem;
+  display: flex; flex-direction: column;
+  justify-content: space-around; align-items: center;
+  text-align: center;
+  @include bp-min($small) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.empty_content[hidden] {
+  display: none;
+}
+
+.empty_content > svg {
+  margin-bottom: 1rem;
+  max-width: 80%; width: auto; height: auto;
+}
+
+.empty_content p {
+  margin: 0;
+  font-size: 0.9375em;
+  color: var(--text-secondary);
+  padding-block-start: 2rem;
+}

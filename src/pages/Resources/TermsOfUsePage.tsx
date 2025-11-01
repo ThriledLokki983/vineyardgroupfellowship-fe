@@ -14,12 +14,12 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Welcome to Our Fellowship</h2>
             <p>
-              By joining Vineyard Group Fellowship, you become part of a compassionate community dedicated to recovery, 
-              healing, and mutual support. These Terms of Use establish the foundation for our shared fellowship experience 
+              By joining Vineyard Group Fellowship, you become part of a compassionate community dedicated to recovery,
+              healing, and mutual support. These Terms of Use establish the foundation for our shared fellowship experience
               and help ensure a safe, respectful environment for everyone on their recovery journey.
             </p>
             <p>
-              <strong>Our Mission:</strong> To provide a safe, anonymous, and supportive digital space where individuals 
+              <strong>Our Mission:</strong> To provide a safe, anonymous, and supportive digital space where individuals
               can find fellowship, guidance, and hope on their path to recovery and wellness.
             </p>
           </section>
@@ -27,8 +27,8 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Acceptance & Agreement</h2>
             <p>
-              By accessing and using Vineyard Group Fellowship, you accept and agree to be bound by these terms. 
-              If you do not agree with any part of these terms, please do not use our fellowship platform. 
+              By accessing and using Vineyard Group Fellowship, you accept and agree to be bound by these terms.
+              If you do not agree with any part of these terms, please do not use our fellowship platform.
               Your participation in our community signifies your commitment to these principles.
             </p>
           </section>
@@ -36,7 +36,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Fellowship Platform License</h2>
             <p>
-              We grant you a personal, non-exclusive, non-transferable license to access and use Vineyard Group Fellowship 
+              We grant you a personal, non-exclusive, non-transferable license to access and use Vineyard Group Fellowship
               for your recovery and fellowship needs. This license is subject to these terms and the following conditions:
             </p>
             <ul>
@@ -50,18 +50,18 @@ export default function TermsOfUsePage() {
 
           <section className={styles.section}>
             <h2>Important Health & Recovery Disclaimers</h2>
-            
+
             <h3>Not a Substitute for Professional Care</h3>
             <p>
-              <strong>Critical Notice:</strong> Vineyard Group Fellowship provides peer support and community fellowship 
-              but is NOT a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice 
-              of qualified healthcare providers, licensed therapists, or certified addiction counselors for medical 
+              <strong>Critical Notice:</strong> Vineyard Group Fellowship provides peer support and community fellowship
+              but is NOT a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice
+              of qualified healthcare providers, licensed therapists, or certified addiction counselors for medical
               or mental health concerns.
             </p>
 
             <h3>Crisis & Emergency Situations</h3>
             <p>
-              <strong>Emergency Resources:</strong> If you are experiencing a mental health crisis, thoughts of self-harm, 
+              <strong>Emergency Resources:</strong> If you are experiencing a mental health crisis, thoughts of self-harm,
               or substance abuse emergency, please contact:
             </p>
             <ul>
@@ -73,14 +73,14 @@ export default function TermsOfUsePage() {
 
             <h3>Recovery Journey Acknowledgment</h3>
             <p>
-              Recovery is a personal journey with unique challenges. Our platform provides community support, 
+              Recovery is a personal journey with unique challenges. Our platform provides community support,
               but individual results may vary. We encourage professional guidance alongside peer fellowship.
             </p>
           </section>
 
           <section className={styles.section}>
             <h2>Community Guidelines & Fellowship Principles</h2>
-            
+
             <h3>Respectful Communication</h3>
             <ul>
               <li>Treat all community members with dignity, compassion, and respect</li>
@@ -108,10 +108,10 @@ export default function TermsOfUsePage() {
 
           <section className={styles.section}>
             <h2>Account Responsibilities</h2>
-            
+
             <h3>Account Creation & Maintenance</h3>
             <p>
-              When creating your fellowship account, you must provide accurate information and maintain account security. 
+              When creating your fellowship account, you must provide accurate information and maintain account security.
               You are responsible for:
             </p>
             <ul>
@@ -123,7 +123,7 @@ export default function TermsOfUsePage() {
 
             <h3>Age & Capacity Requirements</h3>
             <p>
-              You must be at least 18 years old to use Vineyard Group Fellowship independently. 
+              You must be at least 18 years old to use Vineyard Group Fellowship independently.
               Users aged 16-17 may participate with verifiable parental or guardian consent and supervision.
             </p>
           </section>
@@ -169,22 +169,22 @@ export default function TermsOfUsePage() {
 
           <section className={styles.section}>
             <h2>Content & Communication Policies</h2>
-            
+
             <h3>User-Generated Content</h3>
             <p>
-              You retain ownership of content you share but grant us a license to display it within the fellowship platform. 
+              You retain ownership of content you share but grant us a license to display it within the fellowship platform.
               All shared content must align with our community guidelines and recovery-focused mission.
             </p>
 
             <h3>Content Moderation</h3>
             <p>
-              Our trained moderators review content to ensure community safety. We may remove content or suspend accounts 
+              Our trained moderators review content to ensure community safety. We may remove content or suspend accounts
               that violate these terms, threaten member safety, or disrupt the fellowship environment.
             </p>
 
             <h3>Recovery-Focused Communication</h3>
             <p>
-              All platform communication should support recovery and wellness goals. We encourage sharing hope, 
+              All platform communication should support recovery and wellness goals. We encourage sharing hope,
               experience, and strength while respecting individual recovery paths.
             </p>
           </section>
@@ -192,7 +192,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Intellectual Property & Platform Rights</h2>
             <p>
-              The Vineyard Group Fellowship platform, including its design, features, content, and functionality, 
+              The Vineyard Group Fellowship platform, including its design, features, content, and functionality,
               is owned by Vineyard Group Fellowship and protected by intellectual property laws. This includes:
             </p>
             <ul>
@@ -202,17 +202,17 @@ export default function TermsOfUsePage() {
               <li>Proprietary algorithms for fellowship matching and support features</li>
             </ul>
             <p>
-              You may not copy, reproduce, distribute, or create derivative works from our platform or content 
+              You may not copy, reproduce, distribute, or create derivative works from our platform or content
               without explicit written permission.
             </p>
           </section>
 
           <section className={styles.section}>
             <h2>Account Suspension & Community Consequences</h2>
-            
+
             <h3>Progressive Community Response</h3>
             <p>
-              We believe in redemption and second chances. Our response to guideline violations typically follows 
+              We believe in redemption and second chances. Our response to guideline violations typically follows
               a progressive approach:
             </p>
             <ol>
@@ -224,7 +224,7 @@ export default function TermsOfUsePage() {
 
             <h3>Appeal Process</h3>
             <p>
-              Members facing suspension can appeal decisions through our Community Review Board, 
+              Members facing suspension can appeal decisions through our Community Review Board,
               which includes peers in recovery and professional moderators.
             </p>
           </section>
@@ -232,7 +232,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Platform Availability & Service Changes</h2>
             <p>
-              We strive to provide consistent fellowship support but cannot guarantee uninterrupted service. 
+              We strive to provide consistent fellowship support but cannot guarantee uninterrupted service.
               Platform availability may be affected by:
             </p>
             <ul>
@@ -242,7 +242,7 @@ export default function TermsOfUsePage() {
               <li>Legal or regulatory requirements</li>
             </ul>
             <p>
-              We will provide advance notice of planned maintenance whenever possible and work to minimize 
+              We will provide advance notice of planned maintenance whenever possible and work to minimize
               disruptions to your fellowship experience.
             </p>
           </section>
@@ -250,7 +250,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Limitation of Liability</h2>
             <p>
-              While we are committed to providing a safe fellowship environment, Vineyard Group Fellowship 
+              While we are committed to providing a safe fellowship environment, Vineyard Group Fellowship
               and its team cannot be held liable for:
             </p>
             <ul>
@@ -261,7 +261,7 @@ export default function TermsOfUsePage() {
               <li>Decisions made based on fellowship community discussions</li>
             </ul>
             <p>
-              <strong>Recovery Responsibility:</strong> Your recovery journey is ultimately your responsibility, 
+              <strong>Recovery Responsibility:</strong> Your recovery journey is ultimately your responsibility,
               with support from qualified professionals and our fellowship community.
             </p>
           </section>
@@ -269,7 +269,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>International Users & Legal Compliance</h2>
             <p>
-              Vineyard Group Fellowship welcomes international members but operates under United States laws. 
+              Vineyard Group Fellowship welcomes international members but operates under United States laws.
               International users should be aware that:
             </p>
             <ul>
@@ -283,7 +283,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Changes to Community Terms</h2>
             <p>
-              As our fellowship grows and evolves, we may update these terms to better serve our community. 
+              As our fellowship grows and evolves, we may update these terms to better serve our community.
               We will provide at least 30 days' notice of significant changes through:
             </p>
             <ul>
@@ -292,7 +292,7 @@ export default function TermsOfUsePage() {
               <li>In-app notifications before your next login</li>
             </ul>
             <p>
-              Continued use of the platform after changes indicates acceptance of updated terms. 
+              Continued use of the platform after changes indicates acceptance of updated terms.
               If you disagree with changes, you may close your account while retaining access to your data.
             </p>
           </section>
@@ -309,7 +309,7 @@ export default function TermsOfUsePage() {
               <li><strong>Technical Issues:</strong> <a href="mailto:tech@vineyardgroupfellowship.org" className={styles.link}>tech@vineyardgroupfellowship.org</a></li>
             </ul>
             <p>
-              <strong>Response Commitment:</strong> We respond to support requests within 24 hours and prioritize 
+              <strong>Response Commitment:</strong> We respond to support requests within 24 hours and prioritize
               safety-related concerns immediately.
             </p>
           </section>
@@ -317,7 +317,7 @@ export default function TermsOfUsePage() {
           <section className={styles.section}>
             <h2>Fellowship Promise</h2>
             <p>
-              These terms exist to protect and nurture our recovery community. By agreeing to them, 
+              These terms exist to protect and nurture our recovery community. By agreeing to them,
               you join a fellowship committed to:
             </p>
             <ul>
@@ -327,7 +327,7 @@ export default function TermsOfUsePage() {
               <li><strong>Support</strong> that meets people where they are without judgment</li>
             </ul>
             <p>
-              <em>Together, we can achieve what none of us could accomplish alone. 
+              <em>Together, we can achieve what none of us could accomplish alone.
               Welcome to your fellowship journey.</em>
             </p>
           </section>

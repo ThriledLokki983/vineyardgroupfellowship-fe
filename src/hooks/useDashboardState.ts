@@ -34,19 +34,32 @@ export const useDashboardState = (): DashboardStateData => {
   const { user, isLoading } = useAuthContext();
   const { isOnboardingComplete } = useAccountStatus();
 
-  const getUserPurpose = (purpose: string = ''): UserPurposeType => {
-    switch (purpose) {
-      case 'providing_support':
-        return USER_PURPOSE_GROUP_LEADER
-      case 'seeking_recovery':
-        return USER_PURPOSE_GROUP_MEMBER
-      default:
-        return USER_PURPOSE_UNKNOWN
-    }
-  }
-
-
   const dashboardData = useMemo(() => {
+    // Helper function to determine user purpose
+    const getUserPurpose = (purpose: string = ''): UserPurposeType => {
+      // First check the new leadership_info structure (priority)
+      if (user?.leadership_info?.can_lead_group === true) {
+        return USER_PURPOSE_GROUP_LEADER;
+      }
+
+      // Then check legacy can_lead_groups field
+      if (user?.can_lead_groups === true) {
+        return USER_PURPOSE_GROUP_LEADER;
+      }
+
+      // Finally check user_purpose field
+      switch (purpose) {
+        case 'group_leader':
+        case 'providing_support': // Legacy support
+          return USER_PURPOSE_GROUP_LEADER
+        case 'group_member':
+        case 'seeking_recovery': // Legacy support
+          return USER_PURPOSE_GROUP_MEMBER
+        default:
+          return USER_PURPOSE_UNKNOWN
+      }
+    }
+
     if (isLoading || !user) {
       return {
         state: 'loading' as DashboardState,
@@ -122,10 +135,9 @@ export const useDashboardState = (): DashboardStateData => {
       }
     }
 
-    if (userPurpose === 'PROVIDING_SUPPORT') {
+    if (userPurpose === USER_PURPOSE_GROUP_LEADER) {
       // For supporters, prioritize background completion status
-      // const supporterStatus = user?.supporter_info || {}
-      const supporterStatus = { background_required: true, background_completed: false } // TODO: Replace with actual data
+      const supporterStatus = user?.supporter_info || {}
       const needsBackgroundSetup = supporterStatus?.background_required && !supporterStatus?.background_completed
 
       // If background is required but not completed, always show first-visit flow

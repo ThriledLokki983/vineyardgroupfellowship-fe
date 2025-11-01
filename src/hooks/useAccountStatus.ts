@@ -26,12 +26,17 @@ export const useAccountStatus = (): AccountStatusHook => {
 
   const accountStatus = user?.account_status || null;
 
-  // Check onboarding completion with backward compatibility
   const isOnboardingComplete =
+    user?.onboarding?.completed === true ||
     accountStatus?.onboarding_complete === true ||
-    // Fallback to legacy fields for backward compatibility
     (user?.onboarding_completed_at !== null && user?.onboarding_step === null) ||
     user?.onboarded === true;
+
+  const currentOnboardingStep =
+    user?.onboarding?.current_step ||
+    accountStatus?.current_onboarding_step ||
+    user?.onboarding_step ||
+    null;
 
   return {
     accountStatus,
@@ -40,6 +45,6 @@ export const useAccountStatus = (): AccountStatusHook => {
     isOnboardingComplete,
     needsOnboarding: !isOnboardingComplete,
     lastUpdated: accountStatus?.last_updated || null,
-    currentOnboardingStep: accountStatus?.current_onboarding_step || null,
+    currentOnboardingStep,
   };
 };

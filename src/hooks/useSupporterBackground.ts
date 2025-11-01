@@ -7,6 +7,9 @@ export function useSupporterBackground() {
   const queryClient = useQueryClient();
   const { user } = useAuthContext();
 
+  // Support both new and legacy user_purpose values
+  const userPurpose = user?.user_purpose as 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' | undefined;
+
   // GET existing background data
   const backgroundQuery = useQuery({
     queryKey: ['supporter-background'],
@@ -17,7 +20,7 @@ export function useSupporterBackground() {
       return data;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes
-    enabled: !!user && user.user_purpose === 'providing_support', // Fetch for all supporters
+    enabled: !!user && (userPurpose === 'group_leader' || userPurpose === 'providing_support'), // Support both new and legacy
   });
 
   // Get status from user profile (already loaded in auth context)

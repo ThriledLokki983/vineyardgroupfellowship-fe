@@ -15,6 +15,10 @@ export const PATH_ACCOUNT_CREATED = '/account-created';
 export const PATH_EMAIL_VERIFIED = '/auth/verified';
 export const PATH_EMAIL_VERIFY_ERROR = '/auth/verify-error';
 
+
+// Dashboard
+export const PATH_GROUP_LEADER_BACKGROUND = '/dashboard/group-leader/background';
+
 // OPEN ROUTES
 export const PATH_PRIVACY_POLICY = '/privacy-policy';
 export const PATH_TERMS_OF_USE = '/terms-of-use';

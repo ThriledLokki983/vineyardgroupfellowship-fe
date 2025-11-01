@@ -14,19 +14,19 @@ export default function PrivacyPolicyPage() {
           <section className={styles.section}>
             <h2>Our Commitment to Your Privacy</h2>
             <p>
-              At Vineyard Group Fellowship, your privacy and safety are sacred to us. We understand that recovery is a deeply personal journey, 
-              and we are committed to protecting your confidentiality while fostering a supportive community environment. This Privacy Policy 
+              At Vineyard Group Fellowship, your privacy and safety are sacred to us. We understand that recovery is a deeply personal journey,
+              and we are committed to protecting your confidentiality while fostering a supportive community environment. This Privacy Policy
               explains how we collect, use, protect, and respect your information when you use our fellowship platform.
             </p>
             <p>
-              <strong>Core Principle:</strong> Your recovery journey is yours to share as you choose. We will never compromise your privacy 
+              <strong>Core Principle:</strong> Your recovery journey is yours to share as you choose. We will never compromise your privacy
               or use your personal information in ways that could harm your recovery or wellbeing.
             </p>
           </section>
 
           <section className={styles.section}>
             <h2>Information We Collect</h2>
-            
+
             <h3>Account & Profile Information</h3>
             <p>To create your fellowship experience, we collect:</p>
             <ul>
@@ -55,7 +55,7 @@ export default function PrivacyPolicyPage() {
 
           <section className={styles.section}>
             <h2>How We Use Your Information</h2>
-            
+
             <h3>Supporting Your Recovery</h3>
             <ul>
               <li><strong>Personalized experience:</strong> Match you with appropriate fellowship circles and sponsors</li>
@@ -76,22 +76,22 @@ export default function PrivacyPolicyPage() {
 
           <section className={styles.section}>
             <h2>Information Sharing & Community Safety</h2>
-            
+
             <h3>Within Fellowship Circles</h3>
             <p>
-              Information you choose to share in fellowship circles (support groups, sponsor relationships, community posts) 
+              Information you choose to share in fellowship circles (support groups, sponsor relationships, community posts)
               is visible to other circle members. You control what you share and can maintain anonymity.
             </p>
 
             <h3>With Service Providers</h3>
             <p>
-              We work with trusted partners who help us operate the platform (hosting, analytics, customer support). 
+              We work with trusted partners who help us operate the platform (hosting, analytics, customer support).
               These partners are bound by strict confidentiality agreements and cannot use your data for their own purposes.
             </p>
 
             <h3>Legal Requirements</h3>
             <p>
-              We may disclose information only when required by law or to protect safety. In recovery contexts, 
+              We may disclose information only when required by law or to protect safety. In recovery contexts,
               we follow applicable mental health and addiction treatment confidentiality laws.
             </p>
 
@@ -117,14 +117,14 @@ export default function PrivacyPolicyPage() {
               <li><strong>Secure infrastructure:</strong> Industry-leading cloud security with 99.9% uptime</li>
             </ul>
             <p>
-              While no system is 100% secure, we continuously invest in protecting your information and will 
+              While no system is 100% secure, we continuously invest in protecting your information and will
               notify you promptly of any security incidents.
             </p>
           </section>
 
           <section className={styles.section}>
             <h2>Your Privacy Rights & Controls</h2>
-            
+
             <h3>You Have the Right To:</h3>
             <ul>
               <li><strong>Access:</strong> View all personal information we have about you</li>
@@ -146,22 +146,22 @@ export default function PrivacyPolicyPage() {
 
           <section className={styles.section}>
             <h2>Special Considerations for Recovery</h2>
-            
+
             <h3>Crisis Situations</h3>
             <p>
-              If you indicate thoughts of self-harm or substance abuse emergency, we may share minimal necessary information 
+              If you indicate thoughts of self-harm or substance abuse emergency, we may share minimal necessary information
               with crisis intervention services to ensure your safety. Your wellbeing always comes first.
             </p>
 
             <h3>Family & Emergency Contacts</h3>
             <p>
-              You can designate emergency contacts who may be notified in crisis situations. This is entirely optional 
+              You can designate emergency contacts who may be notified in crisis situations. This is entirely optional
               and under your control.
             </p>
 
             <h3>Recovery Progress</h3>
             <p>
-              Your recovery milestones, setbacks, and progress tracking are private by default. You choose what to share 
+              Your recovery milestones, setbacks, and progress tracking are private by default. You choose what to share
               with the community and what to keep personal.
             </p>
           </section>
@@ -177,7 +177,7 @@ export default function PrivacyPolicyPage() {
               <li><strong>Analytics cookies:</strong> Help us improve the platform (aggregated data only)</li>
             </ul>
             <p>
-              You can control cookie settings in your browser. Disabling certain cookies may limit some platform features 
+              You can control cookie settings in your browser. Disabling certain cookies may limit some platform features
               but will never prevent you from accessing recovery support.
             </p>
           </section>
@@ -185,8 +185,8 @@ export default function PrivacyPolicyPage() {
           <section className={styles.section}>
             <h2>International Users & Data Transfers</h2>
             <p>
-              Your data is primarily stored and processed in the United States with enterprise-grade security protections. 
-              If you're outside the US, your information may be transferred to and processed in the US, where our 
+              Your data is primarily stored and processed in the United States with enterprise-grade security protections.
+              If you're outside the US, your information may be transferred to and processed in the US, where our
               servers are located. We ensure appropriate safeguards are in place regardless of location.
             </p>
           </section>
@@ -194,8 +194,8 @@ export default function PrivacyPolicyPage() {
           <section className={styles.section}>
             <h2>Changes to This Policy</h2>
             <p>
-              We may update this Privacy Policy to reflect changes in our practices or legal requirements. 
-              We will notify you of significant changes via email and prominent platform notices. 
+              We may update this Privacy Policy to reflect changes in our practices or legal requirements.
+              We will notify you of significant changes via email and prominent platform notices.
               Your continued use of Vineyard Group Fellowship after updates constitutes acceptance of the new policy.
             </p>
           </section>
@@ -211,7 +211,7 @@ export default function PrivacyPolicyPage() {
               <li><strong>Community Support:</strong> For questions about fellowship circle privacy settings</li>
             </ul>
             <p>
-              <strong>Response Commitment:</strong> We will respond to privacy inquiries within 48 hours and resolve 
+              <strong>Response Commitment:</strong> We will respond to privacy inquiries within 48 hours and resolve
               issues within 7 business days whenever possible.
             </p>
           </section>
@@ -219,8 +219,8 @@ export default function PrivacyPolicyPage() {
           <section className={styles.section}>
             <h2>Your Recovery, Your Privacy, Your Choice</h2>
             <p>
-              Recovery requires courage, and sharing your journey requires trust. We are honored to be part of your 
-              fellowship and committed to protecting the privacy and dignity of every person who seeks support through 
+              Recovery requires courage, and sharing your journey requires trust. We are honored to be part of your
+              fellowship and committed to protecting the privacy and dignity of every person who seeks support through
               our community. Your recovery story is yours to tell, and we will always respect that choice.
             </p>
           </section>

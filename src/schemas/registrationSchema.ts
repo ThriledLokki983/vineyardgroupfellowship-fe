@@ -2,6 +2,9 @@ import { z } from 'zod'
 
 // User purpose enum for type safety - matches backend exactly
 export const UserPurpose = {
+  GROUP_MEMBER: 'group_member',
+  GROUP_LEADER: 'group_leader',
+  // Legacy values for backward compatibility
   SEEKING_RECOVERY: 'seeking_recovery',
   PROVIDING_SUPPORT: 'providing_support'
 } as const
