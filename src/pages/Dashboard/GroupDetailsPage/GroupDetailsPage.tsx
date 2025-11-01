@@ -10,6 +10,7 @@ import { getGroup, uploadGroupPhoto } from '../../../services/groupApi';
 import { Layout, LoadingState, Icon, Button, GroupMemberCard } from 'components';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import { getEditGroupPath } from '../../../configs/paths';
+import { getDisplayLocation, validateImageFile, shareGroup } from './helpers';
 import styles from './GroupDetailsPage.module.scss';
 
 export const GroupDetailsPage = () => {
@@ -50,6 +51,13 @@ export const GroupDetailsPage = () => {
     group.user_membership.role === 'leader'
   );
 
+  // Check if user is a group member (has membership)
+  const isGroupMember = Boolean(
+    user &&
+    group &&
+    group.user_membership
+  );
+
   // Debug logging (development only)
   if (import.meta.env.DEV) {
     console.log('🔍 GroupDetails - Leadership Check:', {
@@ -72,17 +80,10 @@ export const GroupDetailsPage = () => {
     const file = event.target.files?.[0];
     if (!file || !group) return;
 
-    // Validate file type
-    if (!file.type.startsWith('image/')) {
-      console.error('❌ Please select an image file');
-      // TODO: Show error toast
-      return;
-    }
-
-    // Validate file size (max 5MB)
-    const maxSize = 5 * 1024 * 1024; // 5MB
-    if (file.size > maxSize) {
-      console.error('❌ File size must be less than 5MB');
+    // Validate file using helper function
+    const validation = validateImageFile(file);
+    if (!validation.isValid) {
+      console.error(`❌ ${validation.error}`);
       // TODO: Show error toast
       return;
     }
@@ -106,22 +107,16 @@ export const GroupDetailsPage = () => {
     navigate(getEditGroupPath(id!));
   };
 
-  const handleShareGroup = () => {
-    // TODO: Implement share functionality (copy link, native share API, etc.)
-    const shareUrl = `${window.location.origin}/groups/${id}`;
+  const handleShareGroup = async () => {
+    if (!group) return;
 
-    if (navigator.share) {
-      navigator.share({
-        title: group?.name,
-        text: `Join ${group?.name} on Vineyard Group Fellowship`,
-        url: shareUrl,
-      }).catch((err) => console.log('Error sharing:', err));
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(shareUrl).then(() => {
+    const result = await shareGroup(group.name, id!);
+
+    if (result.success) {
+      if (result.method === 'clipboard') {
         console.log('Link copied to clipboard');
         // TODO: Show toast notification
-      });
+      }
     }
   };
 
@@ -268,7 +263,9 @@ export const GroupDetailsPage = () => {
 
               <div className={styles.detailItem}>
                 <span className={styles.detailLabel}>Location</span>
-                <span className={styles.detailValue}>{group.location}</span>
+                <span className={styles.detailValue}>
+                  {getDisplayLocation(group.location, isGroupLeader, isGroupMember)}
+                </span>
               </div>
 
               <div className={styles.detailItem}>
