@@ -20,7 +20,7 @@ interface GroupData {
 	my_role: 'leader' | 'co_leader' | 'member';
 	created_by_me: boolean;
 	joined_at: string;
-	membership_status: 'pending' | 'active' | 'leader' | 'co_leader' | null;
+	membership_status: 'pending' | 'active' | 'inactive' | 'removed' | 'leader' | 'co_leader' | null;
 }
 
 interface DashboardCarProps {

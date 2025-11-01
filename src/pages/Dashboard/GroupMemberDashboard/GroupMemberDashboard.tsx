@@ -221,10 +221,10 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           {hasGroups && (
             <div className={styles.groupsList}>
               {activeGroups.map((group) => (
-                <GroupSummaryCard 
-                  key={group.id} 
-                  groupData={group} 
-                  showStatus={true} 
+                <GroupSummaryCard
+                  key={group.id}
+                  groupData={group}
+                  showStatus={true}
                 />
               ))}
             </div>
@@ -243,10 +243,10 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           {hasPendingRequests && (
             <div className={styles.requestsList}>
               {pendingRequests.map((group) => (
-                <GroupSummaryCard 
-                  key={group.id} 
-                  groupData={group} 
-                  showStatus={true} 
+                <GroupSummaryCard
+                  key={group.id}
+                  groupData={group}
+                  showStatus={true}
                 />
               ))}
             </div>

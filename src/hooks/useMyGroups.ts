@@ -22,7 +22,7 @@ export const useMyGroups = () => {
 export const useLeaderGroups = () => {
   const { data: myGroups, ...rest } = useMyGroups();
 
-  const leaderGroups = myGroups?.filter((group) => 
+  const leaderGroups = myGroups?.filter((group) =>
     group.membership_status === 'leader' || group.membership_status === 'co_leader'
   ) || [];
 

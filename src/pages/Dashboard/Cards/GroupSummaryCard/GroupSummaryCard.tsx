@@ -17,7 +17,7 @@ interface GroupSummaryCardProps {
     member_limit: number;
     available_spots: number;
     photo_url: string | null;
-    membership_status?: 'pending' | 'active' | 'leader' | 'co_leader' | null;
+    membership_status?: 'pending' | 'active' | 'inactive' | 'removed' | 'leader' | 'co_leader' | null;
   };
   showStatus?: boolean; // Whether to show pending/active status badge
 }

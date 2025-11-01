@@ -58,7 +58,7 @@ export interface Group {
   meeting_frequency: 'weekly' | 'biweekly' | 'monthly';
   focus_areas: string[];
   visibility: 'public' | 'community' | 'private';
-  membership_status?: 'pending' | 'active' | 'leader' | 'co_leader' | null; // User's relationship with this group (list view)
+  membership_status?: 'pending' | 'active' | 'inactive' | 'removed' | 'leader' | 'co_leader' | null; // User's relationship with this group (list view)
   user_membership: UserMembership | null; // Detailed membership info (detail view)
   group_members?: GroupMember[];
   created_at: string;
@@ -83,7 +83,7 @@ export interface GroupListItem {
   meeting_frequency: string;
   focus_areas: string[];
   created_at: string;
-  membership_status: 'pending' | 'active' | 'leader' | 'co_leader' | null; // User's relationship with this group
+  membership_status: 'pending' | 'active' | 'inactive' | 'removed' | 'leader' | 'co_leader' | null; // User's relationship with this group
   user_membership?: UserMembership; // Optional - only present in detail view
 }
 
