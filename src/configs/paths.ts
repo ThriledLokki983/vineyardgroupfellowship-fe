@@ -18,6 +18,14 @@ export const PATH_EMAIL_VERIFY_ERROR = '/auth/verify-error';
 
 // Dashboard
 export const PATH_GROUP_LEADER_BACKGROUND = '/dashboard/group-leader/background';
+export const PATH_GROUP_DETAILS = '/dashboard/groups/:id';
+export const PATH_EDIT_GROUP = '/dashboard/groups/:id/edit';
+
+// Helper function to generate group details path
+export const getGroupDetailsPath = (groupId: string) => `/dashboard/groups/${groupId}`;
+
+// Helper function to generate edit group path
+export const getEditGroupPath = (groupId: string) => `/dashboard/groups/${groupId}/edit`;
 
 // OPEN ROUTES
 export const PATH_PRIVACY_POLICY = '/privacy-policy';

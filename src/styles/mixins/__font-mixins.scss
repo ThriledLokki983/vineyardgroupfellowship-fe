@@ -17,14 +17,6 @@
     }
 }
 
-@mixin ui-font($bold: false, $line-height: true) {
-    font-family: $ui-font;
-    font-weight: 500; line-height: 1.25; letter-spacing: -0.025em;
-    @if ($bold) {
-        font-weight: 700;
-    }
-}
-
 /**
  * Sizes
  */

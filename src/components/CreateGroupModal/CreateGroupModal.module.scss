@@ -1,0 +1,360 @@
+@use '../../styles/styles.scss' as *;
+
+.createGroupModal {
+  // Override modal size
+  overflow: auto;
+	max-inline-size: 750px;
+
+	header {
+		border-bottom: none;
+		padding-inline: var(--size-8);
+
+		> button:hover {
+			background-color: transparent !important;
+			box-shadow: none !important;
+
+			> svg {
+				fill: var(--error-color) !important;
+			}
+		}
+	}
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  min-block-size: 550px;
+  overflow: hidden;
+}
+
+.stepHeader {
+  padding: var(--size-6) var(--size-6) var(--size-4);
+  // border-bottom: 1px solid var(--border-subtle);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+}
+
+.stepTitle {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-7);
+  color: var(--brand-primary);
+  margin: 0 0 var(--size-2);
+}
+
+.stepDescription {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.formContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 var(--size-4);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+}
+
+.stepContent {
+  max-inline-size: 100%;
+  margin: 0 auto;
+}
+
+.formGroup {
+  margin-bottom: var(--size-5);
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin-bottom: var(--size-2);
+}
+
+.required {
+  color: var(--accent-danger);
+}
+
+.input,
+.select,
+.textarea {
+  inline-size: 100%;
+  padding: var(--size-3);
+  font-size: var(--font-size-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  transition: border-color 0.2s var(--ease-2);
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
+  }
+}
+
+// Add extra padding-right for select to accommodate dropdown icon
+.select {
+  padding-right: var(--size-7); // Extra space for the dropdown arrow
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236E7673' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--size-3) center;
+  appearance: none; // Remove default browser arrow
+  cursor: pointer;
+
+  &::-ms-expand {
+    display: none; // Remove IE/Edge default arrow
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+}
+
+.textarea {
+  resize: vertical;
+  min-block-size: 100px;
+  font-family: inherit;
+}
+
+.inputError {
+  border-color: var(--accent-danger);
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba(194, 90, 90, 0.1);
+  }
+}
+
+.error {
+  display: block;
+  font-size: var(--font-size-0);
+  color: var(--accent-danger);
+  margin-top: var(--size-1);
+}
+
+.hint {
+  display: block;
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  margin-top: var(--size-1);
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--size-4);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Focus Areas / Tags
+.tagsInput {
+  display: flex;
+  gap: var(--size-2);
+  margin-bottom: var(--size-3);
+}
+
+.addTagButton {
+  padding: var(--size-3) var(--size-4);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: white;
+  background: var(--brand-primary);
+  border: none;
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: background 0.2s var(--ease-2);
+
+  &:hover {
+    background: var(--accent-warm);
+    color: var(--brand-primary);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--size-2);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-0);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  color: var(--text-primary);
+}
+
+.removeTag {
+  padding: 0;
+  inline-size: var(--size-4);
+  block-size: var(--size-4);
+  font-size: var(--font-size-3);
+  line-height: 1;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s var(--ease-2);
+
+  &:hover {
+    color: var(--accent-danger);
+  }
+}
+
+// Checkbox
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  cursor: pointer;
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+
+  span {
+    user-select: none;
+  }
+}
+
+.checkbox {
+  inline-size: var(--size-4);
+  block-size: var(--size-4);
+  cursor: pointer;
+}
+
+// Navigation
+.navigation {
+  padding: var(--size-5) var(--size-6);
+  border-top: 1px solid var(--border-subtle);
+  background: var(--surface-elevated);
+
+  @include mobile {
+    padding: var(--size-4);
+  }
+}
+
+.stepIndicators {
+  display: flex;
+  justify-content: center;
+  gap: var(--size-3);
+  list-style: none;
+  margin: 0 0 var(--size-5);
+  padding: 0;
+}
+
+.stepIndicator {
+  inline-size: var(--size-6);
+  block-size: var(--size-6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+  color: var(--text-secondary);
+  background: var(--surface-canvas);
+  border: 2px solid var(--border-subtle);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+
+  &:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+  }
+
+  &.active {
+    background: var(--brand-primary);
+    border-color: var(--brand-primary);
+    color: white;
+  }
+
+  &.completed {
+    background: var(--accent-warm);
+    border-color: var(--accent-warm);
+    color: var(--brand-primary);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--size-3);
+
+  @include mobile {
+    flex-direction: column-reverse;
+  }
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: var(--size-3) var(--size-5);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.primaryButton {
+  background: var(--brand-primary);
+  color: white;
+  margin-left: auto;
+
+  &:hover:not(:disabled) {
+    background: var(--accent-warm);
+    color: var(--brand-primary);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  @include mobile {
+    inline-size: 100%;
+    justify-content: center;
+  }
+}
+
+.secondaryButton {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+
+  &:hover:not(:disabled) {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    border-color: var(--brand-primary);
+  }
+
+  @include mobile {
+    inline-size: 100%;
+    justify-content: center;
+  }
+}

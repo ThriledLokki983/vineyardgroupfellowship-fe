@@ -1,0 +1,32 @@
+@use '../../../styles/styles.scss' as *;
+
+.root {
+    position: relative;
+    display: flex; align-items: center;
+}
+.root span {
+    @include medium-text;
+    margin-inline-end: 0.5rem;
+    color: var(--text-clr);
+}
+
+.root__actions {
+    margin-top: 0;
+}
+
+.root__actions > button {
+    width: 2.5rem; height: 2.5rem;
+    padding: 0.5rem;
+    color: #415385 !important;
+
+    svg {
+        width: 1rem !important; height: 1rem !important;
+        fill: #415385 !important;
+    }
+}
+
+.root__actions > button:hover {
+    cursor: pointer;
+    background-color: #D2D7E2 !important;
+}
+

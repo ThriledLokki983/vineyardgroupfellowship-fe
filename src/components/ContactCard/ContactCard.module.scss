@@ -1,0 +1,268 @@
+@use '../../styles/styles.scss' as *;
+
+// ContactCard - Hover card for member contact information
+.root {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 320px;
+  max-width: calc(100% - 1rem);
+  padding: var(--size-4); // 20px
+  background: var(--surface-elevated);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-2); // 16px
+  border: 1px solid rgba(0, 0, 0, 0.04);
+
+  // Smooth transitions for appearance and position
+  transition:
+    opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  transform-origin: left center;
+  cursor: initial;
+  user-select: text;
+
+  // Initial state - slightly scaled down and transparent
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  @media (min-width: 768px) {
+    max-width: 80vw;
+  }
+}
+
+.root[hidden] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.95) translateY(-8px);
+  // Don't use display: none to allow transition
+}
+
+// Hover helper area (extends interactive area slightly)
+.root::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -24px;
+  width: 60px;
+  height: 60px;
+}
+
+// Inner container
+.inner {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 1;
+  transform: translateX(0);
+}
+
+// Transition state when swapping data
+.root[data-is-transitioning="true"] .inner {
+  transform: translateX(var(--size-4)); // 16px
+  opacity: 0;
+}
+
+// Back navigation
+.nav {
+  margin-bottom: var(--size-3); // 12px
+}
+
+// Header section
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3); // 12px
+  margin-bottom: var(--size-4); // 16px
+}
+
+// Name section
+.nameSection {
+  flex: 1;
+  min-width: 0; // Allow text truncation
+}
+
+.name {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6); // Semi-bold
+  color: var(--text-primary);
+  margin: 0 0 var(--size-1) 0; // 4px bottom margin
+  line-height: var(--font-lineheight-2);
+  word-break: break-word;
+}
+
+.role {
+  display: inline-block;
+  padding: var(--size-1) var(--size-2); // 4px 8px
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-5);
+  border-radius: var(--radius-2);
+  text-transform: capitalize;
+
+  &[data-role='leader'] {
+    background: var(--brand-primary);
+    color: white;
+  }
+
+  &[data-role='co_leader'] {
+    background: var(--accent-warm);
+    color: var(--text-primary);
+  }
+
+  &[data-role='member'] {
+    background: var(--surface-canvas);
+    color: var(--text-secondary);
+  }
+}
+
+// Bio section
+.bio {
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-secondary);
+  margin: 0 0 var(--size-4) 0; // 16px bottom
+  padding: var(--size-3); // 12px
+  background: var(--surface-canvas);
+  border-radius: var(--radius-2);
+  border-left: 3px solid var(--accent-warm);
+}
+
+// Metadata list
+.metadata {
+  list-style: none;
+  padding: 0;
+  margin: var(--size-2) 0 var(--size-2) 0; // 16px bottom
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: var(--size-3); // 12px
+    padding: var(--size-2) 0; // 8px vertical
+
+    & + li {
+        border-block-start: 1px solid rgba(0, 0, 0, 0.06);
+        padding-block: var(--size-2); // 8px
+
+        &:first-child {
+          border-block-end: none;
+        }
+
+    //   &:last-child {
+        // border-block-end: 1px solid rgba(0, 0, 0, 0.06);
+        // padding-block-end: calc(var(--size-2) + 2px); // 8px + 4px
+    //   }
+    }
+
+    svg {
+      flex-shrink: 0;
+      width: var(--size-3);
+      height: var(--size-3);
+      color: var(--text-secondary);
+    }
+
+    a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      word-break: break-word;
+      font-size: var(--font-size-0);
+      transition: color 0.15s var(--ease-2);
+
+      &:hover,
+      &:focus-visible {
+        color: var(--accent-warm);
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      word-break: break-word;
+    }
+  }
+}
+
+// Status badges
+.status,
+.profileVisibility {
+  display: inline-block;
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+
+  &[data-status='active'] {
+    background: rgba(76, 175, 80, 0.1);
+    color: #2E7D32;
+  }
+
+  &[data-status='pending'] {
+    background: rgba(255, 152, 0, 0.1);
+    color: #E65100;
+  }
+
+  &[data-status='inactive'] {
+    background: rgba(158, 158, 158, 0.1);
+    color: #616161;
+  }
+}
+
+.profileVisibility {
+    &[data-visibility='public'] {
+        background: rgba(33, 150, 243, 0.1);
+        color: #1976D2;
+    }
+
+    &[data-visibility='private'] {
+        background: rgba(158, 158, 158, 0.1);
+        color: #616161;
+    }
+}
+
+// Divider
+.divider {
+  margin-block: 0 var(--size-3); // 0px 16px
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+}
+
+// Actions section
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-2); // 8px
+}
+
+.actionButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2); // 8px
+  padding: var(--size-2) var(--size-4); // 8px 16px
+  background: var(--brand-primary);
+  color: white;
+  text-decoration: none;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  border-radius: var(--radius-2);
+  transition: all 0.2s var(--ease-3);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    background: var(--accent-warm);
+    color: var(--text-primary);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}

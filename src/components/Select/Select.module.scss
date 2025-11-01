@@ -1,0 +1,193 @@
+@use '../../styles/styles.scss' as *;
+
+// Select Container
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  inline-size: 100%;
+}
+
+// Label
+.label {
+  display: block;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  margin-bottom: var(--size-1);
+}
+
+// Button (Trigger)
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-2);
+  inline-size: 100%;
+  padding: var(--size-3) var(--size-3) var(--size-3) var(--size-3);
+  font-size: var(--font-size-1);
+  text-align: left;
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+
+  &:hover {
+    border-color: var(--brand-primary);
+  }
+
+  &:focus-visible,
+  &[data-focused] {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
+  }
+
+  &[data-pressed] {
+    background: var(--surface-elevated);
+  }
+
+  &[data-disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// Select Value
+.value {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+// Icon
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: var(--size-4);
+  block-size: var(--size-4);
+  color: var(--text-secondary);
+  transition: transform 0.2s var(--ease-2);
+
+  // Rotate when open
+  .button[data-pressed] & {
+    transform: rotate(180deg);
+  }
+
+  svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+}
+
+// Description
+.description {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  margin-top: var(--size-1);
+}
+
+// Error
+.error {
+  font-size: var(--font-size-0);
+  color: var(--accent-danger);
+  margin-top: var(--size-1);
+}
+
+// Popover
+.popover {
+  min-inline-size: var(--trigger-width);
+  max-block-size: 300px;
+  overflow: auto;
+  background: var(--surface-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-4);
+  outline: none;
+
+  // Entering animation
+  &[data-entering] {
+    animation: slide-up 0.2s var(--ease-2);
+  }
+
+  // Exiting animation
+  &[data-exiting] {
+    animation: slide-down 0.2s var(--ease-2);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+// ListBox
+.listbox {
+  padding: var(--size-1);
+  outline: none;
+}
+
+// ListBox Item
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-3);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s var(--ease-2);
+
+  &.focused {
+    background: var(--surface-elevated);
+  }
+
+  &.selected {
+    background: var(--brand-primary);
+    color: white;
+    font-weight: var(--font-weight-6);
+
+    &.focused {
+      background: var(--accent-warm);
+      color: var(--brand-primary);
+    }
+  }
+
+  &.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  &:not(.disabled):active {
+    transform: scale(0.98);
+  }
+}

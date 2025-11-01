@@ -1,4 +1,6 @@
+@use 'sass:math';
 @use '../utils/__variables' as *;
+// @use './_font-mixins' as *;
 
 @mixin card {
   background: var(--surface-1);
@@ -6,6 +8,56 @@
   border: var(--border-size-1) solid var(--border-1);
   box-shadow: var(--shadow-4);
   padding: var(--size-8);
+}
+
+@mixin ui-font($bold: false, $line-height: true) {
+    font-family: $ui-font;
+    font-weight: 500; line-height: 1.25; letter-spacing: -0.025em;
+    @if ($bold) {
+        font-weight: 700;
+    }
+}
+
+/**
+ * Avatar
+ */
+@mixin avatar($size: 32px) {
+    @include ui-font;
+    flex: 0 0 auto; display: inline-block;
+    width: $size; height: $size; line-height: $size; padding: 0;
+    background: var(--brand-primary); color: var(--surface-elevated); border-radius: 50%;
+    font-size: math.div($size, 2.5); text-align: center; text-transform: uppercase;
+    user-select: none;
+    &[data-is-external="true"] {
+        display: flex; place-content: center; place-items: center;
+        background: var(--grey-darker);
+    }
+    &[data-has-image="true"] {
+        background: var(--grey);
+    }
+    & > img {
+        width: 100%; height: 100%;
+        vertical-align: baseline; border-radius: 50%; overflow: hidden;
+        object-fit: cover;
+    }
+
+    // Hide everything when pending and show only question mark
+    &[data-pending="true"] {
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(209, 209, 209, 1);
+
+        & > img, & > span {
+            display: none;
+        }
+
+        &::after {
+            content: '?';
+            display: block;
+            font-size: 1.2em;
+            line-height: 1;
+            font-weight: 300;
+        }
+    }
 }
 
 // ******************************************** //

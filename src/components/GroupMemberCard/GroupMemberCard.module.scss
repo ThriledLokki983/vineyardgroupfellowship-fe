@@ -1,0 +1,98 @@
+@use '../../styles/styles.scss' as *;
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3); // 12px
+  padding: var(--size-3) var(--size-3); // 16px
+  background: var(--surface-elevated);
+  border-radius: var(--radius-2); // 12px
+	box-shadow: var(--shadow-1);
+
+  // Smooth transitions for all interactive states
+  transition:
+    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background: var(--surface-canvas);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+}
+
+.avatarWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.info {
+  flex: 1;
+  min-width: 0; // Allow text truncation
+}
+
+.name {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6); // Semi-bold
+  color: var(--text-primary);
+  margin: 0 0 var(--size-1) 0; // 4px bottom margin
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2); // 8px
+  font-size: var(--font-size-0);
+}
+
+.role {
+  padding: var(--size-1) var(--size-2); // 4px 8px
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-5);
+  font-size: var(--font-size-00);
+  text-transform: capitalize;
+
+  &[data-role='leader'] {
+    background: var(--brand-primary);
+    color: white;
+  }
+
+  &[data-role='co_leader'] {
+    background: var(--accent-warm);
+    color: var(--text-primary);
+  }
+
+  &[data-role='member'] {
+    background: var(--surface-canvas);
+    color: var(--text-secondary);
+  }
+}
+
+.status {
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-4);
+  font-size: var(--font-size-00);
+  text-transform: capitalize;
+
+  &[data-status='active'] {
+    background: rgba(76, 175, 80, 0.1);
+    color: #2E7D32;
+  }
+
+  &[data-status='pending'] {
+    background: rgba(255, 152, 0, 0.1);
+    color: #E65100;
+  }
+
+  &[data-status='inactive'] {
+    background: rgba(158, 158, 158, 0.1);
+    color: #616161;
+  }
+}

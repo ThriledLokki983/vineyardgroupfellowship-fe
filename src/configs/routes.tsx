@@ -69,6 +69,22 @@ export const appRoutes = createBrowserRouter([
 		),
 	},
 	{
+		path: PATH.PATH_GROUP_DETAILS,
+		element: (
+			<Auth.ProtectedRoute>
+				<Pages.GroupDetailsPage />
+			</Auth.ProtectedRoute>
+		),
+	},
+	{
+		path: PATH.PATH_EDIT_GROUP,
+		element: (
+			<Auth.ProtectedRoute>
+				<Pages.EditGroupPage />
+			</Auth.ProtectedRoute>
+		),
+	},
+	{
 		path: PATH.PATH_PROFILE,
 		element: (
 			<Auth.ProtectedRoute>

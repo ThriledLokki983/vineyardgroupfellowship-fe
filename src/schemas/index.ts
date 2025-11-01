@@ -16,12 +16,5 @@ export {
 export {
   createGroupSchema,
   type CreateGroupFormData,
-  recoveryFocusSchema,
-  locationTypeSchema,
-  privacyLevelSchema,
-  groupSettingsSchema,
-  createGroupDefaults,
-  basicInfoSchema,
-  focusAndLocationSchema,
-  settingsAndTagsSchema
+  createGroupDefaults
 } from './createGroupSchema'

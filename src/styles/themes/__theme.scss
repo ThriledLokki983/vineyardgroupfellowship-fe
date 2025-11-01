@@ -13,6 +13,11 @@
   --surface-elevated: #FFFFFF;   // White for cards and elevated elements
   --surface-dark: #20192f;       // Dark navy surface
 
+  --grey: hsl(0, 0%, 92%);
+  --grey-light: #818181; // @TODO: These should be swapped...
+  --grey-lightest: #DDDDDD;
+  --grey-dark: #D1D1D1; // @TODO: These should be swapped...
+
   // Text Colors
   --text-primary: #20192f;       // Dark navy for primary text
   --text-secondary: #6c757d;     // Medium gray for secondary text

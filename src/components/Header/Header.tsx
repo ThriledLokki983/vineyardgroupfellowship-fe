@@ -5,7 +5,7 @@ import { useIsAuthenticated, useCurrentUser } from 'hooks/useAuth'
 import { navigation, header } from 'src/signals'
 import ProfileDropdown from './ProfileDropdown.tsx'
 // import { NotificationBell } from 'src/features/groups/components/NotificationCenter'
-// import Vineyard Group FellowshipLogo from 'assets/Vineyard Group Fellowship_logo.svg';
+import headerLogo from 'assets/header-logo.png';
 import styles from './Header.module.scss'
 
 interface HeaderProps {
@@ -50,12 +50,12 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
     <header className={styles.header}>
       <div className={styles.container}>
         <ViewTransitionLink to="/" className={`${styles.logo} ${logoOnly ? styles.logoOnly : ''}`}>
-          {/* <img
-            src={Vineyard Group FellowshipLogo}
+          <img
+            src={headerLogo}
             alt="Vineyard Group Fellowship"
             className={styles.logoImage}
-          /> */}
-          {!logoOnly && <span className={styles.logoText}>Vineyard Group Fellowship</span>}
+          />
+          {/* {!logoOnly && <span className={styles.logoText}>Vineyard Group Fellowship</span>} */}
         </ViewTransitionLink>
 
         {/* Hide navigation on auth pages or when logoOnly is true */}

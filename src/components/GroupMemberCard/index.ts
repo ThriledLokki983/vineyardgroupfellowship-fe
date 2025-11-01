@@ -1,0 +1,1 @@
+export { GroupMemberCard } from './GroupMemberCard';

@@ -1,0 +1,92 @@
+@use '../../styles/styles.scss' as *;
+
+.root {
+    --hover-bg: #F9F9F9;
+    --text-clr: #757575;
+    --radius-sz: 4px;
+
+    position: relative;
+    list-style-type: none;
+}
+.root[data-pending="true"] {
+    opacity: 0.7;
+}
+.root :is(article:first-of-type) {
+    display: flex; align-items: center;
+    padding: 0.5rem 0.7rem;
+    width: 100%;
+    border-radius: var(--radius-sz);
+}
+.root :is(article:first-of-type) div:first-of-type {
+    display: flex; align-items: center;
+}
+.root :is(article:first-of-type) div:last-of-type {
+    margin-inline-start: auto;
+}
+.root:hover {
+    background: var(--hover-bg);
+}
+
+
+/**
+ * Details
+ */
+.root__details {
+    display: flex; flex-direction: column;
+    margin-inline-start: 1rem;
+}
+.root__details :is(h3) {
+    @include h3;
+    margin: 0;
+    line-height: 1;
+}
+.root__details :is(span) {
+    @include medium-text;
+    color: var(--text-clr);
+}
+
+
+/**
+ * Actions
+ */
+.root__actions {
+    position: relative;
+    display: flex; align-items: center;
+    opacity: 1;
+
+    transition: opacity 150ms;
+}
+.root__actions[data-hidden='true'] {
+    opacity: 0;
+}
+.root .root__actions button {
+    min-width: fit-content;
+    padding-inline: 0.5rem;
+    color: var(--text-clr);
+}
+.root .root__actionsbutton:hover {
+    background: var(--hover-bg);
+    cursor: pointer;
+}
+.root .root__actions button svg {
+    width: 13px; height: 13px;
+    fill: currentColor;
+    transition: fill 100ms;
+}
+.root .root__actions button svg:hover {
+    fill:  $error-color;
+}
+.root .root__actions svg[data-checkmark] {
+    width: 14px; height: 14px;
+    color: $success-color;
+    margin-inline-end: 0.5rem;
+}
+.root__actions :is(span) {
+    @include medium-text;
+    font-style: italic;
+    color: $success-color;
+}
+
+.root__actions[data-just-sent="true"] :is(span) {
+    color: $grey-darker;
+}

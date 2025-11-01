@@ -6,6 +6,8 @@ import { SupporterBackground } from "./Profile";
 // HomePage & Dashboard
 import Home from "./Home/Home";
 import Dashboard from "./Dashboard/Dashboard/DashboardPage";
+import GroupDetailsPage from "./Dashboard/GroupDetailsPage/GroupDetailsPage";
+import EditGroupPage from "./Dashboard/EditGroupPage/EditGroupPage";
 
 // Features Page (Development only)
 import { Features } from "./Features";
@@ -28,6 +30,8 @@ import {
 export {
 	Home,
 	Dashboard,
+	GroupDetailsPage,
+	EditGroupPage,
 
 	// Authentication & Registration Pages
 	LoginPage,

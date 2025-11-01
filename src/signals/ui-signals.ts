@@ -20,6 +20,9 @@ export const modals = {
   profilePhoto: createToggleSignal(false),
   profileSettings: createToggleSignal(false),
 
+  // Group modals
+  createGroup: createToggleSignal(false),
+
   // General purpose modal
   generic: createToggleSignal(false),
 
@@ -31,6 +34,7 @@ export const modals = {
     modals.onboarding.setFalse()
     modals.profilePhoto.setFalse()
     modals.profileSettings.setFalse()
+    modals.createGroup.setFalse()
     modals.generic.setFalse()
     modals.confirmation.setFalse()
   }

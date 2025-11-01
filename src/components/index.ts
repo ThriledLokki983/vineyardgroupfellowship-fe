@@ -2,12 +2,26 @@
 
 // AlertBar
 export { AlertBar } from './AlertBar';
+// Avatar
+export { default as Avatar } from './Avatar/Avatar';
 
 // Authentication
 export { ProtectedRoute, PublicRoute } from './Authentication';
 
+// BackLink
+export { default as BackLink } from './BackLink/BackLink';
+
 // Button
 export { Button, type ButtonProps } from './Button';
+
+// ButtonSet
+export { ButtonSet, type ButtonSetProps } from './ButtonSet';
+
+
+// ContactCard
+export { default as ContactCard } from './ContactCard/ContactCard';
+
+export { InlineLoader } from './InlineLoader/InlineLoader';
 
 // Checkbox
 export { default as Checkbox } from './Checkbox';
@@ -16,6 +30,9 @@ export type { CheckboxProps } from './Checkbox';
 // ConfigurableForm
 export { default as ConfigurableForm } from './ConfigurableForm';
 export * from './ConfigurableForm/types';
+
+// CreateGroupModal
+export { default as CreateGroupModal } from './CreateGroupModal';
 
 // DashboardCard
 export { default as DashboardCard } from './DashboardCard';
@@ -33,6 +50,9 @@ export {
 
 // Footer
 export { default as Footer } from './Footer';
+
+// GroupMemberCard
+export { GroupMemberCard } from './GroupMemberCard';
 
 // Header
 export { default as Header } from './Header';
@@ -62,6 +82,9 @@ export { PageLoader } from './PageLoader';
 // PageTransition
 export { default as PageTransition } from './PageTransition';
 
+// ProfileCard
+export { default as ProfileCard } from './ProfileCard/ProfileCard';
+
 // ProtectedRoutes
 export {
   SupporterRoute,
@@ -71,6 +94,9 @@ export {
 
 // Radio
 export { default as Radio } from './Radio';
+
+// Select
+export { Select, SelectItem } from './Select';
 
 // Tab
 export { default as Tab } from './Tab';

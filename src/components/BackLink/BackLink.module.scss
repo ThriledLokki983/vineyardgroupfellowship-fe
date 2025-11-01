@@ -1,0 +1,20 @@
+@use '../../styles/styles.scss' as *;
+
+.root {
+    position: relative;
+}
+.root > a {
+    display: flex; align-items: center;
+    color: $text-color-light; text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+.root > a > svg {
+    margin: 1px 0.4em 0 0;
+    width: 15px; height: 12px; opacity: 0.85;
+    transition: all 0.15s;
+}
+.root > a:hover > svg {
+    transform: translateX(-0.25em);
+}

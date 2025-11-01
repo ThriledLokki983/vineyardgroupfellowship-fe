@@ -69,6 +69,24 @@ export interface AccountStatus {
   current_onboarding_step?: string;
 }
 
+interface Group {
+  id: string;
+  name: string;
+  description: string;
+  location: string;
+  location_type: 'in_person' | 'virtual' | 'hybrid';
+  meeting_time: string;
+  is_open: boolean;
+  current_member_count: number;
+  member_limit: number;
+  available_spots: number;
+  photo_url: string | null;
+  my_role: 'leader' | 'co_leader' | 'member';
+  created_by_me: boolean;
+  joined_at: string;
+  membership_status: 'pending' | 'active' | 'inactive' | 'removed';
+}
+
 // Main User Profile Interface - matches /profiles/me/ response
 export interface User {
   id: string; // UUID from backend
@@ -85,6 +103,7 @@ export interface User {
   // Leadership info (new structure from backend)
   leadership_info?: {
     can_lead_group: boolean;
+    group?: Group | null
   };
 
   // Profile fields

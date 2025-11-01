@@ -22,3 +22,11 @@ export const COMPLETE_ONBOARDING_URL = '/onboarding/complete/';
 export const ONBOARDING_STEP_URL = '/onboarding/step/';
 export const ONBOARDING_STATUS_URL = '/onboarding/status/';
 export const RECOVERY_APPROACH_URL = '/onboarding/recovery-approach/';
+
+// Groups
+export const GROUPS_URL = '/groups/';
+export const GROUP_DETAIL_URL = (id: string) => `/groups/${id}/`;
+export const GROUP_MEMBERS_URL = (id: string) => `/groups/${id}/members/`;
+export const GROUP_JOIN_URL = (id: string) => `/groups/${id}/join/`;
+export const GROUP_LEAVE_URL = (id: string) => `/groups/${id}/leave/`;
+export const GROUP_UPLOAD_PHOTO_URL = (id: string) => `/groups/${id}/upload_photo/`;

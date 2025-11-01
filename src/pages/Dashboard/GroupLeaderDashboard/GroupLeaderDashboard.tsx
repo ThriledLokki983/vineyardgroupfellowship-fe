@@ -1,4 +1,5 @@
 import { useMemo, Fragment } from 'react';
+import { useSignals } from '@preact/signals-react/runtime';
 import { useSearchParams, Link } from 'react-router-dom';
 
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
@@ -7,8 +8,9 @@ import type { DashboardState } from 'hooks/useDashboardState';
 import type { User } from 'configs/hooks-interfaces';
 import { PATH_GROUP_LEADER_BACKGROUND } from 'configs/paths';
 import { useSupporterStatus } from 'hooks/useSupporterBackground';
+import { modals } from 'signals/ui-signals';
 
-import { Layout, Icon, AlertBar } from 'components';
+import { Layout, Icon, AlertBar, CreateGroupModal } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import Action from '../Cards/ActionCard/Action';
 
@@ -136,11 +138,23 @@ const FirstVisitSupporterContent = ({ user, isWelcome, isFirstLogin }: {
   isWelcome: boolean,
   isFirstLogin: boolean
 }) => {
+  useSignals(); // Enable signals reactivity
   const supporterStatus = useSupporterStatus();
   const nextStepsMessage = getNextStepsMessage(supporterStatus);
 
+  // Get group data from leadership_info
+  const groupData = user?.leadership_info?.group || null;
+
   return (
     <>
+      {/* Create Group Modal */}
+      <CreateGroupModal
+        isOpen={modals.createGroup.value.value}
+        onClose={() => {modals.createGroup.setFalse()}}
+        groupData={groupData}
+        mode={groupData ? 'update' : 'create'}
+      />
+
       {/* Next Steps Alert */}
       {nextStepsMessage && (
         <AlertBar variation="notice">
@@ -192,6 +206,20 @@ const FirstVisitSupporterContent = ({ user, isWelcome, isFirstLogin }: {
         )}
 
         <div className={styles.actionCard}>
+          <div className={styles.actionCardIcon}>✨</div>
+          <h3 className={styles.actionCardTitle}>Create a Group</h3>
+          <p className={styles.actionCardDescription}>
+            Start a new fellowship group and lead others on their recovery journey
+          </p>
+          <button
+            type="button"
+            onClick={() => {modals.createGroup.setTrue()}}
+            className={styles.actionCardLink}
+            style={{ cursor: 'pointer' }}
+          >
+            Create Group →
+          </button>
+        </div>        <div className={styles.actionCard}>
           <div className={styles.actionCardIcon}>👥</div>
           <h3 className={styles.actionCardTitle}>Find Your Community</h3>
           <p className={styles.actionCardDescription}>
@@ -247,16 +275,28 @@ const FirstVisitSupporterContent = ({ user, isWelcome, isFirstLogin }: {
   )
 }
 
-// Active Supporter Dashboard
+// Group Leader Dashboard
 const ActiveSupporterContent = ({ user }: { user: User | null }) => {
+  useSignals(); // Enable signals reactivity
   const supporterStatus = useSupporterStatus();
-  // const { backgroundCompleted, backgroundApproved, needsBackgroundSetup } = supporterStatus;
   const nextStepsMessage = getNextStepsMessage(supporterStatus);
   const MissingFields = user?.profile_completeness?.missing_fields || [];
   const nextSteps = user?.supporter_info?.next_steps || [];
 
+  // Get group data from leadership_info
+  const groupData = user?.leadership_info?.group || null;
+  const hasGroup = !!groupData;
+
   return (
     <Fragment>
+      {/* Create Group Modal */}
+      <CreateGroupModal
+        isOpen={modals.createGroup.value.value}
+        onClose={() => {modals.createGroup.setFalse()}}
+        groupData={groupData}
+        mode={hasGroup ? 'update' : 'create'}
+      />
+
       <Greetings userName={user?.first_name || user?.display_name_or_email || ''}/>
 
       {/* Next Steps Alert */}
@@ -295,9 +335,17 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
         <DashboardCard
           emptyIconName='EmptyGroupIcon'
           titleIconName='OutboxIcon'
-          title='Your Groups'
-          emptyMessage='You have no nothing to do.'
-          isEmpty={true}
+          title='Your Group'
+          emptyMessage='You have no groups yet. Create one to get started!'
+          showActionButton={true}
+          onActionClick={() => {
+            console.log('[DashboardCard] Create/Update Group button clicked');
+            console.log('[DashboardCard] Before setTrue:', modals.createGroup.value.value);
+            modals.createGroup.setTrue();
+            console.log('[DashboardCard] After setTrue:', modals.createGroup.value.value);
+          }}
+          isEmpty={!hasGroup}
+          groupData={groupData}
         />
       </div>
     </Fragment>

@@ -1,0 +1,35 @@
+@use '../../styles/styles.scss' as *;
+
+.buttonSet {
+  display: flex;
+  gap: var(--size-3); // 12px gap between buttons
+  align-items: center;
+  flex-wrap: wrap;
+
+  &.left {
+    justify-content: flex-start;
+  }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.right {
+    justify-content: flex-end;
+  }
+
+  &.spaceBetween {
+    justify-content: space-between;
+  }
+}
+
+.root {
+    margin-top: 1rem;
+    display: flex; flex-wrap: wrap; grid-gap: 0.75rem;
+}
+.root[data-margin="large"] {
+    margin-top: 1.75rem;
+}
+.root[aria-hidden="true"] {
+    display: none;
+}
