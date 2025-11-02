@@ -27,10 +27,6 @@ export const GroupMemberDashboard = ({ dashboardState }: GroupMemberDashboardPro
   const isWelcome = searchParams.get('welcome') === 'true';
   const isFirstLogin = searchParams.get('first_login') === 'true';
 
-  console.log({ dashboardState });
-
-
-  // Render different content based on dashboard state
   const renderContent = (state: string) => {
     switch (state) {
       case 'first-visit-seeker':
@@ -210,7 +206,7 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
         <DashboardCard
           emptyIconName="EmptyGroupIcon"
           titleIconName="PeopleIcon"
-          title="My Groups"
+          title="My Fellowship Group"
           emptyMessage="You haven't joined any groups yet. Find one to get started!"
           showActionButton={!hasGroups}
           actionButtonText="Browse Groups"
@@ -236,7 +232,7 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           emptyIconName="EmptyMailboxIcon"
           titleIconName="ClockIcon"
           title="Pending Requests"
-          emptyMessage="No pending group requests at the moment."
+          emptyMessage="You have no pending group requests at the moment."
           isEmpty={!hasPendingRequests}
           isLoading={isLoading}
         >

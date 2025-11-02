@@ -206,9 +206,9 @@ const ContactCard = ({
         </header>
 
         {/* Bio/About */}
-        {data.bio && (
+        {/* {data.bio && (
           <p className={styles.bio}>{data.bio}</p>
-        )}
+        )} */}
 
         {/* Contact metadata */}
         <ul className={styles.metadata}>

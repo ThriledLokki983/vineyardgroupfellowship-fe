@@ -73,7 +73,7 @@ export const PendingRequestCard = ({ request, groupId }: PendingRequestCardProps
           <InlineLoader />
         </div>
       )}
-      
+
       <div className={styles.content}>
         <Avatar profile={request} size={48} />
 
