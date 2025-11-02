@@ -26,10 +26,17 @@ export function Select<T extends object>({
   children,
   items,
   placeholder = 'Select an option',
+  selectedKey,
+  onSelectionChange,
   ...props
 }: CustomSelectProps<T>) {
   return (
-    <AriaSelect {...props} className={styles.select}>
+    <AriaSelect
+      {...props}
+      selectedKey={selectedKey as string | number | null | undefined}
+      onSelectionChange={onSelectionChange as ((key: string | number | null) => void) | undefined}
+      className={styles.select}
+    >
       {label && <Label className={styles.label}>{label}</Label>}
       <Button className={styles.button}>
         <SelectValue className={styles.value}>
