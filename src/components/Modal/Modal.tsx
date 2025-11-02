@@ -78,4 +78,5 @@ export const Modal: React.FC<ModalProps> = ({
   );
 };
 
+export type { ModalProps } from 'types';
 export default Modal;

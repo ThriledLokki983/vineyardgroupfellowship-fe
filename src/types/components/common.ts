@@ -104,6 +104,7 @@ export interface CustomSelectProps<T extends object> {
   onSelectionChange?: (key: React.Key) => void;
   isDisabled?: boolean;
   isRequired?: boolean;
+  isInvalid?: boolean;
   name?: string;
   className?: string;
 }

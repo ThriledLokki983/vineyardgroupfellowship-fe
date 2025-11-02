@@ -306,7 +306,7 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
                   name="location_type"
                   label="Meeting Type"
                   placeholder="Select meeting type"
-                  selectedKey={formData.location_type || null}
+                  selectedKey={formData.location_type || undefined}
                   onSelectionChange={(key) => {
                     setFormData(prev => ({
                       ...prev,
@@ -357,9 +357,9 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
                 <div className={styles.formGroup}>
                   <Select
                     name="meeting_day"
-                    label="Meeting Day"
+                    label="Preferred Day"
                     placeholder="Select day"
-                    selectedKey={formData.meeting_day || null}
+                    selectedKey={formData.meeting_day || undefined}
                     onSelectionChange={(key) => {
                       setFormData(prev => ({
                         ...prev,
@@ -398,7 +398,7 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
                   name="meeting_frequency"
                   label="Meeting Frequency"
                   placeholder="Select frequency"
-                  selectedKey={formData.meeting_frequency || null}
+                  selectedKey={formData.meeting_frequency || undefined}
                   onSelectionChange={(key) => {
                     setFormData(prev => ({
                       ...prev,
