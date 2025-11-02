@@ -292,8 +292,8 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
 
   // Fetch leader groups and pending requests
   const { data: leaderGroups } = useLeaderGroups();
-  const groupIds = leaderGroups?.map((g) => g.id) || [];
-  const { pendingRequests, totalPending, isLoading: isLoadingRequests } = useAllGroupsPendingRequests(groupIds);
+  const groupsWithNames = leaderGroups?.map((g) => ({ id: g.id, name: g.name })) || [];
+  const { pendingRequests, totalPending, isLoading: isLoadingRequests } = useAllGroupsPendingRequests(groupsWithNames);
 
   return (
     <Fragment>
@@ -336,19 +336,14 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
                 Join Requests ({totalPending})
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--size-3)' }}>
-                {pendingRequests.map((request) => {
-                  // Find which group this request belongs to
-                  const requestGroupId = leaderGroups?.find((g) => g.id)?.id || '';
-                  const group = leaderGroups?.find((g) => g.id === requestGroupId);
-                  return (
-                    <PendingRequestCard
-                      key={request.id}
-                      request={request}
-                      groupId={requestGroupId}
-                      groupName={group?.name || 'Unknown Group'}
-                    />
-                  );
-                })}
+                {pendingRequests.map((item) => (
+                  <PendingRequestCard
+                    key={item.request.id}
+                    request={item.request}
+                    groupId={item.groupId}
+                    groupName={item.groupName}
+                  />
+                ))}
               </div>
             </div>
           )}

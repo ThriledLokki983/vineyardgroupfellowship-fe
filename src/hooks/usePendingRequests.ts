@@ -59,22 +59,44 @@ export const useRejectRequest = () => {
 };
 
 /**
+ * Extended pending request with group information
+ */
+export interface PendingRequestWithGroup {
+  groupId: string;
+  groupName: string;
+  request: import('../types/group').PendingRequest;
+}
+
+/**
  * Get total count of pending requests across all groups where user is leader
  * Note: This hook should only be used with a small number of groups
  */
-export const useAllGroupsPendingRequests = (groupIds: string[]) => {
-  // Fetch all pending requests in parallel
+export const useAllGroupsPendingRequests = (groups: Array<{ id: string; name: string }>) => {
   const results = useQuery({
-    queryKey: ['all-groups-pending-requests', ...groupIds],
+    queryKey: ['all-groups-pending-requests', ...groups.map(g => g.id)],
     queryFn: async () => {
-      if (!groupIds || groupIds.length === 0) return [];
+      if (!groups || groups.length === 0) {
+        return [];
+      }
 
-      const promises = groupIds.map((groupId) => getPendingRequests(groupId));
+      const promises = groups.map(async (group) => {
+        try {
+          const requests = await getPendingRequests(group.id);
+          return requests.map((request) => ({
+            groupId: group.id,
+            groupName: group.name,
+            request,
+          }));
+        } catch (error) {
+          console.error(`Failed to fetch pending requests for ${group.name}:`, error);
+          return [];
+        }
+      });
+
       const allResults = await Promise.all(promises);
-
-      return allResults.flat(); // Flatten all requests into a single array
+      return allResults.flat();
     },
-    enabled: groupIds.length > 0,
+    enabled: groups.length > 0,
     staleTime: 30_000,
     refetchInterval: 60_000,
   });
@@ -84,5 +106,6 @@ export const useAllGroupsPendingRequests = (groupIds: string[]) => {
     pendingRequests: results.data || [],
     isLoading: results.isLoading,
     isError: results.isError,
+    error: results.error,
   };
 };
