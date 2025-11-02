@@ -11,7 +11,7 @@ import Layout from '../../../components/Layout/Layout';
 import styles from './EmailVerificationCompleteHandler.module.scss';
 
 export const EmailVerificationCompleteHandler = () => {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const { setAccessToken, setUser } = useAuthContext();

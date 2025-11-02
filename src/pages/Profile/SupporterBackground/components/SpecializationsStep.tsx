@@ -3,19 +3,12 @@ import { useSignals } from '@preact/signals-react/runtime';
 import { CheckboxGroup, Label, Text } from 'react-aria-components';
 import { Button, Checkbox } from 'components';
 import { supporterBackgroundPage } from 'src/signals/supporter-background-signals';
-import type { SupporterBackgroundFormData } from 'src/schemas/supporterBackgroundSchema';
 import { SPECIALIZATIONS_OPTIONS } from 'src/schemas/supporterBackgroundSchema';
+import type { SpecializationsStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
 
-interface SpecializationsStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
-
 export function SpecializationsStep({ formData, onUpdate, onComplete, mode = 'setup' }: SpecializationsStepProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Sync signal with formData on mount
   useEffect(() => {
@@ -23,9 +16,8 @@ export function SpecializationsStep({ formData, onUpdate, onComplete, mode = 'se
       supporterBackgroundPage.steps.specializations.selectedSpecs.value = formData.specializations;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only sync on mount
+  }, []);
 
-  // Extract signal value for rendering and useEffect dependency
   const selectedSpecs = supporterBackgroundPage.steps.specializations.selectedSpecs.value;
 
   useEffect(() => {

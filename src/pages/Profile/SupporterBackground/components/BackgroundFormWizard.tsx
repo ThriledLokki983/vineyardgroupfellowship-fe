@@ -54,7 +54,7 @@ export function BackgroundFormWizard({
   isSubmitting = false,
   submitError
 }: BackgroundFormWizardProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Load initial data into wizard signals on mount
   useEffect(() => {

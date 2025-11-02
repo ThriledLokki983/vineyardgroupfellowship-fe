@@ -13,7 +13,7 @@ import { forgotPasswordPage } from '../../../signals/auth-signals'
 import styles from './ForgotPasswordPage.module.scss'
 
 export const ForgotPasswordPage = () => {
-  useSignals() // Subscribe to signal changes
+  useSignals()
   const navigate = useNavigate()
 
   const mutation = useForgotPassword()

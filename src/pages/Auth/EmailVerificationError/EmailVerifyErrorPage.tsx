@@ -13,7 +13,7 @@ import Layout from '../../../components/Layout/Layout';
 import styles from './EmailVerifyErrorPage.module.scss';
 
 export default function EmailVerifyErrorPage() {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
 

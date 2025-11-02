@@ -3,18 +3,11 @@ import { useSignals } from '@preact/signals-react/runtime';
 import { RadioGroup, Label, Text } from 'react-aria-components';
 import { Button, Radio } from 'components';
 import { supporterBackgroundPage } from 'src/signals/supporter-background-signals';
-import type { SupporterBackgroundFormData } from 'src/schemas/supporterBackgroundSchema';
+import type { AvailabilityStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
 
-interface AvailabilityStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
-
 export function AvailabilityStep({ formData, onUpdate, onComplete, mode = 'setup' }: AvailabilityStepProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Sync signals with formData on mount
   useEffect(() => {

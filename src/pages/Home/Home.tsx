@@ -7,7 +7,7 @@ import HomePublic from './HomePublic'
 import HomeAuthenticated from './HomeAuthenticated'
 
 function Home() {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
   const { user, refreshAccessToken } = useAuthContext()
   const hasCheckedRef = useRef(false)
 

@@ -3,19 +3,12 @@ import { useSignals } from '@preact/signals-react/runtime';
 import { CheckboxGroup, Label, TextField, Text } from 'react-aria-components';
 import { Button, Checkbox } from 'components';
 import { supporterBackgroundPage } from 'src/signals/supporter-background-signals';
-import type { SupporterBackgroundFormData } from 'src/schemas/supporterBackgroundSchema';
 import { COMMUNICATION_METHODS_OPTIONS } from 'src/schemas/supporterBackgroundSchema';
+import type { CommunicationStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
 
-interface CommunicationStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
-
 export function CommunicationStep({ formData, onUpdate, onComplete, mode = 'setup' }: CommunicationStepProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Sync signals with formData on mount
   useEffect(() => {

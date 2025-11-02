@@ -3,19 +3,12 @@ import { useSignals } from '@preact/signals-react/runtime';
 import { TextField, Label, TextArea, FieldError, Text } from 'react-aria-components';
 import { Button } from '../../../../components/Button/Button';
 import { supporterBackgroundPage } from '../../../../signals/supporter-background-signals';
-import type { SupporterBackgroundFormData } from '../../../../schemas/supporterBackgroundSchema';
 import { personalStorySchema } from '../../../../schemas/supporterBackgroundSchema';
+import type { PersonalStoryStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
 
-interface PersonalStoryStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
-
 export function PersonalStoryStep({ formData, onUpdate, onComplete, mode = 'setup' }: PersonalStoryStepProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Sync signal with formData on mount
   useEffect(() => {

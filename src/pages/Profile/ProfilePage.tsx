@@ -21,7 +21,7 @@ import apiClient from '../../lib/apiClient'
 import styles from './ProfilePage.module.scss'
 
 export default function ProfilePage() {
-  useSignals() // Subscribe to signal changes
+  useSignals()
 
   const { user, setUser } = useAuthContext()
   const { data: profileData, isLoading: isLoadingProfile } = useCurrentUser()

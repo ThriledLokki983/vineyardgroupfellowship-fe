@@ -5,19 +5,12 @@ import { Button } from '../../../../components/Button/Button';
 import Radio from '../../../../components/Radio';
 import Icon from '../../../../components/Icon';
 import { supporterBackgroundPage } from '../../../../signals/supporter-background-signals';
-import type { SupporterBackgroundFormData } from '../../../../schemas/supporterBackgroundSchema';
 import { BASE_URL } from '../../../../configs/api-configs';
+import type { CredentialsStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
 
-interface CredentialsStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
-
 export function CredentialsStep({ formData, onUpdate, onComplete, mode = 'setup' }: CredentialsStepProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Sync signals with formData on mount
   useEffect(() => {

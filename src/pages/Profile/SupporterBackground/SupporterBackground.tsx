@@ -15,7 +15,7 @@ import { BASE_URL } from '../../../configs/api-configs';
 import styles from './SupporterBackground.module.scss';
 
 export default function SupporterBackground() {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   const navigate = useNavigate();
   const {

@@ -12,7 +12,7 @@ import Icon from '../../../components/Icon';
 import styles from './SettingsPage.module.scss';
 
 export default function SettingsPage() {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
   const { user, logout } = useAuthContext();
   const navigate = useNavigate();
 

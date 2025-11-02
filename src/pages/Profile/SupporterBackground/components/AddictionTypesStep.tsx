@@ -4,19 +4,12 @@ import { CheckboxGroup, Label, FieldError, TextField, Text } from 'react-aria-co
 import { Button } from '../../../../components/Button/Button';
 import Checkbox from '../../../../components/Checkbox';
 import { supporterBackgroundPage } from '../../../../signals/supporter-background-signals';
-import type { SupporterBackgroundFormData } from '../../../../schemas/supporterBackgroundSchema';
 import { ADDICTION_TYPES_OPTIONS, addictionTypesSchema } from '../../../../schemas/supporterBackgroundSchema';
+import type { AddictionTypesStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
 
-interface AddictionTypesStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
-
 export function AddictionTypesStep({ formData, onUpdate, onComplete, mode = 'setup' }: AddictionTypesStepProps) {
-  useSignals(); // Subscribe to signal changes
+  useSignals();
 
   // Sync signals with formData on mount
   useEffect(() => {

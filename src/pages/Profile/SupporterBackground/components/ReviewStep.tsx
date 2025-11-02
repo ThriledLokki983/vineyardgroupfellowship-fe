@@ -1,16 +1,7 @@
 import { Button } from '../../../../components/Button/Button';
-import type { SupporterBackgroundFormData } from '../../../../schemas/supporterBackgroundSchema';
-import type { WizardStepId } from '../../../../signals/supporter-background-signals';
 import { ADDICTION_TYPES_OPTIONS, SPECIALIZATIONS_OPTIONS, COMMUNICATION_METHODS_OPTIONS } from '../../../../schemas/supporterBackgroundSchema';
+import type { ReviewStepProps } from 'types';
 import styles from '../SupporterBackground.module.scss';
-
-interface ReviewStepProps {
-  formData: Partial<SupporterBackgroundFormData>;
-  onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
-  onComplete: () => void;
-  onEdit?: (stepId: WizardStepId) => void;
-  mode?: 'setup' | 'edit' | 'review';
-}
 
 export function ReviewStep({ formData, onEdit, mode = 'setup' }: ReviewStepProps) {
   const getAddicitionTypeLabel = (value: string) => {
