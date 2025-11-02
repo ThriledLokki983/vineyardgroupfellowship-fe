@@ -4,6 +4,7 @@
  */
 
 import type { GroupData } from './dashboard';
+import type { GroupListItem } from '../group';
 
 // Group Creation Modal
 export interface CreateGroupModalProps {
@@ -14,10 +15,9 @@ export interface CreateGroupModalProps {
 }
 
 export interface GroupCreationStep {
-  id: string;
+  id: number;
   title: string;
-  description?: string;
-  isOptional?: boolean;
+  description: string;
 }
 
 // Browse Groups Modal
@@ -27,17 +27,6 @@ export interface BrowseGroupsModalProps {
 }
 
 export interface GroupCardProps {
-  group: {
-    id: string;
-    name: string;
-    description: string;
-    location: string;
-    location_type: string;
-    member_count: number;
-    max_members: number;
-    is_open: boolean;
-    meeting_time?: string;
-    meeting_frequency?: string;
-  };
-  onSelect?: (groupId: string) => void;
+  group: GroupListItem;
+  onClick: () => void;
 }

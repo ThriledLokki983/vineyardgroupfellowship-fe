@@ -2,35 +2,10 @@ import { useState, memo, Fragment, useMemo } from 'react';
 
 import { Avatar, ContactCard, Icon, Button } from 'components';
 import { Actions, RevokeActions } from '.';
-
-import styles from './ProfileCard.module.scss';
+import type { ProfileCardProps, ProfileActionsProps } from 'types';
 import type { GroupMember } from 'src/types/group';
 
-interface Profile {
-    id: string;
-    user_id: string;
-    email: string;
-    first_name: string
-    last_name: string
-    display_name: string
-    photo_url: string
-    role: string;
-    status: string;
-    joined_at: string;
-    // Calendar access properties (optional for recovery app context)
-    is_accepted?: boolean;
-    is_accepted_by_requester?: boolean;
-    allowedAccess?: boolean;
-    just_sent?: boolean;
-    just_in?: boolean;
-}
-
-interface ProfileCardProps {
-  profile: Profile;
-  revokeCalendarAccessRequest?: () => void;
-  revokeExistingCalendarAccess?: () => void;
-  resendRequest?: () => void;
-}
+import styles from './ProfileCard.module.scss';
 
 /**
  * ProfileCard - Card component for displaying user profile information
@@ -92,15 +67,6 @@ const ProfileCard = ({
 };
 
 export default memo(ProfileCard);
-
-
-interface ProfileActionsProps {
-  profile: Profile;
-  revokeCalendarAccessRequest?: () => void;
-  revokeExistingCalendarAccess?: () => void;
-  resendRequest?: () => void;
-  show?: boolean;
-}
 
 const ProfileActions = ({
   revokeCalendarAccessRequest,

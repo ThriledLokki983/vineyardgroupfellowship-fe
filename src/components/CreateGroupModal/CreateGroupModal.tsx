@@ -13,36 +13,10 @@ import { toast } from '../Toast';
 import Modal from '../Modal';
 import Icon from '../Icon';
 import { Select, SelectItem } from '../Select';
+import type { CreateGroupModalProps, GroupCreationStep } from 'types';
 import styles from './CreateGroupModal.module.scss';
 
-interface GroupData {
-  id: string;
-  name: string;
-  description: string;
-  location: string;
-  location_type: 'in_person' | 'virtual' | 'hybrid';
-  meeting_time: string;
-  meeting_day?: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
-  meeting_frequency?: 'weekly' | 'biweekly' | 'monthly';
-  is_open: boolean;
-  member_limit: number;
-  focus_areas?: string[];
-  visibility?: 'public' | 'community' | 'private';
-}
-
-interface CreateGroupModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  groupData?: GroupData | null;
-  mode?: 'create' | 'update';
-}
-
 // Define steps for group creation
-interface GroupCreationStep {
-  id: number;
-  title: string;
-  description: string;
-}
 
 const groupCreationSteps: GroupCreationStep[] = [
   {

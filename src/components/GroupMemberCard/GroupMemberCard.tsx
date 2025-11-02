@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import type { GroupMember } from '../../types/group';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
+import type { GroupMemberCardProps } from 'types';
 import styles from './GroupMemberCard.module.scss';
-
-interface GroupMemberCardProps {
-  member: GroupMember;
-}
 
 /**
  * GroupMemberCard - Display card for a group member

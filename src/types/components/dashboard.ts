@@ -39,6 +39,8 @@ export interface GroupData {
   location: string;
   location_type: 'in_person' | 'virtual' | 'hybrid';
   meeting_time: string;
+  meeting_day?: 'monday' | 'tuesday' | 'wednesday' | 'thursday' | 'friday' | 'saturday' | 'sunday';
+  meeting_frequency?: 'weekly' | 'biweekly' | 'monthly';
   is_open: boolean;
   current_member_count: number;
   member_limit: number;
@@ -48,6 +50,8 @@ export interface GroupData {
   created_by_me: boolean;
   joined_at: string;
   membership_status: 'pending' | 'active' | 'inactive' | 'removed' | 'leader' | 'co_leader' | null;
+  focus_areas?: string[];
+  visibility?: 'public' | 'community' | 'private';
 }
 
 // Dashboard Card Component Props

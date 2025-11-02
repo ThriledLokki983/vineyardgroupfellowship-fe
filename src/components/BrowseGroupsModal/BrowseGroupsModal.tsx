@@ -13,12 +13,8 @@ import Modal from '../Modal';
 import Icon from '../Icon';
 import { Button, InlineLoader } from 'components';
 import type { GroupListItem } from '../../types/group';
+import type { BrowseGroupsModalProps, GroupCardProps } from 'types';
 import styles from './BrowseGroupsModal.module.scss';
-
-interface BrowseGroupsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
 type LocationTypeFilter = 'all' | 'in_person' | 'virtual' | 'hybrid';
 
@@ -241,11 +237,6 @@ export default function BrowseGroupsModal({ isOpen, onClose }: BrowseGroupsModal
 }
 
 // Group Card Component
-interface GroupCardProps {
-  group: GroupListItem;
-  onClick: () => void;
-}
-
 const GroupCard = ({ group, onClick }: GroupCardProps) => {
   const getLocationTypeLabel = (type: string) => {
     switch (type) {
