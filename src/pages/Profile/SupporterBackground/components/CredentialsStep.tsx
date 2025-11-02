@@ -25,7 +25,7 @@ export function CredentialsStep({ formData, onUpdate, onComplete, mode = 'setup'
       supporterBackgroundPage.steps.credentials.credentials.value = formData.professional_credentials;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only sync on mount
+  }, []);
 
   // Extract signal values for rendering and useEffect dependencies
   const hasCredentials = supporterBackgroundPage.steps.credentials.hasCredentials.value.value;

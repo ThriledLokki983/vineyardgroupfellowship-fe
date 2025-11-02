@@ -1,9 +1,6 @@
 import React from 'react';
+import type { WelcomeScreenProps } from 'types';
 import styles from './WelcomeScreen.module.scss';
-
-interface WelcomeScreenProps {
-  isLoading?: boolean;
-}
 
 export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ isLoading = false }) => {
   return (

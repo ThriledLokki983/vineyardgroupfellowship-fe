@@ -1,9 +1,9 @@
 @use '../../styles/styles.scss' as *;
 
 .pageTransition {
-  width: 100%;
-  min-height: 100%;
-  will-change: transform, opacity;
+  inline-size: 100%;
+  min-block-size: 100%;
+  // will-change: transform, opacity;
 }
 
 // No animation on initial mount/page refresh

@@ -1,10 +1,7 @@
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
+import type { PageTransitionProps } from 'types'
 import styles from './PageTransition.module.scss'
-
-interface PageTransitionProps {
-  children: ReactNode
-}
 
 export default function PageTransition({ children }: PageTransitionProps) {
   const location = useLocation()

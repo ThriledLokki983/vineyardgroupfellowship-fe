@@ -1,10 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { useUserPermissions } from 'hooks/useUserPermissions'
-
-interface SupporterRouteProps {
-  children: React.ReactNode
-  fallbackPath?: string
-}
+import type { SupporterRouteProps, SeekerRouteProps, PurposeRouteProps, ConditionalComponentProps } from 'types'
 
 /**
  * Route protection component for supporter-only pages
@@ -20,11 +16,6 @@ export const SupporterRoute = ({ children, fallbackPath = '/dashboard' }: Suppor
   return <>{children}</>
 }
 
-interface SeekerRouteProps {
-  children: React.ReactNode
-  fallbackPath?: string
-}
-
 /**
  * Route protection component for seeker-only pages
  * Redirects non-seekers to fallback path or dashboard
@@ -37,12 +28,6 @@ export const SeekerRoute = ({ children, fallbackPath = '/dashboard' }: SeekerRou
   }
 
   return <>{children}</>
-}
-
-interface PurposeRouteProps {
-  children: React.ReactNode
-  requiredPurpose: 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' // Support legacy
-  fallbackPath?: string
 }
 
 /**
@@ -67,12 +52,6 @@ export const PurposeRoute = ({
   }
 
   return <>{children}</>
-}
-
-interface ConditionalComponentProps {
-  showFor: 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' | 'both' // Support legacy
-  children: React.ReactNode
-  fallback?: React.ReactNode
 }
 
 /**

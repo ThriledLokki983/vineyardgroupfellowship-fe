@@ -19,7 +19,7 @@ export function CommunicationStep({ formData, onUpdate, onComplete, mode = 'setu
       supporterBackgroundPage.steps.communication.commMethods.value = formData.preferred_communication_methods;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only sync on mount
+  }, []);
 
   // Extract signal values for rendering and useEffect dependencies
   const timeZone = supporterBackgroundPage.steps.communication.timeZone.value;

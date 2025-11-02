@@ -1,15 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import type { Location } from 'react-router-dom';
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
-
-interface PublicRouteProps {
-  children: React.ReactNode;
-  redirectTo?: string;
-}
-
-interface LocationState {
-  from?: Location;
-}
+import type { PublicRouteProps, LocationState } from 'types';
 
 /**
  * PublicRoute - Wraps auth pages (login, register, forgot-password)

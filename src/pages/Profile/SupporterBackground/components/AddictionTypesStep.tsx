@@ -17,7 +17,7 @@ export function AddictionTypesStep({ formData, onUpdate, onComplete, mode = 'set
       supporterBackgroundPage.steps.addictionTypes.selectedTypes.value = formData.addiction_types_experienced;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only sync on mount
+  }, []);
 
   // Extract signal values for rendering and useEffect dependencies
   const selectedTypes = supporterBackgroundPage.steps.addictionTypes.selectedTypes.value;

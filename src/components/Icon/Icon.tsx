@@ -1,13 +1,9 @@
 import * as Icons from 'assets/icons/icons';
 import type { FC, SVGProps } from 'react';
-
-interface IconProps extends React.SVGProps<SVGSVGElement> {
-  name: keyof typeof Icons;
-  className?: string;
-}
+import type { IconProps } from 'types';
 
 const Icon = ({ name, className, ...props }: IconProps) => {
-  const IconComponent = Icons[name] as FC<SVGProps<SVGSVGElement>>;
+  const IconComponent = Icons[name as keyof typeof Icons] as FC<SVGProps<SVGSVGElement>>;
 
   if (!IconComponent) {
     console.warn(`Icon "${name}" not found`);

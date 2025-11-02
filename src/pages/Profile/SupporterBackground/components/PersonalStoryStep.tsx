@@ -16,7 +16,7 @@ export function PersonalStoryStep({ formData, onUpdate, onComplete, mode = 'setu
       supporterBackgroundPage.steps.personalStory.story.value = formData.personal_recovery_story;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only sync on mount
+  }, []);
 
   // Update parent form data when story signal changes
   // We need to watch the story value to call onUpdate

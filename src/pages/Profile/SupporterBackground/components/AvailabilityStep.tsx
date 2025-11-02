@@ -29,7 +29,7 @@ export function AvailabilityStep({ formData, onUpdate, onComplete, mode = 'setup
       supporterBackgroundPage.steps.availability.maxMentees.value = formData.max_mentees;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // Only sync on mount
+  }, []);
 
   // Extract signal values for rendering and useEffect dependencies
   const oneOnOne = supporterBackgroundPage.steps.availability.oneOnOne.value.value;

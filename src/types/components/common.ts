@@ -23,8 +23,7 @@ export interface PageTransitionProps {
 
 // Welcome Screen
 export interface WelcomeScreenProps {
-  onComplete?: () => void;
-  userName?: string;
+  isLoading?: boolean;
 }
 
 // Profile Dropdown
@@ -48,7 +47,7 @@ export interface ProtectedRouteProps {
 
 export interface PublicRouteProps {
   children: React.ReactNode;
-  restricted?: boolean;
+  redirectTo?: string;
 }
 
 export interface LocationState {
@@ -59,19 +58,22 @@ export interface LocationState {
 
 export interface SupporterRouteProps {
   children: React.ReactNode;
+  fallbackPath?: string;
 }
 
 export interface SeekerRouteProps {
   children: React.ReactNode;
+  fallbackPath?: string;
 }
 
 export interface PurposeRouteProps {
   children: React.ReactNode;
-  purpose: 'supporter' | 'seeker' | 'both';
+  requiredPurpose: 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support';
+  fallbackPath?: string;
 }
 
 export interface ConditionalComponentProps {
-  condition: boolean;
+  showFor: 'group_member' | 'group_leader' | 'seeking_recovery' | 'providing_support' | 'both';
   children: React.ReactNode;
   fallback?: React.ReactNode;
 }
