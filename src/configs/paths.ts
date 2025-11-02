@@ -18,6 +18,7 @@ export const PATH_EMAIL_VERIFY_ERROR = '/auth/verify-error';
 
 // Dashboard
 export const PATH_GROUP_LEADER_BACKGROUND = '/dashboard/group-leader/background';
+export const PATH_SUPPORTER_BACKGROUND = '/profile/supporter-background';
 export const PATH_GROUP_DETAILS = '/dashboard/groups/:id';
 export const PATH_EDIT_GROUP = '/dashboard/groups/:id/edit';
 
@@ -26,6 +27,9 @@ export const getGroupDetailsPath = (groupId: string) => `/dashboard/groups/${gro
 
 // Helper function to generate edit group path
 export const getEditGroupPath = (groupId: string) => `/dashboard/groups/${groupId}/edit`;
+
+// Helper function to generate user profile path
+export const getUserProfilePath = (userId: string) => `/profile/${userId}`;
 
 // OPEN ROUTES
 export const PATH_PRIVACY_POLICY = '/privacy-policy';

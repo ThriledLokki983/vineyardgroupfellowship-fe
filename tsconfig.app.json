@@ -31,6 +31,8 @@
       "signals/*": ["./src/signals/*"],
       "services/*": ["./src/services/*"],
       "styles/*": ["./src/styles/*"],
+      "types": ["./src/types"],
+      "types/*": ["./src/types/*"],
       "src/*": ["./src/*"]
     },
 

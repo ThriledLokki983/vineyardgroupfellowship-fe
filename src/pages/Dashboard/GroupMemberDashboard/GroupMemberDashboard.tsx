@@ -8,16 +8,12 @@ import { useSearchParams } from 'react-router-dom';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import { useDailyMessage } from '../../../hooks/useDailyMessage';
 import { useMyGroups } from '../../../hooks/useMyGroups';
-import type { DashboardState } from '../../../hooks/useDashboardState';
 import type { User } from '../../../configs/hooks-interfaces';
+import type { GroupMemberDashboardProps } from 'types';
 import { Layout, Icon, AlertBar, BrowseGroupsModal } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import { GroupSummaryCard } from '../Cards/GroupSummaryCard';
 import styles from './GroupMemberDashboard.module.scss';
-
-interface GroupMemberDashboardProps {
-  dashboardState: DashboardState;
-}
 
 export const GroupMemberDashboard = ({ dashboardState }: GroupMemberDashboardProps) => {
   const { user } = useAuthContext();

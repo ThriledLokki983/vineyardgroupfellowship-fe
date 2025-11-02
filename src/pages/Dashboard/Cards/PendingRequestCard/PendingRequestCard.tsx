@@ -1,17 +1,10 @@
 import { useState, useRef } from 'react';
 import { Button, Icon, toast, Avatar, InlineLoader } from 'components';
-import type { PendingRequest } from '../../../../types/group';
+import type { PendingRequestCardProps } from 'types';
 import { useApproveRequest, useRejectRequest } from '../../../../hooks/usePendingRequests';
 import { profileReview, modals } from '../../../../signals/ui-signals';
 import { formatRelativeDate } from '../../../../utils/helpers';
 import styles from './PendingRequestCard.module.scss';
-
-interface PendingRequestCardProps {
-  request: PendingRequest;
-  groupId: string;
-  groupName: string;
-}
-
 
 /**
  * PendingRequestCard Component

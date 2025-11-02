@@ -3,9 +3,8 @@ import { useSignals } from '@preact/signals-react/runtime';
 import { useSearchParams, Link } from 'react-router-dom';
 
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
-import type { DashboardState } from 'hooks/useDashboardState';
-
 import type { User } from 'configs/hooks-interfaces';
+import type { GroupLeaderDashboardProps } from 'types';
 import { PATH_GROUP_LEADER_BACKGROUND } from 'configs/paths';
 import { useSupporterStatus } from 'hooks/useSupporterBackground';
 import { useLeaderGroups } from 'hooks/useMyGroups';
@@ -18,10 +17,6 @@ import Action from '../Cards/ActionCard/Action';
 import { PendingRequestCard } from '../Cards/PendingRequestCard';
 
 import styles from './GroupLeaderDashboard.module.scss';
-
-interface GroupLeaderDashboardProps {
-  dashboardState: DashboardState
-};
 
 // Helper function to generate next steps message
 const getNextStepsMessage = (supporterStatus: ReturnType<typeof useSupporterStatus>): React.ReactNode | null => {

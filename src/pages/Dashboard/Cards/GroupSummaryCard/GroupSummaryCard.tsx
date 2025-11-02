@@ -1,33 +1,14 @@
 import { Link } from 'react-router-dom';
 import { Icon } from 'components';
 import { getGroupDetailsPath } from 'configs/paths';
-
+import type { GroupSummaryCardProps } from 'types';
 import styles from './GroupSummaryCard.module.scss';
-
-interface GroupSummaryCardProps {
-  groupData: {
-    id: string;
-    name: string;
-    description: string;
-    location: string;
-    location_type: 'in_person' | 'virtual' | 'hybrid';
-    meeting_time: string;
-    is_open: boolean;
-    current_member_count: number;
-    member_limit: number;
-    available_spots: number;
-    photo_url: string | null;
-    membership_status?: 'pending' | 'active' | 'inactive' | 'removed' | 'leader' | 'co_leader' | null;
-  };
-  showStatus?: boolean; // Whether to show pending/active status badge
-}
 
 /**
  * Format time string from HH:MM:SS to HH:MM
  */
 const formatTime = (time: string): string => {
   if (!time) return '';
-  // Remove seconds if present (e.g., "19:30:00" -> "19:30")
   return time.substring(0, 5);
 };
 
@@ -63,9 +44,9 @@ export const GroupSummaryCard = ({ groupData, showStatus = false }: GroupSummary
 
       {/* Group Description */}
       <p className={styles.groupDescription}>
-        {groupData.description.length > 150
+        {groupData.description && groupData.description.length > 150
           ? `${groupData.description.substring(0, 150)}...`
-          : groupData.description}
+          : groupData.description || 'No description available'}
       </p>
 
       {/* Group Details */}
@@ -82,7 +63,7 @@ export const GroupSummaryCard = ({ groupData, showStatus = false }: GroupSummary
         </div>
         <div className={styles.groupDetail}>
           <Icon name="ClockIcon" width={18} height={18} />
-          <span>{formatTime(groupData.meeting_time)}</span>
+          <span>{groupData.meeting_time ? formatTime(groupData.meeting_time) : 'Not set'}</span>
         </div>
         <div className={styles.groupDetail}>
           <Icon name="PersonOutlineIcon" width={18} height={18} />

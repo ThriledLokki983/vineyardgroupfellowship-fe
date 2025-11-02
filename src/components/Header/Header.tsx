@@ -3,16 +3,12 @@ import { useSignals } from '@preact/signals-react/runtime'
 import ViewTransitionLink from '../Layout/ViewTransitionLink.tsx'
 import { useIsAuthenticated, useCurrentUser } from 'hooks/useAuth'
 import { navigation, header } from 'src/signals'
+import { PATH_LOGIN, PATH_REGISTER, PATH_FORGOT_PASSWORD } from 'configs/paths'
+import type { HeaderProps } from 'types'
 import ProfileDropdown from './ProfileDropdown.tsx'
 // import { NotificationBell } from 'src/features/groups/components/NotificationCenter'
 import headerLogo from 'assets/header-logo.png';
 import styles from './Header.module.scss'
-
-interface HeaderProps {
-  hideLogin?: boolean
-  hideRegister?: boolean
-  logoOnly?: boolean
-}
 
 export default function Header({ hideLogin = false, hideRegister = false, logoOnly = false }: HeaderProps = {}) {
   // Subscribe to signals - this makes React re-render when signals change
@@ -24,11 +20,11 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
 
   // Now we can use global signals with useSignals() subscription
   // Auto-detect which buttons to hide based on current path
-  const shouldHideLogin = hideLogin || location.pathname === '/login'
-  const shouldHideRegister = hideRegister || location.pathname === '/register'
+  const shouldHideLogin = hideLogin || location.pathname === PATH_LOGIN
+  const shouldHideRegister = hideRegister || location.pathname === PATH_REGISTER
 
   // Check if we're on an auth page
-  const isAuthPage = ['/login', '/register', '/forgot-password'].includes(location.pathname)
+  const isAuthPage = [PATH_LOGIN, PATH_REGISTER, PATH_FORGOT_PASSWORD].includes(location.pathname)
 
   const toggleDropdown = () => {
     header.profileDropdownOpen.toggle()

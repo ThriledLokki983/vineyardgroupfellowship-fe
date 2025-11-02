@@ -1,13 +1,8 @@
 import { useLayoutEffect, useMemo, useRef } from 'react';
 import { normalizeImageUrl } from '../../lib/utils';
-import type { GroupMember } from '../../types/group';
+import type { AvatarProps } from 'types';
 
 import styles from './Avatar.module.scss';
-
-interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {
-  size?: string | number;
-  profile?: GroupMember;
-}
 
 /**
  * Avatar - Display user/member avatar with image or initials
