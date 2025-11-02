@@ -12,7 +12,7 @@ import { useLeaderGroups } from 'hooks/useMyGroups';
 import { useAllGroupsPendingRequests } from 'hooks/usePendingRequests';
 import { modals } from 'signals/ui-signals';
 
-import { Layout, Icon, AlertBar, CreateGroupModal } from 'components';
+import { Layout, Icon, AlertBar, CreateGroupModal, ProfileReviewModal } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import Action from '../Cards/ActionCard/Action';
 import { PendingRequestCard } from '../Cards/PendingRequestCard';
@@ -131,6 +131,7 @@ export const GroupLeaderDashboard = ({ dashboardState }: GroupLeaderDashboardPro
       <div className={styles.supporterDashboard}>
         {renderContent(dashboardState)}
       </div>
+      <ProfileReviewModal />
     </Layout>
   )
 }

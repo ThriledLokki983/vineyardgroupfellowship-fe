@@ -1,11 +1,11 @@
 @use '../../../../styles/styles.scss' as *;
 
 @mixin dashboard-card {
-
   position: relative;
   display: flex; flex-direction: column; padding: 1.5rem;
   background: var(--surface-2); border-radius: var(--radius-2);
   border: 1px solid var(--surface-elevated);
+  box-shadow: var(--shadow-1);
 
   & > header {
     margin-bottom: 1.5rem; flex: 0 0 auto;
@@ -56,6 +56,7 @@
   @include dashboard-card();
   border-radius: var(--radius-2);
   padding: var(--size-5);
+  min-block-size: calc(var(--size-px-15) - 30px);
 }
 
 .main_content {

@@ -3,7 +3,9 @@
 .groupSummaryCard {
   position: relative;
   margin-block-start: var(--size-6);
-  // padding: var(--size-6);
+  block-size: 87%;
+  display: flex;
+  flex-flow: column nowrap;
   // background: var(--surface-elevated);
   // border-radius: var(--radius-3);
   // border: 1px solid var(--border-subtle);
@@ -79,6 +81,7 @@
 
 // Group Description
 .groupDescription {
+  // @include line-clamp(5);
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
   color: var(--text-secondary);
@@ -116,6 +119,7 @@
   font-weight: var(--font-weight-6);
   color: var(--brand-primary);
   text-decoration: none;
+  margin-block-start: auto;
   transition: all var(--animation-duration-fast) ease;
 
   &:hover {

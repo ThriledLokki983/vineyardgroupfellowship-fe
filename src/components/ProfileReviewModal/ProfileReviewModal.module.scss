@@ -1,0 +1,245 @@
+@use '../../styles/styles.scss' as *;
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--size-4);
+  padding-bottom: var(--size-4);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  flex: 1;
+}
+
+.avatar {
+  flex-shrink: 0;
+}
+
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.fullName {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.displayName {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: var(--font-weight-4);
+}
+
+.actions {
+  display: flex;
+  gap: var(--size-2);
+  flex-shrink: 0;
+}
+
+.approveButton,
+.declineButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+	padding: var(--size-2) var(--size-3);
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-5);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+
+.bio_section {
+	gap: var(--size-2);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--size-3);
+}
+
+.infoItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  background: var(--surface-canvas);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--border-subtle);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: var(--brand-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-1);
+    flex: 1;
+  }
+}
+
+.label {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value {
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-4);
+}
+
+.statusBadge {
+  display: inline-flex;
+  padding: var(--size-1) var(--size-2);
+  background: var(--accent-warm);
+  color: var(--surface-elevated);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+}
+
+.messageBox {
+  display: flex;
+  gap: var(--size-3);
+  padding: var(--size-4);
+  background: var(--surface-canvas);
+  border-radius: var(--radius-3);
+  border-left: 4px solid var(--accent-warm);
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: var(--accent-warm);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+}
+
+.messageText {
+  margin: 0;
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-3);
+  font-style: italic;
+}
+
+.bioText {
+  margin: 0;
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-3);
+  padding: var(--size-2) 0;
+  background: var(--surface-canvas);
+  border-radius: var(--radius-2);
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-2);
+  padding: var(--size-3);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  margin-top: var(--size-2);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: var(--brand-secondary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  p {
+    margin: 0;
+    font-size: var(--font-size-0);
+    color: var(--text-secondary);
+    line-height: var(--font-lineheight-3);
+
+    strong {
+      color: var(--text-primary);
+      font-weight: var(--font-weight-6);
+    }
+  }
+}
+
+// Responsive styles
+@include mobile {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .profileInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .actions {
+    width: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullName {
+    font-size: var(--font-size-3);
+  }
+}

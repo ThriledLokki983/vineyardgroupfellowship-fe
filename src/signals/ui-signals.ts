@@ -19,6 +19,7 @@ export const modals = {
   // Profile modals
   profilePhoto: createToggleSignal(false),
   profileSettings: createToggleSignal(false),
+  profileReview: createToggleSignal(false),
 
   // Group modals
   createGroup: createToggleSignal(false),
@@ -34,6 +35,7 @@ export const modals = {
     modals.onboarding.setFalse()
     modals.profilePhoto.setFalse()
     modals.profileSettings.setFalse()
+    modals.profileReview.setFalse()
     modals.createGroup.setFalse()
     modals.generic.setFalse()
     modals.confirmation.setFalse()
@@ -77,6 +79,33 @@ export const onboarding = {
     onboarding.recoveryApproach.value = null
     onboarding.faithTradition.value = null
     onboarding.contentPreference.value = 'moderate'
+  }
+}
+
+/**
+ * Profile Review Modal State
+ * Track state for reviewing join request profiles
+ */
+export const profileReview = {
+  // Request data (using strings to match backend API)
+  userId: signal<string | null>(null),
+  membershipId: signal<string | null>(null),
+  groupId: signal<string | null>(null),
+
+  // Set all data at once
+  setRequest: (userId: string, membershipId: string, groupId: string) => {
+    profileReview.userId.value = userId
+    profileReview.membershipId.value = membershipId
+    profileReview.groupId.value = groupId
+    modals.profileReview.setTrue()
+  },
+
+  // Reset and close
+  reset: () => {
+    profileReview.userId.value = null
+    profileReview.membershipId.value = null
+    profileReview.groupId.value = null
+    modals.profileReview.setFalse()
   }
 }
 

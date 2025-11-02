@@ -34,6 +34,8 @@ export const useApproveRequest = () => {
     onSuccess: (_data, variables) => {
       // Invalidate pending requests to refresh the list
       queryClient.invalidateQueries({ queryKey: ['groups', variables.groupId, 'pending-requests'] });
+      // Invalidate all-groups pending requests query
+      queryClient.invalidateQueries({ queryKey: ['all-groups-pending-requests'] });
       // Invalidate group details to update member count
       queryClient.invalidateQueries({ queryKey: ['groups', variables.groupId] });
       // Invalidate group members list
@@ -54,6 +56,8 @@ export const useRejectRequest = () => {
     onSuccess: (_data, variables) => {
       // Invalidate pending requests to refresh the list
       queryClient.invalidateQueries({ queryKey: ['groups', variables.groupId, 'pending-requests'] });
+      // Invalidate all-groups pending requests query
+      queryClient.invalidateQueries({ queryKey: ['all-groups-pending-requests'] });
     },
   });
 };

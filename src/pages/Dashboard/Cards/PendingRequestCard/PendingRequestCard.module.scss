@@ -1,6 +1,7 @@
 @use '../../../../styles/styles.scss' as *;
 
 .root {
+  position: relative;
   background: var(--surface-elevated);
   border-radius: var(--radius-2);
   padding: var(--size-4);
@@ -15,6 +16,21 @@
     box-shadow: var(--shadow-2);
     border-color: var(--accent-warm);
   }
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(248, 245, 240, 0.8); // var(--surface-canvas) with opacity
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-2);
+  z-index: 10;
 }
 
 .content {
@@ -40,7 +56,12 @@
 }
 
 .nameLink {
-  text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  font-family: inherit;
   color: inherit;
   display: block;
   transition: opacity var(--animation-duration-fast) ease-out;

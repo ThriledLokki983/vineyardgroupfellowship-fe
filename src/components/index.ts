@@ -88,6 +88,9 @@ export { default as PageTransition } from './PageTransition';
 // ProfileCard
 export { default as ProfileCard } from './ProfileCard/ProfileCard';
 
+// ProfileReviewModal
+export { ProfileReviewModal } from './ProfileReviewModal';
+
 // ProtectedRoutes
 export {
   SupporterRoute,
