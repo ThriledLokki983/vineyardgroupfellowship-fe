@@ -3,7 +3,7 @@
  * Built with React Aria Components for accessible, styleable selects
  */
 
-import type { SelectProps, ListBoxItemProps, ValidationResult } from 'react-aria-components';
+import type { ListBoxItemProps } from 'react-aria-components';
 import {
   Select as AriaSelect,
   Label,
@@ -16,16 +16,8 @@ import {
   Text
 } from 'react-aria-components';
 import Icon from '../Icon';
+import type { CustomSelectProps } from 'types';
 import styles from './Select.module.scss';
-
-interface CustomSelectProps<T extends object> extends Omit<SelectProps<T>, 'children'> {
-  label?: string;
-  description?: string;
-  errorMessage?: string | ((validation: ValidationResult) => string);
-  items?: Iterable<T>;
-  children: React.ReactNode | ((item: T) => React.ReactNode);
-  placeholder?: string;
-}
 
 export function Select<T extends object>({
   label,

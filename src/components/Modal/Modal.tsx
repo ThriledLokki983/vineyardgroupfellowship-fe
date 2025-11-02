@@ -7,21 +7,8 @@ import {
 } from 'react-aria-components';
 import Button from '../Button/Button'
 import Icon from '../Icon';
+import type { ModalProps } from 'types';
 import styles from './Modal.module.scss';
-
-export interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title?: string;
-  children: React.ReactNode;
-  isDismissable?: boolean;
-  isKeyboardDismissDisabled?: boolean;
-  showCloseButton?: boolean;
-  className?: string;
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
-  'aria-label'?: string;
-  id?: string;
-}
 
 /**
  * Reusable Modal component built with React Aria

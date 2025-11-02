@@ -1,13 +1,6 @@
 import { Layout, Icon } from 'components';
-import * as Icons from 'assets/icons/icons';
+import type { LoadingStateProps } from 'types';
 import styles from './LoadingState.module.scss';
-
-interface LoadingStateProps {
-  icon?: keyof typeof Icons;
-  message?: string;
-  variant?: 'default' | 'centered' | 'fullscreen';
-  showLayout?: boolean;
-}
 
 export default function LoadingState({
   icon = 'DashboardIcon',

@@ -4,6 +4,7 @@
  */
 
 import type { SupporterBackgroundFormData } from 'src/schemas/supporterBackgroundSchema';
+import type { WizardStepId } from 'src/signals/supporter-background-signals';
 
 // Supporter Background Form Wizard
 export interface BackgroundFormWizardProps {
@@ -38,7 +39,7 @@ export interface ReviewStepProps {
   formData: Partial<SupporterBackgroundFormData>;
   onUpdate: (data: Partial<SupporterBackgroundFormData>) => void;
   onComplete: () => void;
-  onEdit?: (stepId: string) => void;
+  onEdit?: (stepId: WizardStepId) => void;
   mode?: 'setup' | 'edit' | 'review';
 }
 

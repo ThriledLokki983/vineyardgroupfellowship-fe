@@ -2,13 +2,8 @@ import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button, Icon } from 'components'
 import { useLogout } from 'hooks/useAuth'
-import type { User } from 'configs/hooks-interfaces'
+import type { ProfileDropdownProps } from 'types'
 import styles from './ProfileDropdown.module.scss'
-
-interface ProfileDropdownProps {
-  user: User
-  onClose: () => void
-}
 
 export default function ProfileDropdown({ user, onClose }: ProfileDropdownProps) {
   const navigate = useNavigate()

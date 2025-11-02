@@ -3,16 +3,35 @@
  * Types for reusable UI components
  */
 
+import type { User } from 'configs/hooks-interfaces';
+
 // Icon Component
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   name: string;
   size?: number;
 }
 
+// Modal Component
+export interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title?: string;
+  children: React.ReactNode;
+  isDismissable?: boolean;
+  isKeyboardDismissDisabled?: boolean;
+  showCloseButton?: boolean;
+  className?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'fullscreen';
+  'aria-label'?: string;
+  id?: string;
+}
+
 // Loading State
 export interface LoadingStateProps {
+  icon?: string;
   message?: string;
-  size?: 'small' | 'medium' | 'large';
+  variant?: 'default' | 'centered' | 'fullscreen';
+  showLayout?: boolean;
 }
 
 // Page Transition
@@ -28,14 +47,8 @@ export interface WelcomeScreenProps {
 
 // Profile Dropdown
 export interface ProfileDropdownProps {
-  isOpen: boolean;
+  user: User;
   onClose: () => void;
-  user: {
-    first_name?: string;
-    last_name?: string;
-    email?: string;
-    photo_url?: string;
-  };
 }
 
 // Protected Routes
@@ -78,15 +91,19 @@ export interface ConditionalComponentProps {
   fallback?: React.ReactNode;
 }
 
+
 // Select Component
 export interface CustomSelectProps<T extends object> {
   label?: string;
+  description?: string;
+  errorMessage?: string | ((validation: unknown) => string);
+  items?: Iterable<T>;
+  children: React.ReactNode | ((item: T) => React.ReactNode);
   placeholder?: string;
-  items: T[];
   selectedKey?: React.Key;
   onSelectionChange?: (key: React.Key) => void;
   isDisabled?: boolean;
   isRequired?: boolean;
-  errorMessage?: string;
-  description?: string;
+  name?: string;
+  className?: string;
 }
