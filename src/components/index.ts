@@ -73,6 +73,10 @@ export {
 // LoadingState
 export { default as LoadingState } from './LoadingState';
 
+// LocationAutocomplete
+export { default as LocationAutocomplete } from './LocationAutocomplete';
+export type { LocationAutocompleteProps, PlaceData } from 'types/components/location';
+
 // Modal
 export { Modal } from './Modal';
 

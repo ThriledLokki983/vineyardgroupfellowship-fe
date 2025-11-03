@@ -1,0 +1,159 @@
+@use '../../styles/styles.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  width: 100%;
+}
+
+.label {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  display: block;
+}
+
+.required {
+  color: var(--accent-danger);
+  margin-left: var(--size-1);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  @include input-base;
+  width: 100%;
+  padding: var(--size-3) var(--size-4);
+  font-size: var(--font-size-1);
+  border: var(--border-size-1) solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(58, 79, 65, 0.1);
+  }
+
+  &:disabled {
+    background: var(--surface-elevated);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+}
+
+.inputError {
+  border-color: var(--accent-danger);
+
+  &:focus {
+    border-color: var(--accent-danger);
+    box-shadow: 0 0 0 3px rgba(194, 90, 90, 0.1);
+  }
+}
+
+.inputLoading {
+  padding-right: var(--size-10);
+}
+
+.spinner {
+  position: absolute;
+  right: var(--size-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.spinnerIcon {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--surface-elevated);
+  border-top-color: var(--brand-primary);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.errorMessage {
+  font-size: var(--font-size-0);
+  color: var(--accent-danger);
+  margin: 0;
+  padding-top: var(--size-1);
+}
+
+.error {
+  padding: var(--size-4);
+  background: rgba(194, 90, 90, 0.1);
+  border: var(--border-size-1) solid var(--accent-danger);
+  border-radius: var(--radius-2);
+  color: var(--accent-danger);
+
+  p {
+    margin: 0;
+    font-size: var(--font-size-1);
+  }
+}
+
+// Override Google Places Autocomplete dropdown styling
+:global(.pac-container) {
+  background: var(--surface-elevated);
+  border: var(--border-size-1) solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  margin-top: var(--size-1);
+  font-family: var(--font-sans);
+  z-index: 9999;
+
+  &:after {
+    display: none; // Remove Google logo requirement notice (allowed for free tier)
+  }
+}
+
+:global(.pac-item) {
+  padding: var(--size-3) var(--size-4);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  border-top: var(--border-size-1) solid var(--border-subtle);
+  cursor: pointer;
+  transition: background-color var(--animation-duration-fast) ease-out;
+
+  &:first-child {
+    border-top: none;
+  }
+
+  &:hover,
+  &:global(.pac-item-selected) {
+    background: rgba(244, 199, 123, 0.1);
+  }
+}
+
+:global(.pac-item-query) {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-6);
+}
+
+:global(.pac-matched) {
+  color: var(--brand-primary);
+  font-weight: var(--font-weight-7);
+}
+
+:global(.pac-icon) {
+  display: none; // Hide default icons for cleaner look
+}

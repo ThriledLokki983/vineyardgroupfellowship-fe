@@ -5,7 +5,7 @@
  * State Management: Uses @preact/signals for reactive UI and form state
  */
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { useSignals } from '@preact/signals-react/runtime'
 import { useQueryClient } from '@tanstack/react-query'
 import { useAuthContext } from '../../contexts/Auth/useAuthContext'
@@ -16,6 +16,8 @@ import Layout from '../../components/Layout/Layout'
 import Button from '../../components/Button'
 import Icon from '../../components/Icon'
 import Checkbox from '../../components/Checkbox'
+import LocationAutocomplete from '../../components/LocationAutocomplete'
+import type { PlaceData } from 'types/components/location'
 import { toast } from '../../components/Toast'
 import apiClient from '../../lib/apiClient'
 import styles from './ProfilePage.module.scss'
@@ -27,6 +29,9 @@ export default function ProfilePage() {
   const { data: profileData, isLoading: isLoadingProfile } = useCurrentUser()
   const queryClient = useQueryClient()
   const fileInputRef = useRef<HTMLInputElement>(null)
+  
+  // State for structured location data from Google Places
+  const [locationData, setLocationData] = useState<PlaceData | null>(null)
 
   // Cleanup function to revoke object URLs when component unmounts
   useEffect(() => {
@@ -106,6 +111,17 @@ export default function ProfilePage() {
 
       console.log('Sending only changed fields:', updateData)
 
+      // Add structured location data if available (for future backend support)
+      if (locationData && touchedFields?.has('location')) {
+        console.log('Structured location data:', locationData)
+        // Uncomment when backend supports these fields:
+        // updateData.location_city = locationData.city
+        // updateData.location_state = locationData.state
+        // updateData.location_country = locationData.country
+        // updateData.latitude = locationData.latitude
+        // updateData.longitude = locationData.longitude
+      }
+
       const response = await apiClient.patch('/profiles/me/', updateData)
 
       // Update the user context with the saved data
@@ -143,6 +159,14 @@ export default function ProfilePage() {
     const finalValue = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
 
     profilePage.updateField(name as keyof typeof profilePage.formData.value, finalValue)
+  }
+
+  // Handle location autocomplete changes
+  const handleLocationChange = (location: string, placeData?: PlaceData) => {
+    profilePage.updateField('location', location)
+    if (placeData) {
+      setLocationData(placeData)
+    }
   }
 
   const validateImageFile = (file: File): string | null => {
@@ -339,14 +363,12 @@ export default function ProfilePage() {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label htmlFor="location" className={styles.label}>Location</label>
-                    <input
-                      type="text"
-                      id="location"
-                      name="location"
+                    <LocationAutocomplete
+                      label="Location"
                       value={formData?.location || ''}
-                      onChange={handleInputChange}
-                      className={styles.input}
+                      onChange={handleLocationChange}
+                      placeholder="Enter your city or location"
+                      className={styles.locationInput}
                     />
                   </div>
 
