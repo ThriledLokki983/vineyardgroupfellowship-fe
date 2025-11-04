@@ -1,3 +1,8 @@
+/**
+ * Icon exports
+ * All SVG icons exported as React components via Vite's ?react import
+ */
+
 export { default as ArrowLeftIcon } from './arrow-left-outline.svg?react';
 export { default as ArrowRight } from './arrow-right-outline.svg?react';
 export { default as AvatarIcon } from './avatar-outline.svg?react';
@@ -38,7 +43,6 @@ export { default as HomeIcon } from './home-outline.svg?react';
 export { default as LocationIcon } from './location-outline.svg?react';
 export { default as InboxIcon } from './inbox-icon.svg?react';
 export { default as OutboxIcon } from './outbox-icon.svg?react';
-// export { default as Logo } from '../pwc-logo.svg?react'; // File not found
 export { default as LockedIcon } from './lockclosed-locked-outline.svg?react';
 export { default as MapLocationIcon } from './map-location-outline.svg?react';
 export { default as MeetingIcon } from './meeting-fill.svg?react';
@@ -69,9 +73,8 @@ export { default as StewardIcon } from './steward-outline.svg?react';
 export { default as TelephoneIcon } from './telephone-outline.svg?react';
 export { default as ThumbsUpIcon } from './thumbs-up-fill.svg?react';
 export { default as ThumbsDownIcon } from './thumbs-down-fill.svg?react';
-export { default as TrashIcon } from'./trash-outline.svg?react';
+export { default as TrashIcon } from './trash-outline.svg?react';
 export { default as QuestionIcon } from './question-outline.svg?react';
-// export { default as Window } from '../empty-window.svg?react'; // File not found
 export { default as StatsIcon } from './stats-female.svg?react';
 export { default as FemaleIcon } from './user-female.svg?react';
 export { default as MaleIcon } from './user-men.svg?react';
@@ -83,7 +86,6 @@ export { default as Download } from './download-outline.svg?react';
 export { default as CalendarIconThin } from './calendar-outline-thin.svg?react';
 export { default as DashboardIcon } from './dashboard-outline.svg?react';
 export { default as NotificationIcon } from './notification.svg?react';
-
 
 // Illustrations
 export { default as EmptyWritingIcon } from '../empty-writing.svg?react';

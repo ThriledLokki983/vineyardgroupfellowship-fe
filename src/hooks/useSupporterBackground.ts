@@ -14,9 +14,7 @@ export function useSupporterBackground() {
   const backgroundQuery = useQuery({
     queryKey: ['supporter-background'],
     queryFn: async () => {
-      console.log('🔍 Fetching supporter background data');
       const data = await api.get('/supporter-background/');
-      console.log('✅ Supporter background data received:', data);
       return data;
     },
     staleTime: 5 * 60 * 1000, // 5 minutes

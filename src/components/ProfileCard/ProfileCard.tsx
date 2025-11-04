@@ -20,9 +20,6 @@ const ProfileCard = ({
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredItem, setIsHoveredItem] = useState(false);
 
-  console.log({ profile });
-
-
   const showActions = isHoveredItem;
 
   // Toggle Hover state
@@ -83,16 +80,17 @@ const ProfileActions = ({
     just_in: justIn,
   } = profile;
 
-  // Create wrapper functions that match the expected signatures
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-  const handleResendRequest = (..._args: any[]) => {
+  // Wrapper functions that match the Actions component signatures
+  const handleResendRequest = (
+    _profileData: { id: string | number; email?: string; updated_at?: string | Date },
+    _email?: string
+  ) => {
     if (resendRequest) {
       resendRequest();
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
-  const handleRevokeRequest = (..._args: any[]) => {
+  const handleRevokeRequest = (_id: string | number) => {
     if (revokeCalendarAccessRequest) {
       revokeCalendarAccessRequest();
     }

@@ -49,29 +49,7 @@ async function fetchDailyMessage(signal?: AbortSignal): Promise<DailyMessage> {
 
   let failedAPIs = 0;
 
-  // 1) Try Quotable API - reliable, filterable, no API key needed
-  // Using /random endpoint for single quote with tags filter
-  // try {
-  //   const r1 = await fetch(
-  //     "https://api.quotable.io/random?tags=inspirational|success|life|motivational&maxLength=160",
-  //     { signal }
-  //   );
-  //   if (r1.ok) {
-  //     const q = await r1.json();
-  //     // Response format: { _id, content, author, authorSlug, length, tags }
-  //     const message: DailyMessage = { text: q.content, author: q.author };
-  //     localStorage.setItem(storageKey, JSON.stringify(message));
-  //     return message;
-  //   }
-  // } catch (error) {
-  //   failedAPIs++;
-  //   // Only log in development and if not aborted
-  //   if (import.meta.env.DEV && (error as Error).name !== 'AbortError') {
-  //     console.debug("Quotable API unavailable, trying fallback...");
-  //   }
-  // }
-
-  // 2) Fallback: ZenQuotes API (free tier, requires attribution)
+  // 1) Try ZenQuotes API (free tier, requires attribution)
   // Response format: [{ q: "quote text", a: "author name", c: "character count", h: "html" }]
   try {
     const r2 = await fetch("https://zenquotes.io/api/random", { signal });
@@ -88,7 +66,7 @@ async function fetchDailyMessage(signal?: AbortSignal): Promise<DailyMessage> {
     }
   }
 
-  // 3) Fallback: Type.fit quotes API (static JSON, client-side random)
+  // 2) Fallback: Type.fit quotes API (static JSON, client-side random)
   // Response format: [{ text: "quote", author: "name, type" }]
   try {
     const r3 = await fetch("https://type.fit/api/quotes", { signal });

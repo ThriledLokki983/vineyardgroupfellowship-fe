@@ -33,14 +33,6 @@ export default function SupporterBackground() {
     isPendingApproval,
   } = useSupporterStatus();
 
-  // Debug logging
-  useEffect(() => {
-    console.log('🎯 SupporterBackground component mounted');
-    console.log('📊 Background data:', background);
-    console.log('⏳ Loading state:', isLoading);
-    console.log('❌ Error state:', error);
-  }, [background, isLoading, error]);
-
   // Transform professional credentials into documents format
   useEffect(() => {
     const backgroundData = background as SupporterBackgroundData;
@@ -59,7 +51,6 @@ export default function SupporterBackground() {
         }));
 
       supporterBackgroundPage.setDocuments(transformedDocuments);
-      console.log('📄 Transformed documents:', transformedDocuments);
     }
   }, [background]);
 
@@ -73,11 +64,8 @@ export default function SupporterBackground() {
   }, [background, backgroundCompleted, backgroundApproved]);
 
   const handleSubmit = (data: SupporterBackgroundFormData) => {
-    console.log('🎯 handleSubmit called with data:', data);
-
     submitBackground(data, {
       onSuccess: () => {
-        console.log('✅ Background submitted successfully');
         toast.success(
           'Background Submitted!',
           'Your information has been submitted for review.'
@@ -98,7 +86,6 @@ export default function SupporterBackground() {
     supporterBackgroundPage.startDocumentUpload();
     try {
       // TODO: Implement actual file upload to backend
-      console.log('Uploading file:', file.name);
 
       // Simulate upload for now
       const mockDocument = {

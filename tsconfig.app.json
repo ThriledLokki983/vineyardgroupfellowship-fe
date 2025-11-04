@@ -30,6 +30,8 @@
       "pages/*": ["./src/pages/*"],
       "signals/*": ["./src/signals/*"],
       "services/*": ["./src/services/*"],
+      "schemas": ["./src/schemas"],
+      "schemas/*": ["./src/schemas/*"],
       "styles/*": ["./src/styles/*"],
       "types": ["./src/types"],
       "types/*": ["./src/types/*"],

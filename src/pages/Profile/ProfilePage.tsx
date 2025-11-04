@@ -19,7 +19,7 @@ import Checkbox from '../../components/Checkbox'
 import LocationAutocomplete from '../../components/LocationAutocomplete'
 import type { PlaceData } from 'types/components/location'
 import { toast } from '../../components/Toast'
-import apiClient from '../../lib/apiClient'
+import { api } from '../../services/api'
 import styles from './ProfilePage.module.scss'
 
 export default function ProfilePage() {
@@ -29,7 +29,7 @@ export default function ProfilePage() {
   const { data: profileData, isLoading: isLoadingProfile } = useCurrentUser()
   const queryClient = useQueryClient()
   const fileInputRef = useRef<HTMLInputElement>(null)
-  
+
   // State for structured location data from Google Places
   const [locationData, setLocationData] = useState<PlaceData | null>(null)
 
@@ -109,11 +109,8 @@ export default function ProfilePage() {
         })
       }
 
-      console.log('Sending only changed fields:', updateData)
-
       // Add structured location data if available (for future backend support)
       if (locationData && touchedFields?.has('location')) {
-        console.log('Structured location data:', locationData)
         // Uncomment when backend supports these fields:
         // updateData.location_city = locationData.city
         // updateData.location_state = locationData.state
@@ -122,17 +119,23 @@ export default function ProfilePage() {
         // updateData.longitude = locationData.longitude
       }
 
-      const response = await apiClient.patch('/profiles/me/', updateData)
+      const response = await api.patch<{
+        first_name: string;
+        last_name: string;
+        username: string;
+        email: string;
+        display_name: string;
+      }>('/profiles/me/', updateData)
 
       // Update the user context with the saved data
       if (user && setUser) {
         setUser({
           ...user,
-          first_name: response.data.first_name,
-          last_name: response.data.last_name,
-          username: response.data.username,
-          email: response.data.email,
-          display_name: response.data.display_name,
+          first_name: response.first_name,
+          last_name: response.last_name,
+          username: response.username,
+          email: response.email,
+          display_name: response.display_name,
         })
       }
 
@@ -215,24 +218,33 @@ export default function ProfilePage() {
       const formData = new FormData();
       formData.append('photo', file);
 
-      const response = await apiClient.post('/profiles/me/photo/upload/', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      // For file upload, use direct fetch since api.post JSON.stringifies body
+      const { API_BASE_URL } = await import('../../configs/api-configs');
+      const uploadResponse = await fetch(`${API_BASE_URL}/profiles/me/photo/upload/`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+        // Don't set Content-Type - browser will set multipart/form-data with boundary
       });
+
+      if (!uploadResponse.ok) {
+        throw new Error('Failed to upload photo');
+      }
+
+      const response = await uploadResponse.json();
 
       // Clean up the temporary URL since we have the real one now
       URL.revokeObjectURL(tempImageUrl);
 
       // Update with the actual server response
-      profilePage.finishPhotoUpload(response.data.photo_url, response.data.photo_thumbnail_url);
+      profilePage.finishPhotoUpload(response.photo_url, response.photo_thumbnail_url);
 
       // Update the user context with the new photo data
       if (user && setUser) {
         setUser({
           ...user,
-          photo_url: response.data.photo_url,
-          photo_thumbnail_url: response.data.photo_thumbnail_url,
+          photo_url: response.photo_url,
+          photo_thumbnail_url: response.photo_thumbnail_url,
         });
       }
 

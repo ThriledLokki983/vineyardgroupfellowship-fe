@@ -310,18 +310,23 @@ export class ApiError extends Error {
     status?: number
     detail?: string
     title?: string
+    error?: string
+    details?: Record<string, unknown>
     invalid_params?: Array<{ name: string; reason: string }>
     errors?: Record<string, string | string[]>
     non_field_errors?: string[]
     [key: string]: unknown // Allow additional fields for direct field errors
   }): ApiError {
     const status = response.status || 400
-    const message = response.detail || response.title || 'Validation error'
+    const message = response.error || response.detail || response.title || 'Validation error'
     const errors: Record<string, string[]> = {}
 
+    // Handle errors nested in 'details' object (common Django pattern)
+    const errorSource = response.details || response
+
     // Handle Django's invalid_params format
-    if (response.invalid_params && Array.isArray(response.invalid_params)) {
-      response.invalid_params.forEach((param: { name: string; reason: string }) => {
+    if (errorSource.invalid_params && Array.isArray(errorSource.invalid_params)) {
+      (errorSource.invalid_params as Array<{ name: string; reason: string }>).forEach((param) => {
         if (!errors[param.name]) {
           errors[param.name] = []
         }
@@ -330,9 +335,9 @@ export class ApiError extends Error {
     }
 
     // Handle other common Django error formats
-    if (response.errors && typeof response.errors === 'object') {
-      Object.keys(response.errors).forEach(field => {
-        const fieldErrors = response.errors![field]
+    if (errorSource.errors && typeof errorSource.errors === 'object') {
+      Object.keys(errorSource.errors).forEach(field => {
+        const fieldErrors = (errorSource.errors as Record<string, string | string[]>)[field]
         if (Array.isArray(fieldErrors)) {
           errors[field] = fieldErrors
         } else if (typeof fieldErrors === 'string') {
@@ -342,23 +347,21 @@ export class ApiError extends Error {
     }
 
     // Handle non_field_errors (common Django pattern)
-    if (response.non_field_errors && Array.isArray(response.non_field_errors)) {
-      errors['non_field_errors'] = response.non_field_errors
+    if (errorSource.non_field_errors && Array.isArray(errorSource.non_field_errors)) {
+      errors['non_field_errors'] = errorSource.non_field_errors as string[]
     }
 
     // Handle direct field errors (Django's default ValidationError format)
     // This is when the response directly contains field names as keys
     // e.g., { "password": ["error message"], "email": ["error message"] }
-    Object.keys(response).forEach(key => {
-      // Skip special keys that are not field errors
-      if (['status', 'detail', 'title', 'invalid_params', 'errors', 'non_field_errors'].includes(key)) {
+    Object.keys(errorSource).forEach(key => {
+      if (['status', 'detail', 'title', 'error', 'details', 'invalid_params', 'errors', 'non_field_errors'].includes(key)) {
         return
       }
 
-      const value = response[key]
-      // Check if this looks like a field error (array of strings)
+      const value = errorSource[key]
       if (Array.isArray(value) && value.every(item => typeof item === 'string')) {
-        errors[key] = value
+        errors[key] = value as string[]
       } else if (typeof value === 'string') {
         errors[key] = [value]
       }

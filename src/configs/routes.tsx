@@ -2,17 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import * as Pages from '../pages';
 import * as PATH from './paths.ts';
 import * as Auth from '../components/Authentication';
-// import { PageLoader } from '../components/PageLoader';
-
-// Lazy load group pages for code splitting
-// const GroupsListPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.GroupsListPage })));
-// const CreateGroupPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.CreateGroupPage })));
-// const GroupDetailPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.GroupDetailPage })));
-// const GroupDashboardPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.GroupDashboardPage })));
-// const GroupDiscussionsPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.GroupDiscussionsPage })));
-// const TopicDetailPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.TopicDetailPage })));
-// const GroupMembersPage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.GroupMembersPage })));
-// const GroupManagePage = lazy(() => import('../features/groups/pages').then(m => ({ default: m.GroupManagePage })));
+import { LazyRoute } from 'components';
 
 export const appRoutes = createBrowserRouter([
 	{
@@ -23,109 +13,145 @@ export const appRoutes = createBrowserRouter([
 	...(import.meta.env.DEV ? [{
 		path: PATH.PATH_FEATURES,
 		element: (
-			<Auth.ProtectedRoute>
-				<Pages.Features />
-			</Auth.ProtectedRoute>
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.Features />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
 		)
 	}] : []),
 	{
 	path: PATH.PATH_REGISTER,
 		element: (
-			<Auth.PublicRoute>
-				<Pages.RegistrationPage />
-			</Auth.PublicRoute>
+			<LazyRoute>
+				<Auth.PublicRoute>
+					<Pages.RegistrationPage />
+				</Auth.PublicRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_ACCOUNT_CREATED,
 		element: (
-			<Auth.PublicRoute>
-				<Pages.AccountCreationSuccessPage />
-			</Auth.PublicRoute>
+			<LazyRoute>
+				<Auth.PublicRoute>
+					<Pages.AccountCreationSuccessPage />
+				</Auth.PublicRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_LOGIN,
 		element: (
-			<Auth.PublicRoute>
-				<Pages.LoginPage />
-			</Auth.PublicRoute>
+			<LazyRoute>
+				<Auth.PublicRoute>
+					<Pages.LoginPage />
+				</Auth.PublicRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_FORGOT_PASSWORD,
 		element: (
-			<Auth.PublicRoute>
-				<Pages.ForgotPasswordPage />
-			</Auth.PublicRoute>
+			<LazyRoute>
+				<Auth.PublicRoute>
+					<Pages.ForgotPasswordPage />
+				</Auth.PublicRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_DASHBOARD,
 		element: (
-			<Auth.ProtectedRoute>
-				<Pages.Dashboard />
-			</Auth.ProtectedRoute>
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.Dashboard />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_GROUP_DETAILS,
 		element: (
-			<Auth.ProtectedRoute>
-				<Pages.GroupDetailsPage />
-			</Auth.ProtectedRoute>
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.GroupDetailsPage />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_EDIT_GROUP,
 		element: (
-			<Auth.ProtectedRoute>
-				<Pages.EditGroupPage />
-			</Auth.ProtectedRoute>
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.EditGroupPage />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_PROFILE,
 		element: (
-			<Auth.ProtectedRoute>
-				<Pages.ProfilePage />
-			</Auth.ProtectedRoute>
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.ProfilePage />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_SETTINGS,
 		element: (
-			<Auth.ProtectedRoute>
-				<Pages.SettingsPage />
-			</Auth.ProtectedRoute>
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.SettingsPage />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_PRIVACY_POLICY,
-		element: <Pages.PrivacyPolicyPage />,
+		element: (
+			<LazyRoute>
+				<Pages.PrivacyPolicyPage />
+			</LazyRoute>
+		),
 	},
 	{
 		path: PATH.PATH_TERMS_OF_USE,
-		element: <Pages.TermsOfUsePage />,
+		element: (
+			<LazyRoute>
+				<Pages.TermsOfUsePage />
+			</LazyRoute>
+		),
 	},
 	{
 		path: PATH.PATH_VERIFY_EMAIL,
-		element: <Pages.VerifyEmailPage />,
+		element: (
+			<LazyRoute>
+				<Pages.VerifyEmailPage />
+			</LazyRoute>
+		),
 	},
 	{
 		path: PATH.PATH_EMAIL_VERIFIED,
 		element: (
-			<Auth.PublicRoute>
-				<Pages.EmailVerificationCompleteHandler />
-			</Auth.PublicRoute>
+			<LazyRoute>
+				<Auth.PublicRoute>
+					<Pages.EmailVerificationCompleteHandler />
+				</Auth.PublicRoute>
+			</LazyRoute>
 		),
 	},
 	{
 		path: PATH.PATH_EMAIL_VERIFY_ERROR,
 		element: (
-			<Auth.PublicRoute>
-				<Pages.EmailVerifyErrorPage />
-			</Auth.PublicRoute>
+			<LazyRoute>
+				<Auth.PublicRoute>
+					<Pages.EmailVerifyErrorPage />
+				</Auth.PublicRoute>
+			</LazyRoute>
 		),
 	},
 ]);

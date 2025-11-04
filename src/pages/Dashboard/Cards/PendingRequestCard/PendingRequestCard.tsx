@@ -2,7 +2,6 @@ import { useState, useRef } from 'react';
 import { Button, Icon, toast, Avatar, InlineLoader } from 'components';
 import type { PendingRequestCardProps } from 'types';
 import { useApproveRequest, useRejectRequest } from '../../../../hooks/usePendingRequests';
-import { profileReview, modals } from '../../../../signals/ui-signals';
 import { formatRelativeDate } from '../../../../utils/helpers';
 import styles from './PendingRequestCard.module.scss';
 
@@ -50,13 +49,8 @@ export const PendingRequestCard = ({ request, groupId }: PendingRequestCardProps
   const fullName = [request.first_name, request.last_name].filter(Boolean).join(' ') || request.display_name;
 
   const handleOpenProfile = () => {
-    console.log('[PendingRequestCard] Opening profile for:', {
-      userId: request.user_id,
-      membershipId: request.id,
-      groupId: groupId
-    });
-    profileReview.setRequest(request.user_id, request.id, groupId);
-    console.log('[PendingRequestCard] Modal state after setRequest:', modals.profileReview.value.value);
+    // Open profile review modal (to be implemented)
+    // modals.profileReview.open(request);
   };
 
   return (

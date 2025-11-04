@@ -1,31 +1,34 @@
-// Administration Pages
-import SettingsPage from "./Settings/Settings/SettingsPage";
-import ProfilePage from "./Profile/ProfilePage";
-import { SupporterBackground } from "./Profile";
+// Lazy-loaded page components for code splitting
+import { lazy } from 'react';
 
-// HomePage & Dashboard
+// HomePage - Keep eager as it's the landing page
 import Home from "./Home/Home";
-import Dashboard from "./Dashboard/Dashboard/DashboardPage";
-import GroupDetailsPage from "./Dashboard/GroupDetailsPage/GroupDetailsPage";
-import EditGroupPage from "./Dashboard/EditGroupPage/EditGroupPage";
+
+// Dashboard pages - Lazy load for better initial bundle
+const Dashboard = lazy(() => import('./Dashboard/Dashboard/DashboardPage'));
+const GroupDetailsPage = lazy(() => import('./Dashboard/GroupDetailsPage/GroupDetailsPage'));
+const EditGroupPage = lazy(() => import('./Dashboard/EditGroupPage/EditGroupPage'));
 
 // Features Page (Development only)
-import { Features } from "./Features";
+const Features = lazy(() => import('./Features').then(m => ({ default: m.Features })));
 
 // Resource Pages
-import TermsOfUsePage from "./Resources/TermsOfUsePage";
-import PrivacyPolicyPage from "./Resources/PrivacyPolicyPage";
+const TermsOfUsePage = lazy(() => import('./Resources/TermsOfUsePage'));
+const PrivacyPolicyPage = lazy(() => import('./Resources/PrivacyPolicyPage'));
 
-// Auth &. Registration imports
-import {
-	LoginPage,
-	VerifyEmailPage,
-	EmailVerifyErrorPage,
-	RegistrationPage,
-	ForgotPasswordPage,
-	AccountCreationSuccessPage,
-	EmailVerificationCompleteHandler
-} from './Auth';
+// Auth & Registration - Lazy load for better initial bundle
+const LoginPage = lazy(() => import('./Auth').then(m => ({ default: m.LoginPage })));
+const VerifyEmailPage = lazy(() => import('./Auth').then(m => ({ default: m.VerifyEmailPage })));
+const EmailVerifyErrorPage = lazy(() => import('./Auth').then(m => ({ default: m.EmailVerifyErrorPage })));
+const RegistrationPage = lazy(() => import('./Auth').then(m => ({ default: m.RegistrationPage })));
+const ForgotPasswordPage = lazy(() => import('./Auth').then(m => ({ default: m.ForgotPasswordPage })));
+const AccountCreationSuccessPage = lazy(() => import('./Auth').then(m => ({ default: m.AccountCreationSuccessPage })));
+const EmailVerificationCompleteHandler = lazy(() => import('./Auth').then(m => ({ default: m.EmailVerificationCompleteHandler })));
+
+// Profile Pages
+const SettingsPage = lazy(() => import('./Settings/Settings/SettingsPage'));
+const ProfilePage = lazy(() => import('./Profile/ProfilePage'));
+const SupporterBackground = lazy(() => import('./Profile').then(m => ({ default: m.SupporterBackground })));
 
 export {
 	Home,
@@ -41,9 +44,6 @@ export {
 	ForgotPasswordPage,
 	AccountCreationSuccessPage,
 	EmailVerificationCompleteHandler,
-
-	// Onboarding Pages
-	// OnboardingRouter,
 
 	// Resource Pages
 	PrivacyPolicyPage,

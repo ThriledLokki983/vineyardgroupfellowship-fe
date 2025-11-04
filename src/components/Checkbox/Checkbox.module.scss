@@ -14,7 +14,6 @@
   background: var(--surface-canvas);
 
   &[data-selected] {
-    background-color: rgba(from var(--brand-primary) r g b / 0.08);
     border-color: var(--brand-primary);
   }
 

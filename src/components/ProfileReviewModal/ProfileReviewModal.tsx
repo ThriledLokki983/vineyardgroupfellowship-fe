@@ -23,8 +23,6 @@ export const ProfileReviewModal = () => {
   const groupId = profileReview.groupId.value;
   const isOpen = modals.profileReview.value.value;
 
-  console.log('[ProfileReviewModal] Render:', { userId, membershipId, groupId, isOpen });
-
   // Fetch pending requests for this specific group
   const { data: requests } = usePendingRequests(groupId || undefined);
 

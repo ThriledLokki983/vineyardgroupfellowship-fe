@@ -29,7 +29,7 @@ function LocationAutocompleteInput({
     // Extract structured data from Google Place
     const extractPlaceData = (place: google.maps.places.PlaceResult): PlaceData => {
       const addressComponents = place.address_components || [];
-      
+
       const getComponent = (type: string): string | undefined => {
         const component = addressComponents.find((comp) =>
           comp.types.includes(type)
@@ -48,10 +48,7 @@ function LocationAutocompleteInput({
       };
     };
 
-    const autocompleteInstance = new places.Autocomplete(inputRef.current, {
-      types: ['geocode', 'establishment'],
-      fields: ['address_components', 'geometry', 'formatted_address'],
-    });
+    const autocompleteInstance = new places.Autocomplete(inputRef.current);
 
     // Handle place selection
     const handlePlaceChanged = () => {
@@ -60,7 +57,7 @@ function LocationAutocompleteInput({
       if (place.geometry && place.formatted_address) {
         const placeData = extractPlaceData(place);
         onChange(place.formatted_address, placeData);
-        
+
         if (onPlaceSelect) {
           onPlaceSelect(placeData);
         }
@@ -89,7 +86,7 @@ function LocationAutocompleteInput({
           {required && <span className={styles.required}>*</span>}
         </label>
       )}
-      
+
       <div className={styles.inputWrapper}>
         <input
           ref={inputRef}

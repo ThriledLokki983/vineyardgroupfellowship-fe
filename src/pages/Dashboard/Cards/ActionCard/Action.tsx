@@ -67,7 +67,6 @@ const Action = ({ action, type, nextStep }: ActionProps) => {
 
 	if (type === 'support') {
 		const step = nextStep || (action as Step);
-		console.log(step);
 
 		if (step && typeof step === 'object') {
 			return (

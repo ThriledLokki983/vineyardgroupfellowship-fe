@@ -103,8 +103,7 @@ export const shareGroup = async (
         url: shareUrl,
       });
       return { method: 'native', success: true };
-    } catch (err) {
-      console.log('Error sharing:', err);
+    } catch {
       return { method: 'native', success: false };
     }
   } else {

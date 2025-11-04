@@ -4,7 +4,7 @@
  */
 
 import { useMutation } from '@tanstack/react-query';
-import apiClient from '../lib/apiClient';
+import { api } from '../services/api';
 import { EMAIL_VERIFY_URL } from '../configs/api-endpoints';
 
 interface VerifyEmailParams {
@@ -27,11 +27,10 @@ interface VerifyEmailResponse {
 export const useVerifyEmail = () => {
   return useMutation<VerifyEmailResponse, Error, VerifyEmailParams>({
     mutationFn: async ({ uidb64, token }: VerifyEmailParams) => {
-      const response = await apiClient.post(EMAIL_VERIFY_URL, {
+      return api.post(EMAIL_VERIFY_URL, {
         uidb64,
         token,
       });
-      return response.data;
     },
   });
 };

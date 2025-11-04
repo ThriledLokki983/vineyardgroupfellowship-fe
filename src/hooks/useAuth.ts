@@ -78,10 +78,6 @@ const authApi = {
   updateProfile: async (data: Partial<User>): Promise<User> => {
     return api.put<User, Partial<User>>('/auth/profile', data)
   },
-
-  // changePassword: async (data: { currentPassword: string; newPassword: string }): Promise<{ message: string }> => {
-  //   return api.put<{ message: string }, typeof data>('/auth/change-password', data)
-  // },
 }
 
 // React Query Keys

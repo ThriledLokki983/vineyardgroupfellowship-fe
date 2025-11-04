@@ -54,7 +54,7 @@ export default function DashboardRouter() {
             <div className={styles.onboardingIcon}>
               <Icon name="CelebrateIcon" />
             </div>
-            <h1 className={styles.onboardingTitle}>Welcome to AddictFree!</h1>
+            <h1 className={styles.onboardingTitle}>Welcome to Vineyard Group Fellowship!</h1>
             <p className={styles.onboardingSubtitle}>
               Complete your quick setup to get started on your personalized journey.
             </p>

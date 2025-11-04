@@ -101,8 +101,6 @@ export function CredentialsStep({ formData, onUpdate, onComplete, mode = 'setup'
       const updatedFiles = [...supporterBackgroundPage.steps.credentials.credentialFiles.value];
       updatedFiles[index] = file;
       supporterBackgroundPage.steps.credentials.credentialFiles.value = updatedFiles;
-
-      console.log(`File uploaded successfully: ${file.name}`);
     } catch (error) {
       console.error('File upload failed:', error);
     } finally {

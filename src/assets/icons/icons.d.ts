@@ -88,6 +88,6 @@ export const NotificationIcon: FC<SVGProps<SVGSVGElement>>;
 
 
 // Illustrations
-export const EmptyWritingIcon: FC<SVGProps<SVGAElement>>
-export const EmptyMailboxIcon: FC<SVGProps<SVGAElement>>
-export const EmptyGroupIcon: FC<SVGProps<SVGAElement>>
+export const EmptyWritingIcon: FC<SVGProps<SVGSVGElement>>;
+export const EmptyMailboxIcon: FC<SVGProps<SVGSVGElement>>;
+export const EmptyGroupIcon: FC<SVGProps<SVGSVGElement>>;

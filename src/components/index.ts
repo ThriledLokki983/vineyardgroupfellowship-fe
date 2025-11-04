@@ -70,6 +70,9 @@ export {
   ViewTransitionLink
 } from './Layout';
 
+// LazyRoute
+export { LazyRoute } from './LazyRoute';
+
 // LoadingState
 export { default as LoadingState } from './LoadingState';
 

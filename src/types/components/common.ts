@@ -4,10 +4,13 @@
  */
 
 import type { User } from 'configs/hooks-interfaces';
+import type * as Icons from '../../assets/icons/icons';
 
 // Icon Component
+export type IconName = keyof typeof Icons;
+
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
-  name: string;
+  name: IconName;
   size?: number;
 }
 
@@ -28,7 +31,7 @@ export interface ModalProps {
 
 // Loading State
 export interface LoadingStateProps {
-  icon?: string;
+  icon?: IconName;
   message?: string;
   variant?: 'default' | 'centered' | 'fullscreen';
   showLayout?: boolean;

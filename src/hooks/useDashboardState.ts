@@ -99,33 +99,8 @@ export const useDashboardState = (): DashboardStateData => {
     // Check for returning user (more than 14 days inactive)
     const isReturning = daysSinceLastActivity >= 14
 
-    console.log({ userPurpose});
-
-
     // Determine dashboard state based on user purpose
     if (userPurpose === USER_PURPOSE_GROUP_MEMBER) {
-      // const isFirstVisit = !hasGoals && !hasActivityData && !hasProfileData
-
-      // if (isFirstVisit) {
-      //   return {
-      //     state: 'first-visit-seeker' as DashboardState,
-      //     userPurpose,
-      //     isFirstVisit: true,
-      //     isReturning: false,
-      //     daysSinceLastActivity
-      //   }
-      // }
-
-      // if (isReturning) {
-      //   return {
-      //     state: 'returning-seeker' as DashboardState,
-      //     userPurpose,
-      //     isFirstVisit: false,
-      //     isReturning: true,
-      //     daysSinceLastActivity
-      //   }
-      // }
-
       return {
         state: 'active-seeker' as DashboardState,
         userPurpose,

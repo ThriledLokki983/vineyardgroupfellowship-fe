@@ -8,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useRef } from 'react';
 import { getGroup, uploadGroupPhoto, joinGroup } from '../../../services/groupApi';
 import { Layout, LoadingState, Icon, Button, GroupMemberCard } from 'components';
+import { toast } from '../../../components/Toast';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import { getEditGroupPath } from '../../../configs/paths';
 import { getDisplayLocation, validateImageFile, shareGroup } from './helpers';
@@ -34,7 +35,7 @@ export const GroupDetailsPage = () => {
       // Update the cache with the new group data
       queryClient.setQueryData(['group', id], updatedGroup);
       queryClient.invalidateQueries({ queryKey: ['group', id] });
-      console.log('✅ Photo uploaded successfully');
+      toast.success('Photo uploaded successfully!');
     },
     onError: (error) => {
       console.error('❌ Failed to upload photo:', error);
@@ -49,7 +50,6 @@ export const GroupDetailsPage = () => {
       // Refresh group data to get updated membership status
       queryClient.invalidateQueries({ queryKey: ['group', id] });
       queryClient.invalidateQueries({ queryKey: ['groups'] });
-      console.log('✅ Join request sent successfully');
       // TODO: Show success toast notification
     },
     onError: (error) => {
@@ -74,23 +74,7 @@ export const GroupDetailsPage = () => {
   const hasPendingRequest = membershipStatus === 'pending';
   const isActiveMember = membershipStatus === 'active' || membershipStatus === 'leader' || membershipStatus === 'co_leader';
 
-  // Debug logging (development only)
-  if (import.meta.env.DEV) {
-    console.log('🔍 GroupDetails - Leadership Check:', {
-      hasUser: !!user,
-      hasGroup: !!group,
-      userId: user?.id,
-      canLeadGroups,
-      membershipStatus: group?.membership_status,
-      userMembership: group?.user_membership,
-      myRole: group?.user_membership?.role,
-      isGroupLeader,
-      hasPendingRequest,
-      isActiveMember,
-      shouldShowJoinButton: !isActiveMember && !!user,
-      shouldShowLeaderButtons: isGroupLeader
-    });
-  }  const handlePhotoClick = () => {
+  const handlePhotoClick = () => {
     if (isGroupLeader && fileInputRef.current) {
       fileInputRef.current.click();
     }
@@ -134,7 +118,6 @@ export const GroupDetailsPage = () => {
 
     if (result.success) {
       if (result.method === 'clipboard') {
-        console.log('Link copied to clipboard');
         // TODO: Show toast notification
       }
     }

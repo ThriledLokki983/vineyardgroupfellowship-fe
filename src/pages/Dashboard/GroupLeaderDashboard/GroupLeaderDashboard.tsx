@@ -371,10 +371,7 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
           emptyMessage='You have no groups yet. Create one to get started!'
           showActionButton={true}
           onActionClick={() => {
-            console.log('[DashboardCard] Create/Update Group button clicked');
-            console.log('[DashboardCard] Before setTrue:', modals.createGroup.value.value);
             modals.createGroup.setTrue();
-            console.log('[DashboardCard] After setTrue:', modals.createGroup.value.value);
           }}
           isEmpty={!hasGroup}
           groupData={groupData}

@@ -21,7 +21,6 @@ export default function ConfigurableForm({
   useSignals();
 
   const formSignal = useMemo(() => {
-    // Initialize form data with initialData and default values
     const initial: Record<string, FieldValue> = { ...initialData }
 
     const initializeFields = (fields: FieldConfig[]) => {
@@ -71,7 +70,6 @@ export default function ConfigurableForm({
     }
   }, [initialData, formSignal]);
 
-  // Merge server errors with validation errors
   useEffect(() => {
     if (serverErrors && Object.keys(serverErrors).length > 0) {
       formSignal.setServerErrors(serverErrors)
@@ -107,7 +105,7 @@ export default function ConfigurableForm({
     formSignal.setFieldValue(fieldName, value)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (config.schema && !validateFormData(formSignal.data.value)) {
@@ -262,7 +260,7 @@ export default function ConfigurableForm({
 
   return (
     <div className={`${styles.configurableForm} ${className}`}>
-      <Form onSubmit={handleSubmit} className={styles.form}>
+      <Form onSubmit={handleSubmit} validationErrors={serverErrors} className={styles.form}>
         {config.fields.map(item =>
           isFieldGroup(item)
             ? renderFieldGroup(item)
@@ -277,7 +275,15 @@ export default function ConfigurableForm({
 
         {hasServerErrors && (
           <div className={styles.errorMessage}>
-            Please fix the errors below and try again.
+            {serverErrors.non_field_errors ? (
+              <>
+                {serverErrors.non_field_errors.map((err, index) => (
+                  <div key={index}>{err}</div>
+                ))}
+              </>
+            ) : (
+              'Please fix the errors below and try again.'
+            )}
           </div>
         )}
 

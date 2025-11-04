@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { Text } from 'react-aria-components'
-import Layout from '../../../components/Layout/Layout';
-import ConfigurableForm from '../../../components/ConfigurableForm'
-import { useRegistration } from '../../../hooks/useAuth'
-import { type RegistrationFormData } from '../../../configs/hooks-interfaces'
-import { type FormConfig, type FieldValue } from '../../../components/ConfigurableForm/types'
-import { registrationSchema } from '../../../schemas'
-import { ApiError } from '../../../services/api'
-import { toast } from '../../../components/Toast'
+import Layout from 'components/Layout/Layout';
+import ConfigurableForm from 'components/ConfigurableForm'
+import { useRegistration } from 'hooks/useAuth'
+import { type RegistrationFormData } from 'configs/hooks-interfaces'
+import type { FormConfig, FieldValue } from 'components'
+import { registrationSchema } from 'schemas'
+import { ApiError } from 'services/api'
+import { toast } from 'components/Toast'
 import styles from './RegistrationPage.module.scss'
 
 export const RegistrationPage = () => {
@@ -76,7 +76,6 @@ export const RegistrationPage = () => {
 
     registerUser(registrationData, {
       onSuccess: (response) => {
-        // Show success toast
         toast.success(
           'Account Created!',
           `Welcome to Vineyard Group Fellowship! Please check your email to verify your account.`

@@ -65,15 +65,11 @@ export function BackgroundFormWizard({
   }, []); // Only run once on mount
 
   const updateFormData = useCallback((data: Partial<SupporterBackgroundFormData>) => {
-    console.log('📝 Updating form data:', data);
     supporterBackgroundPage.wizard.updateFormData(data);
-    console.log('📄 New form data:', supporterBackgroundPage.wizard.formData.value);
   }, []);
 
   const markStepComplete = useCallback((stepId: WizardStepId) => {
-    console.log('✅ Marking step complete:', stepId);
     supporterBackgroundPage.wizard.markStepComplete(stepId);
-    console.log('📋 Updated completed steps:', Array.from(supporterBackgroundPage.wizard.completedSteps.value));
   }, []);
 
   const canAccessStep = (stepId: WizardStepId): boolean => {
@@ -88,25 +84,17 @@ export function BackgroundFormWizard({
     const formData = supporterBackgroundPage.wizard.formData.value;
     const completedSteps = supporterBackgroundPage.wizard.completedSteps.value;
 
-    console.log('🚀 handleFinalSubmit called');
-    console.log('📋 Current formData:', formData);
-    console.log('✅ Completed steps:', Array.from(completedSteps));
-
     // Validate that all required steps are completed
     const missingSteps = WIZARD_STEPS.filter(step =>
       step.required && !completedSteps.has(step.id)
     );
 
-    console.log('❌ Missing required steps:', missingSteps.map(s => s.id));
-
     if (missingSteps.length > 0) {
-      console.log('⏠️ Navigating to first missing step:', missingSteps[0].id);
       // Navigate to first missing step
       supporterBackgroundPage.wizard.selectTab(missingSteps[0].id);
       return;
     }
 
-    console.log('🎯 All required steps completed, submitting...');
     // Submit the form data
     onSubmit(formData as SupporterBackgroundFormData);
   };

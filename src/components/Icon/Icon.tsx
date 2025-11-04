@@ -1,12 +1,18 @@
+/**
+ * Icon Component
+ * Renders SVG icons by name with full type safety
+ */
+
 import * as Icons from 'assets/icons/icons';
-import type { FC, SVGProps } from 'react';
 import type { IconProps } from 'types';
 
 const Icon = ({ name, className, ...props }: IconProps) => {
-  const IconComponent = Icons[name as keyof typeof Icons] as FC<SVGProps<SVGSVGElement>>;
+  const IconComponent = Icons[name];
 
   if (!IconComponent) {
-    console.warn(`Icon "${name}" not found`);
+    if (import.meta.env.DEV) {
+      console.warn(`Icon "${name}" not found`);
+    }
     return null;
   }
 
