@@ -205,6 +205,10 @@
       transform: translateY(0);
     }
   }
+
+  button {
+    padding: var(--size-2) var(--size-4);
+  }
 }
 
 .actionButton {

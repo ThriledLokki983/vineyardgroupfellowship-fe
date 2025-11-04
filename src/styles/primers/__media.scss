@@ -19,6 +19,12 @@ video {
     max-width: 100%; height: auto;
 }
 
+img {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+}
+
 svg {
     max-width: 100%;
     &[hidden] {

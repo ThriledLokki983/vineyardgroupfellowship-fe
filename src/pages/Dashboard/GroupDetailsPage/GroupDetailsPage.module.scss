@@ -247,12 +247,12 @@
   margin: 0 0 var(--size-4) 0;
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--brand);
+  color: var(--text-1);
 
   & > svg {
     inline-size: var(--size-5);
     block-size: var(--size-5);
-    fill: var(--brand);
+    // fill: var(--brand);
   }
 }
 

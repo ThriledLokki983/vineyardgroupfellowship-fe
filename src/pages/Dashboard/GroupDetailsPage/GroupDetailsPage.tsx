@@ -10,6 +10,7 @@ import { getGroup, uploadGroupPhoto, joinGroup } from '../../../services/groupAp
 import { Layout, LoadingState, Icon, Button, GroupMemberCard } from 'components';
 import { toast } from '../../../components/Toast';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
+import { useMyGroups } from '../../../hooks/useMyGroups';
 import { getEditGroupPath } from '../../../configs/paths';
 import { getDisplayLocation, validateImageFile, shareGroup } from './helpers';
 import styles from './GroupDetailsPage.module.scss';
@@ -27,6 +28,14 @@ export const GroupDetailsPage = () => {
     queryFn: () => getGroup(id!),
     enabled: !!id,
   });
+
+  // Fetch user's groups to check for any pending requests
+  const { data: myGroups } = useMyGroups();
+
+  // Check if user has ANY pending join requests across all groups
+  const hasAnyPendingRequest = myGroups?.some(
+    (g) => g.membership_status === 'pending'
+  ) || false;
 
   // Mutation for uploading group photo
   const uploadPhotoMutation = useMutation({
@@ -71,8 +80,11 @@ export const GroupDetailsPage = () => {
 
   // Check membership status using both membership_status (list view) and user_membership (detail view)
   const membershipStatus = group?.membership_status || group?.user_membership?.status;
-  const hasPendingRequest = membershipStatus === 'pending';
+  const hasPendingRequest = membershipStatus === 'pending'; // This group specifically
   const isActiveMember = membershipStatus === 'active' || membershipStatus === 'leader' || membershipStatus === 'co_leader';
+
+  // Check if user has a pending request to a DIFFERENT group (not this one)
+  const hasPendingRequestElsewhere = hasAnyPendingRequest && !hasPendingRequest;
 
   const handlePhotoClick = () => {
     if (isGroupLeader && fileInputRef.current) {
@@ -227,8 +239,8 @@ export const GroupDetailsPage = () => {
           )}
 
           {/* Join Group Button - Visible to authenticated users who are not active members */}
-          {/* Shows "Request Pending" (disabled) if user has pending request */}
-          {/* Shows "Request to Join" if user has no membership */}
+          {/* Shows "Request Pending" (disabled) if user has pending request to THIS group */}
+          {/* Shows "Request to Join" (disabled) if user has pending request to ANOTHER group */}
           {!isActiveMember && user && (
             <div className={styles.groupActions}>
               <Button
@@ -236,26 +248,28 @@ export const GroupDetailsPage = () => {
                 onPress={handleJoinGroup}
                 className={styles.actionButton}
                 isDisabled={
-                  hasPendingRequest ||
+                  hasAnyPendingRequest ||
                   joinGroupMutation.isPending ||
                   !group.is_open ||
                   group.available_spots === 0
                 }
               >
                 <Icon
-                  name={hasPendingRequest ? "ClockIcon" : "HandIcon"}
+                  name={hasPendingRequest ? "ClockIcon" : hasPendingRequestElsewhere ? "HandIcon" : "HandIcon"}
                   width={18}
                   height={18}
                 />
                 {hasPendingRequest
                   ? 'Request Pending'
-                  : joinGroupMutation.isPending
-                    ? 'Requesting...'
-                    : !group.is_open
-                      ? 'Group Closed'
-                      : group.available_spots === 0
-                        ? 'Group Full'
-                        : 'Request to Join'}
+                  : hasPendingRequestElsewhere
+                    ? 'Request to Join'
+                    : joinGroupMutation.isPending
+                      ? 'Requesting...'
+                      : !group.is_open
+                        ? 'Group Closed'
+                        : group.available_spots === 0
+                          ? 'Group Full'
+                          : 'Request to Join'}
               </Button>
             </div>
           )}

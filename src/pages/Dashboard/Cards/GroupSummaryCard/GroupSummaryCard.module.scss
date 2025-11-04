@@ -24,7 +24,8 @@
 
 .pendingBadge {
   background: var(--brand);
-  color: var(--surface-2);
+  color: var(--text-1);
+  inline-size: fit-content;
 }
 
 .leaderBadge {

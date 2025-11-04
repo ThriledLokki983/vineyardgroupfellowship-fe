@@ -3,6 +3,7 @@ import { Button, Icon, toast, Avatar, InlineLoader } from 'components';
 import type { PendingRequestCardProps } from 'types';
 import { useApproveRequest, useRejectRequest } from '../../../../hooks/usePendingRequests';
 import { formatRelativeDate } from '../../../../utils/helpers';
+import { profileReview } from '../../../../signals/ui-signals';
 import styles from './PendingRequestCard.module.scss';
 
 /**
@@ -49,8 +50,8 @@ export const PendingRequestCard = ({ request, groupId }: PendingRequestCardProps
   const fullName = [request.first_name, request.last_name].filter(Boolean).join(' ') || request.display_name;
 
   const handleOpenProfile = () => {
-    // Open profile review modal (to be implemented)
-    // modals.profileReview.open(request);
+    // Open profile review modal with the request data
+    profileReview.setRequest(request.user_id, request.id, groupId);
   };
 
   return (

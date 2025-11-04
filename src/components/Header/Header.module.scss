@@ -127,7 +127,7 @@
   position: relative;
 
   &:hover {
-    color: var(--text-1);
+    color: var(--text-2);
     background: var(--surface-2);
   }
 
@@ -137,7 +137,7 @@
   }
 
   &.navLinkActive {
-    color: var(--brand);
+    color: var(--text-1);
     font-weight: var(--font-weight-6);
 
     &::after {

@@ -86,7 +86,7 @@
 .sectionTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--brand);
+  color: var(--text-1);
   margin: 0;
   display: flex;
   align-items: center;
@@ -111,7 +111,7 @@
   svg {
     width: 20px;
     height: 20px;
-    color: var(--brand);
+    // color: var(--brand);
     flex-shrink: 0;
     margin-top: 2px;
   }
@@ -126,7 +126,7 @@
 
 .label {
   font-size: var(--font-size-0);
-  color: var(--text-2);
+  color: var(--text-1);
   font-weight: var(--font-weight-5);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -134,7 +134,7 @@
 
 .value {
   font-size: var(--font-size-1);
-  color: var(--text-1);
+  color: var(--text-2);
   font-weight: var(--font-weight-4);
 }
 
@@ -142,7 +142,7 @@
   display: inline-flex;
   padding: var(--size-1) var(--size-2);
   background: var(--brand);
-  color: var(--surface-2);
+  color: var(--text-1);
   border-radius: var(--radius-2);
   font-size: var(--font-size-0);
   font-weight: var(--font-weight-6);
@@ -176,7 +176,7 @@
 .bioText {
   margin: 0;
   font-size: var(--font-size-1);
-  color: var(--text-1);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   padding: var(--size-2) 0;
   background: var(--surface-1);
@@ -192,6 +192,7 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   margin-top: var(--size-2);
+  max-inline-size: 100%;
 
   svg {
     width: 18px;
