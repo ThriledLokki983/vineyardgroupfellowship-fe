@@ -24,16 +24,19 @@ function Features() {
             Here's what's on our roadmap:
           </p>
 
-          {/* Core Features - In Development */}
+          {/* Core Features - Implemented */}
           <div className={styles.featureSection}>
-            <h3 className={styles.sectionTitle}>🔨 Core Features (In Development)</h3>
+            <h3 className={styles.sectionTitle}>✅ Core Features (Live Now!)</h3>
             <ul className={styles.featureList}>
-              <li>👥 <strong>Fellowship Groups</strong> - Create, join, and manage community groups</li>
+              <li>👥 <strong>Fellowship Groups</strong> - Create, join, browse, and manage community groups</li>
               <li>📅 <strong>Group Meetings</strong> - Schedule and track in-person, virtual, and hybrid gatherings</li>
-              <li>🤝 <strong>Member Connections</strong> - Build meaningful relationships with fellow members</li>
+              <li>🤝 <strong>Member Connections</strong> - View group members and build relationships</li>
               <li>📊 <strong>Group Dashboard</strong> - Manage group activities, members, and join requests</li>
-              <li>🔐 <strong>Privacy Controls</strong> - Secure, private spaces for authentic fellowship</li>
+              <li>🔐 <strong>Privacy Controls</strong> - Secure groups with public, community, or private visibility</li>
               <li>🎯 <strong>Focus Areas</strong> - Customize groups around specific interests and purposes</li>
+              <li>📍 <strong>Location Search</strong> - Find groups by location with Google Places integration</li>
+              <li>📸 <strong>Group Photos</strong> - Upload and display group photos</li>
+              <li>👨‍💼 <strong>Leadership Roles</strong> - Group leaders and co-leaders with distinct permissions</li>
             </ul>
           </div>
 
