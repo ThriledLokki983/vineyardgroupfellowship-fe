@@ -1,4 +1,4 @@
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .legalPage {
   max-width: 800px;
@@ -108,8 +108,8 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--brand-primary);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: var(--size-1);
+    border-radius: var(--radius-1);
   }
 }

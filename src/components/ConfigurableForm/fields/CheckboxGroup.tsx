@@ -1,6 +1,4 @@
-import { useSignals } from '@preact/signals-react/runtime'
-import { Label, Text } from 'react-aria-components'
-import { createFormSignal } from 'signals/form-signals'
+import { Label, Text, FieldError } from 'react-aria-components'
 import { Checkbox } from 'components'
 import type { FieldConfig, FieldValue } from '../types'
 import styles from '../ConfigurableForm.module.scss'
@@ -8,13 +6,11 @@ import styles from '../ConfigurableForm.module.scss'
 interface CheckboxGroupProps {
   field: FieldConfig
   value: FieldValue
-  handleInputChange: (fieldName: string, newValue: FieldValue) => void
-  formSignal: ReturnType<typeof createFormSignal>
+  onChange: (value: FieldValue) => void
+  error?: string
 }
 
-export default function CheckboxGroup({ field, value, handleInputChange, formSignal }: CheckboxGroupProps) {
-  useSignals()
-
+export default function CheckboxGroup({ field, value, onChange, error }: CheckboxGroupProps) {
   return (
     <div key={field.name} className={styles.checkboxGroupContainer}>
       <Label className={styles.fieldLabel}>{field.label}</Label>
@@ -36,11 +32,7 @@ export default function CheckboxGroup({ field, value, handleInputChange, formSig
                 newValues = currentValues.filter(v => v !== option.value)
               }
 
-              handleInputChange(field.name, newValues)
-
-              if (formSignal.errors.value[field.name]) {
-                formSignal.clearFieldError(field.name)
-              }
+              onChange(newValues)
             }}
             description={option.description}
             className={styles.checkboxGroupOption}
@@ -49,10 +41,10 @@ export default function CheckboxGroup({ field, value, handleInputChange, formSig
           </Checkbox>
         ))}
       </div>
-      {formSignal.errors.value[field.name] && (
-        <div className={styles.fieldError}>
-          {formSignal.errors.value[field.name]}
-        </div>
+      {error && (
+        <FieldError className={styles.fieldError}>
+          {error}
+        </FieldError>
       )}
     </div>
   )

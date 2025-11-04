@@ -1,4 +1,4 @@
-@use '../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .dashboardContainer {
   inline-size: 1200px;
@@ -42,7 +42,7 @@
   margin-bottom: var(--size-2);
 
   svg {
-    filter: drop-shadow(0 4px 12px rgba(244, 199, 123, 0.2));
+    filter: drop-shadow(0 4px 12px hsl(var(--accent-warm-hsl) / 20%));
   }
 }
 
@@ -81,7 +81,7 @@
   animation: float 3s ease-in-out infinite;
 
   svg {
-    filter: drop-shadow(0 4px 8px rgba(60, 48, 0, 0.1));
+    filter: drop-shadow(0 4px 8px hsl(var(--brand-primary-hsl) / 10%));
   }
 }
 

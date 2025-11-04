@@ -1,4 +1,4 @@
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .configurableForm {
   width: 100%;
@@ -34,12 +34,12 @@
 
   :global([data-react-aria-input]) {
     @include input-base;
-    min-height: 48px; // Touch-friendly input height
-    font-size: 16px; // Prevents zoom on iOS
+    min-height: var(--size-12); // Touch-friendly input height (48px)
+    font-size: var(--font-size-1); // Prevents zoom on iOS
     padding: var(--size-3) var(--size-4);
 
     @include bp-min($tablet) {
-      min-height: 44px;
+      min-height: var(--size-11); // 44px
       font-size: var(--font-size-1);
     }
   }
@@ -392,7 +392,7 @@
   :global(.react-aria-Text) {
     color: var(--text-2);
     font-size: var(--font-size-1);
-    font-weight: 200;
+    font-weight: var(--font-weight-2);
   }
 }
 

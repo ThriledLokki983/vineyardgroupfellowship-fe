@@ -1,4 +1,4 @@
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .root {
     position: relative;
@@ -11,9 +11,9 @@
     }
 }
 .root > a > svg {
-    margin: 1px 0.4em 0 0;
-    width: 15px; height: 12px; opacity: 0.85;
-    transition: all 0.15s;
+    margin: var(--size-000) 0.4em 0 0;
+    width: var(--size-4); height: var(--size-3); opacity: 0.85;
+    transition: all var(--animation-duration-fast);
 }
 .root > a:hover > svg {
     transform: translateX(-0.25em);

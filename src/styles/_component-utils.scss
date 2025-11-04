@@ -1,0 +1,17 @@
+// Lightweight utilities for component modules
+// This file should ONLY include mixins and variables - NO BASE STYLES
+// Base styles (Open Props, normalize, themes) are imported once in main.tsx
+
+// Variables (required by mixins)
+@forward './utils/__variables';
+
+// Mixins (used by components for styling patterns)
+@forward './mixins/__mixins';
+@forward './mixins/__font-mixins';
+
+// DO NOT include:
+// - Open Props (imported once in main.tsx)
+// - Themes (imported once in main.tsx)
+// - Reset/Normalize (imported once in main.tsx)
+// - React Aria global styles (imported once in main.tsx)
+// - Primers (global base element styles, imported once in main.tsx)

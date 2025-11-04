@@ -1,4 +1,4 @@
-@use '../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .loginContainer {
   width: 100%;
@@ -199,7 +199,7 @@
 	:global(.react-aria-Text) {
     color: var(--text-2);
     font-size: var(--font-size-1);
-		font-weight: 200;
+		font-weight: var(--font-weight-2);
   }
 
   &:hover {
@@ -233,7 +233,7 @@
   :global(.react-aria-Text) {
     color: var(--text-2);
     font-size: var(--font-size-1);
-    font-weight: 200;
+    font-weight: var(--font-weight-2);
   }
 }
 

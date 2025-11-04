@@ -1,9 +1,8 @@
-import { useEffect, useMemo } from 'react'
-import { useSignals } from '@preact/signals-react/runtime'
+import { useEffect } from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Form, Text } from 'react-aria-components'
-import { z } from 'zod'
 import { Button } from 'components'
-import { createFormSignal } from 'signals/form-signals'
 import type { ConfigurableFormProps, FieldConfig, FieldGroup, FieldValue, PasswordStrengthState } from './types'
 import { isFieldGroup } from './types'
 import { CheckboxGroup, CheckboxField, RadioGroupField, TextInputField } from './fields'
@@ -18,22 +17,21 @@ export default function ConfigurableForm({
   className = '',
   serverErrors = {}
 }: ConfigurableFormProps) {
-  useSignals();
-
-  const formSignal = useMemo(() => {
-    const initial: Record<string, FieldValue> = { ...initialData }
+  // Initialize default values for all fields
+  const getDefaultValues = (): Record<string, FieldValue> => {
+    const defaults: Record<string, FieldValue> = { ...initialData }
 
     const initializeFields = (fields: FieldConfig[]) => {
       fields.forEach(field => {
-        if (!(field.name in initial)) {
+        if (!(field.name in defaults)) {
           if (field.type === 'checkbox' && !field.options) {
-            initial[field.name] = false
+            defaults[field.name] = false
           } else if (field.type === 'checkbox_group' || (field.type === 'checkbox' && field.options)) {
-            initial[field.name] = []
+            defaults[field.name] = []
           } else if (field.type === 'radio') {
-            initial[field.name] = ''
+            defaults[field.name] = ''
           } else {
-            initial[field.name] = ''
+            defaults[field.name] = ''
           }
         }
       })
@@ -43,77 +41,65 @@ export default function ConfigurableForm({
       if (isFieldGroup(item)) {
         initializeFields(item.fields)
       } else {
-        if (!(item.name in initial)) {
+        if (!(item.name in defaults)) {
           if (item.type === 'checkbox' && !item.options) {
-            initial[item.name] = false
+            defaults[item.name] = false
           } else if (item.type === 'checkbox_group' || (item.type === 'checkbox' && item.options)) {
-            initial[item.name] = []
+            defaults[item.name] = []
           } else if (item.type === 'radio') {
-            initial[item.name] = ''
+            defaults[item.name] = ''
           } else {
-            initial[item.name] = ''
+            defaults[item.name] = ''
           }
         }
       }
     })
 
-    return createFormSignal(initial)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    return defaults
+  }
 
-  // Update form data when initialData changes (use ref to track previous value)
+  // Initialize React Hook Form with Zod resolver if schema is provided
+  const {
+    control,
+    handleSubmit: handleFormSubmit,
+    setError,
+    clearErrors,
+    reset
+  } = useForm<Record<string, FieldValue>>({
+    defaultValues: getDefaultValues(),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: config.schema ? zodResolver(config.schema as any) : undefined,
+    mode: 'onChange'
+  })
+
+  // Update form when initialData changes
   useEffect(() => {
     if (Object.keys(initialData).length > 0) {
-      Object.entries(initialData).forEach(([key, value]) => {
-        formSignal.setFieldValue(key, value)
-      })
+      reset(initialData)
     }
-  }, [initialData, formSignal]);
+  }, [initialData, reset])
 
+  // Handle server-side errors
   useEffect(() => {
     if (serverErrors && Object.keys(serverErrors).length > 0) {
-      formSignal.setServerErrors(serverErrors)
+      Object.entries(serverErrors).forEach(([field, messages]) => {
+        if (field !== 'non_field_errors') {
+          setError(field, {
+            type: 'server',
+            message: Array.isArray(messages) ? messages[0] : messages
+          })
+        }
+      })
+    } else {
+      clearErrors()
     }
-  }, [serverErrors, formSignal]);
+  }, [serverErrors, setError, clearErrors])
 
   const hasServerErrors = serverErrors && Object.keys(serverErrors).length > 0
 
-  // Validate form data with Zod schema
-  const validateFormData = (data: Record<string, FieldValue>) => {
-    if (!config.schema) {
-      formSignal.clearErrors()
-      return true
-    }
-
-    try {
-      config.schema.parse(data)
-      formSignal.clearErrors()
-      return true
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        error.issues.forEach(issue => {
-          if (issue.path.length > 0) {
-            formSignal.setFieldError(issue.path[0] as string, issue.message)
-          }
-        })
-      }
-      return false
-    }
-  };
-
-  const handleInputChange = (fieldName: string, value: FieldValue) => {
-    formSignal.setFieldValue(fieldName, value)
+  const handleSubmit = (data: Record<string, FieldValue>) => {
+    onSubmit(data)
   }
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (config.schema && !validateFormData(formSignal.data.value)) {
-      return
-    };
-
-    onSubmit(formSignal.data.value);
-  };
 
   // Password strength calculation function
   const calculatePasswordStrength = (password: string): PasswordStrengthState => {
@@ -195,52 +181,59 @@ export default function ConfigurableForm({
   };
 
   const renderField = (field: FieldConfig) => {
-    if (field.type === 'checkbox_group' || (field.type === 'checkbox' && field.options)) {
-      return (
-        <CheckboxGroup
-          value={formSignal.data.value[field.name]}
-          field={field}
-          handleInputChange={handleInputChange}
-          formSignal={formSignal}
-        />
-      );
-
-    };
-
-    if (field.type === 'radio') {
-      return (
-        <RadioGroupField
-          value={formSignal.data.value[field.name]}
-          field={field}
-          handleInputChange={handleInputChange}
-          formSignal={formSignal}
-        />
-      );
-
-    };
-
-    if (field.type === 'checkbox') {
-      return (
-        <CheckboxField
-          value={formSignal.data.value[field.name]}
-          field={field}
-          handleInputChange={handleInputChange}
-        />
-      );
-
-    };
-
     return (
-      <TextInputField
-        value={formSignal.data.value[field.name]}
-        field={field}
-        handleInputChange={handleInputChange}
-        formSignal={formSignal}
-        renderPasswordStrengthMeter={renderPasswordStrengthMeter}
-      />
-    );
+      <Controller
+        name={field.name}
+        control={control}
+        render={({ field: controllerField, fieldState }) => {
+          const errorMessage = fieldState.error?.message
 
-  };
+          if (field.type === 'checkbox_group' || (field.type === 'checkbox' && field.options)) {
+            return (
+              <CheckboxGroup
+                value={controllerField.value}
+                field={field}
+                onChange={controllerField.onChange}
+                error={errorMessage}
+              />
+            )
+          }
+
+          if (field.type === 'radio') {
+            return (
+              <RadioGroupField
+                value={controllerField.value}
+                field={field}
+                onChange={controllerField.onChange}
+                error={errorMessage}
+              />
+            )
+          }
+
+          if (field.type === 'checkbox') {
+            return (
+              <CheckboxField
+                value={controllerField.value}
+                field={field}
+                onChange={controllerField.onChange}
+              />
+            )
+          }
+
+          return (
+            <TextInputField
+              value={controllerField.value}
+              field={field}
+              onChange={controllerField.onChange}
+              onBlur={controllerField.onBlur}
+              error={errorMessage}
+              renderPasswordStrengthMeter={renderPasswordStrengthMeter}
+            />
+          )
+        }}
+      />
+    )
+  }
 
   const renderFieldGroup = (group: FieldGroup) => {
     return (
@@ -260,7 +253,7 @@ export default function ConfigurableForm({
 
   return (
     <div className={`${styles.configurableForm} ${className}`}>
-      <Form onSubmit={handleSubmit} validationErrors={serverErrors} className={styles.form}>
+      <Form onSubmit={handleFormSubmit(handleSubmit)} validationErrors={serverErrors} className={styles.form}>
         {config.fields.map(item =>
           isFieldGroup(item)
             ? renderFieldGroup(item)

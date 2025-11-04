@@ -1,4 +1,4 @@
-// @use '../../../styles/styles.scss' as *;
+// @use 'styles/_component-utils.scss' as *;
 
 // // ===========================
 // // 🎨 Minimal Dashboard Design
@@ -650,7 +650,7 @@
 //   }
 // }
 
-@use '../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .memberDashboard {
   min-height: 100vh;
@@ -693,11 +693,11 @@
   padding: var(--size-6) var(--size-4);
   background: linear-gradient(135deg,
     var(--brand-primary) 0%,
-    rgba(58, 79, 65, 0.9) 100%
+    hsl(var(--brand-primary-hsl) / 90%) 100%
   );
   border-radius: var(--radius-3);
   margin-bottom: var(--size-4);
-  box-shadow: 0 4px 16px rgba(58, 79, 65, 0.15);
+  box-shadow: 0 4px 16px hsl(var(--brand-primary-hsl) / 15%);
   color: white;
 
   @include bp-min($tablet) {
@@ -747,7 +747,7 @@
   &:hover {
     background: var(--surface-canvas);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-3);
   }
 
   svg {
@@ -935,6 +935,8 @@
   color: var(--brand-primary);
   margin: 0;
   letter-spacing: -0.02em;
+  min-inline-size: fit-content;
+  max-inline-size: fit-content;
 }
 
 /* Main Content Grid - Active/Returning Members */

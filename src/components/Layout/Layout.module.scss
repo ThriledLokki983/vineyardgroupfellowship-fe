@@ -1,5 +1,5 @@
 // Layout component styles with mobile-first responsive design
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .layout {
   min-height: 100vh;

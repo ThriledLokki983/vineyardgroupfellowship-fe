@@ -1,4 +1,4 @@
-@use '../../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .root {
 	position: relative;
@@ -20,7 +20,7 @@
 
 .root > a,
 .root > button {
-	padding: 4px 12px;
+	padding: var(--size-1) var(--size-3);
 	min-block-size: fit-content;
 	font-size: 0.85rem;
 	border-radius: var(--radius-1);

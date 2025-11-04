@@ -1,0 +1,107 @@
+// Accessibility-First Utilities
+// Based on Open Props patterns and wellness app best practices
+
+// Respect user motion preferences
+@mixin respect-motion-preference {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+@mixin disable-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Usage example:
+// .card {
+//   @include respect-motion-preference {
+//     transition: transform var(--ease-3);
+//   }
+//   @include disable-motion {
+//     transition: none;
+//   }
+// }
+
+// High contrast mode support
+@mixin high-contrast {
+  @media (prefers-contrast: more) {
+    @content;
+  }
+}
+
+// Reduced transparency preference
+@mixin respect-transparency {
+  @media (prefers-reduced-transparency: no-preference) {
+    @content;
+  }
+}
+
+@mixin disable-transparency {
+  @media (prefers-reduced-transparency: reduce) {
+    @content;
+  }
+}
+
+// Focus-visible utility (better than :focus)
+@mixin focus-visible {
+  &:focus-visible {
+    outline: var(--border-size-2) solid var(--brand-secondary);
+    outline-offset: var(--size-1);
+    @content;
+  }
+}
+
+// Screen reader only (visually hidden)
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// Undo sr-only
+@mixin not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+// Utility classes for accessibility
+.sr-only {
+  @include sr-only;
+}
+
+.not-sr-only {
+  @include not-sr-only;
+}
+
+// Skip to content link (for keyboard navigation)
+.skip-to-content {
+  @include sr-only;
+
+  &:focus {
+    @include not-sr-only;
+    position: fixed;
+    top: var(--size-2);
+    left: var(--size-2);
+    z-index: 9999;
+    padding: var(--size-2) var(--size-4);
+    background: var(--brand-primary);
+    color: var(--text-light);
+    border-radius: var(--radius-2);
+    text-decoration: none;
+    font-weight: var(--font-weight-6);
+  }
+}

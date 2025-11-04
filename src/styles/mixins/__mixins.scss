@@ -12,16 +12,16 @@
 
 @mixin ui-font($bold: false, $line-height: true) {
     font-family: $ui-font;
-    font-weight: 500; line-height: 1.25; letter-spacing: -0.025em;
+    font-weight: var(--font-weight-5); line-height: 1.25; letter-spacing: -0.025em;
     @if ($bold) {
-        font-weight: 700;
+        font-weight: var(--font-weight-7);
     }
 }
 
 /**
  * Avatar
  */
-@mixin avatar($size: 32px) {
+@mixin avatar($size: var(--size-8)) {
     @include ui-font;
     flex: 0 0 auto; display: inline-block;
     width: $size; height: $size; line-height: $size; padding: 0;
@@ -44,7 +44,7 @@
     // Hide everything when pending and show only question mark
     &[data-pending="true"] {
         display: flex; align-items: center; justify-content: center;
-        background: rgba(209, 209, 209, 1);
+        background: var(--surface-3);
 
         & > img, & > span {
             display: none;
@@ -55,7 +55,7 @@
             display: block;
             font-size: 1.2em;
             line-height: 1;
-            font-weight: 300;
+            font-weight: var(--font-weight-3);
         }
     }
 }
@@ -64,10 +64,6 @@
 //         BUTTON MIXINS
 // ******************************************** //
 @mixin button-base {
-  --primary-btn-bg: hsla(30, 100%, 19%, 0.85);
-  --primary-btn-pressed-bg: hsla(30, 100%, 19%, 0.8);
-  --primary-btn-hover-bg: hsla(30, 100%, 19%, 0.85);
-
   all: unset;
   box-sizing: border-box;
   display: inline-flex;
@@ -87,21 +83,34 @@
 
 
 @mixin button-primary {
+  --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 45% / 0.9);
+
   @include button-base;
-  background: var(--primary-btn-bg);
-  color: var(--surface-canvas);
-  border-color: var(--brand-primary);
+  background: var(--brand);
+  color: var(--surface-1);
   font-weight: var(--font-weight-6);
 
   &:hover {
-    background: var(--primary-btn-hover-bg);
+    background: var(--hover-color);
     border-color: var(--border-2);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(96, 48, 0, 0.2);
+    box-shadow: var(--shadow-2);
+
+    &:not([data-disabled]) {
+      background: var(--hover-clr);
+      border-color: var(--hover-clr);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(96, 48, 0, 0.2);
+    }
   }
 
   &:active {
     transform: translateY(0);
+  }
+
+  &[data-pressed]:not([data-disabled]) {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(96, 48, 0, 0.2);
   }
 
   &:disabled {
@@ -126,7 +135,7 @@
     background: var(--surface-2);
     border-color: var(--brand-primary);
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(42, 42, 42, 0.1);
+    box-shadow: var(--shadow-1);
   }
 
   &:active {
@@ -193,8 +202,8 @@
   background: var(--surface-1);
   color: var(--text-1);
   font-family: inherit;
-  font-size: 16px; // Prevents zoom on iOS
-  min-height: 48px; // Touch-friendly minimum height
+  font-size: var(--font-size-1); // Prevents zoom on iOS
+  min-height: var(--size-12); // Touch-friendly minimum height (48px)
   transition: all var(--animation-duration-fast);
 
   // Mobile optimizations
@@ -206,13 +215,13 @@
 
   @include bp-min($tablet) {
     font-size: var(--font-size-1);
-    min-height: 44px;
+    min-height: var(--size-11);
   }
 
   &:focus {
     border-color: var(--brand-primary);
-    outline: var(--border-size-2) solid rgba(96, 48, 0, 0.1);
-    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
+    outline: var(--border-size-2) solid hsl(var(--surface-shadow) / 10%);
+    box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 10%);
   }
 
   &::placeholder {
@@ -265,17 +274,29 @@
   all: unset;
   box-sizing: border-box;
   cursor: pointer;
-  display: inline;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   color: inherit;
+  gap: var(--size-2);
+
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  transition: all var(--animation-duration-fast) ease-out;
+  text-decoration: none;
+
+  // Better touch interaction
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 // Accessible focus ring for interactive elements
 @mixin focus-ring {
-  outline: 2px solid var(--brand-primary);
-  outline-offset: 2px;
+  outline: var(--border-size-2) solid var(--brand-primary);
+  outline-offset: var(--size-1);
   border-radius: var(--radius-2);
 }
 

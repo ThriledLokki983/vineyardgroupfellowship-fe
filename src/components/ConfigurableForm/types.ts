@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import type { FormSignal } from 'signals/form-signals'
 
 export type FieldType = 'text' | 'email' | 'password' | 'checkbox' | 'radio' | 'select' | 'checkbox_group'
 
@@ -65,10 +64,8 @@ export interface ConfigurableFormProps {
   error?: string | null
   initialData?: Record<string, FieldValue>
   className?: string
-  // Server-side field errors
+  // Server-side field errors (e.g., from Django API)
   serverErrors?: Record<string, string[]>
-  // Optional form signal for signal-based state management
-  formSignal?: FormSignal<Record<string, FieldValue>>
 }
 
 // Type guard to check if an item is a FieldGroup

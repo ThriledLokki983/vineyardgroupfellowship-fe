@@ -1,4 +1,4 @@
-@use '../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .onboardingRequiredContainer {
   display: flex;
@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent-warm), rgba(244, 199, 123, 0.7));
+  background: linear-gradient(135deg, var(--accent-warm), hsl(var(--accent-warm-hsl) / 70%));
   border-radius: var(--radius-4);
   margin-bottom: var(--size-2);
 

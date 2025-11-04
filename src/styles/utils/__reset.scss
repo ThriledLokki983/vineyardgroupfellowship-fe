@@ -13,26 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	background-color: var(--bg-surface);
-	margin: 0;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-#root {
-	position: relative;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  min-height: 100dvh;
-}
+// #root {
+// 	position: relative;
+//   display: flex; flex-direction: column;
+//   min-block-size: 100dvh; min-block-size: 100dvh;
+// }
 
 /* Text Selection Highlight Styles */
 ::selection {

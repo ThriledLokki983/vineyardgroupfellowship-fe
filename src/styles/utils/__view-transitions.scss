@@ -1,3 +1,5 @@
+@use './__variables' as *;
+
 /**
  * View Transitions API animations
  * Provides smooth slide transitions between pages
@@ -45,7 +47,7 @@
 }
 
 /* Faster on mobile */
-@media (max-width: 768px) {
+@media (max-width: $mobile) {
   :root::view-transition-old(root),
   :root::view-transition-new(root) {
     animation-duration: 0.3s;

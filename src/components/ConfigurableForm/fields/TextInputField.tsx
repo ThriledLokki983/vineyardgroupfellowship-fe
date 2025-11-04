@@ -1,19 +1,26 @@
-import { useSignals } from '@preact/signals-react/runtime'
-import { TextField, Input, FieldError } from 'react-aria-components'
-import { createFormSignal } from 'signals/form-signals'
+import { useState } from 'react'
+import { TextField, Input, Label, FieldError } from 'react-aria-components'
 import type { FieldConfig, FieldValue } from '../types'
 import styles from '../ConfigurableForm.module.scss'
 
 interface TextInputFieldProps {
   field: FieldConfig
   value: FieldValue
-  handleInputChange: (fieldName: string, newValue: FieldValue) => void
-  formSignal: ReturnType<typeof createFormSignal>
+  onChange: (value: FieldValue) => void
+  onBlur?: () => void
+  error?: string
   renderPasswordStrengthMeter: (password: string) => React.ReactElement
 }
 
-export default function TextInputField({ field, value, handleInputChange, formSignal, renderPasswordStrengthMeter }: TextInputFieldProps) {
-  useSignals()
+export default function TextInputField({
+  field,
+  value,
+  onChange,
+  onBlur,
+  error,
+  renderPasswordStrengthMeter
+}: TextInputFieldProps) {
+  const [showPasswordStrength, setShowPasswordStrength] = useState(false)
 
   return (
     <TextField
@@ -21,40 +28,34 @@ export default function TextInputField({ field, value, handleInputChange, formSi
       className={styles.formField}
       type={field.type}
       isRequired={field.isRequired}
-      isInvalid={!!formSignal.errors.value[field.name]}
-      aria-labelledby={field.label}
+      isInvalid={!!error}
     >
+      <Label>{field.label}</Label>
       <Input
         value={value as string}
-        aria-labelledby={field.label}
         onChange={(e) => {
           const newValue = e.target.value
-          handleInputChange(field.name, newValue)
-
-          if (formSignal.errors.value[field.name]) {
-            formSignal.clearFieldError(field.name)
-          }
+          onChange(newValue)
 
           if (field.type === 'password' && field.showValidationFeedback) {
-            if (!formSignal.shouldShowInstructions(field.name) && newValue.length > 0) {
-              formSignal.toggleFieldInstructions(field.name)
+            if (!showPasswordStrength && newValue.length > 0) {
+              setShowPasswordStrength(true)
             }
           }
         }}
         onFocus={() => {
           if (field.type === 'password' && field.showValidationFeedback && (value as string).length > 0) {
-            formSignal.toggleFieldInstructions(field.name)
+            setShowPasswordStrength(true)
           }
         }}
+        onBlur={onBlur}
         placeholder={field.placeholder}
       />
-      <FieldError>
-        {formSignal.errors.value[field.name]}
-      </FieldError>
+      {error && <FieldError>{error}</FieldError>}
 
       {field.type === 'password' &&
        field.showValidationFeedback &&
-       formSignal.shouldShowInstructions(field.name) &&
+       showPasswordStrength &&
        renderPasswordStrengthMeter(value as string)}
     </TextField>
   )

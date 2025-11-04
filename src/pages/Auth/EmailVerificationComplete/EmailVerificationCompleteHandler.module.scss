@@ -1,3 +1,5 @@
+@use 'styles/_component-utils.scss' as *;
+
 .errorContainer {
   display: flex;
   justify-content: center;
@@ -55,6 +57,7 @@
 }
 
 .primaryButton {
+  @include button-primary;
   background: var(--brand-primary);
   color: white;
   border: none;

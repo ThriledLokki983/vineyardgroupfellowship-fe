@@ -1,4 +1,4 @@
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .header {
   position: sticky;
@@ -148,12 +148,12 @@
     &::after {
       content: '';
       position: absolute;
-      bottom: -2px;
+      bottom: calc(var(--size-1) * -0.5);
       left: var(--size-3);
       right: var(--size-3);
-      height: 2px;
+      height: var(--border-size-2);
       background: var(--brand-primary);
-      border-radius: 1px;
+      border-radius: var(--radius-1);
     }
   }
 

@@ -1,4 +1,4 @@
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 // Construction Page Styles
 .constructionContainer {
@@ -41,7 +41,7 @@
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
   margin: var(--size-4) 0 var(--size-8);
-  box-shadow: 0 2px 8px rgba(244, 199, 123, 0.3);
+  box-shadow: 0 2px 8px hsl(var(--accent-warm-hsl) / 30%);
 }
 
 .pulse {
@@ -67,7 +67,7 @@
   background: var(--surface-elevated);
   border-radius: var(--radius-3);
   padding: var(--size-8);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-2);
   text-align: left;
   margin-top: var(--size-8);
 }

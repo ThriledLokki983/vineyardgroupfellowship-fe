@@ -1,22 +1,46 @@
 # ConfigurableForm Component
 
-A flexible, reusable form component built with React Aria Components that supports various field types, validation, and layout configurations.
+A flexible, reusable form component built with **React Hook Form** and **React Aria Components** that supports various field types, validation, and layout configurations.
+
+## 🎯 Key Technologies
+
+- **React Hook Form v7**: Powerful form state management with minimal re-renders
+- **React Aria Components**: Accessible UI primitives (WCAG 2.1 AA compliant)
+- **Zod**: Type-safe schema validation
+- **@hookform/resolvers**: Seamless Zod integration
 
 ## Features
 
-- **Multiple Field Types**: text, email, password, checkbox
+- **Multiple Field Types**: text, email, password, checkbox, radio, checkbox_group
 - **Flexible Layout**: Individual fields or grouped fields (horizontal/vertical)
-- **Real-time Validation**: Custom validation with immediate feedback
+- **Real-time Validation**: Zod schema validation with immediate feedback
 - **Password Validation**: Built-in password strength indicators
 - **TypeScript Support**: Fully typed with comprehensive interfaces
 - **Accessibility**: Built on React Aria Components for full a11y support
 - **Consistent Styling**: Integrated with our design system
+- **Server Error Handling**: Automatic integration of Django server-side errors
+- **Performance Optimized**: React Hook Form's efficient re-render strategy
+
+## 📚 Documentation
+
+For detailed integration guide and advanced patterns, see:
+- **[React Hook Form Integration Guide](./REACT_HOOK_FORM_INTEGRATION.md)** - Complete documentation on RHF integration
 
 ## Usage
 
 ```tsx
 import ConfigurableForm from '../components/ConfigurableForm'
 import { FormConfig } from '../components/ConfigurableForm/types'
+import { z } from 'zod'
+
+// Define Zod schema for validation
+const registrationSchema = z.object({
+  email: z.string().email('Please enter a valid email'),
+  firstName: z.string().min(1, 'First name is required'),
+  lastName: z.string().min(1, 'Last name is required'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+  rememberMe: z.boolean().optional()
+})
 
 const formConfig: FormConfig = {
   fields: [
@@ -68,6 +92,7 @@ const formConfig: FormConfig = {
       checkboxLabel: 'Keep me signed in'
     }
   ],
+  schema: registrationSchema, // Zod schema for React Hook Form validation
   submitButton: {
     text: 'Create Account',
     loadingText: 'Creating...',
@@ -93,6 +118,7 @@ function MyPage() {
       isPending={isSubmitting}
       error={submitError}
       initialData={{ email: 'prefilled@example.com' }}
+      serverErrors={serverValidationErrors} // Django server errors
     />
   )
 }

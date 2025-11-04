@@ -1,39 +1,28 @@
-import { createFormSignal } from 'signals/form-signals';
-import { useSignals } from '@preact/signals-react/runtime';
 import type { FieldConfig, FieldValue } from '../types';
-import { Label, Text, RadioGroup } from 'react-aria-components';
+import { Label, Text, RadioGroup, FieldError } from 'react-aria-components';
 import { Radio } from 'components';
 import styles from '../ConfigurableForm.module.scss';
-
 
 interface RadioGroupFieldProps {
 	field: FieldConfig;
 	value: FieldValue;
-	handleInputChange: (fieldName: string, newValue: FieldValue) => void;
-	formSignal: ReturnType<typeof createFormSignal>;
+	onChange: (value: FieldValue) => void;
+	error?: string;
 }
 
-const RadioGroupField = ({ field, value, handleInputChange, formSignal }: RadioGroupFieldProps) => {
-  useSignals()
-
+const RadioGroupField = ({ field, value, onChange, error }: RadioGroupFieldProps) => {
   return (
     <div key={field.name} className={styles.radioGroupContainer}>
-      <Label className={styles.fieldLabel} aria-labelledby={field.label}>{field.label}</Label>
+      <Label className={styles.fieldLabel}>{field.label}</Label>
       {field.description && (
         <Text className={styles.fieldDescription}>{field.description}</Text>
       )}
       <RadioGroup
-        aria-labelledby={field.name}
         value={value as string}
-        onChange={(selectedValue) => {
-          handleInputChange(field.name, selectedValue)
-          if (formSignal.errors.value[field.name]) {
-            formSignal.clearFieldError(field.name)
-          }
-        }}
+        onChange={onChange}
         className={styles.radioGroup}
         isRequired={field.isRequired}
-        isInvalid={!!formSignal.errors.value[field.name]}
+        isInvalid={!!error}
       >
         {field.options?.map((option) => (
           <Radio
@@ -46,14 +35,13 @@ const RadioGroupField = ({ field, value, handleInputChange, formSignal }: RadioG
           </Radio>
         ))}
       </RadioGroup>
-      {formSignal.errors.value[field.name] && (
-        <div className={styles.fieldError}>
-          {formSignal.errors.value[field.name]}
-        </div>
+      {error && (
+        <FieldError className={styles.fieldError}>
+          {error}
+        </FieldError>
       )}
     </div>
   );
-
 };
 
 export default RadioGroupField;

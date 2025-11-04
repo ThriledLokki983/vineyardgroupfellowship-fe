@@ -1,4 +1,4 @@
-@use '../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .createGroupModal {
   // Override modal size
@@ -304,6 +304,10 @@
   @include mobile {
     flex-direction: column-reverse;
   }
+}
+
+.primaryButton {
+  @include button-primary;
 }
 
 .primaryButton,

@@ -1,3 +1,18 @@
-// All open props imports that is needed in this project
+// Open Props - Import strategy
+// Using the full bundle with postcss-jit-props for tree-shaking
+// This is the recommended approach for optimal bundle size
+
+// Core bundle (500+ props, 4.0kB with Brotli compression)
+// PostCSS JIT Props will automatically remove unused variables
 @use "open-props/style";
-@use "open-props/normalize";
+
+// Extras for UX enhancements
+@use "open-props/normalize";              // Baseline styles (1.3kB)
+@use "open-props/src/props.animations";   // Ready-made animations (0.49kB)
+
+// Optional individual PropPacks (uncomment if needed):
+// @use "open-props/src/props.gradients";   // Gradient library (1.0kB)
+// @use "open-props/src/props.shadows";     // Shadow system
+
+// Note: With postcss-jit-props configured, unused props from the main
+// bundle will be removed during build, resulting in a minimal CSS output

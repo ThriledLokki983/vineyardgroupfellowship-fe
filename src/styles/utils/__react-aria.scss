@@ -51,26 +51,26 @@
 
   &[data-focus-visible] {
     outline: var(--border-size-2) solid var(--outline-clr) !important;
-    outline-offset: 2px !important;
-    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+    outline-offset: var(--size-1) !important;
+    box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 15%) !important;
   }
 
   &[data-focus] {
     outline: var(--border-size-2) solid var(--outline-clr) !important;
-    outline-offset: 2px !important;
+    outline-offset: var(--size-1) !important;
   }
 }
 
 /* Global Button focus styles with higher specificity */
 button[data-focus-visible] {
   outline: var(--border-size-2) solid var(--outline-clr) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+  outline-offset: var(--size-1) !important;
+  box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 15%) !important;
 }
 
 button[data-focus] {
   outline: var(--border-size-2) solid var(--outline-clr) !important;
-  outline-offset: 2px !important;
+  outline-offset: var(--size-1) !important;
 }
 
 .react-aria-TextField {
@@ -108,13 +108,13 @@ button[data-focus] {
 
   &[data-focus-visible] {
     outline: var(--border-size-2) solid var(--outline-clr) !important;
-    outline-offset: 2px !important;
-    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+    outline-offset: var(--size-1) !important;
+    box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 15%) !important;
   }
 
   &[data-focus] {
     outline: var(--border-size-2) solid var(--outline-clr) !important;
-    outline-offset: 2px !important;
+    outline-offset: var(--size-1) !important;
   }
 
   &[data-invalid] {
@@ -129,13 +129,13 @@ button[data-focus] {
 /* Global Input focus styles with higher specificity */
 input[data-focus-visible] {
   outline: var(--border-size-2) solid var(--outline-clr) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+  outline-offset: var(--size-1) !important;
+  box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 15%) !important;
 }
 
 input[data-focus] {
   outline: var(--border-size-2) solid var(--outline-clr) !important;
-  outline-offset: 2px !important;
+  outline-offset: var(--size-1) !important;
 }
 
 .react-aria-FieldError {
@@ -153,26 +153,26 @@ input[data-focus] {
 .react-aria-Checkbox {
   &[data-focus-visible] {
     outline: var(--border-size-2) solid var(--outline-clr) !important;
-    outline-offset: 2px !important;
-    box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+    outline-offset: var(--size-1) !important;
+    box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 15%) !important;
   }
 
   &[data-focus] {
     outline: var(--border-size-2) solid var(--outline-clr) !important;
-    outline-offset: 2px !important;
+    outline-offset: var(--size-1) !important;
   }
 }
 
 /* Global focus styles for any element with data attributes */
 [data-focus-visible] {
   outline: var(--border-size-2) solid var(--outline-clr) !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.2) !important;
+  outline-offset: var(--size-1) !important;
+  box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 15%) !important;
 }
 
 [data-focus]:not([data-focus-visible]) {
   outline: var(--border-size-2) solid var(--outline-clr) !important;
-  outline-offset: 2px !important;
+  outline-offset: var(--size-1) !important;
 }
 
 

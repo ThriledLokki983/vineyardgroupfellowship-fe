@@ -1,0 +1,148 @@
+// Animation Utilities - Leveraging Open Props
+// Wellness-focused, smooth, and respectful of user preferences
+
+// Import accessibility utilities for motion preference
+@use './accessibility' as *;
+
+// Smooth page transitions with Open Props animations
+.page-enter {
+  @include respect-motion-preference {
+    animation: var(--animation-fade-in) forwards;
+    animation-duration: 300ms;
+    animation-timing-function: var(--ease-out-3);
+  }
+}
+
+.page-exit {
+  @include respect-motion-preference {
+    animation: var(--animation-fade-out) forwards;
+    animation-duration: 200ms;
+    animation-timing-function: var(--ease-in-3);
+  }
+}
+
+// Modal animations
+.modal-enter {
+  @include respect-motion-preference {
+    animation:
+      var(--animation-fade-in),
+      var(--animation-slide-in-up);
+    animation-duration: 400ms;
+    animation-timing-function: var(--ease-out-4);
+  }
+}
+
+.modal-exit {
+  @include respect-motion-preference {
+    animation:
+      var(--animation-fade-out),
+      var(--animation-slide-out-down);
+    animation-duration: 300ms;
+    animation-timing-function: var(--ease-in-4);
+  }
+}
+
+// Toast/Alert animations
+.toast-enter {
+  @include respect-motion-preference {
+    animation:
+      var(--animation-fade-in),
+      var(--animation-slide-in-right);
+    animation-duration: 350ms;
+    animation-timing-function: var(--ease-out-3);
+  }
+}
+
+.toast-exit {
+  @include respect-motion-preference {
+    animation:
+      var(--animation-fade-out),
+      var(--animation-slide-out-right);
+    animation-duration: 250ms;
+    animation-timing-function: var(--ease-in-3);
+  }
+}
+
+// Card hover effect (subtle and premium)
+.card-hover {
+  transition: all 200ms var(--ease-out-2);
+
+  @include respect-motion-preference {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-3);
+    }
+  }
+
+  @include disable-motion {
+    &:hover {
+      box-shadow: var(--shadow-3);
+    }
+  }
+}
+
+// Button press effect
+.button-press {
+  transition: all 150ms var(--ease-out-1);
+
+  @include respect-motion-preference {
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// Floating/breathing effect for attention
+.float-gentle {
+  @include respect-motion-preference {
+    animation: var(--animation-float);
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+  }
+}
+
+// Skeleton loading pulse
+.skeleton-pulse {
+  @include respect-motion-preference {
+    animation: var(--animation-pulse);
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+}
+
+// Fade in on scroll (for lazy-loaded content)
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+
+  @include respect-motion-preference {
+    transition:
+      opacity 600ms var(--ease-out-4),
+      transform 600ms var(--ease-out-4);
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include disable-motion {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Utility mixin for custom animations with motion safety
+@mixin animate($animation, $duration: 300ms, $easing: var(--ease-3), $delay: 0s) {
+  @include respect-motion-preference {
+    animation: $animation;
+    animation-duration: $duration;
+    animation-timing-function: $easing;
+    animation-delay: $delay;
+  }
+}
+
+// Usage example:
+// .my-element {
+//   @include animate(var(--animation-fade-in), 500ms, var(--ease-out-4));
+// }

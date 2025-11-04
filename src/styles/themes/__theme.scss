@@ -1,36 +1,60 @@
-// Vineyard Group Fellowship Design System - SCSS Variables and Mixins
-:root {
-  // Brand Colors - New Vibrant Palette
-  --brand-primary: #20192f;      // Dark navy/charcoal (main brand color)
-  --brand-secondary: #6f42c1;    // Deep purple (secondary brand)
-  --brand-accent: #c1f705;       // Bright lime green (accent/highlights)
-  --btn-hover-clr: #151122;      // Even darker navy for hover states
-  --accent-warm: #6f42c1;        // Purple for warm accents
-  --accent-danger: #ff4757;      // Modern red for errors/alerts
+html {
+  /*  BRAND FOUNDATION */
+  --brand-hue: 256;
+  --brand-saturation: 41%;
+  --brand-lightness: 14%;
 
-  // Surface Colors - Adapted for new palette
-  --surface-canvas: #fafafa;     // Clean light gray background
-  --surface-elevated: #FFFFFF;   // White for cards and elevated elements
-  --surface-dark: #20192f;       // Dark navy surface
+  /* Secondary brand accent */
+  --accent-hue: 75;
+  --accent: hsl(75, 80%, 50%);
 
-  --grey: hsl(0, 0%, 92%);
-  --grey-light: #818181; // @TODO: These should be swapped...
-  --grey-lightest: #DDDDDD;
-  --grey-dark: #D1D1D1; // @TODO: These should be swapped...
+  /* LIGHT THEME PALETTE */
+  --brand-light: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
+  --text1-light: hsl(var(--brand-hue) var(--brand-saturation) 10%);
+  --text2-light: hsl(var(--brand-hue) 10% 45%);
+  --surface1-light: hsl(var(--brand-hue) 15% 98%);
+  --surface2-light: hsl(var(--brand-hue) 15% 95%);
+  --surface3-light: hsl(var(--brand-hue) 10% 90%);
+  --surface4-light: hsl(var(--brand-hue) 10% 85%);
+  --surface-shadow-light: var(--brand-hue) 30% 20%;
+  --shadow-strength-light: .02;
 
-  // Text Colors
-  --text-primary: #20192f;       // Dark navy for primary text
-  --text-secondary: #6c757d;     // Medium gray for secondary text
-  --text-light: #FFFFFF;         // White text for dark backgrounds
-  --text-accent: #c1f705;        // Bright lime green for highlights
+  /* DARK THEME PALETTE */
+  --brand-dark: hsl(
+    var(--brand-hue)
+    calc(var(--brand-saturation) * 1.2)
+    calc(var(--brand-lightness) * 3)
+  );
 
-  // Border Colors
-  --border-subtle: #e9ecef;      // Light border
-  --border-medium: #dee2e6;      // Medium border
-  --border-accent: #6f42c1;      // Purple accent border
-  --link-color: #6f42c1;        // Purple for links
+  // Text
+  --text1-dark: hsl(var(--brand-hue) 15% 90%);
+  --text2-dark: hsl(var(--brand-hue) 5% 65%);
 
-  // Status Colors
+  // Surfaces
+  --surface1-dark: hsl(var(--brand-hue) 15% 8%);
+  --surface2-dark: hsl(var(--brand-hue) 15% 12%);
+  --surface3-dark: hsl(var(--brand-hue) 10% 16%);
+  --surface4-dark: hsl(var(--brand-hue) 10% 20%);
+  --surface-shadow-dark: var(--brand-hue) 50% 3%;
+
+  // Shadows
+  --shadow-strength-dark: .8;
+
+  /* BRAND-SPECIFIC COLORS */
+  --brand-primary: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
+  --brand-secondary: hsl(264 48% 51%);
+  --brand-accent: hsl(75 80% 50%);
+  --btn-hover-clr: hsl(var(--brand-hue) var(--brand-saturation) 10%);
+
+  /*HSL COLOR COMPONENTS (for gradients & opacity) */
+  --brand-primary-hsl: var(--brand-hue) var(--brand-saturation) var(--brand-lightness);
+  --brand-secondary-hsl: 264 48% 51%;
+  --accent-warm-hsl: 41 92% 72%;             // #F4C77B (244, 199, 123)
+  --accent-danger-hsl: 0 53% 56%;            // #C25A5A (194, 90, 90)
+  --surface-canvas-hsl: 40 33% 97%;          // #F8F5F0 (248, 245, 240)
+  --surface-elevated-hsl: 40 17% 90%;        // #EAE6E1 (234, 230, 225)
+
+  /* Status Colors (consistent across themes) */
   --error-color: #ff4757;
   --error-color-light: #ffe6ea;
   --error-color-dark: #d63447;
@@ -41,35 +65,206 @@
 
   --success-color: #2ed573;
   --success-color-light: #e8f5e8;
+  --success-color-dark: #1ea557;
 
-  // Component-specific color overrides
-  --accent-7: var(--brand-primary);      // Dark navy
-  --accent-0: var(--surface-canvas);     // Light background
-  --accent-3: rgba(32, 25, 47, 0.1);     // Light navy tint
+  --link-color-light: hsl(264 48% 51%);
+  --link-color-dark: hsl(264 60% 70%);
 
-  --surface-1: var(--surface-canvas);
-  --surface-2: var(--surface-elevated);
-  --surface-3: var(--surface-dark);
+  /* Border Colors */
+  --border-subtle-light: hsl(var(--brand-hue) 15% 92%);
+  --border-medium-light: hsl(var(--brand-hue) 15% 85%);
+  --border-subtle-dark: hsl(var(--brand-hue) 10% 20%);
+  --border-medium-dark: hsl(var(--brand-hue) 10% 25%);
 
-  --text-1: var(--text-primary);
-  --text-2: var(--text-secondary);
-
-  --border-1: var(--border-subtle);
-  --border-2: var(--border-medium);
-
-  --red-7: var(--accent-danger);
-  --red-9: var(--error-color-dark);
-  --red-2: var(--error-color-light);
-  --red-4: rgba(255, 71, 87, 0.3);
-
-  // Gradients - Updated with new colors
-  --gradient-1: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand-secondary) 100%);
-  --gradient-2: linear-gradient(135deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
-  --gradient-dark: linear-gradient(135deg, var(--brand-dark) 0%, var(--brand-primary) 100%);
-
-  // Shadows - Enhanced for modern look
-  --shadow-1: 0 2px 8px rgba(32, 25, 47, 0.08);
-  --shadow-2: 0 4px 16px rgba(32, 25, 47, 0.12);
-  --shadow-3: 0 8px 24px rgba(32, 25, 47, 0.16);
-  --shadow-4: 0 12px 32px rgba(32, 25, 47, 0.2);
+  /* Utility aliases */
+  --bg: var(--surface1);
+  --border: var(--surface3);
 }
+
+/* ============================================
+  LIGHT THEME (default)
+  Activated by data-theme attribute or media query
+============================================ */
+:where(html[data-theme="light"]),
+:root {
+  color-scheme: light;
+
+  --brand: var(--brand-light);
+  --text-1: var(--text1-light);
+  --text-2: var(--text2-light);
+  --surface-1: var(--surface1-light);
+  --surface-2: var(--surface2-light);
+  --surface-3: var(--surface3-light);
+  --surface-4: var(--surface4-light);
+  --surface-shadow: var(--surface-shadow-light);
+  --shadow-strength: var(--shadow-strength-light);
+
+  --link-color: var(--link-color-light);
+  --border-subtle: var(--border-subtle-light);
+  --border-medium: var(--border-medium-light);
+
+  /* Enhanced Shadows using Open Props pattern */
+  --shadow-1: 0 1px 2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%));
+  --shadow-2:
+    0 3px 5px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%)),
+    0 1px 2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 2%));
+  --shadow-3:
+    0 10px 20px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 4%)),
+    0 3px 6px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 3%));
+  --shadow-4:
+    0 15px 30px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 5%)),
+    0 5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 4%));
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+  --gradient-surface: linear-gradient(135deg, var(--surface1) 0%, var(--surface2) 100%);
+}
+
+/* ============================================
+  DARK THEME
+  Activated by data-theme attribute
+============================================ */
+@media (prefers-color-scheme: dark) {
+  [data-theme="dark"],
+  :root {
+    color-scheme: dark;
+
+    --brand: var(--brand-dark);
+    --text-1: var(--text1-dark);
+    --text-2: var(--text2-dark);
+    --surface-1: var(--surface1-dark);
+    --surface-2: var(--surface2-dark);
+    --surface-3: var(--surface3-dark);
+    --surface-4: var(--surface4-dark);
+    --surface-shadow: var(--surface-shadow-dark);
+    --shadow-strength: var(--shadow-strength-dark);
+
+    --link-color: var(--link-color-dark);
+    --border-subtle: var(--border-subtle-dark);
+    --border-medium: var(--border-medium-dark);
+
+    /* Enhanced Shadows for dark mode */
+    --shadow-1: 0 1px 2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .05));
+    --shadow-2:
+      0 3px 5px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .1)),
+      0 1px 2px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .05));
+    --shadow-3:
+      0 10px 20px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .15)),
+      0 3px 6px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .1));
+    --shadow-4:
+      0 15px 30px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .2)),
+      0 5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .15));
+
+    /* Gradients for dark mode */
+    --gradient-brand: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand) 100%);
+    --gradient-accent: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
+    --gradient-surface: linear-gradient(135deg, var(--surface1) 0%, var(--surface2) 100%);
+  }
+}
+
+/* ============================================
+  AUTOMATIC DARK MODE (prefers-color-scheme)
+  Falls back to media query if no data-theme set
+============================================ */
+@media (prefers-color-scheme: dark) {
+  :where(html:not([data-theme])) {
+    color-scheme: dark;
+
+    --brand: var(--brand-dark);
+    --text-1: var(--text1-dark);
+    --text2-: var(--text2-dark);
+    --surface-1: var(--surface1-dark);
+    --surface-2: var(--surface2-dark);
+    --surface-3: var(--surface3-dark);
+    --surface-4: var(--surface4-dark);
+    --surface-shadow: var(--surface-shadow-dark);
+    --shadow-strength: var(--shadow-strength-dark);
+
+    --link-color: var(--link-color-dark);
+    --border-subtle: var(--border-subtle-dark);
+    --border-medium: var(--border-medium-dark);
+    --text-2: var(--text-2-dark);
+    --surface-1: var(--surface-1-dark);
+    --surface-2: var(--surface-2-dark);
+    --surface-3: var(--surface-3-dark);
+    --surface-4: var(--surface-4-dark);
+    --surface-shadow: var(--surface-shadow-dark);
+    --shadow-strength: var(--shadow-strength-dark);
+
+    --link-color: var(--link-color-dark);
+    --border-subtle: var(--border-subtle-dark);
+    --border-medium: var(--border-medium-dark);
+  }
+}
+
+/* ============================================
+  MANUAL THEME OVERRIDES (user preference)
+============================================ */
+[color-scheme="light"] {
+  color-scheme: light;
+
+  --brand: var(--brand-light);
+  --brand-accent: var(--brand-accent-light);
+  --text-1: var(--text-1-light);
+  --text-2: var(--text-2-light);
+  --surface-1: var(--surface-1-light);
+  --surface-2: var(--surface-2-light);
+  --surface-3: var(--surface-3-light);
+  --surface-4: var(--surface-4-light);
+  --surface-shadow: var(--surface-shadow-light);
+  --shadow-strength: var(--shadow-strength-light);
+
+  --link-color: var(--link-color-light);
+  --border-subtle: var(--border-subtle-light);
+  --border-medium: var(--border-medium-light);
+}
+
+[color-scheme="dark"] {
+  color-scheme: dark;
+
+  --brand: var(--brand-dark);
+  --brand-accent: var(--brand-accent-dark);
+  --text-1: var(--text-1-dark);
+  --text-2: var(--text-2-dark);
+  --surface-1: var(--surface-1-dark);
+  --surface-2: var(--surface-2-dark);
+  --surface-3: var(--surface-3-dark);
+  --surface-4: var(--surface-4-dark);
+  --surface-shadow: var(--surface-shadow-dark);
+  --shadow-strength: var(--shadow-strength-dark);
+
+  --link-color: var(--link-color-dark);
+  --border-subtle: var(--border-subtle-dark);
+  --border-medium: var(--border-medium-dark);
+}
+
+/* ============================================
+  LEGACY COMPATIBILITY
+  Map old tokens to new system
+============================================ */
+// :root {
+//   /* Surface aliases */
+//   --surface-canvas: var(--surface-1);
+//   --surface-elevated: var(--surface-2);
+//   --surface-dark: var(--brand-primary);
+
+//   /* Text aliases */
+//   --text-primary: var(--text-1);
+//   --text-secondary: var(--text-2);
+//   --text-light: var(--surface-1);
+//   --text-accent: var(--brand-accent);
+
+//   /* Border aliases */
+//   --border-accent: var(--brand);
+
+//   /* Accent aliases */
+//   --accent-warm: var(--brand);
+//   --accent-danger: var(--error-color);
+
+//   /* Gray scale (for backwards compatibility) */
+//   --grey: hsl(0, 0%, 92%);
+//   --grey-light: #818181;
+//   --grey-lightest: #DDDDDD;
+//   --grey-dark: #D1D1D1;
+// }

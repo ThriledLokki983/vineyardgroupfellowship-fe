@@ -1,4 +1,4 @@
-@use '../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 .registrationContainer {
   width: 100%;
@@ -125,7 +125,7 @@
     padding-left: var(--size-5);
     line-height: var(--font-lineheight-3);
     font-size: var(--size-3);
-    font-weight: 200;
+    font-weight: var(--font-weight-2);
     margin-bottom: var(--size-1);
     transition: color var(--ease-3) ease-out;
 
@@ -193,7 +193,7 @@
   :global(.react-aria-Text) {
     color: var(--text-2);
     font-size: var(--font-size-1);
-		font-weight: 200;
+		font-weight: var(--font-weight-2);
   }
 
   &:hover {
@@ -262,9 +262,9 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--brand-primary);
-    outline-offset: 2px;
-    border-radius: 2px;
+    outline: var(--border-size-2) solid var(--brand-primary);
+    outline-offset: var(--size-1);
+    border-radius: var(--radius-1);
   }
 }
 

@@ -1,10 +1,10 @@
-@use '../../../../styles/styles.scss' as *;
+@use 'styles/_component-utils.scss' as *;
 
 @mixin dashboard-card {
   position: relative;
   display: flex; flex-direction: column; padding: 1.5rem;
   background: var(--surface-2); border-radius: var(--radius-2);
-  border: 1px solid var(--surface-elevated);
+  border: 1px solid var(--surface-1);
   box-shadow: var(--shadow-1);
 
   & > header {
@@ -30,7 +30,7 @@
 
   & > header > h2 {
     margin: -0.15em 0 0;
-    font-weight: 600;
+    font-weight: var(--font-weight-6);
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -47,14 +47,13 @@
 
 
 .root {
-    @include dashboard-card;
-    border-radius: var(--radius-2);
-    padding: var(--size-5);
+  @include dashboard-card;
+  border-radius: var(--radius-2);
+  padding: var(--size-5);
 }
 
 .contentCard {
   @include dashboard-card();
-  border-radius: var(--radius-2);
   padding: var(--size-5);
   min-block-size: calc(var(--size-px-15) - 30px);
 }
