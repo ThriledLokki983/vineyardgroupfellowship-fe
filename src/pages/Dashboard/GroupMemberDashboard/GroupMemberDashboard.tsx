@@ -214,7 +214,7 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
         <DashboardCard
           emptyIconName="EmptyGroupIcon"
           titleIconName="PeopleIcon"
-          title="My Fellowship Group"
+          title="My fellowship group"
           emptyMessage="You haven't joined any groups yet. Find one to get started!"
           // showActionButton={!hasGroups}
           // actionButtonText={!hasGroups ? 'Browse Groups' : 'View More Groups'}
@@ -367,7 +367,7 @@ const Greetings = ({ userName }: { userName: string }) => {
     <div className={styles.impactHeader}>
       <h1 className={styles.welcomeBack}>
         Good {moment}
-        {userName ? `, ${userName}` : ''}! 👋
+        {userName ? `, @${userName}` : '@user'}!
       </h1>
     </div>
   );

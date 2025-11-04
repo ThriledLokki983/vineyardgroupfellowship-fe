@@ -58,7 +58,7 @@
   }
 
   .checkbox[data-selected] & {
-    background: var(--brand);
+    @include base;
     border-color: var(--brand);
 
     svg {

@@ -17,8 +17,7 @@
   min-width: max-content;
 
   &[data-selected="true"] {
-    background: var(--brand);
-    color: white;
+    @include base;
   }
 
   &[data-disabled="true"] {
@@ -32,8 +31,7 @@
   }
 
   &[data-selected="true"]:hover {
-    background: var(--brand);
-    color: white;
+  @include base;
   }
 
   &[data-focus-visible] {
@@ -61,7 +59,7 @@
 
   .tab[data-selected="true"] & {
     background: rgba(255, 255, 255, 0.2);
-    color: white;
+    color: var(--surface-1);
   }
 }
 

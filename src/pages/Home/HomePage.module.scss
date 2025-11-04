@@ -530,7 +530,7 @@
   text-align: center;
   padding: var(--size-10) var(--size-6);
   background: linear-gradient(135deg, var(--brand) 0%, #4a2800 100%);
-  color: white;
+  color: var(--surface-1);
 
   @include mobile {
     padding: var(--size-8) var(--size-4);
@@ -541,7 +541,7 @@
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-6);
   margin-bottom: var(--size-4);
-  color: white;
+  color: var(--surface-1);
 
   @include mobile {
     font-size: var(--font-size-5);
@@ -595,7 +595,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--surface-1);
   font-size: 24px;
 }
 
@@ -939,7 +939,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--surface-1);
   font-size: 1.5rem;
   flex-shrink: 0;
 
@@ -1436,7 +1436,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--surface-1);
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
   margin: 0 auto var(--size-3);

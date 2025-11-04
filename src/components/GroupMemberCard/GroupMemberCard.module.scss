@@ -59,8 +59,7 @@
   text-transform: capitalize;
 
   &[data-role='leader'] {
-    background: var(--brand);
-    color: white;
+    @include base;
   }
 
   &[data-role='co_leader'] {

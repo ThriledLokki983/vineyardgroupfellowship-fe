@@ -1,3 +1,5 @@
+@use '../../../styles/_component-utils.scss' as *;
+
 .container {
   display: flex;
   justify-content: center;
@@ -46,8 +48,7 @@
 }
 
 .button {
-  background: var(--brand);
-  color: white;
+  @include base;
   border: none;
   border-radius: var(--radius-2);
   padding: var(--size-3) var(--size-5);
@@ -166,8 +167,7 @@
 }
 
 .submitButton {
-  background: var(--brand);
-  color: white;
+  @include base;
   border: none;
   border-radius: var(--radius-2);
   padding: var(--size-2) var(--size-4);

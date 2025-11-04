@@ -28,8 +28,7 @@
 }
 
 .leaderBadge {
-  background: var(--brand);
-  color: var(--surface-canvas);
+  @include base;
 }
 
 // Group Header

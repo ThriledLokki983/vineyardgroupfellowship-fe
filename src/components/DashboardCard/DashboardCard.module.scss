@@ -63,7 +63,7 @@
   height: 40px;
   border-radius: var(--radius-2, 8px);
   background: var(--brand, #3A4F41);
-  color: white;
+  color: var(--surface-1);
   flex-shrink: 0;
 }
 
@@ -87,7 +87,7 @@
   margin-top: auto;
   padding: var(--size-2, 8px) var(--size-4, 16px);
   background: var(--brand, #3A4F41);
-  color: white;
+  color: var(--surface-1);
   border: none;
   border-radius: var(--radius-2, 8px);
   font-size: var(--font-size-0, 14px);

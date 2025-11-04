@@ -165,11 +165,10 @@
 }
 
 .addTagButton {
+  @include base;
   padding: var(--size-3) var(--size-4);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: white;
-  background: var(--brand);
   border: none;
   border-radius: var(--radius-2);
   cursor: pointer;
@@ -281,9 +280,8 @@
   }
 
   &.active {
-    background: var(--brand);
+    @include base;
     border-color: var(--brand);
-    color: white;
   }
 
   &.completed {
@@ -343,8 +341,7 @@
 }
 
 .primaryButton {
-  background: var(--brand);
-  color: white;
+  @include base;
   margin-left: auto;
 
   &:hover:not(:disabled) {

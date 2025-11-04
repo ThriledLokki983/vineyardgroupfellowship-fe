@@ -26,8 +26,7 @@
   inline-size: var(--size-11);
   block-size: var(--size-11);
   border-radius: 50%;
-  background: var(--brand);
-  color: var(--surface-canvas);
+  @include base;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -360,11 +359,10 @@
 }
 
 .memberAvatar {
+  @include base;
   inline-size: var(--size-9);
   block-size: var(--size-9);
   border-radius: 50%;
-  background: var(--brand);
-  color: var(--surface-canvas);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -437,8 +435,7 @@
   color: var(--brand);
 
   &.roleLeader {
-    background: var(--brand);
-    color: var(--surface-canvas);
+    @include base;
   }
 
   &.roleCo_leader {

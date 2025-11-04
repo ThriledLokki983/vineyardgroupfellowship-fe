@@ -63,7 +63,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand);
+  @include base;
   opacity: 0;
   transform: scale(0.5);
   transition: all var(--animation-duration-fast);

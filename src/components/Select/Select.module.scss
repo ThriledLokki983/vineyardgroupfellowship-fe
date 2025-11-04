@@ -172,8 +172,7 @@
   }
 
   &.selected {
-    background: var(--brand);
-    color: white;
+    @include base;
     font-weight: var(--font-weight-6);
 
     &.focused {

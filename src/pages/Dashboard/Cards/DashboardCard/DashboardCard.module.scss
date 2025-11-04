@@ -37,6 +37,7 @@
     max-inline-size: 100%;
     inline-size: 100%;
     color: var(--brand);
+    font-size: var(--font-size-3);
   }
 
   & > header > h2 > svg {
@@ -235,15 +236,12 @@
 }
 
 .viewDetailsLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: end;
+  @include base;
+  display: flex; align-items: center;
+  justify-content: center; justify-self: end;
   inline-size: fit-content;
   gap: var(--size-2);
   padding: var(--size-2) var(--size-4);
-  background: var(--brand);
-  color: var(--surface-canvas);
   border-radius: var(--radius-2);
   text-decoration: none;
   font-size: var(--font-size-1);

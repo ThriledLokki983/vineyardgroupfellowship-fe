@@ -99,7 +99,7 @@
 
 // React Aria data attribute styling
 .checkboxField[data-selected] .checkboxIndicator {
-  background: var(--brand);
+  @include base;
   border-color: var(--brand);
 
   svg {
@@ -203,10 +203,10 @@
 }
 
 .radioInner {
+  @include base;
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand);
   opacity: 0;
   transform: scale(0.5);
   transition: all var(--animation-duration-fast);
@@ -443,13 +443,12 @@
   }
 
   &[data-selected] {
+    @include base;
     border-color: var(--brand);
-    background: var(--brand);
     background: linear-gradient(135deg, var(--brand) 0%, var(--accent-warm) 100%);
-    color: white;
 
     .radioLabel {
-      color: white;
+      color: var(--surface-1);
       font-weight: var(--font-weight-6);
     }
 
@@ -458,11 +457,11 @@
     }
 
     .radioIndicator {
-      border-color: white;
+      border-color: var(--surface-1);
       background: white;
 
       .radioInner {
-        background: var(--brand);
+        @include base;
         transform: scale(1);
       }
     }
@@ -492,7 +491,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand);
+  @include base;
   transform: scale(0);
   transition: transform var(--animation-duration-fast);
 }
@@ -562,7 +561,7 @@
     background: rgba(var(--brand-rgb), 0.05);
 
     .checkboxIndicator {
-      background: var(--brand);
+      @include base;
       border-color: var(--brand);
 
       svg {

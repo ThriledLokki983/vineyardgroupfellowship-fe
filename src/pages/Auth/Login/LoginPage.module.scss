@@ -179,7 +179,7 @@
 
 // React Aria data attribute styling
 .rememberCheckbox[data-selected] .checkboxIndicator {
-  background: var(--brand);
+  @include base;
   border-color: var(--brand);
 
   svg {

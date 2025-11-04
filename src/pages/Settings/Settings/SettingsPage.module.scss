@@ -411,7 +411,7 @@
     width: 20px;
     left: 4px;
     bottom: 3px;
-    background-color: white;
+    background-color: var(--surface-1);
     transition: var(--animation-duration-fast);
     border-radius: 50%;
     box-shadow: var(--shadow-2);
@@ -446,7 +446,7 @@
 
   &:hover {
     background: var(--accent-danger);
-    color: white;
+    color: var(--surface-1);
   }
 }
 

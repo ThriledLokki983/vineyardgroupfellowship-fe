@@ -57,8 +57,7 @@
   border: var(--border-size-2) solid var(--brand);
 
   &:hover:not([data-disabled]) {
-    background: var(--brand);
-    color: var(--surface-canvas);
+    @include base;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(96, 48, 0, 0.15);
   }

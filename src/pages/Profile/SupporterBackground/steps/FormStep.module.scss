@@ -101,7 +101,7 @@
   &[data-selected="true"] {
     border-color: var(--brand);
     background-color: var(--brand);
-    color: white;
+    color: var(--surface-1);
   }
 }
 
@@ -117,7 +117,7 @@
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--surface-1);
   }
 }
 

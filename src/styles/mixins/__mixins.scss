@@ -11,21 +11,26 @@
 }
 
 @mixin ui-font($bold: false, $line-height: true) {
-    font-family: $ui-font;
-    font-weight: var(--font-weight-5); line-height: 1.25; letter-spacing: -0.025em;
-    @if ($bold) {
-        font-weight: var(--font-weight-7);
-    }
+  font-family: $ui-font;
+  font-weight: var(--font-weight-5); line-height: 1.25; letter-spacing: -0.025em;
+  @if ($bold) {
+      font-weight: var(--font-weight-7);
+  }
+}
+
+@mixin base {
+  background: var(--brand);
+  color: var(--surface-1);
 }
 
 /**
  * Avatar
  */
 @mixin avatar($size: var(--size-8)) {
-    @include ui-font;
+    @include ui-font; @include base;
     flex: 0 0 auto; display: inline-block;
     width: $size; height: $size; line-height: $size; padding: 0;
-    background: var(--brand); color: var(--surface-elevated); border-radius: 50%;
+    border-radius: 50%;
     font-size: math.div($size, 2.5); text-align: center; text-transform: uppercase;
     user-select: none;
     &[data-is-external="true"] {
@@ -85,9 +90,7 @@
 @mixin button-primary {
   --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 45% / 0.9);
 
-  @include button-base;
-  background: var(--brand);
-  color: var(--surface-1);
+  @include button-base; @include base;
   font-weight: var(--font-weight-6);
 
   &:hover {

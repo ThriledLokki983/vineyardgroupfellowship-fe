@@ -57,9 +57,7 @@
 }
 
 .primaryButton {
-  @include button-primary;
-  background: var(--brand);
-  color: white;
+  @include button-primary; @include base;
   border: none;
   border-radius: var(--radius-2);
   padding: var(--size-3) var(--size-5);

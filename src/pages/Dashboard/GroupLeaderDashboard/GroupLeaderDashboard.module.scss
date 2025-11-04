@@ -27,7 +27,7 @@
   border-radius: var(--radius-3);
   margin-bottom: var(--size-4);
   box-shadow: 0 4px 16px hsl(var(--brand-hsl) / 15%);
-  color: white;
+  color: var(--surface-1);
 
   @include bp-min($tablet) {
     padding: var(--size-8) var(--size-6);
@@ -132,11 +132,10 @@
 }
 
 .bannerCta {
+  @include base;
   display: inline-flex;
   align-items: center;
   gap: var(--size-2);
-  background: var(--brand);
-  color: white;
   text-decoration: none;
   padding: var(--size-3) var(--size-5);
   border-radius: var(--radius-3);
@@ -267,11 +266,10 @@
 }
 
 .resourcesButton {
+  @include base;
   display: inline-flex;
   align-items: center;
   gap: var(--size-2);
-  background: var(--brand);
-  color: white;
   border: none;
   padding: var(--size-3) var(--size-4);
   border-radius: var(--radius-2);
@@ -297,8 +295,7 @@
   border: 2px solid var(--brand);
 
   &:hover {
-    background: var(--brand);
-    color: white;
+    @include base;
   }
 }
 
@@ -470,7 +467,7 @@
 
 .urgentLink {
   background: var(--accent-danger) !important;
-  color: white !important;
+  color: var(--surface-1) !important;
 
   &:hover {
     background: hsl(var(--accent-danger-hsl) / 90%) !important;
@@ -530,7 +527,7 @@
   );
   border-radius: var(--radius-4);
   margin-bottom: var(--size-6);
-  color: white;
+  color: var(--surface-1);
 }
 
 .returningIcon {

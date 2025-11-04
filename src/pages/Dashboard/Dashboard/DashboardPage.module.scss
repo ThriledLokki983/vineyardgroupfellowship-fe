@@ -329,8 +329,7 @@
 }
 
 .ctaButton {
-  background: var(--brand);
-  color: white;
+  @include base;
   border-color: var(--brand);
 
   &:hover {

@@ -286,8 +286,7 @@
   }
 
   &[data-selected] {
-    background: var(--brand);
-    color: white;
+    @include base;
   }
 
   &[data-disabled] {
@@ -320,7 +319,7 @@
 
   .wizardTab[data-selected] & {
     background: rgba(255, 255, 255, 0.2);
-    color: white;
+    color: var(--surface-1);
   }
 }
 
@@ -468,8 +467,7 @@
 }
 
 .tag {
-  background: var(--brand);
-  color: white;
+  @include base;
   padding: var(--size-1) var(--size-3);
   border-radius: var(--radius-2);
   font-size: var(--font-size-0);
@@ -481,7 +479,7 @@
 .tagRemove {
   background: none;
   border: none;
-  color: white;
+  color: var(--surface-1);
   cursor: pointer;
   padding: 0;
   font-size: var(--font-size-1);
@@ -529,8 +527,7 @@
   transition: all 0.2s var(--ease-2);
 
   &:hover {
-    background: var(--brand);
-    color: white;
+    @include base;
   }
 }
 

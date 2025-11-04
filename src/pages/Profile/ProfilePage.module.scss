@@ -89,7 +89,7 @@
   block-size: 120px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--brand), var(--accent-warm));
-  color: white;
+  color: var(--surface-1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -304,12 +304,11 @@
 }
 
 .profileAvatar {
+  @include base;
   position: relative;
   inline-size: 80px;
   block-size: 80px;
   border-radius: 50%;
-  background: var(--brand);
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -358,7 +357,7 @@
   justify-content: center;
   opacity: 0;
   transition: opacity 0.2s ease;
-  color: white;
+  color: var(--surface-1);
 
   &.uploading {
     opacity: 1;

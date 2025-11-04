@@ -155,9 +155,8 @@
   }
 
   &.active {
+    @include base;
     border-color: var(--brand);
-    background: var(--brand);
-    color: white;
   }
 }
 
@@ -301,7 +300,7 @@
 
 .fullBadge {
   background: var(--accent-danger);
-  color: white;
+  color: var(--surface-1);
 }
 
 .almostFullBadge {

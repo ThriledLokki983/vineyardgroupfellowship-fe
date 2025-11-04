@@ -182,7 +182,7 @@
   align-items: center;
   padding: var(--size-4);
   background-color: var(--brand);
-  color: white;
+  color: var(--surface-1);
 
   @include mobile {
     flex-direction: column;
@@ -199,7 +199,7 @@
 
 .closeButton {
   background-color: rgba(255, 255, 255, 0.1);
-  color: white;
+  color: var(--surface-1);
   border: 1px solid rgba(255, 255, 255, 0.2);
 
   &:hover {
