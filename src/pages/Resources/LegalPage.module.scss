@@ -24,7 +24,7 @@
 .title {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin: 0 0 var(--size-3);
   line-height: var(--font-lineheight-1);
 
@@ -96,7 +96,7 @@
 }
 
 .link {
-  color: var(--brand-primary);
+  color: var(--brand);
   text-decoration: none;
   font-weight: var(--font-weight-5);
   transition: color 0.2s ease;
@@ -108,7 +108,7 @@
   }
 
   &:focus-visible {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: var(--size-1);
     border-radius: var(--radius-1);
   }

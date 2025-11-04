@@ -22,8 +22,8 @@
   }
 
   &[data-focused="true"] {
-    border-color: var(--brand-primary);
-    box-shadow: 0 0 0 2px rgba(from var(--brand-primary) r g b / 0.2);
+    border-color: var(--brand);
+    box-shadow: 0 0 0 2px rgba(from var(--brand) r g b / 0.2);
   }
 }
 
@@ -82,8 +82,8 @@
   }
 
   &[data-selected="true"] {
-    background-color: rgba(from var(--brand-primary) r g b / 0.1);
-    border: var(--border-size-1) solid var(--brand-primary);
+    background-color: rgba(from var(--brand) r g b / 0.1);
+    border: var(--border-size-1) solid var(--brand);
   }
 }
 
@@ -99,8 +99,8 @@
   margin-top: var(--size-1);
 
   &[data-selected="true"] {
-    border-color: var(--brand-primary);
-    background-color: var(--brand-primary);
+    border-color: var(--brand);
+    background-color: var(--brand);
     color: white;
   }
 }
@@ -169,13 +169,13 @@
   transition: all var(--animation-duration-fast);
 
   &:hover {
-    border-color: var(--brand-primary);
-    box-shadow: 0 2px 8px rgba(from var(--brand-primary) r g b / 0.1);
+    border-color: var(--brand);
+    box-shadow: 0 2px 8px rgba(from var(--brand) r g b / 0.1);
   }
 
   &[data-selected="true"] {
-    border-color: var(--brand-primary);
-    background-color: rgba(from var(--brand-primary) r g b / 0.1);
+    border-color: var(--brand);
+    background-color: rgba(from var(--brand) r g b / 0.1);
   }
 }
 

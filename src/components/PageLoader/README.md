@@ -45,7 +45,7 @@ function App() {
 - **Animation**: 0.8s linear infinite rotation
 - **Colors**:
   - Border: `--border-subtle` (#DAD5CF)
-  - Active: `--brand-primary` (#3A4F41)
+  - Active: `--brand` (#3A4F41)
   - Text: `--text-secondary` (#6E7673)
 
 ## Accessibility

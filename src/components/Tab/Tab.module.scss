@@ -17,7 +17,7 @@
   min-width: max-content;
 
   &[data-selected="true"] {
-    background: var(--brand-primary);
+    background: var(--brand);
     color: white;
   }
 
@@ -32,12 +32,12 @@
   }
 
   &[data-selected="true"]:hover {
-    background: var(--brand-primary);
+    background: var(--brand);
     color: white;
   }
 
   &[data-focus-visible] {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
   }
 

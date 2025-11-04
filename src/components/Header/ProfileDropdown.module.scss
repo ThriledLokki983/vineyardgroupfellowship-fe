@@ -46,7 +46,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--brand);
   color: var(--surface-canvas);
   display: flex;
   align-items: center;
@@ -130,11 +130,11 @@
 
   &:hover {
     background: var(--surface-elevated);
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: -2px;
   }
 
@@ -149,7 +149,7 @@
   transition: color 0.2s ease;
 
   .menuItem:hover & {
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 }
 

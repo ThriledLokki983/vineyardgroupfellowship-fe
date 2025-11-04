@@ -193,19 +193,19 @@
 
 .settingsNavItemActive {
   button {
-    background: color-mix(in srgb, var(--brand-primary) 15%, transparent);
-    color: var(--brand-primary);
+    background: color-mix(in srgb, var(--brand) 15%, transparent);
+    color: var(--brand);
     font-weight: var(--font-weight-6);
 
     @include bp-min($tablet) {
-      background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
+      background: color-mix(in srgb, var(--brand) 10%, transparent);
     }
 
     &:hover {
-      background: color-mix(in srgb, var(--brand-primary) 20%, transparent);
+      background: color-mix(in srgb, var(--brand) 20%, transparent);
 
       @include bp-min($tablet) {
-        background: color-mix(in srgb, var(--brand-primary) 15%, transparent);
+        background: color-mix(in srgb, var(--brand) 15%, transparent);
       }
     }
   }
@@ -379,7 +379,7 @@
     height: 0;
 
     &:checked + .slider {
-      background-color: var(--brand-primary);
+      background-color: var(--brand);
 
       &:before {
         transform: translateX(24px);
@@ -387,7 +387,7 @@
     }
 
     &:focus + .slider {
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-primary) 20%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand) 20%, transparent);
     }
   }
 }
@@ -418,7 +418,7 @@
   }
 
   &:hover {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
   }
 }
 

@@ -6,16 +6,7 @@
   block-size: 87%;
   display: flex;
   flex-flow: column nowrap;
-  // background: var(--surface-elevated);
-  // border-radius: var(--radius-3);
-  // border: 1px solid var(--border-subtle);
   transition: all var(--animation-duration-fast) ease;
-
-  &:hover {
-    // border-color: var(--brand-primary);
-    // box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    // transform: translateY(-2px);
-  }
 }
 
 // Status Badges
@@ -37,7 +28,7 @@
 }
 
 .leaderBadge {
-  background: var(--brand-primary);
+  background: var(--brand);
   color: var(--surface-canvas);
 }
 
@@ -117,7 +108,7 @@
   gap: var(--size-2);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   text-decoration: none;
   margin-block-start: auto;
   transition: all var(--animation-duration-fast) ease;

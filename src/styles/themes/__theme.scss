@@ -41,13 +41,13 @@ html {
   --shadow-strength-dark: .8;
 
   /* BRAND-SPECIFIC COLORS */
-  --brand-primary: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
+  --brand: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
   --brand-secondary: hsl(264 48% 51%);
   --brand-accent: hsl(75 80% 50%);
   --btn-hover-clr: hsl(var(--brand-hue) var(--brand-saturation) 10%);
 
   /*HSL COLOR COMPONENTS (for gradients & opacity) */
-  --brand-primary-hsl: var(--brand-hue) var(--brand-saturation) var(--brand-lightness);
+  --brand-hsl: var(--brand-hue) var(--brand-saturation) var(--brand-lightness);
   --brand-secondary-hsl: 264 48% 51%;
   --accent-warm-hsl: 41 92% 72%;             // #F4C77B (244, 199, 123)
   --accent-danger-hsl: 0 53% 56%;            // #C25A5A (194, 90, 90)
@@ -116,7 +116,7 @@ html {
     0 5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + 4%));
 
   /* Gradients */
-  --gradient-brand: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--brand) 100%);
   --gradient-accent: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
   --gradient-surface: linear-gradient(135deg, var(--surface1) 0%, var(--surface2) 100%);
 }
@@ -157,7 +157,7 @@ html {
       0 5px 10px hsl(var(--surface-shadow) / calc(var(--shadow-strength) + .15));
 
     /* Gradients for dark mode */
-    --gradient-brand: linear-gradient(135deg, var(--brand-primary) 0%, var(--brand) 100%);
+    --gradient-brand: linear-gradient(135deg, var(--brand) 0%, var(--brand) 100%);
     --gradient-accent: linear-gradient(135deg, var(--brand) 0%, var(--accent) 100%);
     --gradient-surface: linear-gradient(135deg, var(--surface1) 0%, var(--surface2) 100%);
   }
@@ -247,7 +247,7 @@ html {
 //   /* Surface aliases */
 //   --surface-canvas: var(--surface-1);
 //   --surface-elevated: var(--surface-2);
-//   --surface-dark: var(--brand-primary);
+//   --surface-dark: var(--brand);
 
 //   /* Text aliases */
 //   --text-primary: var(--text-1);

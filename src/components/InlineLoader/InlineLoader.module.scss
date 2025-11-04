@@ -19,7 +19,7 @@
 .root__loader::before {
     content: "";
     position: absolute; inset: 0px;
-    border: 0.175rem solid var(--brand-primary); border-radius: 50%;
+    border: 0.175rem solid var(--brand); border-radius: 50%;
     animation: inline-loader-before 2s linear infinite;
 }
 

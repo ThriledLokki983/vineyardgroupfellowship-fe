@@ -33,16 +33,16 @@ export const DashboardCard = ({
 					<InlineLoader isFetching={isLoading} />
 					{showActionButton ? (
 						<Button
-						className={styles.root__buttoncreate}
-						onClick={onActionClick}
-						size="small"
-						isDisabled={isLoading}
-						variant={hasGroup ? 'secondary' : 'primary'}
-						data-create-button
-					>
-						<Icon name="MeetingIcon" />
-						<span>{buttonText}</span>
-					</Button>
+							className={styles.root__buttoncreate}
+							onClick={onActionClick}
+							size="small"
+							isDisabled={isLoading}
+							variant={hasGroup ? 'secondary' : 'primary'}
+							data-create-button
+						>
+							<Icon name="MeetingIcon" />
+							<span>{buttonText}</span>
+						</Button>
 					) : null }
 				</div>
 			</header>

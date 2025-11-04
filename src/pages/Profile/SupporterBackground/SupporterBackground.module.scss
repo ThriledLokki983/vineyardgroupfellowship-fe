@@ -26,13 +26,13 @@
   transition: all var(--animation-duration-fast);
 
   &:hover {
-    color: var(--brand-primary);
+    color: var(--brand);
     background-color: var(--surface-elevated);
   }
 
   &.active {
-    color: var(--brand-primary);
-    border-bottom-color: var(--brand-primary);
+    color: var(--brand);
+    border-bottom-color: var(--brand);
     font-weight: var(--font-weight-6);
   }
 
@@ -162,7 +162,7 @@
   h1 {
     font-size: var(--font-size-4);
     font-weight: var(--font-weight-7);
-    color: var(--brand-primary);
+    color: var(--brand);
     margin-bottom: var(--size-3);
     max-inline-size: 100%;
 
@@ -182,7 +182,7 @@
 
 .statusBanner {
   background: var(--accent-warm);
-  color: var(--brand-primary);
+  color: var(--brand);
   padding: var(--size-4);
   border-radius: var(--radius-3);
   margin-bottom: var(--size-6);
@@ -192,7 +192,7 @@
 
 .approvedBanner {
   background: color-mix(in srgb, var(--accent-warm) 20%, var(--surface-canvas));
-  color: var(--brand-primary);
+  color: var(--brand);
   padding: var(--size-4);
   border-radius: var(--radius-3);
   margin-bottom: var(--size-6);
@@ -286,7 +286,7 @@
   }
 
   &[data-selected] {
-    background: var(--brand-primary);
+    background: var(--brand);
     color: white;
   }
 
@@ -357,7 +357,7 @@
   h2 {
     font-size: var(--font-size-3);
     font-weight: var(--font-weight-6);
-    color: var(--brand-primary);
+    color: var(--brand);
     margin-bottom: var(--size-2);
     max-inline-size: 100%;
 
@@ -468,7 +468,7 @@
 }
 
 .tag {
-  background: var(--brand-primary);
+  background: var(--brand);
   color: white;
   padding: var(--size-1) var(--size-3);
   border-radius: var(--radius-2);
@@ -496,7 +496,7 @@
   text-align: center;
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 }
 
@@ -511,7 +511,7 @@
 .reviewSectionTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-3);
   display: flex;
   align-items: center;
@@ -520,8 +520,8 @@
 
 .editButton {
   background: none;
-  border: 1px solid var(--brand-primary);
-  color: var(--brand-primary);
+  border: 1px solid var(--brand);
+  color: var(--brand);
   padding: var(--size-1) var(--size-3);
   border-radius: var(--radius-2);
   font-size: var(--font-size-0);
@@ -529,7 +529,7 @@
   transition: all 0.2s var(--ease-2);
 
   &:hover {
-    background: var(--brand-primary);
+    background: var(--brand);
     color: white;
   }
 }

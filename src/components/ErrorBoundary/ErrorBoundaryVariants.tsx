@@ -129,7 +129,7 @@ export function DashboardWidgetErrorBoundary({
         style={{
           padding: 'var(--size-2) var(--size-3)',
           fontSize: 'var(--font-size-0)',
-          backgroundColor: 'var(--brand-primary)',
+          backgroundColor: 'var(--brand)',
           color: 'white',
           border: 'none',
           borderRadius: 'var(--radius-1)',

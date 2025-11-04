@@ -54,7 +54,7 @@
 .heroTitle {
   font-size: var(--font-size-8);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-4);
   line-height: var(--font-lineheight-1);
 
@@ -127,7 +127,7 @@
 	max-inline-size: fit-content;
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 }
 
@@ -155,13 +155,13 @@
 .streakNumber {
   font-size: var(--font-size-8);
   font-weight: var(--font-weight-8);
-  color: var(--brand-primary);
+  color: var(--brand);
   line-height: 1;
 }
 
 .streakLabel {
   font-size: var(--font-size-2);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-top: var(--size-2);
   font-weight: var(--font-weight-5);
 }
@@ -239,7 +239,7 @@
 .sectionTitle {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   text-align: left;
   margin-bottom: var(--size-2);
 
@@ -339,7 +339,7 @@
 .pillarTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 
   @include mobile {
@@ -393,7 +393,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--brand-primary), var(--accent-warm));
+    background: linear-gradient(90deg, var(--brand), var(--accent-warm));
   }
 }
 
@@ -414,7 +414,7 @@
 .previewTitle {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 }
 
@@ -471,7 +471,7 @@
 .contentTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-1);
 }
 
@@ -522,14 +522,14 @@
 .badgeText {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-5);
-  color: var(--brand-primary);
+  color: var(--brand);
 }
 
 // CTA Footer
 .ctaFooter {
   text-align: center;
   padding: var(--size-10) var(--size-6);
-  background: linear-gradient(135deg, var(--brand-primary) 0%, #4a2800 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, #4a2800 100%);
   color: white;
 
   @include mobile {
@@ -590,7 +590,7 @@
 .actionIcon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--brand-primary), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
   border-radius: var(--radius-2);
   display: flex;
   align-items: center;
@@ -606,7 +606,7 @@
 .actionTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-1);
 }
 
@@ -644,7 +644,7 @@
 .insightValue {
   font-size: var(--font-size-7);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 }
 
@@ -691,7 +691,7 @@
 .postAuthor {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   filter: blur(4px);
 }
 
@@ -747,7 +747,7 @@
 .encouragementText {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-5);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-3);
   font-style: italic;
 
@@ -812,7 +812,7 @@
 .statNumber {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   line-height: 1;
   margin-bottom: var(--size-2);
 
@@ -934,7 +934,7 @@
 .actionIcon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--brand-primary), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
   border-radius: var(--radius-2);
   display: flex;
   align-items: center;
@@ -961,7 +961,7 @@
 .actionTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-1);
 
   @include mobile {
@@ -1051,7 +1051,7 @@
 .scheduleTime {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   min-width: 80px;
 
   @include mobile {
@@ -1189,7 +1189,7 @@
 .postAuthor {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
 
   @include mobile {
     font-size: var(--font-size-0);
@@ -1279,7 +1279,7 @@
 .statNumber {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   line-height: 1;
   margin-bottom: var(--size-2);
 
@@ -1377,7 +1377,7 @@
 .pathTitle {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 
   @include mobile {
@@ -1431,7 +1431,7 @@
 .stepNumber {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--brand-primary), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
   border-radius: var(--radius-round);
   display: flex;
   align-items: center;
@@ -1453,7 +1453,7 @@
 .processStep h3 {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 
   @include mobile {

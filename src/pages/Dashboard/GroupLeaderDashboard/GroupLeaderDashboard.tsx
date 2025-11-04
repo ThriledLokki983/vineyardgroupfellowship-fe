@@ -326,7 +326,7 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
               <h4 style={{
                 fontSize: 'var(--font-size-2)',
                 fontWeight: 'var(--font-weight-6)',
-                color: 'var(--brand-primary)',
+                color: 'var(--brand)',
                 marginBottom: 'var(--size-3)'
               }}>
                 Join Requests ({totalPending})

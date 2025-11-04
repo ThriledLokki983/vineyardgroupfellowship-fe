@@ -75,6 +75,6 @@
 }
 
 .low {
-	border-left: 3px solid var(--brand-primary);
-	background-color: color-mix(in srgb, var(--brand-primary) 5%, var(--surface-canvas));
+	border-left: 3px solid var(--brand);
+	background-color: color-mix(in srgb, var(--brand) 5%, var(--surface-canvas));
 }

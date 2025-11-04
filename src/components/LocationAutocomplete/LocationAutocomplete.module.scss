@@ -38,7 +38,7 @@
 
   &:focus {
     outline: none;
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     box-shadow: 0 0 0 3px rgba(58, 79, 65, 0.1);
   }
 
@@ -80,7 +80,7 @@
   width: 16px;
   height: 16px;
   border: 2px solid var(--surface-elevated);
-  border-top-color: var(--brand-primary);
+  border-top-color: var(--brand);
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
 }
@@ -150,7 +150,7 @@
 }
 
 :global(.pac-matched) {
-  color: var(--brand-primary);
+  color: var(--brand);
   font-weight: var(--font-weight-7);
 }
 

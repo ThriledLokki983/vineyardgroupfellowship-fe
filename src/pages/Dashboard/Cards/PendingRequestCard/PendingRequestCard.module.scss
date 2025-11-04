@@ -70,13 +70,13 @@
     opacity: 0.8;
 
     .fullName {
-      color: var(--brand-primary);
+      color: var(--brand);
       text-decoration: underline;
     }
   }
 
   &:focus-visible {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
     border-radius: var(--radius-2);
   }
@@ -160,11 +160,11 @@
 
   &:hover {
     background: var(--surface-canvas);
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
   }
 

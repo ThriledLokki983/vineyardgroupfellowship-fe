@@ -47,7 +47,7 @@
 }
 
 .circle {
-  stroke: var(--brand-primary);
+  stroke: var(--brand);
   stroke-width: 2;
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -56,7 +56,7 @@
 }
 
 .check {
-  stroke: var(--brand-primary);
+  stroke: var(--brand);
   stroke-width: 3;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -117,7 +117,7 @@
   background: rgba(58, 79, 65, 0.06);
   border-radius: 50%;
   margin-bottom: var(--size-4);
-  color: var(--brand-primary);
+  color: var(--brand);
 
   svg {
     width: 24px;
@@ -137,7 +137,7 @@
   display: block;
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   word-break: break-word;
   margin-block: var(--size-2);
 }
@@ -198,7 +198,7 @@
 .statNumber {
   font-size: var(--font-size-5);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   line-height: 1;
   flex-shrink: 0;
 }
@@ -265,7 +265,7 @@
       content: '•';
       position: absolute;
       left: 0;
-      color: var(--brand-primary);
+      color: var(--brand);
       font-weight: var(--font-weight-5);
 
       @include mobile {
@@ -327,7 +327,7 @@
   gap: var(--size-2);
 
   &:hover {
-    color: var(--brand-primary);
+    color: var(--brand);
 
     .linkIcon {
       transform: translateX(2px);
@@ -335,7 +335,7 @@
   }
 
   &:focus-visible {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: 4px;
     border-radius: var(--radius-1);
   }

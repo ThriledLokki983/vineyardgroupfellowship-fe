@@ -14,7 +14,7 @@
   background: var(--surface-canvas);
 
   &[data-selected] {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
   }
 
   &[data-disabled] {
@@ -23,7 +23,7 @@
   }
 
   &[data-focus-visible] .checkboxIndicator {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
   }
 
@@ -58,8 +58,8 @@
   }
 
   .checkbox[data-selected] & {
-    background: var(--brand-primary);
-    border-color: var(--brand-primary);
+    background: var(--brand);
+    border-color: var(--brand);
 
     svg {
       opacity: 1;
@@ -67,7 +67,7 @@
   }
 
   .checkbox[data-hovered] & {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
   }
 }
 

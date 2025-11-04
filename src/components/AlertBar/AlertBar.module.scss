@@ -63,10 +63,10 @@
  * Notice - Brand Primary
  */
 .root[data-variation="notice"] {
-    // background: var(--surface-elevated);
     background: color-mix(in srgb, var(--border-accent) 3%, transparent);
-    color: var(--brand-primary);
+    color: var(--brand);
     border-left: 4px solid var(--border-accent);
+    background-color: var(--surface-2);
 
     > svg {
         color: var(--border-accent);

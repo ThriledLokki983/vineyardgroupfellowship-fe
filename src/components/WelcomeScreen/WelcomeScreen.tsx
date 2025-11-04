@@ -33,14 +33,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ isLoading = false 
                       cx="32"
                       cy="32"
                       r="30"
-                      stroke="var(--brand-primary)"
+                      stroke="var(--brand)"
                       strokeWidth="4"
                       fill="none"
                       className={styles.checkmarkCircle}
                     />
                     <path
                       d="M20 32l8 8 16-16"
-                      stroke="var(--brand-primary)"
+                      stroke="var(--brand)"
                       strokeWidth="4"
                       fill="none"
                       strokeLinecap="round"

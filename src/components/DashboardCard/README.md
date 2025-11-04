@@ -49,7 +49,7 @@ Highlighted card with warm gradient background, perfect for primary CTAs or impo
 
 ## Design Tokens Used
 
-- Colors: `--surface-elevated`, `--brand-primary`, `--text-primary`, `--text-secondary`, `--accent-warm`
+- Colors: `--surface-elevated`, `--brand`, `--text-primary`, `--text-secondary`, `--accent-warm`
 - Spacing: `--size-2` through `--size-6` (4pt system)
 - Border radius: `--radius-2`, `--radius-3`
 - Typography: `--font-size-0` through `--font-size-5`, `--font-weight-4`, `--font-weight-6`

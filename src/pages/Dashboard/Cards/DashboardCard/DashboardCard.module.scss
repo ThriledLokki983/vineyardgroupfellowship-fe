@@ -36,11 +36,11 @@
     gap: 1rem;
     max-inline-size: 100%;
     inline-size: 100%;
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 
   & > header > h2 > svg {
-    fill: var(--brand-primary);
+    fill: var(--brand);
   }
 }
 
@@ -84,6 +84,7 @@
   position: relative; z-index: 12;
   display: flex; justify-content: flex-start; align-items: center;
   border-radius: var(--radius-2);
+  max-block-size: calc(var(--size-7) + 8px);
 }
 .root__buttoncreate > svg {
     margin-right: 0.65rem
@@ -150,7 +151,7 @@
   margin: 0;
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
   flex: 1;
 }
 
@@ -223,7 +224,7 @@
 .statValue {
   font-size: var(--font-size-5);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-1);
 }
 
@@ -241,7 +242,7 @@
   inline-size: fit-content;
   gap: var(--size-2);
   padding: var(--size-2) var(--size-4);
-  background: var(--brand-primary);
+  background: var(--brand);
   color: var(--surface-canvas);
   border-radius: var(--radius-2);
   text-decoration: none;

@@ -88,7 +88,7 @@
   inline-size: 120px;
   block-size: 120px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--brand-primary), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
   color: white;
   display: flex;
   align-items: center;
@@ -143,8 +143,8 @@
   align-items: center;
   gap: var(--size-1);
   padding: var(--size-1) var(--size-2);
-  background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
-  color: var(--brand-primary);
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  color: var(--brand);
   border-radius: var(--radius-2);
   font-size: var(--font-size-0);
   font-weight: var(--font-weight-6);
@@ -154,7 +154,7 @@
   display: inline-block;
   padding: var(--size-2) var(--size-3);
   background: var(--accent-warm);
-  color: var(--brand-primary);
+  color: var(--brand);
   border-radius: var(--radius-2);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
@@ -179,7 +179,7 @@
 
 .progressFill {
   block-size: 100%;
-  background: linear-gradient(to right, var(--brand-primary), var(--accent-warm));
+  background: linear-gradient(to right, var(--brand), var(--accent-warm));
   border-radius: var(--radius-2);
   transition: inline-size 0.3s ease;
 }
@@ -308,7 +308,7 @@
   inline-size: 80px;
   block-size: 80px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--brand);
   color: white;
   display: flex;
   align-items: center;
@@ -544,12 +544,12 @@
 
 .profileNavItemActive {
   button {
-    background: color-mix(in srgb, var(--brand-primary) 10%, transparent);
-    color: var(--brand-primary);
+    background: color-mix(in srgb, var(--brand) 10%, transparent);
+    color: var(--brand);
     font-weight: var(--font-weight-6);
 
     &:hover {
-      background: color-mix(in srgb, var(--brand-primary) 15%, transparent);
+      background: color-mix(in srgb, var(--brand) 15%, transparent);
     }
   }
 }
@@ -660,7 +660,7 @@
 .statValue {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin-bottom: var(--size-1);
 
   @include bp-min($tablet) {

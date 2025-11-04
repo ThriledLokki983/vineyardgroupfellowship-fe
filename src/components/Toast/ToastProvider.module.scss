@@ -76,10 +76,10 @@
   }
 
   &.info {
-    border-left: 4px solid var(--brand-primary);
+    border-left: 4px solid var(--brand);
 
     .icon {
-      color: var(--brand-primary);
+      color: var(--brand);
     }
   }
 
@@ -91,7 +91,7 @@
 
   // Focus state for close button
   &[data-focus-visible] {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: var(--size-1);
   }
 }
@@ -162,7 +162,7 @@
   }
 
   &[data-focus-visible] {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: 2px;
   }
 }

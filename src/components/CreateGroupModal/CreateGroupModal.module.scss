@@ -40,7 +40,7 @@
 .stepTitle {
   font-size: var(--font-size-5);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin: 0 0 var(--size-2);
 }
 
@@ -95,7 +95,7 @@
 
   &:focus {
     outline: none;
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
   }
 }
@@ -169,7 +169,7 @@
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
   color: white;
-  background: var(--brand-primary);
+  background: var(--brand);
   border: none;
   border-radius: var(--radius-2);
   cursor: pointer;
@@ -178,7 +178,7 @@
 
   &:hover {
     background: var(--accent-warm);
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 
   &:active {
@@ -276,20 +276,20 @@
   transition: all 0.2s var(--ease-2);
 
   &:hover {
-    border-color: var(--brand-primary);
-    color: var(--brand-primary);
+    border-color: var(--brand);
+    color: var(--brand);
   }
 
   &.active {
-    background: var(--brand-primary);
-    border-color: var(--brand-primary);
+    background: var(--brand);
+    border-color: var(--brand);
     color: white;
   }
 
   &.completed {
     background: var(--accent-warm);
     border-color: var(--accent-warm);
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 }
 
@@ -343,7 +343,7 @@
 }
 
 .primaryButton {
-  background: var(--brand-primary);
+  background: var(--brand);
   color: white;
   margin-left: auto;
 
@@ -370,7 +370,7 @@
   &:hover:not(:disabled) {
     background: var(--surface-elevated);
     color: var(--text-primary);
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
   }
 
   @include mobile {

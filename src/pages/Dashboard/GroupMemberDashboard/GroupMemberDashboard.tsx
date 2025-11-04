@@ -10,7 +10,7 @@ import { useDailyMessage } from '../../../hooks/useDailyMessage';
 import { useMyGroups } from '../../../hooks/useMyGroups';
 import type { User } from '../../../configs/hooks-interfaces';
 import type { GroupMemberDashboardProps } from 'types';
-import { Layout, Icon, AlertBar, BrowseGroupsModal } from 'components';
+import { Layout, Icon, AlertBar, Button, BrowseGroupsModal } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import { GroupSummaryCard } from '../Cards/GroupSummaryCard';
 import styles from './GroupMemberDashboard.module.scss';
@@ -175,7 +175,6 @@ const FirstVisitMemberContent = ({
 
 // Active Member Dashboard
 const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBrowseGroups: () => void }) => {
-  // Fetch user's groups and filter by membership status
   const { data: myGroups, isLoading } = useMyGroups();
 
   const activeGroups = myGroups?.filter((g) => g.membership_status === 'active' || g.membership_status === 'leader' || g.membership_status === 'co_leader') || [];
@@ -187,6 +186,19 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
   return (
     <Fragment>
       <Greetings userName={user?.first_name || user?.display_name_or_email || ''} />
+      <div className={styles.action_btn}>
+        <Button
+          className={styles.root__buttoncreate}
+          onClick={onBrowseGroups}
+          size="small"
+          isDisabled={isLoading}
+          variant={hasGroups ? 'secondary' : 'primary'}
+          data-create-button
+        >
+          <Icon name="MeetingIcon" />
+          <span>Browse Groups</span>
+        </Button>
+      </div>
 
       {/* Pending Requests Alert */}
       {hasPendingRequests && (
@@ -204,9 +216,9 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           titleIconName="PeopleIcon"
           title="My Fellowship Group"
           emptyMessage="You haven't joined any groups yet. Find one to get started!"
-          showActionButton={!hasGroups}
-          actionButtonText="Browse Groups"
-          onActionClick={onBrowseGroups}
+          // showActionButton={!hasGroups}
+          // actionButtonText={!hasGroups ? 'Browse Groups' : 'View More Groups'}
+          // onActionClick={onBrowseGroups}
           isEmpty={!hasGroups}
           isLoading={isLoading}
         >
@@ -246,7 +258,7 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
         </DashboardCard>
 
         {/* Find More Groups Card */}
-        <DashboardCard
+        {/* <DashboardCard
           titleIconName="SearchIcon"
           title="Discover Groups"
           emptyMessage="Explore fellowship groups that match your interests."
@@ -258,7 +270,7 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           <p className={styles.discoverMessage}>
             Find groups in your area or online that support your recovery journey
           </p>
-        </DashboardCard>
+        </DashboardCard> */}
 
         {/* <DashboardCard
           titleIconName="StatsIcon"

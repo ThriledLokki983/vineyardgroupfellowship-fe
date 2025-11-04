@@ -86,7 +86,7 @@ Used for: Important information, potential issues, cautions
 
 ### Info ℹ️
 Used for: General information, tips, neutral updates
-- Color: Deep Olive Green (`--brand-primary`)
+- Color: Deep Olive Green (`--brand`)
 - Default timeout: 5 seconds
 - Example: "New feature available", "Tip of the day", "Update available"
 

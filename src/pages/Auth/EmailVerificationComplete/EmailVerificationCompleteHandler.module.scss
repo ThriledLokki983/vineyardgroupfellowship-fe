@@ -58,7 +58,7 @@
 
 .primaryButton {
   @include button-primary;
-  background: var(--brand-primary);
+  background: var(--brand);
   color: white;
   border: none;
   border-radius: var(--radius-2);
@@ -69,11 +69,11 @@
   transition: background 0.2s ease;
 
   &:hover {
-    background: color-mix(in srgb, var(--brand-primary) 90%, black);
+    background: color-mix(in srgb, var(--brand) 90%, black);
   }
 
   &:focus {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
   }
 }

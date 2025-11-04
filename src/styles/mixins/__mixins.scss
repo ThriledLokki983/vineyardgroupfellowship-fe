@@ -3,10 +3,10 @@
 // @use './_font-mixins' as *;
 
 @mixin card {
-  background: var(--surface-1);
-  border-radius: var(--radius-4);
+  background: var(--surface-2);
+  border-radius: var(--radius-2);
   border: var(--border-size-1) solid var(--border-1);
-  box-shadow: var(--shadow-4);
+  box-shadow: var(--shadow-1);
   padding: var(--size-8);
 }
 
@@ -25,7 +25,7 @@
     @include ui-font;
     flex: 0 0 auto; display: inline-block;
     width: $size; height: $size; line-height: $size; padding: 0;
-    background: var(--brand-primary); color: var(--surface-elevated); border-radius: 50%;
+    background: var(--brand); color: var(--surface-elevated); border-radius: 50%;
     font-size: math.div($size, 2.5); text-align: center; text-transform: uppercase;
     user-select: none;
     &[data-is-external="true"] {
@@ -133,7 +133,7 @@
 
   &:hover {
     background: var(--surface-2);
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     transform: translateY(-1px);
     box-shadow: var(--shadow-1);
   }
@@ -219,7 +219,7 @@
   }
 
   &:focus {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     outline: var(--border-size-2) solid hsl(var(--surface-shadow) / 10%);
     box-shadow: 0 0 0 3px hsl(var(--surface-shadow) / 10%);
   }
@@ -295,7 +295,7 @@
 
 // Accessible focus ring for interactive elements
 @mixin focus-ring {
-  outline: var(--border-size-2) solid var(--brand-primary);
+  outline: var(--border-size-2) solid var(--brand);
   outline-offset: var(--size-1);
   border-radius: var(--radius-2);
 }

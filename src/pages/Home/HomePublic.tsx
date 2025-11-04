@@ -232,7 +232,7 @@ export default function HomePublic() {
         <Button
           variant="primary"
           onPress={() => navigate('/register')}
-          style={{ background: 'white', color: 'var(--brand-primary)' }}
+          style={{ background: 'white', color: 'var(--brand)' }}
         >
           Begin Your Fellowship Journey
         </Button>

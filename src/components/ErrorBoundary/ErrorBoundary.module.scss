@@ -61,7 +61,7 @@
   font-family: var(--font-mono);
 
   code {
-    color: var(--brand-primary);
+    color: var(--brand);
     font-weight: var(--font-weight-5);
   }
 }
@@ -82,7 +82,7 @@
   margin-bottom: var(--size-2);
 
   &:hover {
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 }
 

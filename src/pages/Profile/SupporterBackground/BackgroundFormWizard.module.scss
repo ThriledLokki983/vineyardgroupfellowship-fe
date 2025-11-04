@@ -55,7 +55,7 @@
   }
 
   &[data-selected="true"] {
-    color: var(--brand-primary);
+    color: var(--brand);
     background-color: var(--surface-canvas);
 
     &::after {
@@ -65,7 +65,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background-color: var(--brand-primary);
+      background-color: var(--brand);
     }
   }
 

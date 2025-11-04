@@ -133,7 +133,7 @@ Custom styling example:
 ```scss
 .customLocationInput {
   :global(.pac-container) {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
   }
 }
 ```

@@ -67,7 +67,7 @@
 
   &:focus {
     outline: none;
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
   }
 
@@ -150,13 +150,13 @@
   }
 
   &:hover {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     background: var(--surface-canvas);
   }
 
   &.active {
-    border-color: var(--brand-primary);
-    background: var(--brand-primary);
+    border-color: var(--brand);
+    background: var(--brand);
     color: white;
   }
 }
@@ -195,8 +195,8 @@
   transition: all 0.2s var(--ease-2);
 
   &:hover {
-    border-color: var(--brand-primary);
-    color: var(--brand-primary);
+    border-color: var(--brand);
+    color: var(--brand);
     background: var(--surface-canvas);
   }
 }
@@ -254,7 +254,7 @@
   inline-size: 100%;
 
   &:hover {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     box-shadow: 0 4px 12px rgba(96, 48, 0, 0.1);
     transform: translateY(-2px);
   }
@@ -275,7 +275,7 @@
 .groupName {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-7);
-  color: var(--brand-primary);
+  color: var(--brand);
   margin: 0;
 }
 
@@ -306,7 +306,7 @@
 
 .almostFullBadge {
   background: var(--accent-warm);
-  color: var(--brand-primary);
+  color: var(--brand);
 }
 
 .groupDescription {
@@ -355,10 +355,10 @@
   gap: var(--size-2);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--brand);
 
   svg {
-    fill: var(--brand-primary);
+    fill: var(--brand);
     inline-size: 16px;
     block-size: 16px;
     transition: transform 0.2s var(--ease-2);

@@ -13,13 +13,13 @@
   transition: all var(--animation-duration-fast);
 
   &[data-selected] {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     background: var(--surface-elevated);
-    box-shadow: 0 0 0 1px var(--brand-primary);
+    box-shadow: 0 0 0 1px var(--brand);
   }
 
   &[data-hovered] {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
@@ -30,7 +30,7 @@
   }
 
   &[data-focus-visible] {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: var(--size-1);
   }
 
@@ -54,7 +54,7 @@
   margin-top: 2px; // Align with text baseline
 
   .radio[data-selected] & {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     background: var(--surface-canvas);
   }
 }
@@ -63,7 +63,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--brand);
   opacity: 0;
   transform: scale(0.5);
   transition: all var(--animation-duration-fast);

@@ -8,6 +8,7 @@ import { type FormConfig, type FieldValue } from '../../../components/Configurab
 import { loginSchema } from '../../../schemas'
 import { ApiError } from '../../../services/api'
 import { toast } from '../../../components/Toast'
+// import LoginLogo from '../../../assets/login-logo.svg?react'
 import styles from './LoginPage.module.scss'
 
 export const LoginPage = () => {
@@ -48,13 +49,10 @@ export const LoginPage = () => {
       loadingText: 'Signing In...',
       variant: 'primary'
     },
-    // Add Zod schema for validation
     schema: loginSchema
-    // Remove footer to create custom links section below
   }
 
   const handleSubmit = (data: Record<string, FieldValue>) => {
-    // Transform to the expected LoginData format
     const loginPayload: LoginData = {
       email_or_username: data.email_or_username as string,
       password: data.password as string,
@@ -69,7 +67,6 @@ export const LoginPage = () => {
       onError: (error) => {
         if (error instanceof ApiError) {
           if (error.errors && Object.keys(error.errors).length > 0) {
-            // Get the first field error to display in toast
             const firstErrorField = Object.keys(error.errors)[0]
             const firstErrorMessage = error.errors[firstErrorField]?.[0]
 
@@ -110,6 +107,9 @@ export const LoginPage = () => {
     <Layout design="auth" variant="fullscreen">
       <div className={styles.loginContainer}>
         <div className={styles.loginHeader}>
+          {/* <div className={styles.logoContainer}>
+            <LoginLogo className={styles.loginLogo} aria-label="Login illustration" />
+          </div> */}
           <h4>Sign in to Continue</h4>
           <Text>Lets keep going ...</Text>
         </div>

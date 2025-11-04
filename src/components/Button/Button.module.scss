@@ -49,16 +49,15 @@
 // Variant styles
 .primary {
   @include button-primary;
-  padding: var(--size-2) var(--size-3);
 }
 
 .secondary {
   background: transparent;
-  color: var(--brand-primary);
-  border: var(--border-size-2) solid var(--brand-primary);
+  color: var(--brand);
+  border: var(--border-size-2) solid var(--brand);
 
   &:hover:not([data-disabled]) {
-    background: var(--brand-primary);
+    background: var(--brand);
     color: var(--surface-canvas);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(96, 48, 0, 0.15);
@@ -72,7 +71,7 @@
 
 .tertiary {
   background: transparent;
-  color: var(--brand-primary);
+  color: var(--brand);
   border: none;
   text-decoration: underline;
   text-underline-offset: var(--size-1); // 3px

@@ -175,7 +175,7 @@ Our premium community-focused color palette:
 
 | Purpose             | Variable              | Hex       | Usage                                    |
 | ------------------- | --------------------- | --------- | ---------------------------------------- |
-| Brand Primary       | `--brand-primary`     | `#3A4F41` | Primary actions, headings                |
+| Brand Primary       | `--brand`     | `#3A4F41` | Primary actions, headings                |
 | Accent Warm         | `--accent-warm`       | `#F4C77B` | Call-to-action buttons, highlights       |
 | Accent Danger       | `--accent-danger`     | `#C25A5A` | Alerts, destructive actions              |
 | Surface Canvas      | `--surface-canvas`    | `#F8F5F0` | Page background                          |

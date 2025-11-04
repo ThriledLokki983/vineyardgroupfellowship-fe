@@ -117,7 +117,7 @@ The component uses SCSS modules with CSS custom properties from our design syste
   }
 
   .title {
-    color: var(--brand-primary);
+    color: var(--brand);
   }
 }
 ```

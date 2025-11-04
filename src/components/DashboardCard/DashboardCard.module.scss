@@ -62,7 +62,7 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-2, 8px);
-  background: var(--brand-primary, #3A4F41);
+  background: var(--brand, #3A4F41);
   color: white;
   flex-shrink: 0;
 }
@@ -86,7 +86,7 @@
 .action {
   margin-top: auto;
   padding: var(--size-2, 8px) var(--size-4, 16px);
-  background: var(--brand-primary, #3A4F41);
+  background: var(--brand, #3A4F41);
   color: white;
   border: none;
   border-radius: var(--radius-2, 8px);

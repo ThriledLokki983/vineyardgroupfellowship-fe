@@ -99,8 +99,8 @@
 
 // React Aria data attribute styling
 .checkboxField[data-selected] .checkboxIndicator {
-  background: var(--brand-primary);
-  border-color: var(--brand-primary);
+  background: var(--brand);
+  border-color: var(--brand);
 
   svg {
     opacity: 1;
@@ -108,7 +108,7 @@
 }
 
 .checkboxField[data-hovered] .checkboxIndicator {
-  border-color: var(--brand-primary);
+  border-color: var(--brand);
 }
 
 .checkboxField[data-pressed] .checkboxIndicator {
@@ -116,12 +116,12 @@
 }
 
 .checkboxField[data-focus-visible] .checkboxIndicator {
-  outline: var(--border-size-2) solid var(--brand-primary);
+  outline: var(--border-size-2) solid var(--brand);
   outline-offset: var(--size-1);
 }
 
 .checkboxField[data-focus] .checkboxIndicator {
-  border-color: var(--brand-primary);
+  border-color: var(--brand);
 }
 
 // Radio Group Styles
@@ -166,13 +166,13 @@
   transition: all var(--animation-duration-fast);
 
   &[data-selected] {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     background: var(--surface-elevated);
-    box-shadow: 0 0 0 1px var(--brand-primary);
+    box-shadow: 0 0 0 1px var(--brand);
   }
 
   &[data-hovered] {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
@@ -183,7 +183,7 @@
   }
 
   &[data-focus-visible] {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: var(--size-1);
   }
 }
@@ -206,14 +206,14 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--brand);
   opacity: 0;
   transform: scale(0.5);
   transition: all var(--animation-duration-fast);
 }
 
 .radioOption[data-selected] .radioIndicator {
-  border-color: var(--brand-primary);
+  border-color: var(--brand);
   background: var(--surface-canvas);
 }
 
@@ -438,14 +438,14 @@
   background: var(--surface-canvas);
 
   &:hover {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     background: var(--surface-elevated);
   }
 
   &[data-selected] {
-    border-color: var(--brand-primary);
-    background: var(--brand-primary);
-    background: linear-gradient(135deg, var(--brand-primary) 0%, var(--accent-warm) 100%);
+    border-color: var(--brand);
+    background: var(--brand);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--accent-warm) 100%);
     color: white;
 
     .radioLabel {
@@ -462,14 +462,14 @@
       background: white;
 
       .radioInner {
-        background: var(--brand-primary);
+        background: var(--brand);
         transform: scale(1);
       }
     }
   }
 
   &[data-focus-visible] {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: var(--size-1);
   }
 }
@@ -492,7 +492,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--brand);
   transform: scale(0);
   transition: transform var(--animation-duration-fast);
 }
@@ -553,17 +553,17 @@
   background: var(--surface-canvas);
 
   &:hover {
-    border-color: var(--brand-primary);
+    border-color: var(--brand);
     background: var(--surface-elevated);
   }
 
   &[data-selected] {
-    border-color: var(--brand-primary);
-    background: rgba(var(--brand-primary-rgb), 0.05);
+    border-color: var(--brand);
+    background: rgba(var(--brand-rgb), 0.05);
 
     .checkboxIndicator {
-      background: var(--brand-primary);
-      border-color: var(--brand-primary);
+      background: var(--brand);
+      border-color: var(--brand);
 
       svg {
         opacity: 1;
@@ -571,13 +571,13 @@
     }
 
     .checkboxLabel {
-      color: var(--brand-primary);
+      color: var(--brand);
       font-weight: var(--font-weight-6);
     }
   }
 
   &[data-focus-visible] {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: var(--size-1);
   }
 }

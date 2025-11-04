@@ -23,7 +23,7 @@
   }
 
   h4 {
-    color: var(--brand-primary);
+    color: var(--brand);
     font-size: var(--font-size-4);
     font-weight: var(--font-weight-7);
     margin: 0 0 var(--size-2);
@@ -231,7 +231,7 @@
 
   .lockIcon {
     flex-shrink: 0;
-    color: var(--brand-primary);
+    color: var(--brand);
     opacity: 0.7;
   }
 
@@ -247,7 +247,7 @@
 .footerLink {
   background: transparent;
   border: none;
-  color: var(--brand-primary);
+  color: var(--brand);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
   text-decoration: none;
@@ -262,7 +262,7 @@
   }
 
   &:focus-visible {
-    outline: var(--border-size-2) solid var(--brand-primary);
+    outline: var(--border-size-2) solid var(--brand);
     outline-offset: var(--size-1);
     border-radius: var(--radius-1);
   }
