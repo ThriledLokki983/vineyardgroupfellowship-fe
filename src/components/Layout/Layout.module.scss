@@ -41,7 +41,6 @@
     justify-content: center;
     padding: var(--size-3);
     min-height: 100%;
-    background: var(--surface-2);
 
     @include bp-min($tablet) {
       padding: var(--size-4);
