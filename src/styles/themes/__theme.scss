@@ -79,6 +79,10 @@ html {
   /* Utility aliases */
   --bg: var(--surface1);
   --border: var(--surface3);
+
+
+  --header-block-size: 95px;
+  --footer-block-size: 105px;
 }
 
 /* ============================================
@@ -249,4 +253,10 @@ html {
   --grey-light: #818181;
   --grey-lightest: #DDDDDD;
   --grey-dark: #D1D1D1;
+}
+
+#root {
+  block-size: 100dvh;
+  inline-size: 100dvw;
+  overflow: hidden;
 }

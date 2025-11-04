@@ -52,20 +52,7 @@
 }
 
 .secondary {
-  background: transparent;
-  color: var(--brand);
-  border: var(--border-size-2) solid var(--brand);
-
-  &:hover:not([data-disabled]) {
-    @include base;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(96, 48, 0, 0.15);
-  }
-
-  &[data-pressed]:not([data-disabled]) {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(96, 48, 0, 0.15);
-  }
+  @include button-secondary;
 }
 
 .tertiary {

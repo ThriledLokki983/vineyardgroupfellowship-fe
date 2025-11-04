@@ -1,0 +1,466 @@
+@use 'styles/_component-utils.scss' as *;
+
+// ================================
+// Minimal Home - Premium Wellness Aesthetic
+// ================================
+
+.minimalHome {
+  width: 100%;
+  // min-height: 100vh;
+}
+
+// ================================
+// SCROLL ANIMATIONS
+// ================================
+
+.fadeIn {
+  animation: fadeInUp var(--animation-duration-normal) var(--ease-3) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--size-6));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ================================
+// PUBLIC HOME - HERO SECTION
+// ================================
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--size-10) var(--size-6);
+  background: linear-gradient(180deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
+  position: relative;
+
+  @include tablet {
+    padding: var(--size-8) var(--size-4);
+  }
+
+  @include mobile {
+    padding: var(--size-6) var(--size-4);
+  }
+}
+
+.logoContainer {
+  margin-bottom: var(--size-8);
+
+  @include mobile {
+    margin-bottom: var(--size-6);
+  }
+}
+
+.logo {
+  width: var(--size-15);
+  height: var(--size-15);
+  animation: breathe 3s var(--ease-in-out-3) infinite;
+
+  @include tablet {
+    width: var(--size-14);
+    height: var(--size-14);
+  }
+
+  @include mobile {
+    width: var(--size-13);
+    height: var(--size-13);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.heroTitle {
+  font-size: clamp(var(--font-size-6), 5vw, var(--font-size-fluid-3));
+  font-weight: var(--font-weight-7);
+  color: var(--brand);
+  margin-bottom: var(--size-5);
+  line-height: var(--font-lineheight-1);
+  max-width: 800px;
+
+  @include mobile {
+    font-size: var(--font-size-5);
+    line-height: var(--font-lineheight-2);
+    margin-bottom: var(--size-4);
+  }
+}
+
+.heroSubtitle {
+  font-size: var(--font-size-3);
+  color: var(--text-secondary);
+  margin-bottom: var(--size-8);
+  line-height: var(--font-lineheight-4);
+  max-width: 600px;
+
+  @include tablet {
+    font-size: var(--font-size-2);
+    margin-bottom: var(--size-6);
+  }
+
+  @include mobile {
+    font-size: var(--font-size-2);
+    margin-bottom: var(--size-6);
+  }
+}
+
+.heroCTAs {
+  display: flex;
+  gap: var(--size-4);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--size-10);
+
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    gap: var(--size-3);
+    margin-bottom: var(--size-8);
+  }
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: var(--size-8);
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--size-2);
+  color: var(--text-secondary);
+  transition: all var(--animation-duration-fast) var(--ease-3);
+
+  &:hover {
+    color: var(--brand);
+    transform: translateX(-50%) translateY(var(--size-1));
+  }
+
+  @include mobile {
+    bottom: var(--size-5);
+  }
+}
+
+.arrow {
+  font-size: var(--font-size-5);
+  display: block;
+  animation: bounce 2s var(--ease-in-out-3) infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(var(--size-2));
+  }
+}
+
+// ================================
+// TRUST STATEMENT
+// ================================
+
+.trustStatement {
+  padding: var(--size-15) var(--size-6);
+  text-align: center;
+  background: var(--surface-canvas);
+
+  @include tablet {
+    padding: var(--size-12) var(--size-5);
+  }
+
+  @include mobile {
+    padding: var(--size-10) var(--size-4);
+  }
+}
+
+.trustText {
+  font-size: var(--font-size-3);
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--font-lineheight-4);
+  font-weight: var(--font-weight-4);
+
+  @include mobile {
+    font-size: var(--font-size-2);
+  }
+}
+
+// ================================
+// CORE PILLARS
+// ================================
+
+.pillarsSection {
+  padding: var(--size-15) var(--size-6);
+  background: var(--surface-elevated);
+
+  @include tablet {
+    padding: var(--size-12) var(--size-5);
+  }
+
+  @include mobile {
+    padding: var(--size-10) var(--size-4);
+  }
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--size-10);
+  max-width: 1000px;
+  margin: 0 auto;
+
+  @include tablet {
+    gap: var(--size-8);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: var(--size-8);
+  }
+}
+
+.pillar {
+  text-align: center;
+  transition: transform var(--animation-duration-fast) var(--ease-3);
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  @include mobile {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.pillarIcon {
+  font-size: var(--size-14);
+  margin-bottom: var(--size-4);
+  line-height: 1;
+
+  @include mobile {
+    font-size: var(--size-12);
+    margin-bottom: var(--size-3);
+  }
+}
+
+.pillarTitle {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6);
+  color: var(--brand);
+  margin-bottom: var(--size-2);
+
+  @include mobile {
+    font-size: var(--font-size-2);
+  }
+}
+
+.pillarDescription {
+  font-size: var(--font-size-2);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-4);
+
+  @include mobile {
+    font-size: var(--font-size-1);
+  }
+}
+
+// ================================
+// SINGLE STAT
+// ================================
+
+.statSection {
+  padding: var(--size-15) var(--size-6);
+  text-align: center;
+  background: var(--surface-canvas);
+
+  @include tablet {
+    padding: var(--size-12) var(--size-5);
+  }
+
+  @include mobile {
+    padding: var(--size-10) var(--size-4);
+  }
+}
+
+.statNumber {
+  font-size: clamp(var(--font-size-7), 8vw, var(--font-size-fluid-3));
+  font-weight: var(--font-weight-7);
+  color: var(--brand);
+  margin-bottom: var(--size-3);
+  line-height: 1;
+
+  @include mobile {
+    font-size: var(--font-size-6);
+  }
+}
+
+.statDescription {
+  font-size: var(--font-size-3);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-4);
+
+  @include mobile {
+    font-size: var(--font-size-2);
+  }
+}
+
+// ================================
+// FINAL CTA
+// ================================
+
+.finalCTA {
+  padding: var(--size-15) var(--size-6);
+  background: var(--surface-elevated);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include tablet {
+    padding: var(--size-12) var(--size-5);
+  }
+
+  @include mobile {
+    padding: var(--size-10) var(--size-4);
+  }
+}
+
+.ctaCard {
+  background: var(--surface-canvas);
+  border-radius: var(--radius-3);
+  padding: var(--size-10);
+  max-width: 600px;
+  text-align: center;
+  box-shadow: var(--shadow-2);
+
+  @include tablet {
+    padding: var(--size-8);
+  }
+
+  @include mobile {
+    padding: var(--size-6);
+  }
+}
+
+.ctaTitle {
+  font-size: var(--font-size-5);
+  font-weight: var(--font-weight-6);
+  color: var(--brand);
+  margin-bottom: var(--size-4);
+  line-height: var(--font-lineheight-2);
+
+  @include mobile {
+    font-size: var(--font-size-4);
+    margin-bottom: var(--size-3);
+  }
+}
+
+.ctaSubtitle {
+  font-size: var(--font-size-2);
+  color: var(--text-secondary);
+  margin-bottom: var(--size-6);
+  line-height: var(--font-lineheight-4);
+
+  @include mobile {
+    font-size: var(--font-size-1);
+    margin-bottom: var(--size-5);
+  }
+}
+
+// ================================
+// AUTHENTICATED HOME
+// ================================
+
+.authHero {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--size-10) var(--size-6);
+  background: linear-gradient(180deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
+
+  @include tablet {
+    padding: var(--size-8) var(--size-4);
+  }
+
+  @include mobile {
+    padding: var(--size-6) var(--size-4);
+  }
+}
+
+.authContent {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-8);
+
+  @include mobile {
+    gap: var(--size-6);
+  }
+}
+
+.authWelcome {
+  font-size: clamp(var(--font-size-5), 4vw, var(--font-size-7));
+  font-weight: var(--font-weight-6);
+  color: var(--brand);
+  line-height: var(--font-lineheight-2);
+	min-inline-size: fit-content;
+	max-inline-size: fit-content;
+
+  @include mobile {
+    font-size: var(--font-size-4);
+  }
+}
+
+.quote {
+  border: none;
+  margin: 0;
+  padding: var(--size-6);
+  background: var(--surface-canvas);
+  border-radius: var(--radius-3);
+  border-left: var(--size-1) solid var(--accent-warm);
+}
+
+.quoteText {
+  font-size: var(--font-size-3);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-4);
+  font-style: italic;
+  margin-bottom: var(--size-3);
+
+  @include mobile {
+    font-size: var(--font-size-2);
+  }
+}
+
+.quoteAuthor {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  font-style: normal;
+  font-weight: var(--font-weight-5);
+
+  @include mobile {
+    font-size: var(--font-size-0);
+  }
+}

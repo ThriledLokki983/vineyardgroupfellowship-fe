@@ -2,19 +2,21 @@
 @use 'styles/_component-utils.scss' as *;
 
 .layout {
-  min-height: 100vh;
+  min-block-size: 100dvh;
   background: var(--surface-1);
   color: var(--text-1);
   font-family: var(--font-sans);
   line-height: var(--font-lineheight-3);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+
 }
 
 .main {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  // flex-direction: column;
 }
 
 // Layout variants - MOBILE FIRST APPROACH
@@ -22,7 +24,7 @@
   .main {
     padding: var(--size-0);
     width: 100dvw;
-    height: 90dvh;
+    block-size: calc(100dvh - var(--header-block-size) - var(--footer-block-size));
 
     @include bp-min($tablet) {
       max-width: 1280px;

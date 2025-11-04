@@ -5,6 +5,7 @@
   border-top: 1px solid var(--border-subtle);
   padding: var(--size-6) var(--size-4);
   margin-top: auto;
+  block-size: var(--footer-block-size);
 
   @include bp-min(tablet) {
     padding: var(--size-8) var(--size-6);

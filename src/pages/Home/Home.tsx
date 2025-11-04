@@ -3,8 +3,8 @@ import { useSignals } from '@preact/signals-react/runtime';
 import Layout from '../../components/Layout/Layout';
 import { useAuthContext } from '../../contexts/Auth/useAuthContext'
 import { homePage } from '../../signals/page-signals';
-import HomePublic from './HomePublic'
-import HomeAuthenticated from './HomeAuthenticated'
+import MinimalPublicHome from './MinimalPublicHome'
+import MinimalAuthHome from './MinimalAuthHome'
 
 function Home() {
   useSignals();
@@ -46,7 +46,7 @@ function Home() {
   // Render appropriate view based on authentication state
   return (
     <Layout variant="default">
-      {user ? <HomeAuthenticated /> : <HomePublic />}
+      {user ? <MinimalAuthHome /> : <MinimalPublicHome />}
     </Layout>
   )
 }
