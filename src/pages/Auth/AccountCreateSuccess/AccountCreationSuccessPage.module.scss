@@ -23,7 +23,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,7 @@
 .title {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-6);
   text-align: center;
   animation: fadeInUp 0.5s var(--ease-3) 0.3s both;
@@ -95,7 +95,7 @@
 
 // Message Box
 .messageBox {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-5);
   border: none;
@@ -128,7 +128,7 @@
 .primaryMessage {
   display: block;
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-2);
   font-weight: var(--font-weight-4);
 }
@@ -145,14 +145,14 @@
 .secondaryMessage {
   display: block;
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 	text-align: center;
 }
 
 // Info Block (Quote + Stat)
 .infoBlock {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-5);
   border: none;
@@ -174,14 +174,14 @@
   font-size: var(--font-size-2);
   font-style: italic;
   line-height: var(--font-lineheight-4);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-2);
   font-weight: var(--font-weight-4);
 }
 
 .quoteAuthor {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-style: normal;
   font-weight: var(--font-weight-5);
 }
@@ -205,7 +205,7 @@
 
 .statText {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-weight: var(--font-weight-3);
   line-height: var(--font-lineheight-3);
   text-align: left;
@@ -213,7 +213,7 @@
 
 // Tips Box
 .tipsBox {
-  // background: var(--surface-elevated);
+  // background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-5);
   margin-bottom: var(--size-6);
@@ -232,7 +232,7 @@
 .tipsTitle {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-3);
 }
 
@@ -251,7 +251,7 @@
 
   li {
     font-size: var(--font-size-1);
-    color: var(--text-secondary);
+    color: var(--text-2);
     margin-bottom: var(--size-2);
     line-height: var(--font-lineheight-3);
     position: relative;
@@ -315,7 +315,7 @@
 .secondaryLink {
   background: transparent;
   border: none;
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
   cursor: pointer;
   padding: var(--size-2);

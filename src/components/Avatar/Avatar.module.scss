@@ -8,8 +8,8 @@
   width: var(--avatar-size, 32px);
   height: var(--avatar-size, 32px);
   border-radius: 50%;
-  background: var(--surface-elevated);
-  color: var(--text-primary);
+  background: var(--surface-2);
+  color: var(--text-1);
   font-size: calc(var(--avatar-size, 32px) / 2.5);
   font-weight: var(--font-weight-6);
   line-height: 1;
@@ -22,13 +22,13 @@
   svg {
     width: 60%;
     height: 60%;
-    color: var(--text-secondary);
+    color: var(--text-2);
   }
 
   // Initials text
   > span {
     text-transform: uppercase;
-    color: var(--text-primary);
+    color: var(--text-1);
   }
 
   // Subtle border for better definition

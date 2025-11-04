@@ -63,13 +63,13 @@
  * Notice - Brand Primary
  */
 .root[data-variation="notice"] {
-    background: color-mix(in srgb, var(--border-accent) 3%, transparent);
+    background: color-mix(in srgb, var(--brand) 3%, transparent);
     color: var(--brand);
-    border-left: 4px solid var(--border-accent);
+    border-left: 4px solid var(--brand);
     background-color: var(--surface-2);
 
     > svg {
-        color: var(--border-accent);
+        color: var(--brand);
     }
 }
 
@@ -79,7 +79,7 @@
 .root[data-variation="success"] {
     background: var(--success-color-light);
     color: var(--success-color);
-    // border-left: 4px solid var(--accent-warm);
+    // border-left: 4px solid var(--brand);
 }
 .root[data-variation="success"] > svg {
     color: var(--success-color);

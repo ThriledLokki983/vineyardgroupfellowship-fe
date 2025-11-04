@@ -14,7 +14,7 @@
   justify-content: center;
   text-align: center;
   padding: var(--size-10) var(--size-6);
-  background: linear-gradient(135deg, var(--surface-canvas) 0%, var(--surface-1) 100%);
+  background: linear-gradient(135deg, var(--surface-1) 0%, var(--surface-1) 100%);
   position: relative;
   overflow: hidden;
 
@@ -71,7 +71,7 @@
 
 .heroSubtitle {
   font-size: var(--font-size-4);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-8);
   line-height: var(--font-lineheight-3);
 
@@ -134,7 +134,7 @@
 .welcomeSubtitle {
 	font-weight: var(--font-weight-3);
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-top: var(--size-1);
 }
 
@@ -171,7 +171,7 @@
   @include card;
   padding: var(--size-6) var(--size-8);
   margin: 0 auto 0 var(--size-7);
-  border-left: 4px solid var(--accent-warm);
+  border-left: 4px solid var(--brand);
   text-align: center;
 	box-shadow: none;
 	border-top-right-radius: var(--radius-2);
@@ -188,7 +188,7 @@
 .dailyMessageQuote {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-4);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-3);
   font-style: italic;
   margin-bottom: var(--size-2);
@@ -201,7 +201,7 @@
 
 .dailyMessageAuthor {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-style: normal;
   font-weight: var(--font-weight-5);
 	max-inline-size: 100%;
@@ -209,13 +209,13 @@
 
 .dailyMessageLoading {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-style: italic;
 }
 
 .dailyMessageAttribution {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-top: var(--size-3);
   opacity: 0.6;
 	max-inline-size: 100%;
@@ -256,7 +256,7 @@
 
 .sectionSubtitle {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   text-align: left;
   margin-bottom: var(--size-2);
   max-width: 100%;
@@ -320,7 +320,7 @@
   width: 64px;
   height: 64px;
   margin: 0 auto var(--size-4);
-  background: linear-gradient(135deg, var(--accent-warm) 0%, #f4c77b80 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, #f4c77b80 100%);
   border-radius: var(--radius-round);
   display: flex;
   align-items: center;
@@ -350,7 +350,7 @@
 
 .pillarDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 
   @include mobile {
@@ -393,20 +393,20 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--brand), var(--accent-warm));
+    background: linear-gradient(90deg, var(--brand), var(--brand));
   }
 }
 
 .previewImage {
   width: 100%;
   height: 200px;
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   margin-bottom: var(--size-4);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
   filter: blur(4px);
 }
@@ -420,7 +420,7 @@
 
 .previewDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 }
 
@@ -455,7 +455,7 @@
 .contentIcon {
   width: 48px;
   height: 48px;
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-2);
   flex-shrink: 0;
   display: flex;
@@ -477,13 +477,13 @@
 
 .contentExcerpt {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 }
 
 // Privacy Section
 .privacySection {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   padding: var(--size-8) var(--size-6);
   margin: var(--size-10) 0;
 
@@ -590,7 +590,7 @@
 .actionIcon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--brand));
   border-radius: var(--radius-2);
   display: flex;
   align-items: center;
@@ -612,13 +612,13 @@
 
 .actionDescription {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 	margin-bottom: 0;
 }
 
 .actionSubtitle {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 // Insights Overview
@@ -650,13 +650,13 @@
 
 .insightLabel {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-1);
 }
 
 .insightTrend {
   font-size: var(--font-size-0);
-  color: var(--accent-warm);
+  color: var(--brand);
   font-weight: var(--font-weight-5);
 }
 
@@ -697,19 +697,19 @@
 
 .postTime {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 .postContent {
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-3);
   margin-bottom: var(--size-2);
 }
 
 .postMeta {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   opacity: 0.7;
 }
 
@@ -723,7 +723,7 @@
 .encouragementFooter {
   text-align: center;
   padding: var(--size-8) var(--size-6);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
 
   @include mobile {
     padding: var(--size-6) var(--size-4);
@@ -738,7 +738,7 @@
 .encouragementLabel {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--accent-warm);
+  color: var(--brand);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: var(--size-2);
@@ -758,7 +758,7 @@
 
 .dailyQuote {
   font-size: var(--font-size-2);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-3);
   font-style: italic;
   margin-bottom: var(--size-4);
@@ -825,7 +825,7 @@
 .statLabel {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-1);
 
   @include mobile {
@@ -836,7 +836,7 @@
 
 .statDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 
   @include mobile {
@@ -897,7 +897,7 @@
   }
 
   &.urgency-medium {
-    border-left: 4px solid var(--accent-warm);
+    border-left: 4px solid var(--brand);
   }
 
   &.urgency-low {
@@ -922,7 +922,7 @@
     }
 
     &.urgency-medium {
-      border-top-color: var(--accent-warm);
+      border-top-color: var(--brand);
     }
 
     &.urgency-low {
@@ -934,7 +934,7 @@
 .actionIcon {
   width: 48px;
   height: 48px;
-  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--brand));
   border-radius: var(--radius-2);
   display: flex;
   align-items: center;
@@ -972,7 +972,7 @@
 
 .actionDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 
   @include mobile {
@@ -1019,7 +1019,7 @@
   }
 
   &.status-upcoming {
-    border-left: 4px solid var(--accent-warm);
+    border-left: 4px solid var(--brand);
   }
 
   &.status-scheduled {
@@ -1039,7 +1039,7 @@
     }
 
     &.status-upcoming {
-      border-top-color: var(--accent-warm);
+      border-top-color: var(--brand);
     }
 
     &.status-scheduled {
@@ -1073,7 +1073,7 @@
 .scheduleTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-1);
 
   @include mobile {
@@ -1086,7 +1086,7 @@
   display: flex;
   gap: var(--size-3);
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
 
   @include mobile {
     flex-direction: column;
@@ -1142,7 +1142,7 @@
   }
 
   &.type-gratitude {
-    border-left: 4px solid var(--accent-warm);
+    border-left: 4px solid var(--brand);
   }
 
   &.type-support {
@@ -1164,7 +1164,7 @@
     }
 
     &.type-gratitude {
-      border-top-color: var(--accent-warm);
+      border-top-color: var(--brand);
     }
 
     &.type-support {
@@ -1198,7 +1198,7 @@
 
 .postTime {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   opacity: 0.7;
 
   @include mobile {
@@ -1208,7 +1208,7 @@
 
 .postContent {
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-3);
   margin-bottom: var(--size-3);
 
@@ -1233,7 +1233,7 @@
 
 .postReactions {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   display: flex;
   align-items: center;
   gap: var(--size-1);
@@ -1292,7 +1292,7 @@
 .statLabel {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-1);
 
   @include mobile {
@@ -1302,7 +1302,7 @@
 
 .statDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 
   @include mobile {
@@ -1388,7 +1388,7 @@
 
 .pathDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 
   @include mobile {
@@ -1431,7 +1431,7 @@
 .stepNumber {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--brand), var(--accent-warm));
+  background: linear-gradient(135deg, var(--brand), var(--brand));
   border-radius: var(--radius-round);
   display: flex;
   align-items: center;
@@ -1464,7 +1464,7 @@
 
 .processStep p {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 
   @include mobile {

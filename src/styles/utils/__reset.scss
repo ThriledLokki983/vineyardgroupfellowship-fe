@@ -21,13 +21,13 @@
 
 /* Text Selection Highlight Styles */
 ::selection {
-  background-color: var(--accent-warm, #F4C77B);
+  background-color: var(--brand, #F4C77B);
   color:#fff;
   text-shadow: none;
 }
 
 ::-moz-selection {
-  background-color: var(--accent-warm, #F4C77B);
+  background-color: var(--brand, #F4C77B);
   color:#fff;
   text-shadow: none;
 }

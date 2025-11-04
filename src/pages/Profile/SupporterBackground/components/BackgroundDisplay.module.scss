@@ -61,7 +61,7 @@
   font-weight: var(--font-weight-6);
   color: var(--brand);
   margin-bottom: var(--size-3);
-  border-bottom: 2px solid var(--surface-elevated);
+  border-bottom: 2px solid var(--surface-2);
   padding-bottom: var(--size-2);
 }
 
@@ -76,15 +76,15 @@
 .infoText {
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
-  color: var(--text-primary);
+  color: var(--text-1);
 }
 
 // Personal Story
 .storyContainer {
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   padding: var(--size-5);
   border-radius: var(--radius-1);
-  border-left: 4px solid var(--accent-warm);
+  border-left: 4px solid var(--brand);
 }
 
 .storyText {
@@ -101,10 +101,10 @@
 }
 
 .credentialItem {
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   padding: var(--size-4);
   border-radius: var(--radius-1);
-  border-left: 3px solid var(--accent-warm);
+  border-left: 3px solid var(--brand);
 }
 
 .credentialContent {
@@ -115,7 +115,7 @@
 
 .credentialName {
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   font-size: var(--font-size-1);
 }
 
@@ -126,20 +126,20 @@
 	align-items: center;
   gap: var(--size-2);
   padding: var(--size-3);
-  background-color: var(--surface-canvas);
+  background-color: var(--surface-1);
   border-radius: var(--radius-2);
   border: 1px solid var(--border-subtle);
 }
 
 .documentInfo {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-weight: var(--font-weight-5);
 }
 
 .uploadDate {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-style: italic;
 }
 
@@ -165,7 +165,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--size-3) var(--size-4);
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-2);
 
   @include mobile {
@@ -177,12 +177,12 @@
 
 .label {
   font-weight: var(--font-weight-6);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 .value {
   font-weight: var(--font-weight-5);
-  color: var(--text-primary);
+  color: var(--text-1);
 }
 
 // Timestamp Grid
@@ -201,7 +201,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--size-3);
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-2);
 
   @include mobile {
@@ -215,6 +215,6 @@
 .editSection {
   margin-top: var(--size-8);
   padding-top: var(--size-6);
-  border-top: 2px solid var(--surface-elevated);
+  border-top: 2px solid var(--surface-2);
   text-align: center;
 }

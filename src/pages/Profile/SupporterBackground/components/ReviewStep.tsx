@@ -155,7 +155,7 @@ export function ReviewStep({ formData, onEdit, mode = 'setup' }: ReviewStepProps
 
       {mode !== 'review' && (
         <div className={styles.stepActions}>
-          <p style={{ textAlign: 'center', marginBottom: 'var(--size-4)', color: 'var(--text-secondary)' }}>
+          <p style={{ textAlign: 'center', marginBottom: 'var(--size-4)', color: 'var(--text-2)' }}>
             By submitting this information, you confirm that it is accurate and agree to our supporter guidelines.
           </p>
         </div>

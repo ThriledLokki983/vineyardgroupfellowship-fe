@@ -10,7 +10,7 @@
 .loading {
   text-align: center;
   padding: var(--size-8);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 // Main container
@@ -32,7 +32,7 @@
 .settingsTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-5);
 
   @include bp-min($tablet) {
@@ -71,7 +71,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: hsl(var(--surface-canvas-hsl) / 95%);
+  background: hsl(var(--surface-1-hsl) / 95%);
   backdrop-filter: blur(12px);
   border-top: 1px solid var(--border-subtle);
   padding: var(--size-3) var(--size-4);
@@ -87,7 +87,7 @@
     right: auto;
     width: auto;
     max-width: 320px;
-    background: var(--surface-elevated);
+    background: var(--surface-2);
     border-top: none;
     border-radius: var(--radius-3);
     padding: var(--size-6);
@@ -136,7 +136,7 @@
     gap: var(--size-1);
     font-size: var(--font-size-0);
     font-weight: var(--font-weight-5);
-    color: var(--text-secondary);
+    color: var(--text-2);
     transition: all 0.2s ease;
     text-align: center;
     flex-direction: column;
@@ -157,11 +157,11 @@
     }
 
     &:hover {
-      background: var(--surface-canvas);
-      color: var(--text-primary);
+      background: var(--surface-1);
+      color: var(--text-1);
 
       @include bp-min($tablet) {
-        background: var(--surface-canvas);
+        background: var(--surface-1);
       }
     }
 
@@ -237,7 +237,7 @@
 }
 
 .settingsSection {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-4);
   box-shadow: var(--shadow-2);
@@ -253,7 +253,7 @@
 .sectionTitle {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-4) 0;
   padding-bottom: var(--size-2);
   border-bottom: var(--border-size-1) solid var(--border-subtle);
@@ -301,7 +301,7 @@
 .settingLabel {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-1);
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -313,7 +313,7 @@
 
 .settingDescription {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -321,7 +321,7 @@
 
 .settingValue {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -399,7 +399,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   transition: var(--animation-duration-fast);
   border-radius: var(--radius-round);
   border: var(--border-size-2) solid var(--border-subtle);
@@ -441,11 +441,11 @@
   width: auto;
   padding: var(--size-3) var(--size-5);
   justify-content: center;
-  color: var(--accent-danger);
-  border-color: var(--accent-danger);
+  color: var(--error-color);
+  border-color: var(--error-color);
 
   &:hover {
-    background: var(--accent-danger);
+    background: var(--error-color);
     color: var(--surface-1);
   }
 }
@@ -487,13 +487,13 @@
 .modalTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
-  color: var(--accent-danger);
+  color: var(--error-color);
   margin: 0 0 var(--size-4) 0;
 }
 
 .modalText {
   font-size: var(--font-size-2);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-3);
   margin: 0 0 var(--size-6) 0;
 }
@@ -517,11 +517,11 @@
   @include button-primary;
   flex: 1;
   justify-content: center;
-  background: var(--accent-danger);
-  border-color: var(--accent-danger);
+  background: var(--error-color);
+  border-color: var(--error-color);
 
   &:hover {
-    background: color-mix(in srgb, var(--accent-danger) 85%, black);
+    background: color-mix(in srgb, var(--error-color) 85%, black);
   }
 }
 
@@ -532,8 +532,8 @@
   justify-content: space-between;
   gap: var(--size-3);
   padding: var(--size-3);
-  background: color-mix(in srgb, var(--accent-danger) 5%, transparent);
-  border: var(--border-size-1) solid color-mix(in srgb, var(--accent-danger) 20%, transparent);
+  background: color-mix(in srgb, var(--error-color) 5%, transparent);
+  border: var(--border-size-1) solid color-mix(in srgb, var(--error-color) 20%, transparent);
   border-radius: var(--radius-2);
 
   @include bp-min($tablet) {

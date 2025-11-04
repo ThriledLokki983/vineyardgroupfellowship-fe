@@ -13,7 +13,7 @@
   display: block;
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-1);
 }
 
@@ -27,8 +27,8 @@
   padding: var(--size-3) var(--size-3) var(--size-3) var(--size-3);
   font-size: var(--font-size-1);
   text-align: left;
-  background: var(--surface-canvas);
-  color: var(--text-primary);
+  background: var(--surface-1);
+  color: var(--text-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   cursor: pointer;
@@ -46,7 +46,7 @@
   }
 
   &[data-pressed] {
-    background: var(--surface-elevated);
+    background: var(--surface-2);
   }
 
   &[data-disabled] {
@@ -64,7 +64,7 @@
 }
 
 .placeholder {
-  color: var(--text-secondary);
+  color: var(--text-2);
   opacity: 0.6;
 }
 
@@ -76,7 +76,7 @@
   flex-shrink: 0;
   inline-size: var(--size-4);
   block-size: var(--size-4);
-  color: var(--text-secondary);
+  color: var(--text-2);
   transition: transform 0.2s var(--ease-2);
 
   // Rotate when open
@@ -93,14 +93,14 @@
 // Description
 .description {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-top: var(--size-1);
 }
 
 // Error
 .error {
   font-size: var(--font-size-0);
-  color: var(--accent-danger);
+  color: var(--error-color);
   margin-top: var(--size-1);
 }
 
@@ -109,7 +109,7 @@
   min-inline-size: var(--trigger-width);
   max-block-size: 300px;
   overflow: auto;
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-4);
@@ -161,14 +161,14 @@
   gap: var(--size-2);
   padding: var(--size-3);
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   border-radius: var(--radius-2);
   cursor: pointer;
   outline: none;
   transition: all 0.2s var(--ease-2);
 
   &.focused {
-    background: var(--surface-elevated);
+    background: var(--surface-2);
   }
 
   &.selected {
@@ -176,7 +176,7 @@
     font-weight: var(--font-weight-6);
 
     &.focused {
-      background: var(--accent-warm);
+      background: var(--brand);
       color: var(--brand);
     }
   }

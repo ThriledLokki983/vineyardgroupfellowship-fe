@@ -17,8 +17,8 @@
   @include input-base;
 
   &[data-invalid="true"] {
-    border-color: var(--accent-danger);
-    box-shadow: 0 0 0 1px var(--accent-danger);
+    border-color: var(--error-color);
+    box-shadow: 0 0 0 1px var(--error-color);
   }
 
   &[data-focused="true"] {
@@ -36,13 +36,13 @@
 .label {
   @include label-base;
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-2);
 }
 
 .description {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin-top: var(--size-1);
 }
@@ -53,7 +53,7 @@
 
 .errorMessage {
   font-size: var(--font-size-0);
-  color: var(--accent-danger);
+  color: var(--error-color);
   margin-top: var(--size-1);
   display: flex;
   align-items: center;
@@ -78,7 +78,7 @@
   transition: background-color var(--animation-duration-fast);
 
   &:hover {
-    background-color: var(--surface-elevated);
+    background-color: var(--surface-2);
   }
 
   &[data-selected="true"] {
@@ -127,13 +127,13 @@
 
 .itemLabel {
   font-weight: var(--font-weight-5);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-1);
 }
 
 .itemDescription {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 }
 
@@ -160,7 +160,7 @@
 }
 
 .availabilityItem {
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border: var(--border-size-1) solid var(--border-subtle);
   border-radius: var(--radius-2);
   padding: var(--size-4);
@@ -194,7 +194,7 @@
 .reviewTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-3) 0;
   display: flex;
   align-items: center;
@@ -221,12 +221,12 @@
 
 .reviewLabel {
   font-weight: var(--font-weight-5);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-0);
 }
 
 .reviewValue {
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-top: var(--size-1);
 }
 

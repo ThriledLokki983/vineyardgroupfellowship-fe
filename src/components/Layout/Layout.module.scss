@@ -3,8 +3,8 @@
 
 .layout {
   min-height: 100vh;
-  background: var(--surface-canvas);
-  color: var(--text-primary);
+  background: var(--surface-1);
+  color: var(--text-1);
   font-family: var(--font-sans);
   line-height: var(--font-lineheight-3);
   display: flex;
@@ -39,7 +39,7 @@
     justify-content: center;
     padding: var(--size-3);
     min-height: 100%;
-    background: var(--surface-elevated);
+    background: var(--surface-2);
 
     @include bp-min($tablet) {
       padding: var(--size-4);
@@ -79,7 +79,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--surface-canvas);
+  background: var(--surface-1);
 
   @include bp-min($tablet) {
     // padding: var(--size-6);

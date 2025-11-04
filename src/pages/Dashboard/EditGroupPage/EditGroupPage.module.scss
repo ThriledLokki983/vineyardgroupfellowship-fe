@@ -34,7 +34,7 @@
 }
 
 .section {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-2);
   padding: var(--size-5);
   border: 1px solid var(--border-subtle);
@@ -76,11 +76,11 @@
 .label {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
 }
 
 .required {
-  color: var(--accent-danger);
+  color: var(--error-color);
   margin-left: var(--size-1);
 }
 
@@ -88,8 +88,8 @@
 .textarea {
   padding: var(--size-3);
   font-size: var(--font-size-1);
-  color: var(--text-primary);
-  background: var(--surface-canvas);
+  color: var(--text-1);
+  background: var(--surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out;
@@ -118,7 +118,7 @@
   align-items: center;
   gap: var(--size-2);
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   cursor: pointer;
 
   span {
@@ -158,20 +158,20 @@
   svg {
     width: 64px;
     height: 64px;
-    fill: var(--accent-danger);
+    fill: var(--error-color);
   }
 
   h2 {
     margin: 0;
     font-size: var(--font-size-5);
     font-weight: var(--font-weight-6);
-    color: var(--text-primary);
+    color: var(--text-1);
   }
 
   p {
     margin: 0;
     font-size: var(--font-size-1);
-    color: var(--text-secondary);
+    color: var(--text-2);
     max-width: 400px;
   }
 }

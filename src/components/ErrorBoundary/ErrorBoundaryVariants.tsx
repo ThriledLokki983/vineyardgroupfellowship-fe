@@ -116,10 +116,10 @@ export function DashboardWidgetErrorBoundary({
   const defaultFallback = (
     <div style={{
       padding: 'var(--size-4)',
-      backgroundColor: 'var(--surface-elevated)',
+      backgroundColor: 'var(--surface-2)',
       borderRadius: 'var(--radius-2)',
       textAlign: 'center',
-      color: 'var(--text-secondary)',
+      color: 'var(--text-2)',
     }}>
       <p style={{ fontSize: 'var(--font-size-0)', marginBottom: 'var(--size-2)' }}>
         Unable to load {widgetName}

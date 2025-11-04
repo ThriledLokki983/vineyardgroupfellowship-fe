@@ -74,7 +74,7 @@
   transition: all 0.2s var(--ease-2);
 
   &:hover {
-    background: var(--surface-canvas);
+    background: var(--surface-1);
     transform: translateY(-2px);
     box-shadow: var(--shadow-3);
   }
@@ -87,14 +87,14 @@
 
 /* Background Setup Banner - Prominent for users needing background completion */
 .backgroundSetupBanner {
-  background: linear-gradient(135deg, var(--accent-warm) 0%, hsl(var(--accent-warm-hsl) / 90%) 100%);
+  background: linear-gradient(135deg, var(--brand) 0%, hsl(var(--brand-hsl) / 90%) 100%);
   border-radius: var(--radius-4);
   padding: var(--size-6);
   margin-bottom: var(--size-6);
   display: flex;
   align-items: center;
   gap: var(--size-4);
-  box-shadow: 0 4px 20px hsl(var(--accent-warm-hsl) / 30%);
+  box-shadow: 0 4px 20px hsl(var(--brand-hsl) / 30%);
   color: var(--brand);
 
   @media (max-width: 768px) {
@@ -169,7 +169,7 @@
 }
 
 .actionCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-6);
   display: flex;
@@ -201,13 +201,13 @@
 .actionCardTitle {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0;
 }
 
 .actionCardDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin: 0;
   flex-grow: 1;
@@ -231,7 +231,7 @@
 
 /* Resources Section */
 .resourcesSection {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-4);
   padding: var(--size-6);
   text-align: center;
@@ -252,7 +252,7 @@
 
 .resourcesDescription {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   max-width: 500px;
   margin: 0 auto var(--size-5);
@@ -322,7 +322,7 @@
 }
 
 .impactCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-4);
   text-align: center;
@@ -338,7 +338,7 @@
 
 .impactLabel {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-weight: var(--font-weight-5);
 }
 
@@ -367,12 +367,12 @@
 .contentCardTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-3);
 }
 
 .contentCardBody {
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
 }
@@ -382,18 +382,18 @@
   flex-direction: column;
   margin-bottom: var(--size-3);
   padding: var(--size-2);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-radius: var(--radius-2);
 }
 
 .menteeName {
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
 }
 
 .menteeProgress {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 .menteeStatus {
@@ -401,11 +401,11 @@
   margin-top: var(--size-1);
 
   &:contains("✓") {
-    color: var(--accent-warm);
+    color: var(--brand);
   }
 
   &:contains("⚠") {
-    color: var(--accent-danger);
+    color: var(--error-color);
   }
 }
 
@@ -427,7 +427,7 @@
   gap: var(--size-2);
   margin-bottom: var(--size-2);
   padding: var(--size-2);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-radius: var(--radius-2);
 }
 
@@ -460,23 +460,23 @@
 }
 
 .urgentText {
-  color: var(--accent-danger);
+  color: var(--error-color);
   font-weight: var(--font-weight-6);
   margin: 0 0 var(--size-2) 0;
 }
 
 .urgentLink {
-  background: var(--accent-danger) !important;
+  background: var(--error-color) !important;
   color: var(--surface-1) !important;
 
   &:hover {
-    background: hsl(var(--accent-danger-hsl) / 90%) !important;
+    background: hsl(var(--error-color-hsl) / 90%) !important;
   }
 }
 
 /* Leadership Development Section */
 .leadershipDevelopment {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-4);
   padding: var(--size-6);
   margin-bottom: var(--size-6);
@@ -493,12 +493,12 @@
   h3 {
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-6);
-    color: var(--text-primary);
+    color: var(--text-1);
     margin-bottom: var(--size-2);
   }
 
   p {
-    color: var(--text-secondary);
+    color: var(--text-2);
     margin-bottom: var(--size-4);
   }
 }
@@ -573,7 +573,7 @@
 }
 
 .quickActionCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border: none;
   border-radius: var(--radius-3);
   padding: var(--size-5);
@@ -585,7 +585,7 @@
   transition: all 0.2s var(--ease-2);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-5);
-  color: var(--text-primary);
+  color: var(--text-1);
   border: 2px solid transparent;
 
   &:hover {

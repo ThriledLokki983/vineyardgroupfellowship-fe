@@ -13,7 +13,7 @@
   align-items: center;
   gap: var(--size-4);
   padding: var(--size-8);
-  color: var(--text-secondary);
+  color: var(--text-2);
 
   svg {
     color: var(--brand);
@@ -38,24 +38,24 @@
 }
 
 .onboardingIcon {
-  color: var(--accent-warm);
+  color: var(--brand);
   margin-bottom: var(--size-2);
 
   svg {
-    filter: drop-shadow(0 4px 12px hsl(var(--accent-warm-hsl) / 20%));
+    filter: drop-shadow(0 4px 12px hsl(var(--brand-hsl) / 20%));
   }
 }
 
 .onboardingTitle {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-2);
 }
 
 .onboardingSubtitle {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 }
 
@@ -97,7 +97,7 @@
 .mainTitle {
   font-size: var(--font-size-7);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-3);
   line-height: 1.2;
 
@@ -108,7 +108,7 @@
 
 .subtitle {
   font-size: var(--font-size-3);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-6);
   font-weight: var(--font-weight-4);
 }
@@ -117,19 +117,19 @@
   display: inline-flex;
   align-items: center;
   gap: var(--size-2);
-  background: color-mix(in srgb, var(--accent-warm) 15%, transparent);
+  background: color-mix(in srgb, var(--brand) 15%, transparent);
   color: var(--brand);
   padding: var(--size-2) var(--size-4);
   border-radius: var(--radius-pill);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  border: 1px solid color-mix(in srgb, var(--accent-warm) 30%, transparent);
+  border: 1px solid color-mix(in srgb, var(--brand) 30%, transparent);
 }
 
 .pulse {
   width: 8px;
   height: 8px;
-  background: var(--accent-warm);
+  background: var(--brand);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -147,7 +147,7 @@
 
 // Message Card
 .messageCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-7);
   text-align: center;
@@ -177,13 +177,13 @@
 .messageTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-3);
 }
 
 .messageText {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   max-width: 700px;
   margin: 0 auto;
@@ -197,7 +197,7 @@
 .featuresTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   text-align: center;
   margin-bottom: var(--size-6);
 }
@@ -209,7 +209,7 @@
 }
 
 .featureCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-6);
   text-align: center;
@@ -231,13 +231,13 @@
 .featureTitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-2);
 }
 
 .featureDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 }
 
@@ -249,7 +249,7 @@
 .timelineCard {
   background: linear-gradient(135deg,
     color-mix(in srgb, var(--brand) 5%, transparent) 0%,
-    color-mix(in srgb, var(--accent-warm) 5%, transparent) 100%);
+    color-mix(in srgb, var(--brand) 5%, transparent) 100%);
   border-radius: var(--radius-3);
   padding: var(--size-7);
   text-align: center;
@@ -264,13 +264,13 @@
 .timelineTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-3);
 }
 
 .timelineText {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   max-width: 700px;
   margin: 0 auto;
@@ -282,7 +282,7 @@
 }
 
 .ctaCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-7);
   text-align: center;
@@ -293,13 +293,13 @@
 .ctaTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-3);
 }
 
 .ctaText {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin-bottom: var(--size-6);
   max-width: 600px;

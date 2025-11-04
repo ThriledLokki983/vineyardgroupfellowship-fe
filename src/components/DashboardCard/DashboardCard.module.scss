@@ -1,7 +1,7 @@
 @use 'styles/_component-utils.scss' as *;
 
 .dashboardCard {
-  background: var(--surface-elevated, #EAE6E1);
+  background: var(--surface-2, #EAE6E1);
   border-radius: var(--radius-3, 16px);
   padding: var(--size-6, 24px);
   display: flex;
@@ -70,14 +70,14 @@
 .title {
   font-size: var(--font-size-3, 18px);
   font-weight: var(--font-weight-6, 600);
-  color: var(--text-primary, #2A2A2A);
+  color: var(--text-1, #2A2A2A);
   margin: 0;
 }
 
 .message {
   font-size: var(--font-size-1, 16px);
   font-weight: var(--font-weight-4, 400);
-  color: var(--text-secondary, #6E7673);
+  color: var(--text-2, #6E7673);
   line-height: var(--font-lineheight-3, 1.5);
   margin: 0;
   flex: 1;
@@ -97,8 +97,8 @@
   align-self: flex-start;
 
   &:hover {
-    background: var(--accent-warm, #F4C77B);
-    color: var(--text-primary, #2A2A2A);
+    background: var(--brand, #F4C77B);
+    color: var(--text-1, #2A2A2A);
     transform: translateX(4px);
   }
 

@@ -8,13 +8,13 @@
   padding: var(--size-4);
   border: 2px solid var(--border-subtle);
   border-radius: var(--radius-3);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   cursor: pointer;
   transition: all var(--animation-duration-fast);
 
   &[data-selected] {
     border-color: var(--brand);
-    background: var(--surface-elevated);
+    background: var(--surface-2);
     box-shadow: 0 0 0 1px var(--brand);
   }
 
@@ -45,7 +45,7 @@
   height: 20px;
   border: 2px solid var(--border-subtle);
   border-radius: 50%;
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,7 +55,7 @@
 
   .radio[data-selected] & {
     border-color: var(--brand);
-    background: var(--surface-canvas);
+    background: var(--surface-1);
   }
 }
 
@@ -84,13 +84,13 @@
 .radioLabel {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-5);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-2);
 }
 
 .radioDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   font-weight: var(--font-weight-3);
 }

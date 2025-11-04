@@ -46,7 +46,7 @@ function App() {
 - **Colors**:
   - Border: `--border-subtle` (#DAD5CF)
   - Active: `--brand` (#3A4F41)
-  - Text: `--text-secondary` (#6E7673)
+  - Text: `--text-2` (#6E7673)
 
 ## Accessibility
 

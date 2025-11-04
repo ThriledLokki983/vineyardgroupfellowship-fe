@@ -24,7 +24,7 @@
 }
 
 .toast {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-4);
   border: var(--border-size-1) solid var(--border-subtle);
@@ -60,18 +60,18 @@
   }
 
   &.error {
-    border-left: 4px solid var(--accent-danger);
+    border-left: 4px solid var(--error-color);
 
     .icon {
-      color: var(--accent-danger);
+      color: var(--error-color);
     }
   }
 
   &.warning {
-    border-left: 4px solid var(--accent-warm);
+    border-left: 4px solid var(--brand);
 
     .icon {
-      color: var(--accent-warm);
+      color: var(--brand);
     }
   }
 
@@ -119,7 +119,7 @@
   display: block;
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-2);
   margin: 0;
 }
@@ -127,7 +127,7 @@
 .description {
   display: block;
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin-top: var(--size-1);
 }
@@ -138,7 +138,7 @@
   padding: var(--size-1);
   cursor: pointer;
   border-radius: var(--radius-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   transition: all 0.2s var(--ease-2);
   flex-shrink: 0;
   width: 24px;
@@ -153,8 +153,8 @@
   }
 
   &[data-hovered] {
-    background: var(--surface-canvas);
-    color: var(--text-primary);
+    background: var(--surface-1);
+    color: var(--text-1);
   }
 
   &[data-pressed] {

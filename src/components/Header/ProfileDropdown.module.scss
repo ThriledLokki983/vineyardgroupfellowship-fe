@@ -54,7 +54,7 @@
   font-size: var(--font-size-3);
   text-transform: uppercase;
   flex-shrink: 0;
-  border: 4px solid var(--surface-elevated);
+  border: 4px solid var(--surface-2);
   overflow: hidden;
 }
 
@@ -73,7 +73,7 @@
 .userName {
   font-weight: var(--font-weight-6);
   font-size: var(--font-size-2);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-0);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -82,7 +82,7 @@
 
 .userEmail {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -93,7 +93,7 @@
 .divider {
   height: 1px;
   background: var(--border-subtle);
-  margin: var(--size-3) 0;
+  margin: var(--size-2) 0;
 }
 
 // Menu items
@@ -107,9 +107,9 @@
   display: flex;
   align-items: center;
   gap: var(--size-3);
-  width: 100%;
-  min-height: 44px;
-  padding: var(--size-3);
+  inline-size: 100%;
+  min-block-size: 44px;
+  padding: var(--size-2) var(--size-3);
   background: transparent;
   border: none;
   border-radius: var(--radius-2);
@@ -117,7 +117,7 @@
   text-align: left;
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-5);
-  color: var(--text-primary);
+  color: var(--text-1);
   transition: background-color 0.2s ease, color 0.2s ease;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
@@ -128,7 +128,7 @@
   }
 
   &:hover {
-    background: var(--surface-elevated);
+    background: var(--surface-2);
     color: var(--brand);
   }
 
@@ -143,7 +143,7 @@
 }
 
 .menuIcon {
-  color: var(--text-secondary);
+  color: var(--text-2);
   flex-shrink: 0;
   transition: color 0.2s ease;
 
@@ -159,18 +159,20 @@
 
 .logoutButton {
   width: 100%;
+  display: flex; align-items: center;
   justify-content: flex-start;
   gap: var(--size-3);
-  color: var(--accent-danger);
+  color: var(--error-color);
   font-weight: var(--font-weight-5);
   padding: var(--size-2) var(--size-4) !important;
+  min-block-size: var(--size-7);
 
   &:hover {
     background: rgba(194, 90, 90, 0.1);
-    color: var(--accent-danger);
+    color: var(--error-color);
   }
 
   svg {
-    color: var(--accent-danger);
+    color: var(--error-color);
   }
 }

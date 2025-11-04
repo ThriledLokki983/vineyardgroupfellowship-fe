@@ -30,18 +30,18 @@
 .unknown {
   text-align: center;
   padding: var(--size-8);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   margin: var(--size-6) auto;
   max-width: 500px;
 
   h2 {
-    color: var(--text-primary);
+    color: var(--text-1);
     margin-bottom: var(--size-3);
   }
 
   p {
-    color: var(--text-secondary);
+    color: var(--text-2);
   }
 }
 
@@ -103,7 +103,7 @@
   transition: all 0.2s var(--ease-2);
 
   &:hover {
-    background: var(--surface-canvas);
+    background: var(--surface-1);
     transform: translateY(-2px);
     box-shadow: var(--shadow-3);
   }
@@ -116,14 +116,14 @@
 
 /* Daily Message Section */
 .dailyMessageSection {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-5);
   margin-bottom: var(--size-6);
   display: flex;
   gap: var(--size-4);
   align-items: flex-start;
-  border-left: 4px solid var(--accent-warm);
+  border-left: 4px solid var(--brand);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
   @include bp-min($tablet) {
@@ -144,13 +144,13 @@
   font-size: var(--font-size-3);
   font-style: italic;
   line-height: var(--font-lineheight-4);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-2) 0;
 }
 
 .dailyMessageAuthor {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0;
 }
 
@@ -172,7 +172,7 @@
 }
 
 .actionCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-5);
   transition: all 0.3s var(--ease-2);
@@ -187,7 +187,7 @@
   }
 
   &[data-featured="true"] {
-    background: linear-gradient(135deg, var(--accent-warm) 0%, rgba(244, 199, 123, 0.9) 100%);
+    background: linear-gradient(135deg, var(--brand) 0%, rgba(244, 199, 123, 0.9) 100%);
     color: var(--brand);
     border: none;
     box-shadow: 0 4px 16px rgba(244, 199, 123, 0.3);
@@ -215,7 +215,7 @@
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
   margin: 0 0 var(--size-2) 0;
-  color: var(--text-primary);
+  color: var(--text-1);
 
   [data-featured="true"] & {
     color: var(--brand);
@@ -225,7 +225,7 @@
 .actionCardDescription {
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-4);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0 0 var(--size-4) 0;
   flex: 1;
 
@@ -261,7 +261,7 @@
 .motivationSection {
   text-align: center;
   padding: var(--size-5);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   border: 2px dashed var(--border-subtle);
 }
@@ -274,7 +274,7 @@
 
 .motivationText {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0;
   font-weight: var(--font-weight-5);
 }
@@ -321,7 +321,7 @@
 .discoverMessage,
 .journeyMessage {
   padding: var(--size-3);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
 }
 
@@ -329,7 +329,7 @@
 .returningHero {
   text-align: center;
   padding: var(--size-6) var(--size-4);
-  background: linear-gradient(135deg, var(--surface-elevated) 0%, var(--surface-canvas) 100%);
+  background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface-1) 100%);
   border-radius: var(--radius-3);
   margin-bottom: var(--size-6);
   border: 1px solid var(--border-subtle);
@@ -353,7 +353,7 @@
 
 .returningSubtitle {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   max-width: 600px;
   margin: 0 auto var(--size-5);
 }
@@ -391,7 +391,7 @@
 .quickActionsTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-4);
 }
 
@@ -412,13 +412,13 @@
   align-items: center;
   gap: var(--size-2);
   padding: var(--size-4);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-3);
   cursor: pointer;
   transition: all 0.2s var(--ease-2);
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--text-1);
 
   &:hover {
     @include base;
@@ -445,7 +445,7 @@
 }
 
 .contentCard {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-5);
   border: 1px solid var(--border-subtle);
@@ -458,12 +458,12 @@
 .contentCardTitle {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-3) 0;
 }
 
 .contentCardBody {
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-4);
 
@@ -483,7 +483,7 @@
 
 .discoverMessage {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin: 0;
 }

@@ -74,13 +74,13 @@ Used for: Successful operations, confirmations, completed actions
 
 ### Error ❌
 Used for: Failed operations, validation errors, system errors
-- Color: Clay Red (`--accent-danger`)
+- Color: Clay Red (`--error-color`)
 - Default timeout: 7 seconds (longer to ensure users see critical info)
 - Example: "Login failed", "Network error", "Invalid input"
 
 ### Warning ⚠️
 Used for: Important information, potential issues, cautions
-- Color: Soft Amber (`--accent-warm`)
+- Color: Soft Amber (`--brand`)
 - Default timeout: 6 seconds
 - Example: "Session expiring soon", "Unsaved changes", "Slow connection"
 

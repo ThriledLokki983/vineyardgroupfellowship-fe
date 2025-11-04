@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--accent-warm), hsl(var(--accent-warm-hsl) / 70%));
+  background: linear-gradient(135deg, var(--brand), hsl(var(--brand-hsl) / 70%));
   border-radius: var(--radius-4);
   margin-bottom: var(--size-2);
 
@@ -41,7 +41,7 @@
 .onboardingSubtitle {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-4);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-4);
   margin: 0;
 }

@@ -19,7 +19,7 @@ $title-font: var(--font-neo-grotesque); // Clean, modern for important titles
 $ui-font: var(--font-system-ui); // Interface elements - consistent with body
 
 // Color variables for text
-$text-color-light: var(--text-secondary); // Maps to our design system
+$text-color-light: var(--text-2); // Maps to our design system
 
 /**
  * Colors › Shades
@@ -43,7 +43,7 @@ $accent-danger: #C25A5A;
 $surface-canvas: #F8F5F0;
 $surface-elevated: #EAE6E1;
 $text-primary: #2A2A2A;
-$text-secondary: #6E7673;
+$text-2: #6E7673;
 $border-subtle: #DAD5CF;
 
 $background-color: $white;

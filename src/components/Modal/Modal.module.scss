@@ -26,7 +26,7 @@
 
 // Modal Container
 .modal {
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-6);
   max-height: calc(100vh - var(--size-8));
@@ -105,7 +105,7 @@
 .title {
   font-size: var(--font-size-5);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0;
   line-height: var(--font-lineheight-2);
 }
@@ -114,12 +114,12 @@
   @include button-ghost;
   padding: var(--size-2);
   border-radius: var(--radius-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   transition: all var(--animation-duration-fast) var(--animation-ease-out);
 
   &:hover {
-    color: var(--text-primary);
-    background: var(--surface-elevated);
+    color: var(--text-1);
+    background: var(--surface-2);
   }
 
   &:focus-visible {
@@ -154,7 +154,7 @@
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: var(--text-secondary);
+    background: var(--text-2);
   }
 }
 

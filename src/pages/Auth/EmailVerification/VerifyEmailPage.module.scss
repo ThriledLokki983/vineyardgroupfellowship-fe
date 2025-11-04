@@ -17,14 +17,14 @@
   h1 {
     font-size: var(--font-size-6);
     font-weight: var(--font-weight-7);
-    color: var(--text-primary);
+    color: var(--text-1);
     margin: 0;
   }
 
   p {
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-4);
-    color: var(--text-secondary);
+    color: var(--text-2);
     margin: 0;
   }
 }
@@ -33,7 +33,7 @@
 .spinner {
   width: 64px;
   height: 64px;
-  border: 4px solid var(--surface-elevated);
+  border: 4px solid var(--surface-2);
   border-top-color: var(--brand);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -55,20 +55,20 @@
   h1 {
     font-size: var(--font-size-6);
     font-weight: var(--font-weight-7);
-    color: var(--text-primary);
+    color: var(--text-1);
     margin: 0;
   }
 
   p {
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-4);
-    color: var(--text-secondary);
+    color: var(--text-2);
     margin: 0;
   }
 
   .redirect {
     font-size: var(--font-size-1);
-    color: var(--text-secondary);
+    color: var(--text-2);
     font-style: italic;
     margin-top: var(--size-2);
   }
@@ -99,7 +99,7 @@
 .iconSuccess {
   width: 80px;
   height: 80px;
-  background-color: var(--accent-warm);
+  background-color: var(--brand);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -112,7 +112,7 @@
 .iconInfo {
   width: 80px;
   height: 80px;
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border: 3px solid var(--brand);
   border-radius: 50%;
   display: flex;
@@ -125,10 +125,10 @@
 
 .emailInfo {
   padding: var(--size-3) var(--size-4);
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-2);
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
 
   strong {
     color: var(--brand);
@@ -146,14 +146,14 @@
   h1 {
     font-size: var(--font-size-6);
     font-weight: var(--font-weight-7);
-    color: var(--text-primary);
+    color: var(--text-1);
     margin: 0;
   }
 
   p {
     font-size: var(--font-size-2);
     font-weight: var(--font-weight-4);
-    color: var(--text-secondary);
+    color: var(--text-2);
     margin: 0;
   }
 }
@@ -161,7 +161,7 @@
 .iconError {
   width: 80px;
   height: 80px;
-  background-color: var(--accent-danger);
+  background-color: var(--error-color);
   border-radius: 50%;
   display: flex;
   align-items: center;

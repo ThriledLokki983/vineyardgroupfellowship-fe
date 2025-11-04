@@ -10,7 +10,7 @@
   width: 320px;
   max-width: calc(100% - 1rem);
   padding: var(--size-4); // 20px
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
   border-radius: var(--radius-2); // 16px
   border: 1px solid rgba(0, 0, 0, 0.04);
@@ -88,7 +88,7 @@
 .name {
   font-size: var(--font-size-3);
   font-weight: var(--font-weight-6); // Semi-bold
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-1) 0; // 4px bottom margin
   line-height: var(--font-lineheight-2);
   word-break: break-word;
@@ -107,13 +107,13 @@
   }
 
   &[data-role='co_leader'] {
-    background: var(--accent-warm);
-    color: var(--text-primary);
+    background: var(--brand);
+    color: var(--text-1);
   }
 
   &[data-role='member'] {
-    background: var(--surface-canvas);
-    color: var(--text-secondary);
+    background: var(--surface-1);
+    color: var(--text-2);
   }
 }
 
@@ -121,12 +121,12 @@
 .bio {
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0 0 var(--size-4) 0; // 16px bottom
   padding: var(--size-3); // 12px
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-radius: var(--radius-2);
-  border-left: 3px solid var(--accent-warm);
+  border-left: 3px solid var(--brand);
 }
 
 // Metadata list
@@ -135,7 +135,7 @@
   padding: 0;
   margin: var(--size-2) 0 var(--size-2) 0; // 16px bottom
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
 
   li {
     display: flex;
@@ -161,11 +161,11 @@
       flex-shrink: 0;
       width: var(--size-3);
       height: var(--size-3);
-      color: var(--text-secondary);
+      color: var(--text-2);
     }
 
     a {
-      color: var(--text-secondary);
+      color: var(--text-2);
       text-decoration: none;
       word-break: break-word;
       font-size: var(--font-size-0);
@@ -173,7 +173,7 @@
 
       &:hover,
       &:focus-visible {
-        color: var(--accent-warm);
+        color: var(--brand);
         text-decoration: underline;
       }
     }
@@ -254,8 +254,8 @@
 
   &:hover,
   &:focus-visible {
-    background: var(--accent-warm);
-    color: var(--surface-elevated);
+    background: var(--brand);
+    color: var(--surface-2);
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }

@@ -5,13 +5,13 @@
   align-items: flex-start;
   gap: var(--size-3);
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: var(--size-2) 0;
   cursor: pointer;
   padding: var(--size-3);
   border-radius: var(--radius-2);
   transition: background-color var(--animation-duration-fast);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
 
   &[data-selected] {
     border-color: var(--brand);
@@ -80,13 +80,13 @@
 
 .checkboxLabel {
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-3);
 }
 
 .checkboxDescription {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
 }
 

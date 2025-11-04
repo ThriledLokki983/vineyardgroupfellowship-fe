@@ -66,7 +66,7 @@ Accepts all standard `HTMLSpanElement` attributes via spread props.
 - **Circular** - Perfect circle with `border-radius: 50%`
 - **Subtle border** - 1px border for better definition
 - **Centered content** - Flexbox centering for initials/icons
-- **Background** - Uses `--surface-elevated` token
+- **Background** - Uses `--surface-2` token
 - **Font sizing** - Automatically scales text to ~40% of avatar size
 
 ### States

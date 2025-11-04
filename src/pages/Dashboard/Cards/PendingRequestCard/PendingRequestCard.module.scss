@@ -2,7 +2,7 @@
 
 .root {
   position: relative;
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-2);
   padding: var(--size-4);
   border: 1px solid var(--border-subtle, #DAD5CF);
@@ -14,7 +14,7 @@
 
   &:hover {
     box-shadow: var(--shadow-2);
-    border-color: var(--accent-warm);
+    border-color: var(--brand);
   }
 }
 
@@ -24,7 +24,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(248, 245, 240, 0.8); // var(--surface-canvas) with opacity
+  background: rgba(248, 245, 240, 0.8); // var(--surface-1) with opacity
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
@@ -85,7 +85,7 @@
 .fullName {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-1);
   white-space: nowrap;
   overflow: hidden;
@@ -95,7 +95,7 @@
 
 .displayName {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0;
   font-weight: var(--font-weight-4);
 }
@@ -105,7 +105,7 @@
   align-items: center;
   gap: var(--size-1);
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0;
   margin-inline-end: var(--size-8);
 
@@ -119,15 +119,15 @@
   display: flex;
   gap: var(--size-2);
   padding: var(--size-2) var(--size-3);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-radius: var(--radius-2);
-  border-left: 3px solid var(--accent-warm);
+  border-left: 3px solid var(--brand);
   margin-top: var(--size-1);
 
   svg {
     width: 16px;
     height: 16px;
-    color: var(--text-secondary);
+    color: var(--text-2);
     flex-shrink: 0;
     margin-top: 2px;
   }
@@ -135,7 +135,7 @@
   p {
     margin: 0;
     font-size: var(--font-size-0);
-    color: var(--text-primary);
+    color: var(--text-1);
     line-height: var(--font-lineheight-3);
     font-style: italic;
   }
@@ -151,7 +151,7 @@
   border: none;
   padding: var(--size-2);
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--text-2);
   border-radius: var(--radius-2);
   display: flex;
   align-items: center;
@@ -159,7 +159,7 @@
   transition: all var(--animation-duration-fast) ease-out;
 
   &:hover {
-    background: var(--surface-canvas);
+    background: var(--surface-1);
     color: var(--brand);
   }
 
@@ -183,7 +183,7 @@
   position: absolute;
   top: calc(100% + var(--size-1));
   right: 0;
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   box-shadow: var(--shadow-3);

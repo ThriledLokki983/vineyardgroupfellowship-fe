@@ -6,8 +6,8 @@
   justify-content: center;
   min-block-size: 100vh;
   padding: var(--size-4);
-  background-color: var(--surface-canvas);
-  color: var(--text-primary);
+  background-color: var(--surface-1);
+  color: var(--text-1);
 }
 
 .container {
@@ -17,7 +17,7 @@
   text-align: center;
   max-inline-size: 600px;
   padding: var(--size-8);
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-4);
   box-shadow: var(--shadow-3);
 }
@@ -29,7 +29,7 @@
 .errorIcon {
   inline-size: 64px;
   block-size: 64px;
-  color: var(--accent-danger);
+  color: var(--error-color);
 }
 
 .content {
@@ -39,7 +39,7 @@
 .title {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-4);
   line-height: var(--font-lineheight-2);
 }
@@ -47,16 +47,16 @@
 .message {
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-6);
 }
 
 .errorId {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-top: var(--size-3);
   padding: var(--size-2) var(--size-3);
-  background-color: var(--surface-canvas);
+  background-color: var(--surface-1);
   border-radius: var(--radius-1);
   font-family: var(--font-mono);
 
@@ -69,7 +69,7 @@
 .errorDetails {
   margin-top: var(--size-6);
   text-align: left;
-  background-color: var(--surface-canvas);
+  background-color: var(--surface-1);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   padding: var(--size-4);
@@ -78,7 +78,7 @@
 .errorSummary {
   font-weight: var(--font-weight-6);
   cursor: pointer;
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-2);
 
   &:hover {
@@ -89,18 +89,18 @@
 .errorText {
   font-family: var(--font-mono);
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-top: var(--size-2);
 
   strong {
-    color: var(--text-primary);
+    color: var(--text-1);
     font-weight: var(--font-weight-6);
   }
 
   pre {
     margin-top: var(--size-1);
     padding: var(--size-2);
-    background-color: var(--surface-elevated);
+    background-color: var(--surface-2);
     border-radius: var(--radius-1);
     font-size: var(--font-size-00);
     overflow-x: auto;

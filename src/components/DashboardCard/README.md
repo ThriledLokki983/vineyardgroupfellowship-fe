@@ -42,14 +42,14 @@ import DashboardCard from '@/components/DashboardCard';
 ## Variants
 
 ### Default
-Standard card with elevated background color (`--surface-elevated`)
+Standard card with elevated background color (`--surface-2`)
 
 ### Accent
 Highlighted card with warm gradient background, perfect for primary CTAs or important information
 
 ## Design Tokens Used
 
-- Colors: `--surface-elevated`, `--brand`, `--text-primary`, `--text-secondary`, `--accent-warm`
+- Colors: `--surface-2`, `--brand`, `--text-1`, `--text-2`, `--brand`
 - Spacing: `--size-2` through `--size-6` (4pt system)
 - Border radius: `--radius-2`, `--radius-3`
 - Typography: `--font-size-0` through `--font-size-5`, `--font-weight-4`, `--font-weight-6`

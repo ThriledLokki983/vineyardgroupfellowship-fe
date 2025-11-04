@@ -35,13 +35,13 @@
   align-items: center;
   gap: var(--size-2);
   padding: var(--size-2) var(--size-5);
-  background: var(--accent-warm);
+  background: var(--brand);
   color: var(--brand);
   border-radius: var(--radius-pill);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
   margin: var(--size-4) 0 var(--size-8);
-  box-shadow: 0 2px 8px hsl(var(--accent-warm-hsl) / 30%);
+  box-shadow: 0 2px 8px hsl(var(--brand-hsl) / 30%);
 }
 
 .pulse {
@@ -64,7 +64,7 @@
 }
 
 .card {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-8);
   box-shadow: var(--shadow-2);
@@ -81,7 +81,7 @@
 
 .mainMessage {
   font-size: var(--font-size-3);
-  color: var(--text-primary);
+  color: var(--text-1);
   line-height: var(--font-lineheight-4);
   margin-bottom: var(--size-6);
   font-weight: var(--font-weight-5);
@@ -89,7 +89,7 @@
 
 .subMessage {
   font-size: var(--font-size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-4);
   font-weight: var(--font-weight-5);
 }
@@ -108,7 +108,7 @@
   font-weight: var(--font-weight-6);
   margin: var(--size-6) 0 var(--size-4);
   padding-bottom: var(--size-2);
-  border-bottom: 2px solid var(--accent-warm);
+  border-bottom: 2px solid var(--brand);
   display: inline-block;
 }
 
@@ -120,13 +120,13 @@
   li {
     max-inline-size: var(--size-content-3);
     font-size: var(--font-size-2);
-    color: var(--text-primary);
+    color: var(--text-1);
     line-height: var(--font-lineheight-4);
     margin-bottom: var(--size-4);
     padding: var(--size-3) var(--size-4);
-    background: var(--surface-canvas);
+    background: var(--surface-1);
     border-radius: var(--radius-2);
-    border-left: 3px solid var(--accent-warm);
+    border-left: 3px solid var(--brand);
 
     strong {
       color: var(--brand);
@@ -150,7 +150,7 @@
 }
 
 .readTheDocs {
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
   font-style: italic;
   margin-top: var(--size-2);

@@ -32,7 +32,7 @@
 .filtersSection {
   padding: var(--size-6) var(--size-8);
   border-bottom: 1px solid var(--border-subtle);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
 
   @include mobile {
     padding: var(--size-4);
@@ -49,7 +49,7 @@
   > svg {
     position: absolute;
     inset: auto auto var(--size-5) var(--size-3);
-    fill: var(--text-secondary);
+    fill: var(--text-2);
     inline-size: 20px;
     block-size: 20px;
   }
@@ -61,8 +61,8 @@
   font-size: var(--font-size-1) !important;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
-  background: var(--surface-elevated);
-  color: var(--text-primary) !important;
+  background: var(--surface-2);
+  color: var(--text-1) !important;
   transition: border-color 0.2s var(--ease-2) !important;
 
   &:focus {
@@ -72,7 +72,7 @@
   }
 
   &::placeholder {
-    color: var(--text-secondary);
+    color: var(--text-2);
   }
 }
 
@@ -87,16 +87,16 @@
   transition: background-color 0.2s var(--ease-2);
 
   svg {
-    fill: var(--text-secondary);
+    fill: var(--text-2);
     inline-size: 16px;
     block-size: 16px;
   }
 
   &:hover {
-    background-color: var(--surface-elevated);
+    background-color: var(--surface-2);
 
     svg {
-      fill: var(--accent-danger);
+      fill: var(--error-color);
     }
   }
 }
@@ -120,7 +120,7 @@
 .filterLabel {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
 }
 
 .filterButtons {
@@ -138,8 +138,8 @@
   font-weight: var(--font-weight-5);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
-  background: var(--surface-elevated);
-  color: var(--text-primary);
+  background: var(--surface-2);
+  color: var(--text-1);
   cursor: pointer;
   transition: all 0.2s var(--ease-2);
 
@@ -151,7 +151,7 @@
 
   &:hover {
     border-color: var(--brand);
-    background: var(--surface-canvas);
+    background: var(--surface-1);
   }
 
   &.active {
@@ -171,7 +171,7 @@
   align-items: center;
   gap: var(--size-2);
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   cursor: pointer;
 
   input[type="checkbox"] {
@@ -189,14 +189,14 @@
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-2);
   background: transparent;
-  color: var(--text-secondary);
+  color: var(--text-2);
   cursor: pointer;
   transition: all 0.2s var(--ease-2);
 
   &:hover {
     border-color: var(--brand);
     color: var(--brand);
-    background: var(--surface-canvas);
+    background: var(--surface-1);
   }
 }
 
@@ -220,7 +220,7 @@
 .resultsCount {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0;
   display: flex;
   align-items: center;
@@ -246,7 +246,7 @@
   margin-bottom: var(--size-4);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-3);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   cursor: pointer;
   transition: all 0.2s var(--ease-2);
   text-align: left;
@@ -293,24 +293,24 @@
 }
 
 .closedBadge {
-  background: var(--surface-canvas);
-  color: var(--text-secondary);
+  background: var(--surface-1);
+  color: var(--text-2);
   border: 1px solid var(--border-subtle);
 }
 
 .fullBadge {
-  background: var(--accent-danger);
+  background: var(--error-color);
   color: var(--surface-1);
 }
 
 .almostFullBadge {
-  background: var(--accent-warm);
+  background: var(--brand);
   color: var(--brand);
 }
 
 .groupDescription {
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-4);
   line-height: var(--font-lineheight-3);
 }
@@ -331,10 +331,10 @@
   align-items: center;
   gap: var(--size-2);
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 
   svg {
-    fill: var(--text-secondary);
+    fill: var(--text-2);
     inline-size: 16px;
     block-size: 16px;
     flex-shrink: 0;
@@ -382,20 +382,20 @@
   svg {
     inline-size: 64px;
     block-size: 64px;
-    fill: var(--text-secondary);
+    fill: var(--text-2);
     margin-bottom: var(--size-4);
   }
 
   p {
     font-size: var(--font-size-2);
-    color: var(--text-secondary);
+    color: var(--text-2);
     margin: 0 0 var(--size-4);
   }
 }
 
 .errorState {
   svg {
-    fill: var(--accent-danger);
+    fill: var(--error-color);
   }
 }
 

@@ -89,7 +89,7 @@
 .passwordInstructions {
   margin-top: var(--size-3);
   // padding: var(--size-4);
-  // background: var(--surface-elevated);
+  // background: var(--surface-2);
   // border: var(--border-size-1) solid var(--border-subtle);
   border-radius: var(--radius-2);
   font-size: var(--font-size-0);
@@ -225,7 +225,7 @@
   gap: var(--size-2);
   margin-top: var(--size-5);
   padding: var(--size-4);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-2);
   border: var(--border-size-1) solid var(--border-subtle);
 
@@ -257,7 +257,7 @@
   font-family: var(--font-sans);
 
   &:hover {
-    color: var(--accent-warm);
+    color: var(--brand);
     text-decoration: underline;
   }
 

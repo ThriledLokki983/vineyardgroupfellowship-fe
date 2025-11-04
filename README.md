@@ -176,12 +176,12 @@ Our premium community-focused color palette:
 | Purpose             | Variable              | Hex       | Usage                                    |
 | ------------------- | --------------------- | --------- | ---------------------------------------- |
 | Brand Primary       | `--brand`     | `#3A4F41` | Primary actions, headings                |
-| Accent Warm         | `--accent-warm`       | `#F4C77B` | Call-to-action buttons, highlights       |
-| Accent Danger       | `--accent-danger`     | `#C25A5A` | Alerts, destructive actions              |
-| Surface Canvas      | `--surface-canvas`    | `#F8F5F0` | Page background                          |
-| Surface Elevated    | `--surface-elevated`  | `#EAE6E1` | Cards, elevated surfaces                 |
-| Text Primary        | `--text-primary`      | `#2A2A2A` | Body text                                |
-| Text Secondary      | `--text-secondary`    | `#6E7673` | Secondary text, labels                   |
+| Accent Warm         | `--brand`       | `#F4C77B` | Call-to-action buttons, highlights       |
+| Accent Danger       | `--error-color`     | `#C25A5A` | Alerts, destructive actions              |
+| Surface Canvas      | `--surface-1`    | `#F8F5F0` | Page background                          |
+| Surface Elevated    | `--surface-2`  | `#EAE6E1` | Cards, elevated surfaces                 |
+| Text Primary        | `--text-1`      | `#2A2A2A` | Body text                                |
+| Text Secondary      | `--text-2`    | `#6E7673` | Secondary text, labels                   |
 
 ### Spacing System
 

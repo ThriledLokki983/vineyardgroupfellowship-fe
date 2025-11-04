@@ -8,14 +8,14 @@
 	inline-size: 100%;
 	border-radius: var(--radius-2);
 	padding: var(--size-3) var(--size-3);
-	background-color: var(--surface-canvas);
+	background-color: var(--surface-1);
 	gap: var(--size-2);
 	box-shadow: var(--shadow-1);
 }
 
 .root > span {
 	font-size: 0.9rem;
-	color: var(--text-secondary);
+	color: var(--text-2);
 }
 
 .root > a,
@@ -42,7 +42,7 @@
 	> svg {
 		inline-size: 1rem;
 		block-size: auto;
-		fill: var(--accent-danger);
+		fill: var(--error-color);
 	}
 }
 
@@ -52,29 +52,29 @@
 
 .title {
 	font-weight: var(--font-weight-6);
-	color: var(--text-primary);
+	color: var(--text-1);
 	font-size: 0.9rem;
 }
 
 .description {
 	font-size: 0.85rem;
-	color: var(--text-secondary);
+	color: var(--text-2);
 	margin: 0;
 	line-height: 1.4;
 }
 
 // Priority variants
 .high {
-	// border-left: 3px solid var(--accent-danger);
-	background-color: color-mix(in srgb, var(--accent-danger) 3%, var(--surface-canvas));
+	// border-left: 3px solid var(--error-color);
+	background-color: color-mix(in srgb, var(--error-color) 3%, var(--surface-1));
 }
 
 .medium {
-	border-left: 3px solid var(--accent-warm);
-	background-color: color-mix(in srgb, var(--accent-warm) 5%, var(--surface-canvas));
+	border-left: 3px solid var(--brand);
+	background-color: color-mix(in srgb, var(--brand) 5%, var(--surface-1));
 }
 
 .low {
 	border-left: 3px solid var(--brand);
-	background-color: color-mix(in srgb, var(--brand) 5%, var(--surface-canvas));
+	background-color: color-mix(in srgb, var(--brand) 5%, var(--surface-1));
 }

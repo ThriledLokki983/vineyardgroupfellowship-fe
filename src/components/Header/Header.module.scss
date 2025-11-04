@@ -117,7 +117,7 @@
   text-decoration: none;
   font-family: var(--font-sans);
   font-weight: var(--font-weight-5);
-  color: var(--text-secondary);
+  color: var(--text-2);
   padding: var(--size-2) var(--size-3);
   border-radius: var(--radius-2);
   transition: all 0.2s ease;
@@ -126,8 +126,8 @@
   position: relative;
 
   &:hover {
-    color: var(--text-primary);
-    background: var(--surface-elevated);
+    color: var(--text-1);
+    background: var(--surface-2);
   }
 
   &:focus-visible {
@@ -207,7 +207,7 @@
   border-color: transparent;
 
   &:hover {
-    background: var(--surface-elevated);
+    background: var(--surface-2);
     color: var(--brand);
   }
 
@@ -226,8 +226,8 @@
   }
 
   &:hover {
-    background: var(--accent-warm);
-    border-color: var(--accent-warm);
+    background: var(--brand);
+    border-color: var(--brand);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(58, 79, 65, 0.15);
   }
@@ -254,7 +254,7 @@
   cursor: pointer;
   border-radius: var(--radius-3);
   transition: background-color 0.2s ease;
-  color: var(--text-primary);
+  color: var(--text-1);
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 
@@ -291,12 +291,12 @@
   font-size: var(--font-size-2);
   text-transform: uppercase;
   flex-shrink: 0;
-  border: 4px solid var(--surface-elevated);
+  border: 4px solid var(--surface-2);
   transition: border 0.3s ease-in-out;
   overflow: hidden;
 
   &:hover {
-    border: 4px solid var(--accent-warm);
+    border: 4px solid var(--brand-secondary);
   }
 
   @include bp-min(tablet) {
@@ -317,7 +317,7 @@
   display: none;
   font-weight: var(--font-weight-5);
   font-size: var(--font-size-1);
-  color: var(--text-primary);
+  color: var(--text-1);
 
   @include bp-min(tablet) {
     display: block;
@@ -327,7 +327,7 @@
 .chevron {
   inline-size: 16px; block-size: 16px;
   margin-inline-start: var(--size-2);
-  color: var(--text-secondary);
+  color: var(--text-2);
   transition: transform 0.2s ease;
   flex-shrink: 0;
 
@@ -343,7 +343,7 @@
   justify-content: center;
   background: none;
   border: none;
-  color: var(--text-primary);
+  color: var(--text-1);
   cursor: pointer;
   padding: var(--size-2);
   border-radius: var(--radius-2);
@@ -354,7 +354,7 @@
   }
 
   &:hover {
-    background: var(--surface-elevated);
+    background: var(--surface-2);
   }
 
   &:focus-visible {
@@ -378,7 +378,7 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-top: 1px solid var(--border-subtle);
   backdrop-filter: blur(8px);
   background: rgba(248, 245, 240, 0.98);
@@ -412,7 +412,7 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: var(--text-primary);
+  color: var(--text-1);
   padding: var(--size-3) var(--size-4);
   border-radius: var(--radius-2);
   font-weight: var(--font-weight-5);
@@ -421,7 +421,7 @@
   min-height: 48px; // Touch-friendly
 
   &:hover {
-    background: var(--surface-elevated);
+    background: var(--surface-2);
     color: var(--brand);
   }
 
@@ -437,7 +437,7 @@
   align-items: center;
   background: none;
   border: none;
-  color: var(--accent-danger);
+  color: var(--error-color);
   padding: var(--size-3) var(--size-4);
   border-radius: var(--radius-2);
   font-weight: var(--font-weight-5);
@@ -450,6 +450,6 @@
   font-family: inherit;
 
   &:hover {
-    background: color-mix(in srgb, var(--accent-danger) 10%, transparent);
+    background: color-mix(in srgb, var(--error-color) 10%, transparent);
   }
 }

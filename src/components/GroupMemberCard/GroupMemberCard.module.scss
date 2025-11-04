@@ -5,7 +5,7 @@
   align-items: center;
   gap: var(--size-3); // 12px
   padding: var(--size-3) var(--size-3); // 16px
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-2); // 12px
 	box-shadow: var(--shadow-1);
 
@@ -16,7 +16,7 @@
     transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    background: var(--surface-canvas);
+    background: var(--surface-1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
   }
@@ -37,7 +37,7 @@
 .name {
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-6); // Semi-bold
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-1) 0; // 4px bottom margin
   white-space: nowrap;
   overflow: hidden;
@@ -63,13 +63,13 @@
   }
 
   &[data-role='co_leader'] {
-    background: var(--accent-warm);
-    color: var(--text-primary);
+    background: var(--brand);
+    color: var(--text-1);
   }
 
   &[data-role='member'] {
-    background: var(--surface-canvas);
-    color: var(--text-secondary);
+    background: var(--surface-1);
+    color: var(--text-2);
   }
 }
 

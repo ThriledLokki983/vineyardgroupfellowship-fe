@@ -35,7 +35,7 @@
 
 .subtitle {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin: 0;
   font-weight: var(--font-weight-4);
 }
@@ -50,7 +50,7 @@
   h2 {
     font-size: var(--font-size-4);
     font-weight: var(--font-weight-6);
-    color: var(--text-primary);
+    color: var(--text-1);
     margin: 0 0 var(--size-4);
     line-height: var(--font-lineheight-2);
 
@@ -61,7 +61,7 @@
 
   p {
     font-size: var(--font-size-1);
-    color: var(--text-secondary);
+    color: var(--text-2);
     line-height: var(--font-lineheight-4);
     margin: 0 0 var(--size-3);
 
@@ -80,7 +80,7 @@
 
     li {
       font-size: var(--font-size-1);
-      color: var(--text-secondary);
+      color: var(--text-2);
       line-height: var(--font-lineheight-4);
       margin-bottom: var(--size-2);
 
@@ -103,8 +103,8 @@
   border-bottom: 1px solid transparent;
 
   &:hover {
-    color: var(--accent-warm);
-    border-bottom-color: var(--accent-warm);
+    color: var(--brand);
+    border-bottom-color: var(--brand);
   }
 
   &:focus-visible {

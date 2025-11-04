@@ -112,8 +112,8 @@ The component uses SCSS modules with CSS custom properties from our design syste
 // Override modal styles
 .myCustomModal {
   .modal {
-    background: var(--surface-elevated);
-    border: 2px solid var(--accent-warm);
+    background: var(--surface-2);
+    border: 2px solid var(--brand);
   }
 
   .title {

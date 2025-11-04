@@ -42,7 +42,7 @@
   cursor: pointer;
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-5);
-  color: var(--text-secondary);
+  color: var(--text-2);
   border-radius: var(--radius-2) var(--radius-2) 0 0;
   position: relative;
   transition: all var(--animation-duration-fast);
@@ -50,13 +50,13 @@
   min-width: max-content;
 
   &:hover {
-    background-color: var(--surface-elevated);
-    color: var(--text-primary);
+    background-color: var(--surface-2);
+    color: var(--text-1);
   }
 
   &[data-selected="true"] {
     color: var(--brand);
-    background-color: var(--surface-canvas);
+    background-color: var(--surface-1);
 
     &::after {
       content: '';
@@ -75,7 +75,7 @@
 
     &:hover {
       background: none;
-      color: var(--text-secondary);
+      color: var(--text-2);
     }
   }
 }
@@ -98,7 +98,7 @@
 }
 
 .stepContent {
-  background: var(--surface-elevated);
+  background: var(--surface-2);
   border-radius: var(--radius-3);
   padding: var(--size-6);
   min-height: 400px;
@@ -116,14 +116,14 @@
 .stepTitle {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin: 0 0 var(--size-2) 0;
 	max-inline-size: 100%;
 }
 
 .stepDescription {
   font-size: var(--font-size-1);
-  color: var(--text-secondary);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin: 0;
 }
@@ -154,7 +154,7 @@
 
 .progressIndicator {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-weight: var(--font-weight-5);
 
   @include mobile {
@@ -191,7 +191,7 @@
   width: var(--size-4);
   height: var(--size-4);
   border-radius: 50%;
-  background-color: var(--accent-warm);
+  background-color: var(--brand);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -202,5 +202,5 @@
 
 .completionText {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }

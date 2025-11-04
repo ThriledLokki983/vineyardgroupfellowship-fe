@@ -127,7 +127,7 @@
 .empty_content p {
   margin: 0;
   font-size: 0.9375em;
-  color: var(--text-secondary);
+  color: var(--text-2);
   padding-block-start: 2rem;
 }
 
@@ -137,7 +137,7 @@
 .groupInfo {
   margin-top: var(--size-4);
   // padding: var(--size-2);
-  background: var(--surface-elevated);
+  background: var(--surface-2);
 }
 
 .groupHeader {
@@ -178,7 +178,7 @@
   margin: 0 0 var(--size-6) 0;
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 .groupDetails {
@@ -197,7 +197,7 @@
   font-size: var(--font-size-1);
 
   > span {
-    color: var(--text-primary);
+    color: var(--text-1);
   }
 
   & > svg {
@@ -218,7 +218,7 @@
   flex-direction: column;
   align-items: center;
   padding: var(--size-3);
-  background: var(--surface-canvas);
+  background: var(--surface-1);
   border-radius: var(--radius-2);
 }
 
@@ -231,7 +231,7 @@
 
 .statLabel {
   font-size: var(--font-size-00);
-  color: var(--text-secondary);
+  color: var(--text-2);
   text-align: center;
 }
 
@@ -250,8 +250,8 @@
   margin-top: var(--size-2);
 
   &:hover {
-    background: var(--accent-warm);
-    color: var(--surface-elevated);
+    background: var(--brand);
+    color: var(--surface-2);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }

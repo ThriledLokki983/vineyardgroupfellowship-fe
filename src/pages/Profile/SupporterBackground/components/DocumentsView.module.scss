@@ -75,13 +75,13 @@
 .emptyState {
   text-align: center;
   padding: var(--size-8);
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-3);
   border: 2px dashed var(--border-subtle);
 }
 
 .emptyMessage {
-  color: var(--text-secondary);
+  color: var(--text-2);
   font-size: var(--font-size-1);
   line-height: var(--font-lineheight-3);
 }
@@ -98,14 +98,14 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--size-4);
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-2);
   border: 2px solid transparent;
   cursor: pointer;
   transition: all var(--animation-duration-fast);
 
   &:hover {
-    border-color: var(--accent-warm);
+    border-color: var(--brand);
     transform: translateY(-1px);
     box-shadow: var(--shadow-1);
   }
@@ -133,7 +133,7 @@
 .documentName {
   font-size: var(--font-size-2);
   font-weight: var(--font-weight-6);
-  color: var(--text-primary);
+  color: var(--text-1);
   margin-bottom: var(--size-2);
 }
 
@@ -152,7 +152,7 @@
 .documentSize,
 .uploadDate {
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 .documentType {
@@ -170,7 +170,7 @@
 
 // PDF Viewer Section
 .viewerSection {
-  background-color: var(--surface-elevated);
+  background-color: var(--surface-2);
   border-radius: var(--radius-3);
   overflow: hidden;
   box-shadow: var(--shadow-2);
