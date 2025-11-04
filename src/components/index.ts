@@ -57,6 +57,9 @@ export { default as Footer } from './Footer';
 // GroupMemberCard
 export { GroupMemberCard } from './GroupMemberCard';
 
+// Greetings
+export { Greetings } from './Greetings';
+
 // Header
 export { default as Header } from './Header';
 

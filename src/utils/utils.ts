@@ -1,5 +1,125 @@
 import React from 'react';
 import DOMPurify from 'dompurify';
+import type { PasswordStrengthState } from '../types/utils';
+
+export const calculatePasswordStrength = (password: string): PasswordStrengthState => {
+  if (!password || password.length === 0) {
+    return {
+      score: 0,
+      strength: 'very-weak',
+      feedback: 'Enter a password',
+      percentage: 0
+    };
+  }
+
+  let score = 0;
+  const maxScore = 10;
+  let feedback = '';
+  const errors: string[] = [];
+
+  // Length check (0-2 points) - MINIMUM 12 REQUIRED
+  if (password.length < 12) {
+    errors.push('Must be at least 12 characters');
+    score = 0; // Auto-fail if less than 12
+  } else if (password.length >= 12) {
+    score += 2;
+  }
+
+  // Character variety checks - ALL REQUIRED (not optional!)
+  const hasLower = /[a-z]/.test(password);
+  const hasUpper = /[A-Z]/.test(password);
+  const hasDigit = /\d/.test(password);
+  const hasSpecial = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+
+  if (hasLower) {
+    score += 1;
+  } else {
+    errors.push('Must contain lowercase letter');
+  }
+
+  if (hasUpper) {
+    score += 1;
+  } else {
+    errors.push('Must contain uppercase letter');
+  }
+
+  if (hasDigit) {
+    score += 1;
+  } else {
+    errors.push('Must contain a number');
+  }
+
+  if (hasSpecial) {
+    score += 2;
+  } else {
+    errors.push('Must contain special character');
+  }
+
+  // Common patterns check - partial match detection
+  const commonPatterns = [
+    'password', 'admin', 'user', 'login', 'welcome',
+    '123456', 'qwerty', 'abc123', 'password123'
+  ];
+
+  const passwordLower = password.toLowerCase();
+  const hasCommonPattern = commonPatterns.some(pattern =>
+    passwordLower.includes(pattern)
+  );
+
+  if (hasCommonPattern) {
+    errors.push('Contains common pattern');
+    score = Math.max(0, score - 2);
+  }
+
+  // Repeated characters penalty
+  if (/(.)\1{2,}/.test(password)) {
+    errors.push('Avoid repeated characters');
+    score = Math.max(0, score - 1);
+  }
+
+  // Numeric-only password check
+  if (/^\d+$/.test(password)) {
+    errors.push('Cannot be entirely numeric');
+    score = 0;
+  }
+
+  // Calculate final score and strength
+  const finalScore = Math.max(0, Math.min(maxScore, score));
+  const percentage = (finalScore / maxScore) * 100;
+
+  // Strength levels matching backend (0-10 scale)
+  let strength: PasswordStrengthState['strength'];
+
+  if (finalScore >= 8) {
+    strength = 'very-strong';
+    feedback = 'Excellent password!';
+  } else if (finalScore >= 6) {
+    strength = 'strong';
+    feedback = 'Strong password';
+  } else if (finalScore >= 4) {
+    strength = 'fair';
+    feedback = 'Fair - could be stronger';
+  } else if (finalScore >= 2) {
+    strength = 'weak';
+    feedback = 'Weak - needs improvement';
+  } else {
+    strength = 'very-weak';
+    feedback = 'Very weak';
+  }
+
+  // If there are errors, show the first one as primary feedback
+  if (errors.length > 0) {
+    feedback = errors[0];
+  }
+
+  return {
+    score: finalScore,
+    strength,
+    feedback,
+    percentage,
+    errors // Include this so you can show all validation errors
+  };
+};
 
 // Fallback parseJson if @grrr/utils is not available
 const parseJson = (value: string | null): unknown => {

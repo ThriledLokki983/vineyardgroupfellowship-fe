@@ -8,8 +8,10 @@
 import { useRef, useEffect, useState } from 'react'
 import { useSignals } from '@preact/signals-react/runtime'
 import { useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../../contexts/Auth/useAuthContext'
 import { useCurrentUser, authKeys } from '../../hooks/useAuth'
+import { useMyGroups } from '../../hooks/useMyGroups'
 import { profilePage } from '../../signals/profile-signals'
 import type { ExtendedProfile } from '../../signals/profile-signals'
 import Layout from '../../components/Layout/Layout'
@@ -17,6 +19,7 @@ import Button from '../../components/Button'
 import Icon from '../../components/Icon'
 import Checkbox from '../../components/Checkbox'
 import LocationAutocomplete from '../../components/LocationAutocomplete'
+import { StatCard, ProgressBar, CheckListItem } from '../../components/ProfileStats'
 import type { PlaceData } from 'types/components/location'
 import { toast } from '../../components/Toast'
 import { api } from '../../services/api'
@@ -25,8 +28,10 @@ import styles from './ProfilePage.module.scss'
 export default function ProfilePage() {
   useSignals()
 
+  const navigate = useNavigate()
   const { user, setUser } = useAuthContext()
   const { data: profileData, isLoading: isLoadingProfile } = useCurrentUser()
+  const { data: myGroups } = useMyGroups()
   const queryClient = useQueryClient()
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -74,7 +79,6 @@ export default function ProfilePage() {
     profilePage.startSaving()
 
     try {
-      // Only send fields that have been touched/changed
       const updateData: Record<string, unknown> = {}
 
       // Map frontend field names to backend field names
@@ -217,6 +221,18 @@ export default function ProfilePage() {
     try {
       const formData = new FormData();
       formData.append('photo', file);
+      const csrfToken = await api.getCsrfToken();
+      const accessToken = api.getAccessToken();
+
+      // Build headers
+      const headers: Record<string, string> = {
+        'X-CSRFToken': csrfToken,
+      };
+
+      // Add Authorization header if access token exists
+      if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+      }
 
       // For file upload, use direct fetch since api.post JSON.stringifies body
       const { API_BASE_URL } = await import('../../configs/api-configs');
@@ -224,7 +240,7 @@ export default function ProfilePage() {
         method: 'POST',
         body: formData,
         credentials: 'include',
-        // Don't set Content-Type - browser will set multipart/form-data with boundary
+        headers,
       });
 
       if (!uploadResponse.ok) {
@@ -236,7 +252,6 @@ export default function ProfilePage() {
       // Clean up the temporary URL since we have the real one now
       URL.revokeObjectURL(tempImageUrl);
 
-      // Update with the actual server response
       profilePage.finishPhotoUpload(response.photo_url, response.photo_thumbnail_url);
 
       // Update the user context with the new photo data
@@ -280,6 +295,54 @@ export default function ProfilePage() {
     return `${first} ${last}`
   }
 
+  // Calculate profile completion
+  const calculateProfileCompletion = () => {
+    const formData = profilePage.formData.value;
+    const checks = [
+      { key: 'account', complete: true, label: 'Account created' },
+      {
+        key: 'location',
+        complete: !!formData?.location && formData.location.trim() !== '',
+        label: 'Location set',
+        action: 'Set Location',
+        onAction: () => profilePage.isEditing.value.value = true
+      },
+      {
+        key: 'bio',
+        complete: !!formData?.bio && formData.bio.trim() !== '',
+        label: 'Bio added',
+        action: 'Add Bio',
+        onAction: () => profilePage.isEditing.value.value = true
+      },
+      {
+        key: 'photo',
+        complete: !!formData?.photoUrl,
+        label: 'Profile photo uploaded',
+        action: 'Upload Photo',
+        onAction: () => fileInputRef.current?.click()
+      },
+      {
+        key: 'group',
+        complete: (myGroups?.length || 0) > 0,
+        label: 'Joined a fellowship group',
+        action: 'Browse Groups',
+        onAction: () => navigate('/groups')
+      },
+    ];
+
+    const completeCount = checks.filter(c => c.complete).length;
+    const percentage = Math.round((completeCount / checks.length) * 100);
+
+    return { checks, percentage, completeCount, totalCount: checks.length };
+  };
+
+  // Format date for member since
+  const formatMemberSince = (dateString?: string) => {
+    if (!dateString) return 'Recently';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  };
+
   const renderProfileContent = () => {
     const activeTabValue = profilePage.activeTab.value;
     const isEditingValue = profilePage.isEditing.value.value;
@@ -287,33 +350,15 @@ export default function ProfilePage() {
     const isSavingValue = profilePage.isSaving.value.value;
     const hasChangesValue = profilePage.hasChanges.value;
 
+    // Get fellowship data
+    const profileCompletion = calculateProfileCompletion();
+    const activeGroupsCount = myGroups?.length || 0;
+    const memberSince = formatMemberSince(user?.date_joined);
+
     switch(activeTabValue) {
       case 'profile':
         return (
           <>
-            {/* User Statistics */}
-            {/* <div className={styles.profileSection}>
-              <h3 className={styles.sectionTitle}>User Statistics</h3>
-              <div className={styles.statsGrid}>
-                <div className={styles.statItem}>
-                  <div className={styles.statValue}>{formData?.streakDays}</div>
-                  <div className={styles.statLabel}>Day Streak</div>
-                </div>
-                <div className={styles.statItem}>
-                  <div className={styles.statValue}>{formData?.milestones}</div>
-                  <div className={styles.statLabel}>Milestones</div>
-                </div>
-                <div className={styles.statItem}>
-                  <div className={styles.statValue}>{formData?.supportGroups}</div>
-                  <div className={styles.statLabel}>Support Groups</div>
-                </div>
-                <div className={styles.statItem}>
-                  <div className={styles.statValue}>{formData?.followers}</div>
-                  <div className={styles.statLabel}>Followers</div>
-                </div>
-              </div>
-            </div> */}
-
             {/* Personal Information */}
             <div className={styles.profileSection}>
               <div className={styles.sectionHeader}>
@@ -466,11 +511,148 @@ export default function ProfilePage() {
             </div>
           </>
         );
+      case 'completion':
+        return (
+          <div className={styles.profileSection}>
+            <h3 className={styles.sectionTitle}>Complete Your Profile</h3>
+            {profileCompletion.percentage === 100 ? (
+              <div className={styles.completionContainer}>
+                <ProgressBar
+                  percentage={100}
+                  variant="accent"
+                />
+                <p className={styles.completionText}>
+                  🎉 Your profile is complete! Great job.
+                </p>
+              </div>
+            ) : (
+              <div className={styles.completionContainer}>
+                <ProgressBar
+                  percentage={profileCompletion.percentage}
+                  variant="accent"
+                />
+                <p className={styles.completionText}>
+                  {profileCompletion.completeCount} of {profileCompletion.totalCount} steps complete
+                </p>
+                <div className={styles.checkList}>
+                  {profileCompletion.checks.map((check) => (
+                    <CheckListItem
+                      key={check.key}
+                      complete={check.complete}
+                      label={check.label}
+                      action={check.action}
+                      onAction={check.onAction}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        );
+      case 'my-groups':
+        return (
+          <>
+            {/* My Fellowship Journey Stats */}
+            <div className={`${styles.profileSection} ${styles.column}`}>
+              <h3 className={styles.sectionTitle}>My Fellowship Journey</h3>
+              <div className={styles.statsGrid}>
+                <StatCard
+                  icon="PersonIcon"
+                  value={memberSince}
+                  label="Member Since"
+                />
+                <StatCard
+                  icon="PeopleIcon"
+                  value={activeGroupsCount.toString()}
+                  label={activeGroupsCount === 1 ? 'Active Group' : 'Active Groups'}
+                  variant={activeGroupsCount > 0 ? 'accent' : 'default'}
+                />
+              </div>
+            </div>
+
+            {/* My Groups List */}
+            {activeGroupsCount > 0 ? (
+              <div className={styles.profileSection}>
+                <div className={styles.sectionHeader}>
+                  <h3 className={styles.sectionTitle}>My Groups</h3>
+                  <Button
+                    variant="tertiary"
+                    onPress={() => navigate('/groups')}
+                  >
+                    <Icon name="PlusIcon" width={16} height={16} />
+                    Join Another Group
+                  </Button>
+                </div>
+                <div className={styles.groupsList}>
+                  {myGroups?.map((group) => (
+                    <div
+                      key={group.id}
+                      className={styles.groupCard}
+                      onClick={() => navigate(`/groups/${group.id}`)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          navigate(`/groups/${group.id}`);
+                        }
+                      }}
+                    >
+                      <div className={styles.groupIcon}>
+                        <Icon name="PeopleIcon" width={24} height={24} />
+                      </div>
+                      <div className={styles.groupInfo}>
+                        <h4 className={styles.groupName}>{group.name}</h4>
+                        <div className={styles.groupMeta}>
+                          <span className={styles.groupRole}>
+                            {group.membership_status === 'leader' || group.membership_status === 'co_leader'
+                              ? 'Leader'
+                              : 'Member'}
+                          </span>
+                          <span className={styles.groupMembers}>
+                            {group.current_member_count} {group.current_member_count === 1 ? 'member' : 'members'}
+                          </span>
+                        </div>
+                      </div>
+                      <Icon name="ArrowRight" width={20} height={20} className={styles.groupArrow} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className={styles.profileSection}>
+                <div className={styles.emptyState}>
+                  <Icon name="PeopleIcon" width={48} height={48} />
+                  <h4>No Groups Yet</h4>
+                  <p>Join your first fellowship group to connect with your community and start your journey together.</p>
+                  <Button
+                    variant="primary"
+                    onPress={() => navigate('/groups')}
+                  >
+                    <Icon name="PlusIcon" width={16} height={16} />
+                    Browse Groups
+                  </Button>
+                </div>
+              </div>
+            )}
+          </>
+        );
+      case 'community':
+        return (
+          <div className={styles.profileSection}>
+            <h3 className={styles.sectionTitle}>Community Connections</h3>
+            <div className={styles.emptyState}>
+              <Icon name="PeopleIcon" width={48} height={48} />
+              <h4>Coming Soon</h4>
+              <p>Community connection features will be available here soon. Stay tuned!</p>
+            </div>
+          </div>
+        );
       case 'groups':
         return (
           <div className={styles.profileSection}>
-            <h3 className={styles.sectionTitle}>My Group</h3>
-            <p className={styles.placeholder}>Your fellowship groups will appear here. Join or create a group to get started on your recovery journey together.</p>
+            <h3 className={styles.sectionTitle}>My Fellowship Group</h3>
+            <p className={styles.text}>Detailed group information and interactions will appear here.</p>
           </div>
         );
       case 'settings':
@@ -680,6 +862,24 @@ export default function ProfilePage() {
                 <button onClick={() => profilePage.activeTab.value = 'profile'}>
                   <Icon name="PersonOutlineIcon" width={18} height={18} />
                   <span>My Profile</span>
+                </button>
+              </li>
+              <li className={profilePage.activeTab.value === 'completion' ? styles.profileNavItemActive : styles.profileNavItem}>
+                <button onClick={() => profilePage.activeTab.value = 'completion'}>
+                  <Icon name="CheckMarkIcon" width={18} height={18} />
+                  <span>Profile Checklist</span>
+                </button>
+              </li>
+              <li className={profilePage.activeTab.value === 'my-groups' ? styles.profileNavItemActive : styles.profileNavItem}>
+                <button onClick={() => profilePage.activeTab.value = 'my-groups'}>
+                  <Icon name="PeopleIcon" width={18} height={18} />
+                  <span>My Groups Overview</span>
+                </button>
+              </li>
+              <li className={profilePage.activeTab.value === 'community' ? styles.profileNavItemActive : styles.profileNavItem}>
+                <button onClick={() => profilePage.activeTab.value = 'community'}>
+                  <Icon name="PeopleIcon" width={18} height={18} />
+                  <span>Community Connections</span>
                 </button>
               </li>
               <li className={profilePage.activeTab.value === 'groups' ? styles.profileNavItemActive : styles.profileNavItem}>

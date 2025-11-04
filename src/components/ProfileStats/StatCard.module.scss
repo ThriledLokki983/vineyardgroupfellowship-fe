@@ -1,0 +1,72 @@
+@use 'styles/_component-utils.scss' as *;
+
+.statCard {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  padding: var(--size-4);
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  border: var(--border-size-1) solid var(--border-subtle);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(calc(-1 * var(--size-1)));
+    box-shadow: var(--shadow-2);
+  }
+
+  &.accent {
+    background: color-mix(in srgb, var(--accent-warm) 10%, var(--surface-elevated));
+    border-color: var(--accent-warm);
+  }
+}
+
+.statIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--size-8);
+  block-size: var(--size-8);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  color: var(--brand);
+  flex-shrink: 0;
+
+  .accent & {
+    background: color-mix(in srgb, var(--accent-warm) 20%, transparent);
+    color: var(--accent-warm);
+  }
+
+  svg {
+    fill: currentColor;
+		inline-size: var(--size-5);
+  	block-size: var(--size-5);
+  }
+}
+
+.statContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  flex: 1;
+}
+
+.statValue {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-7);
+  color: var(--text-1);
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-2);
+  text-transform: capitalize;
+}
+
+.statSublabel {
+  font-size: var(--font-size-0);
+  color: var(--text-3);
+  margin-top: var(--size-1);
+}

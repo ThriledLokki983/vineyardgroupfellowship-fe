@@ -69,3 +69,12 @@ export interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
 }
+
+// Password Strength
+export interface PasswordStrengthState {
+  score: number; // 0-10 strength score
+  strength: 'very-weak' | 'weak' | 'fair' | 'strong' | 'very-strong';
+  feedback: string; // Primary feedback message
+  percentage: number; // 0-100 for progress bar
+  errors?: string[]; // Array of all validation errors
+}

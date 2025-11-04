@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { PasswordStrengthState } from '../../types/utils'
 
 export type FieldType = 'text' | 'email' | 'password' | 'checkbox' | 'radio' | 'select' | 'checkbox_group'
 
@@ -73,10 +74,5 @@ export function isFieldGroup(item: FieldConfig | FieldGroup): item is FieldGroup
   return 'fields' in item && Array.isArray(item.fields)
 }
 
-// Helper type for password strength feedback
-export interface PasswordStrengthState {
-  score: number // 0-4 strength score
-  strength: 'very-weak' | 'weak' | 'fair' | 'strong' | 'very-strong'
-  feedback: string
-  percentage: number // 0-100 for progress bar
-}
+// Re-export PasswordStrengthState from centralized types
+export type { PasswordStrengthState }

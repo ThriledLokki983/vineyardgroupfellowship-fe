@@ -1,4 +1,4 @@
-import { useMemo, Fragment } from 'react';
+import { Fragment } from 'react';
 import { useSignals } from '@preact/signals-react/runtime';
 import { useSearchParams, Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ import { useLeaderGroups } from 'hooks/useMyGroups';
 import { useAllGroupsPendingRequests } from 'hooks/usePendingRequests';
 import { modals } from 'signals/ui-signals';
 
-import { Layout, Icon, AlertBar, CreateGroupModal, ProfileReviewModal } from 'components';
+import { Layout, Icon, AlertBar, CreateGroupModal, ProfileReviewModal, Button, Greetings } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import Action from '../Cards/ActionCard/Action';
 import { PendingRequestCard } from '../Cards/PendingRequestCard';
@@ -301,7 +301,20 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
         mode={hasGroup ? 'update' : 'create'}
       />
 
-      <Greetings userName={user?.first_name || user?.display_name_or_email || ''}/>
+      <Greetings userName={user?.username || user?.first_name || user?.display_name_or_email || ''}/>
+      <div className={styles.action_btn}>
+        <Button
+          className={styles.root__buttoncreate}
+          onClick={() => {modals.createGroup.setTrue()}}
+          size="small"
+          isDisabled={isLoadingRequests}
+          variant={pendingRequests?.length ? 'secondary' : 'primary'}
+          data-create-button
+        >
+          <Icon name="MeetingIcon" />
+          <span>Browse Groups</span>
+        </Button>
+      </div>
 
       {/* Next Steps Alert */}
       {nextStepsMessage && (
@@ -369,47 +382,13 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
           titleIconName='OutboxIcon'
           title='Your Group'
           emptyMessage='You have no groups yet. Create one to get started!'
-          showActionButton={true}
-          onActionClick={() => {
-            modals.createGroup.setTrue();
-          }}
+          // showActionButton={true}
+          // onActionClick={() => {modals.createGroup.setTrue()}}
           isEmpty={!hasGroup}
           groupData={groupData}
         />
       </div>
     </Fragment>
-  );
-
-};
-
-// Greetings Component - Could be moved to the components later
-const Greetings = ({ userName }: { userName: string }) => {
-
-  /**
-   * Compose moment of day string.
-   * Output: `morning`, `afternoon`, `evening`, `night`.
-   */
-  const moment = useMemo(() => {
-    const time = new Date();
-    const hours = time.getHours();
-    if (hours > 4 && hours < 12) {
-      return `morning`;
-    }
-    if (hours < 18) {
-      return `afternoon`;
-    }
-    if (hours < 22) {
-      return `evening`;
-    }
-    return `night`;
-  }, []);
-
-  return (
-    <div className={styles.impactHeader}>
-      <h1 className={styles.welcomeBack}>
-        Good {moment} {userName ? `, ${userName}` : ''}!
-      </h1>
-    </div>
   );
 
 };

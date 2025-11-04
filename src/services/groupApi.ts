@@ -111,10 +111,23 @@ export const uploadGroupPhoto = async (id: string, photo: File): Promise<Group> 
   const formData = new FormData();
   formData.append('photo', photo);
 
+  // Get CSRF token and access token for authentication
+  const csrfToken = await api.getCsrfToken();
+  const accessToken = api.getAccessToken();
+
+  const headers: Record<string, string> = {
+    'X-CSRFToken': csrfToken,
+  };
+
+  if (accessToken) {
+    headers['Authorization'] = `Bearer ${accessToken}`;
+  }
+
   const response = await fetch(`${API_BASE_URL}${GROUP_UPLOAD_PHOTO_URL(id)}`, {
     method: 'POST',
     body: formData,
     credentials: 'include',
+    headers,
     // Don't set Content-Type - browser will set multipart/form-data with boundary
   });
 

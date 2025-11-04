@@ -36,12 +36,12 @@
     gap: 1rem;
     max-inline-size: 100%;
     inline-size: 100%;
-    color: var(--brand);
+    color: var(--text-1);
     font-size: var(--font-size-3);
   }
 
   & > header > h2 > svg {
-    fill: var(--brand);
+    fill: var(--text-1);
   }
 }
 

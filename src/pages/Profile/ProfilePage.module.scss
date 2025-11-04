@@ -350,13 +350,13 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: hsl(var(--surface-shadow) / 50%);
+  background: hsl(var(--surface-shadow) / 20%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s ease;
+  opacity: 0.6;
+  transition: all 0.2s ease;
   color: var(--surface-1);
 
   &.uploading {
@@ -582,6 +582,10 @@
   }
 }
 
+.profileContent:has(.column) {
+  flex-direction: column;
+}
+
 .profileSection {
   // padding: var(--size-4);
   inline-size: 100%;
@@ -637,6 +641,7 @@
   @include bp-min($tablet) {
     grid-template-columns: repeat(4, 1fr);
     gap: var(--size-4);
+    // margin-block-start: var(--size-3);
   }
 }
 
@@ -844,5 +849,192 @@
 
   .profileSection {
     padding: var(--size-4);
+  }
+}
+
+// Profile Completion Styles
+.completionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.completionText {
+  font-size: var(--font-size-1);
+  color: var(--text-2);
+  text-align: center;
+}
+
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin-top: var(--size-2);
+}
+
+.column {
+  flex-direction: column;
+}
+
+// Stats Grid for Fellowship Journey
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--size-4);
+  margin-block-start: var(--size-6);
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+.text {
+  margin-block-start: var(--size-4);
+}
+
+.joinGroupPrompt {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-4);
+  padding: var(--size-8);
+  background: color-mix(in srgb, var(--accent-warm) 10%, var(--surface-elevated));
+  border-radius: var(--radius-3);
+  border: var(--border-size-2) dashed var(--accent-warm);
+  text-align: center;
+
+  svg {
+    fill: var(--accent-warm);
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    color: var(--text-2);
+    margin: 0;
+  }
+}
+
+// Groups List Styles
+.groupsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+}
+
+.groupCard {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  padding: var(--size-4);
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  border: var(--border-size-1) solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(calc(-1 * var(--size-1)));
+    box-shadow: var(--shadow-2);
+    border-color: var(--brand);
+  }
+
+  &:focus-visible {
+    outline: var(--border-size-2) solid var(--brand);
+    outline-offset: var(--size-1);
+  }
+}
+
+.groupIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--size-10);
+  block-size: var(--size-10);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  color: var(--brand);
+  flex-shrink: 0;
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.groupInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+}
+
+.groupName {
+  font-size: var(--font-size-2);
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+  margin: 0;
+}
+
+.groupMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+}
+
+.groupRole {
+  padding: var(--size-1) var(--size-2);
+  background: color-mix(in srgb, var(--accent-warm) 20%, transparent);
+  color: var(--accent-warm);
+  border-radius: var(--radius-2);
+  font-weight: var(--font-weight-6);
+  text-transform: capitalize;
+}
+
+.groupMembers {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+.groupArrow {
+  flex-shrink: 0;
+  color: var(--text-3);
+  transition: transform 0.2s ease;
+
+  .groupCard:hover & {
+    transform: translateX(var(--size-1));
+    color: var(--brand);
+  }
+}
+
+// Empty State Styles
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-4);
+  padding: var(--size-10);
+  text-align: center;
+
+  svg {
+    fill: var(--text-3);
+  }
+
+  h4 {
+    font-size: var(--font-size-4);
+    font-weight: var(--font-weight-6);
+    color: var(--text-1);
+    margin: 0;
+  }
+
+  p {
+    font-size: var(--font-size-2);
+    color: var(--text-2);
+    max-width: 400px;
+    margin: 0;
   }
 }

@@ -13,6 +13,7 @@ import { toast } from '../Toast';
 import Modal from '../Modal';
 import Icon from '../Icon';
 import { Select, SelectItem } from '../Select';
+import LocationAutocomplete from '../LocationAutocomplete';
 import type { CreateGroupModalProps, GroupCreationStep } from 'types';
 import styles from './CreateGroupModal.module.scss';
 
@@ -146,6 +147,22 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
     const newFocusAreas = focusAreas.filter(a => a !== area);
     setFocusAreas(newFocusAreas);
     setFormData(prev => ({ ...prev, focus_areas: newFocusAreas }));
+  };
+
+  const handleLocationChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      location: value
+    }));
+
+    // Clear error for location field
+    if (errors.location) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.location;
+        return newErrors;
+      });
+    }
   };
 
   // Validate current step
@@ -331,26 +348,20 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
               </div>
 
               {/* Location */}
-              <div className={styles.formGroup}>
-                <label htmlFor="location" className={styles.label}>
-                  Location
-                </label>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
+              {/* <div className={styles.formGroup}> */}
+                <LocationAutocomplete
+                  label="Location"
                   value={formData.location || ''}
-                  onChange={handleInputChange}
-                  className={styles.input}
+                  onChange={handleLocationChange}
                   placeholder={
                     formData.location_type === 'virtual'
                       ? 'e.g., Zoom link will be shared'
-                      : 'e.g., Downtown Campus, Room 201'
+                      : 'Enter address or location'
                   }
-                  maxLength={255}
+                  className={`${styles.input} ${styles.location}`}
                 />
                 {errors.location && <span className={styles.error}>{errors.location}</span>}
-              </div>
+              {/* </div> */}
 
               {/* Meeting Schedule */}
               <div className={styles.formRow}>

@@ -495,6 +495,16 @@ export const api = {
       signal,
     })
   },
+
+  // Get CSRF token (useful for manual fetch calls)
+  getCsrfToken: async (): Promise<string> => {
+    return getCsrfToken()
+  },
+
+  // Get access token (useful for manual fetch calls)
+  getAccessToken: (): string | null => {
+    return getAccessTokenFn ? getAccessTokenFn() : null
+  },
 }
 
 // Utility functions

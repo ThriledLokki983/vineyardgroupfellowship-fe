@@ -39,7 +39,7 @@ export const GroupDetailsPage = () => {
     },
     onError: (error) => {
       console.error('❌ Failed to upload photo:', error);
-      // TODO: Show error toast notification
+      toast.error('Failed to upload photo. Please try again.');
     },
   });
 
@@ -50,11 +50,11 @@ export const GroupDetailsPage = () => {
       // Refresh group data to get updated membership status
       queryClient.invalidateQueries({ queryKey: ['group', id] });
       queryClient.invalidateQueries({ queryKey: ['groups'] });
-      // TODO: Show success toast notification
+      toast.success('Join request sent successfully!');
     },
     onError: (error) => {
       console.error('❌ Failed to join group:', error);
-      // TODO: Show error toast notification
+      toast.error('Failed to join group. Please try again.');
     },
   });
 
@@ -88,7 +88,7 @@ export const GroupDetailsPage = () => {
     const validation = validateImageFile(file);
     if (!validation.isValid) {
       console.error(`❌ ${validation.error}`);
-      // TODO: Show error toast
+      toast.error(validation.error || 'Invalid image file');
       return;
     }
 
@@ -118,8 +118,12 @@ export const GroupDetailsPage = () => {
 
     if (result.success) {
       if (result.method === 'clipboard') {
-        // TODO: Show toast notification
+        toast.success('Group link copied to clipboard!');
+      } else {
+        toast.success('Share dialog opened');
       }
+    } else {
+      toast.error('Failed to share group');
     }
   };
 

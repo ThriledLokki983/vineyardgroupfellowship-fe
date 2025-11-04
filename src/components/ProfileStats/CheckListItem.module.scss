@@ -1,0 +1,52 @@
+@use 'styles/_component-utils.scss' as *;
+
+.checkListItem {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--brand) 5%, transparent);
+  }
+
+  &.complete {
+    .checkIcon {
+      color: var(--accent-warm);
+    }
+
+    .checkLabel {
+      color: var(--text-2);
+      text-decoration: line-through;
+    }
+  }
+}
+
+.checkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-3);
+  transition: color 0.2s ease;
+
+  svg {
+    fill: currentColor;
+  }
+}
+
+.checkLabel {
+  flex: 1;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-1);
+  transition: all 0.2s ease;
+}
+
+.actionButton {
+  margin-left: auto;
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-0);
+}

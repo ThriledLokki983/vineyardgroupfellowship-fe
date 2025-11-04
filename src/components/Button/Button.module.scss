@@ -1,8 +1,8 @@
 @use 'styles/_component-utils.scss' as *;
 
 .button {
-  min-block-size: var(--size-9); // 44px
-  min-inline-size: var(--size-9); // 44px
+  min-block-size: var(--size-9);
+  min-inline-size: var(--size-9);
 
   &[data-disabled] {
     opacity: 0.6;
@@ -17,10 +17,10 @@
   padding: var(--size-2) var(--size-3);
   font-size: var(--font-size-0);
   border-radius: var(--radius-1);
-  min-block-size: var(--size-8); // 36px
+  min-block-size: var(--size-8);
 
   @include bp-min($tablet) {
-    min-block-size: var(--size-7); // 32px
+    min-block-size: var(--size-7);
   }
 }
 

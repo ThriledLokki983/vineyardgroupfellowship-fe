@@ -3,14 +3,14 @@
  * Displays dashboard content tailored for group members (non-leaders)
  */
 
-import { Fragment, useMemo, useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import { useDailyMessage } from '../../../hooks/useDailyMessage';
 import { useMyGroups } from '../../../hooks/useMyGroups';
 import type { User } from '../../../configs/hooks-interfaces';
 import type { GroupMemberDashboardProps } from 'types';
-import { Layout, Icon, AlertBar, Button, BrowseGroupsModal } from 'components';
+import { Layout, Icon, AlertBar, Button, BrowseGroupsModal, Greetings } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import { GroupSummaryCard } from '../Cards/GroupSummaryCard';
 import styles from './GroupMemberDashboard.module.scss';
@@ -185,7 +185,10 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
 
   return (
     <Fragment>
-      <Greetings userName={user?.first_name || user?.display_name_or_email || ''} />
+      <Greetings
+        userName={user?.username || user?.first_name || user?.display_name_or_email || ''}
+        userNamePrefix="@"
+      />
       <div className={styles.action_btn}>
         <Button
           className={styles.root__buttoncreate}
@@ -343,33 +346,6 @@ const ReturningMemberContent = ({ user, onBrowseGroups }: { user: User | null; o
         </div>
       )}
     </>
-  );
-};
-
-// Greetings Component
-const Greetings = ({ userName }: { userName: string }) => {
-  const moment = useMemo(() => {
-    const time = new Date();
-    const hours = time.getHours();
-    if (hours > 4 && hours < 12) {
-      return `morning`;
-    }
-    if (hours < 18) {
-      return `afternoon`;
-    }
-    if (hours < 22) {
-      return `evening`;
-    }
-    return `night`;
-  }, []);
-
-  return (
-    <div className={styles.impactHeader}>
-      <h1 className={styles.welcomeBack}>
-        Good {moment}
-        {userName ? `, @${userName}` : '@user'}!
-      </h1>
-    </div>
   );
 };
 
