@@ -62,20 +62,20 @@
 
 .logo {
   width: auto;
-  max-width: 280px;
+  max-inline-size: var(--size-12);
   height: auto;
-  max-height: var(--size-15);
+  max-block-size: var(--size-15);
   object-fit: contain;
   animation: breathe 3s var(--ease-in-out-3) infinite;
 
   @include tablet {
-    max-width: 240px;
-    max-height: var(--size-14);
+    max-inline-size: var(--size-10);
+    max-block-size: var(--size-12);
   }
 
   @include mobile {
-    max-width: 200px;
-    max-height: var(--size-13);
+		max-inline-size: var(--size-8);
+    max-block-size: var(--size-13);
   }
 }
 
@@ -91,7 +91,7 @@
 .heroTitle {
   font-size: clamp(var(--font-size-6), 5vw, var(--font-size-fluid-3));
   font-weight: var(--font-weight-7);
-  color: var(--brand);
+  color: var(--text-1);
   margin-bottom: var(--size-5);
   line-height: var(--font-lineheight-1);
   max-width: 800px;
