@@ -128,9 +128,18 @@
 }
 
 // Responsive Design
+
+
+@include tablet {
+  .groupSummaryCard {
+    padding: var(--size-5);
+  }
+}
+
 @include mobile {
   .groupSummaryCard {
-    padding: var(--size-4);
+    padding: var(--size-0);
+    margin: 0;
   }
 
   .groupDetails {
@@ -141,11 +150,5 @@
   .groupHeader {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-@include tablet {
-  .groupSummaryCard {
-    padding: var(--size-5);
   }
 }
