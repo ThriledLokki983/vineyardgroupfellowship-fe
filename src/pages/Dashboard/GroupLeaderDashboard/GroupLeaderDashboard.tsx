@@ -311,8 +311,8 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
           variant={pendingRequests?.length ? 'secondary' : 'primary'}
           data-create-button
         >
-          <Icon name="MeetingIcon" />
-          <span>Browse Groups</span>
+          <Icon name={hasGroup ? "PencilIcon" : "MeetingIcon"} />
+          <span>{hasGroup ? "Edit Group" : "Create Group"}</span>
         </Button>
       </div>
 
