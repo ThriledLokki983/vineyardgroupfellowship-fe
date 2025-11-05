@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import { useSignals } from '@preact/signals-react/runtime'
+import { useEffect, useState } from 'react'
 import ViewTransitionLink from '../Layout/ViewTransitionLink.tsx'
 import { useIsAuthenticated, useCurrentUser } from 'hooks/useAuth'
 import { navigation, header } from 'src/signals'
@@ -7,7 +8,8 @@ import { PATH_LOGIN, PATH_REGISTER, PATH_FORGOT_PASSWORD } from 'configs/paths'
 import type { HeaderProps } from 'types'
 import ProfileDropdown from './ProfileDropdown.tsx'
 // import { NotificationBell } from 'src/features/groups/components/NotificationCenter'
-import headerLogo from 'assets/header-logo.png';
+import headerLogoLight from 'assets/new-header-logo-light-theme.png';
+import headerLogoDark from 'assets/new-header-logo-dark-theme.png';
 import styles from './Header.module.scss'
 
 export default function Header({ hideLogin = false, hideRegister = false, logoOnly = false }: HeaderProps = {}) {
@@ -17,6 +19,42 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
   const isAuthenticated = useIsAuthenticated()
   const { data: user } = useCurrentUser()
   const location = useLocation()
+
+  // Detect theme (light or dark)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme')
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      setIsDarkMode(theme === 'dark' || (!theme && prefersDark))
+    }
+
+    checkTheme()
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    })
+
+    // Watch for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handleChange = (e: MediaQueryListEvent) => {
+      const theme = document.documentElement.getAttribute('data-theme')
+      if (!theme) setIsDarkMode(e.matches)
+    }
+    mediaQuery.addEventListener('change', handleChange)
+
+    return () => {
+      observer.disconnect()
+      mediaQuery.removeEventListener('change', handleChange)
+    }
+  }, [])
+
+  const currentLogo = isDarkMode ? headerLogoDark : headerLogoLight
 
   // Now we can use global signals with useSignals() subscription
   // Auto-detect which buttons to hide based on current path
@@ -47,7 +85,7 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
       <div className={styles.container}>
         <ViewTransitionLink to="/" className={`${styles.logo} ${logoOnly ? styles.logoOnly : ''}`}>
           <img
-            src={headerLogo}
+            src={currentLogo}
             alt="Vineyard Group Fellowship"
             className={styles.logoImage}
           />
