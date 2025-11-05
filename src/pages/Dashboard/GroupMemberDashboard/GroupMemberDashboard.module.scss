@@ -286,7 +286,7 @@
 }
 
 .welcomeBack {
-  font-size: var(--font-size-5);
+  font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
   color: var(--brand);
   margin: 0;
@@ -316,6 +316,10 @@
 .requestsList {
   padding: var(--size-3);
   block-size: 100%;
+
+  @include mobile {
+    padding: 0;
+  }
 }
 
 .discoverMessage,

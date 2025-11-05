@@ -381,9 +381,8 @@
   left: 0;
   right: 0;
   background: var(--surface-1);
-  border-top: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--surface-3);
   backdrop-filter: blur(8px);
-  background: rgba(248, 245, 240, 0.98);
   z-index: 50;
   animation: slideDown 0.2s ease-out;
 

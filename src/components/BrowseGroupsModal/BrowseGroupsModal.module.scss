@@ -234,7 +234,7 @@
   block-size: 100%;
 
   @include mobile {
-    padding: var(--size-4);
+    padding: 0;
   }
 }
 
