@@ -260,15 +260,34 @@
   font-size: var(--size-14);
   margin-bottom: var(--size-4);
   line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--brand);
+
+  svg {
+    width: var(--size-14);
+    height: var(--size-14);
+  }
 
   @include tablet {
     font-size: var(--size-10);
     margin-bottom: var(--size-3);
+
+    svg {
+      width: var(--size-10);
+      height: var(--size-10);
+    }
   }
 
   @include mobile {
     font-size: var(--size-8);
     margin-bottom: var(--size-2);
+
+    svg {
+      width: var(--size-8);
+      height: var(--size-8);
+    }
   }
 }
 

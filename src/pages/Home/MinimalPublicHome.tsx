@@ -1,6 +1,7 @@
 // import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import Icon from '../../components/Icon';
 import logoLight from '../../assets/new-logopng.png';
 // import logoLight1 from '../../assets/new-header-logo-light-theme.png';
 // import logoDark from '../../assets/new-header-logo-dark-theme.png';
@@ -55,17 +56,17 @@ export default function MinimalPublicHome() {
 
   const corePillars = [
     {
-      icon: '👥',
+      iconName: 'PeopleIcon' as const,
       title: 'Join a Circle',
       description: 'Connect with small, supportive groups for deeper fellowship'
     },
     {
-      icon: '🤝',
+      iconName: 'HandCircleIcon' as const,
       title: 'Find a Sponsor',
       description: 'Get matched with experienced members who guide you'
     },
     {
-      icon: '💬',
+      iconName: 'ChatBubbleIcon' as const,
       title: 'Always Supported',
       description: 'Access peer support anytime through our community'
     }
@@ -138,7 +139,9 @@ export default function MinimalPublicHome() {
         <div className={styles.pillarsGrid}>
           {corePillars.map((pillar, index) => (
             <div key={index} className={styles.pillar}>
-              <div className={styles.pillarIcon}>{pillar.icon}</div>
+              <div className={styles.pillarIcon}>
+                <Icon name={pillar.iconName} />
+              </div>
               <h3 className={styles.pillarTitle}>{pillar.title}</h3>
               <p className={styles.pillarDescription}>{pillar.description}</p>
             </div>
