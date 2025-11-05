@@ -61,18 +61,21 @@
 }
 
 .logo {
-  width: var(--size-15);
-  height: var(--size-15);
+  width: auto;
+  max-width: 280px;
+  height: auto;
+  max-height: var(--size-15);
+  object-fit: contain;
   animation: breathe 3s var(--ease-in-out-3) infinite;
 
   @include tablet {
-    width: var(--size-14);
-    height: var(--size-14);
+    max-width: 240px;
+    max-height: var(--size-14);
   }
 
   @include mobile {
-    width: var(--size-13);
-    height: var(--size-13);
+    max-width: 200px;
+    max-height: var(--size-13);
   }
 }
 

@@ -1,11 +1,49 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
-import LoginLogo from '../../assets/login-logo.svg?react';
+import logoLight from '../../assets/new-header-logo-light-theme.png';
+import logoDark from '../../assets/new-header-logo-dark-theme.png';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import styles from './MinimalHome.module.scss';
 
 export default function MinimalPublicHome() {
   const navigate = useNavigate();
+
+  // Detect theme (light or dark)
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    // Check initial theme
+    const checkTheme = () => {
+      const theme = document.documentElement.getAttribute('data-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDarkMode(theme === 'dark' || (!theme && prefersDark));
+    };
+
+    checkTheme();
+
+    // Watch for theme changes
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    // Watch for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      const theme = document.documentElement.getAttribute('data-theme');
+      if (!theme) setIsDarkMode(e.matches);
+    };
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
+  const currentLogo = isDarkMode ? logoDark : logoLight;
 
   // Scroll animations for each section
   const trustSection = useScrollAnimation({ threshold: 0.3 });
@@ -36,7 +74,11 @@ export default function MinimalPublicHome() {
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.logoContainer}>
-          <LoginLogo className={styles.logo} aria-label="Vineyard Group Fellowship" />
+          <img 
+            src={currentLogo} 
+            alt="Vineyard Group Fellowship" 
+            className={styles.logo}
+          />
         </div>
 
         <h1 className={styles.heroTitle}>
