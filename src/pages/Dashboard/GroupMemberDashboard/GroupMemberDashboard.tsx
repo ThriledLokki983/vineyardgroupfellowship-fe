@@ -194,7 +194,7 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           className={styles.root__buttoncreate}
           onClick={onBrowseGroups}
           size="small"
-          isDisabled={isLoading}
+          isDisabled={isLoading || hasGroups}
           variant={hasGroups ? 'secondary' : 'primary'}
           data-create-button
         >
