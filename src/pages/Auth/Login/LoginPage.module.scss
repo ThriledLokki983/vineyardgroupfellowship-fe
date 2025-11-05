@@ -241,7 +241,7 @@
   }
 
   &:hover {
-    color: var(--btn-hover-clr);
+    color: var(--text-1);
   }
 }
 
@@ -254,7 +254,7 @@
   border-top: var(--border-size-1) solid var(--border-subtle);
 
   @include mobile {
-    flex-direction: column;
+    // flex-direction: column;
     gap: var(--size-3);
     align-items: center;
   }
@@ -278,7 +278,7 @@
 .linkButton {
   background: none;
   border: none;
-  color: var(--brand);
+  color: var(--text-2);
   text-decoration: underline;
   font-size: var(--font-size-1);
   cursor: pointer;
@@ -289,8 +289,8 @@
   text-underline-offset: 2px;
 
   &:hover {
-    color: var(--btn-hover-clr);
-    text-decoration-color: var(--btn-hover-clr);
+    color: var(--text-1);
+    text-decoration-color: var(--text-1);
   }
 
   &:focus-visible {

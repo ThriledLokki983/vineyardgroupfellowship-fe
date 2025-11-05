@@ -160,11 +160,12 @@
 
 // Auth buttons for non-authenticated users
 .authButtons {
-  display: flex;
-  align-items: center;
-  gap: var(--size-2);
+  // Hide on mobile since public homepage has prominent CTAs
+  display: none;
 
   @include bp-min(tablet) {
+    display: flex;
+    align-items: center;
     gap: var(--size-3);
   }
 }

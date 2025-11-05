@@ -44,7 +44,7 @@ html {
   --brand: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
   --brand-secondary: hsl(264 48% 51%);
   --brand-accent: hsl(75 80% 50%);
-  --btn-hover-clr: hsl(var(--brand-hue) var(--brand-saturation) 10%);
+  --text-1: hsl(var(--brand-hue) var(--brand-saturation) 10%);
 
   /*HSL COLOR COMPONENTS (for gradients & opacity) */
   --brand-hsl: var(--brand-hue) var(--brand-saturation) var(--brand-lightness);
