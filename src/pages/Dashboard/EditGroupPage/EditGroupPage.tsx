@@ -7,10 +7,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import { getGroup, updateGroup } from '../../../services/groupApi';
-import { Layout, LoadingState, Icon, Button, Select, SelectItem } from 'components';
+import { Layout, LoadingState, Icon, Button, Select, SelectItem, LocationAutocomplete } from 'components';
 import { toast } from '../../../components/Toast';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import type { Group } from '../../../types/group';
+import type { PlaceData } from '../../../types/components/location';
 import styles from './EditGroupPage.module.scss';
 
 export const EditGroupPage = () => {
@@ -198,15 +199,14 @@ export const EditGroupPage = () => {
               </div>
 
               <div className={styles.formGroup}>
-                <label htmlFor="location" className={styles.label}>
-                  Location
-                </label>
-                <input
-                  id="location"
-                  type="text"
+                <LocationAutocomplete
+                  label="Location"
                   value={formData.location}
-                  onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  className={styles.input}
+                  onChange={(value: string, _placeData?: PlaceData) => {
+                    setFormData({ ...formData, location: value });
+                  }}
+                  placeholder="Enter meeting location"
+                  className={styles.locationInput}
                 />
               </div>
             </div>
