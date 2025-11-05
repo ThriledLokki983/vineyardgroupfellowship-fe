@@ -230,9 +230,9 @@
   margin: 0 auto;
 
   @include tablet {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--size-6);
-    max-width: 500px;
+    max-width: 100%;
   }
 
   @include mobile {
