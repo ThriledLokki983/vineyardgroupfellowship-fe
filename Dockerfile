@@ -22,10 +22,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Set production environment variables
-ENV VITE_USE_LOCAL_ENDPOINT=false
-ENV VITE_DEBUG_API=false
-ENV VITE_PRODUCTION_API_URL=https://api.vineyardgroupfellowship.org/api/v1
+# Accept build arguments from Railway
+ARG VITE_GOOGLE_MAPS_API_KEY
+ARG VITE_USE_LOCAL_ENDPOINT=false
+ARG VITE_DEBUG_API=false
+ARG VITE_PRODUCTION_API_URL=https://api.vineyardgroupfellowship.org/api/v1
+
+# Set environment variables for Vite build
+ENV VITE_GOOGLE_MAPS_API_KEY=$VITE_GOOGLE_MAPS_API_KEY
+ENV VITE_USE_LOCAL_ENDPOINT=$VITE_USE_LOCAL_ENDPOINT
+ENV VITE_DEBUG_API=$VITE_DEBUG_API
+ENV VITE_PRODUCTION_API_URL=$VITE_PRODUCTION_API_URL
 
 # Build the application
 RUN yarn build
