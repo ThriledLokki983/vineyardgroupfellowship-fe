@@ -230,12 +230,14 @@
   margin: 0 auto;
 
   @include tablet {
-    gap: var(--size-8);
+    grid-template-columns: 1fr;
+    gap: var(--size-6);
+    max-width: 500px;
   }
 
   @include mobile {
     grid-template-columns: 1fr;
-    gap: var(--size-8);
+    gap: var(--size-6);
   }
 }
 
@@ -259,9 +261,14 @@
   margin-bottom: var(--size-4);
   line-height: 1;
 
-  @include mobile {
-    font-size: var(--size-12);
+  @include tablet {
+    font-size: var(--size-10);
     margin-bottom: var(--size-3);
+  }
+
+  @include mobile {
+    font-size: var(--size-8);
+    margin-bottom: var(--size-2);
   }
 }
 
@@ -270,6 +277,10 @@
   font-weight: var(--font-weight-6);
   color: var(--brand);
   margin-bottom: var(--size-2);
+
+  @include tablet {
+    font-size: var(--font-size-2);
+  }
 
   @include mobile {
     font-size: var(--font-size-2);
