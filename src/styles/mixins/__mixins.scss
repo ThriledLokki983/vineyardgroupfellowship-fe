@@ -165,6 +165,32 @@
   }
 }
 
+// Add button-tertiary
+@mixin button-tertiary {
+  --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 45% / 0.9);
+
+  @include button-base;
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: var(--size-2);
+  color: var(--text-1);
+  padding: var(--size-2) var(--size-1);
+  transform: translateY(0);
+
+  transition: transform 0.2s ease-in-out;
+
+  &:hover:not([data-disabled]) {
+    color: var(--hover-clr);
+    text-decoration-color: var(--hover-clr);
+    transform: translateY(-2px);
+  }
+
+  &[data-pressed]:not([data-disabled]) {
+    transform: translateY(0);
+  }
+}
+
 @mixin button-ghost {
   all: unset;
   box-sizing: border-box;

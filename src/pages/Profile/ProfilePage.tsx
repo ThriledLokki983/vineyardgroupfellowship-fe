@@ -572,7 +572,7 @@ export default function ProfilePage() {
 
             {/* My Groups List */}
             {activeGroupsCount > 0 ? (
-              <div className={styles.profileSection}>
+              <div className={`${styles.profileSection} ${styles.mt}`}>
                 <div className={styles.sectionHeader}>
                   <h3 className={styles.sectionTitle}>My Groups</h3>
                   <Button

@@ -16,8 +16,8 @@
   }
 
   &.accent {
-    background: color-mix(in srgb, var(--accent-warm) 10%, var(--surface-elevated));
-    border-color: var(--accent-warm);
+    background: color-mix(in srgb, var(--brand-accent) 10%, var(--surface-elevated));
+    border-color: var(--brand-accent);
   }
 }
 
@@ -33,8 +33,8 @@
   flex-shrink: 0;
 
   .accent & {
-    background: color-mix(in srgb, var(--accent-warm) 20%, transparent);
-    color: var(--accent-warm);
+    background: color-mix(in srgb, var(--brand-accent) 20%, transparent);
+    color: var(--brand-accent);
   }
 
   svg {

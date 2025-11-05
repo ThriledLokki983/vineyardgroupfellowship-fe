@@ -56,24 +56,8 @@
 }
 
 .tertiary {
-  background: transparent;
-  color: var(--brand);
-  border: none;
-  text-decoration: underline;
-  text-underline-offset: var(--size-1); // 3px
-  padding: var(--size-2) var(--size-1);
+  @include button-tertiary;
 
-  &:hover:not([data-disabled]) {
-    color: var(--btn-hover-clr);
-    text-decoration-color: var(--btn-hover-clr);
-    transform: translateY(-1px);
-  }
-
-  &[data-pressed]:not([data-disabled]) {
-    transform: translateY(0);
-  }
-
-  // Override padding for tertiary variant sizes
   &.small {
     padding: var(--size-1) var(--size-1);
     font-size: var(--font-size-0);
