@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import AppLogo from 'assets/auth-logo.png';
 import styles from './Layout.module.scss'
 
 interface LayoutProps {
@@ -49,8 +48,7 @@ export default function Layout({
             ) : null}
           </div>
           <div className={styles.authImage}>
-            <img src={AppLogo} alt="Vineyard Group Fellowship" />
-            {/* Pure gradient background - no image */}
+            {/* Solid brand color background */}
           </div>
         </div>
       </div>
