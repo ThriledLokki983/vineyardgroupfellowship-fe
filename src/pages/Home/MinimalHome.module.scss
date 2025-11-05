@@ -55,8 +55,12 @@
 .logoContainer {
   margin-bottom: var(--size-8);
 
-  @include mobile {
-    margin-bottom: var(--size-6);
+  // Hide logo on mobile and tablet
+  display: none;
+
+  @include desktop {
+    display: block;
+    margin-bottom: var(--size-8);
   }
 }
 
@@ -67,16 +71,6 @@
   max-block-size: var(--size-15);
   object-fit: contain;
   animation: breathe 3s var(--ease-in-out-3) infinite;
-
-  @include tablet {
-    max-inline-size: var(--size-10);
-    max-block-size: var(--size-12);
-  }
-
-  @include mobile {
-		max-inline-size: var(--size-8);
-    max-block-size: var(--size-13);
-  }
 }
 
 @keyframes breathe {
