@@ -350,6 +350,7 @@
   font-size: var(--font-size-3);
   color: var(--text-secondary);
   font-weight: var(--font-weight-4);
+	min-inline-size: 100%;
 
   @include mobile {
     font-size: var(--font-size-2);
@@ -399,6 +400,7 @@
   color: var(--brand);
   margin-bottom: var(--size-4);
   line-height: var(--font-lineheight-2);
+	max-inline-size: 100%;
 
   @include mobile {
     font-size: var(--font-size-4);
