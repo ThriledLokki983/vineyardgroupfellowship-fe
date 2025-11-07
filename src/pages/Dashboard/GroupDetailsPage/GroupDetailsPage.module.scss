@@ -17,8 +17,8 @@
   align-items: flex-end;
   gap: var(--size-4);
   padding: var(--size-4);
-  margin-block: var(--size-3) var(--size-6);
-  border-block-end: 1px solid var(--border-subtle);
+  margin-block: var(--size-3) var(--size-2);
+  border-block-end: 1px solid transparent;
   flex-wrap: wrap;
 
   @include bp-min(tablet) {
@@ -535,6 +535,7 @@
   padding: var(--size-8);
   text-align: center;
   gap: var(--size-4);
+  inline-size: 100%;
 
   & > svg {
     inline-size: 64px;
@@ -546,6 +547,39 @@
     margin: 0;
     font-size: var(--font-size-5);
     color: var(--brand);
+  }
+
+  p {
+    margin: 0;
+    font-size: var(--font-size-1);
+    color: var(--text-2);
+    max-inline-size: 500px;
+  }
+}
+
+// Coming Soon message styling
+.comingSoon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--size-10) var(--size-4);
+  text-align: center;
+  gap: var(--size-4);
+  min-block-size: 400px;
+
+  & > svg {
+    inline-size: 64px;
+    block-size: 64px;
+    fill: var(--text-3);
+    opacity: 0.5;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: var(--font-size-4);
+    color: var(--brand-primary);
+    font-weight: var(--font-weight-6);
   }
 
   p {

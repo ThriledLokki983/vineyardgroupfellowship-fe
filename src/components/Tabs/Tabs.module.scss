@@ -1,0 +1,96 @@
+@use 'styles/_component-utils.scss' as *;
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tabList {
+  display: flex;
+  gap: var(--size-1);
+  border-block-end: 2px solid var(--border-subtle);
+  padding-inline: var(--size-4);
+  margin-block-end: var(--size-6);
+  overflow-x: auto;
+  scrollbar-width: thin;
+
+  @include mobile {
+    padding-inline: var(--size-2);
+    gap: var(--size-0);
+  }
+
+  // Custom scrollbar for webkit browsers
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: var(--radius-2);
+  }
+}
+
+.tab {
+  // Override default tab styles for a cleaner look
+  padding: var(--size-3) var(--size-4);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  border-block-end: 5px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  position: relative;
+  margin-block-end: -2px;
+  white-space: nowrap;
+  border-radius: 0;
+
+  &:hover:not([data-disabled="true"]) {
+    color: var(--brand-primary);
+    background: var(--surface-2);
+  }
+
+  &[data-selected="true"] {
+    color: var(--brand);
+    border-block-end-color: var(--brand-primary);
+    font-weight: var(--font-weight-6);
+    background: transparent;
+  }
+
+  &[data-disabled="true"] {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &[data-focus-visible] {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-2);
+  }
+
+  @include mobile {
+    padding: var(--size-2) var(--size-3);
+    font-size: var(--font-size-0);
+  }
+}
+
+.tabPanel {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

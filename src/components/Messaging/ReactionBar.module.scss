@@ -1,0 +1,87 @@
+/**
+ * ReactionBar Component Styles
+ */
+
+@use 'styles/_component-utils.scss' as *;
+
+.reactionBar {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) 0;
+
+  &.compact {
+    gap: var(--size-1);
+    padding: var(--size-1) 0;
+  }
+}
+
+.reactionButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-2) var(--size-3);
+  border: 1px solid var(--border-subtle, #DAD5CF);
+  border-radius: var(--radius-2);
+  background: transparent;
+  color: var(--text-secondary, #6E7673);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-4);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast, 0.2s) ease-out;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-elevated, #EAE6E1);
+    border-color: var(--brand-primary, #3A4F41);
+    transform: scale(1.05);
+  }
+
+  &.active {
+    background: var(--accent-warm, #F4C77B);
+    border-color: var(--accent-warm, #F4C77B);
+    color: var(--text-2, #2A2A2A);
+    font-weight: var(--font-weight-6);
+  }
+
+  &.pending {
+    opacity: 0.6;
+    cursor: wait;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary, #3A4F41);
+    outline-offset: 2px;
+  }
+}
+
+.icon {
+  font-size: 1.125rem;
+  line-height: 1;
+}
+
+.count {
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+  min-width: 1.25rem;
+  text-align: center;
+}
+
+.compact {
+  .reactionButton {
+    padding: var(--size-1) var(--size-2);
+    font-size: 0.75rem;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+
+  .count {
+    font-size: 0.6875rem;
+  }
+}

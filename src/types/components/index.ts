@@ -10,6 +10,7 @@ export * from './modals';
 export * from './common';
 export * from './forms';
 export * from './cards';
+export * from './tabs';
 
 // Avatar Component - specific to Avatar only, not in cards
 export interface AvatarProps extends React.HTMLAttributes<HTMLSpanElement> {

@@ -17,7 +17,9 @@
   min-width: max-content;
 
   &[data-selected="true"] {
-    @include base;
+    // @include base;
+    color: var(--brand);
+    background: transparent;
   }
 
   &[data-disabled="true"] {
@@ -31,7 +33,7 @@
   }
 
   &[data-selected="true"]:hover {
-  @include base;
+    @include base;
   }
 
   &[data-focus-visible] {

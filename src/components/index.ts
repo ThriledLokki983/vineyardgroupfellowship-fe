@@ -51,6 +51,10 @@ export {
   DashboardWidgetErrorBoundary
 } from './ErrorBoundary';
 
+// FilterButtonGroup
+export { FilterButtonGroup, default as FilterButtonGroupComponent } from './FilterButtonGroup';
+export type { FilterOption } from './FilterButtonGroup';
+
 // Footer
 export { default as Footer } from './Footer';
 
@@ -119,6 +123,10 @@ export { default as Tab } from './Tab';
 
 // TabPanel
 export { default as TabPanel } from './TabPanel';
+
+// Tabs (compound component with Tab.List, Tab.Tab, Tab.Panel)
+export { Tabs } from './Tabs';
+export type { TabsProps } from './Tabs';
 
 // Toast
 export {

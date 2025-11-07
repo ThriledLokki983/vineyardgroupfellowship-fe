@@ -1,0 +1,160 @@
+@use 'styles/_component-utils.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+	align-self: flex-end;
+  gap: var(--size-3);
+  margin-block: 0 var(--size-2);
+	inline-size: 100%;
+  // padding: var(--size-3);
+  // background: var(--surface-canvas);
+  // border-radius: var(--radius-3);
+  // border: 1px solid var(--border-subtle);
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  align-self: flex-end;
+  padding: var(--size-2) var(--size-3);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-4);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    color: var(--brand-primary);
+    background: var(--surface-elevated);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  svg {
+		display: none;
+    transition: transform var(--animation-duration-fast) ease-out;
+  }
+}
+
+.iconRotated {
+  transform: rotate(180deg);
+}
+
+// Smooth drop-in animation for replies list
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    max-height: 2000px; // Large enough for content
+  }
+}
+
+.repliesList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  animation: slideDown 0.3s ease-out forwards;
+  overflow: hidden;
+}
+
+// Edit form styles (reused from CommentSection)
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  padding: var(--size-4);
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+}
+
+.textarea {
+  width: 100%;
+  padding: var(--size-3);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-2);
+  background: var(--surface-canvas);
+  resize: vertical;
+  transition: border-color var(--animation-duration-fast) ease-out;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 2px rgba(var(--brand-primary-rgb), 0.1);
+  }
+
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.formActions {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: flex-end;
+}
+
+.submitButton,
+.cancelButton {
+  padding: var(--size-2) var(--size-4);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  border: none;
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.submitButton {
+  background: var(--brand-primary);
+  color: var(--surface-canvas);
+
+  &:hover:not(:disabled) {
+    background: var(--accent-warm);
+    color: var(--brand-primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-2);
+  }
+}
+
+.cancelButton {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+
+  &:hover {
+    background: var(--surface-elevated);
+    border-color: var(--brand-primary);
+  }
+}

@@ -1,0 +1,313 @@
+@use 'styles/_component-utils.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-0);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.backButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--brand);
+	max-inline-size: fit-content;
+	margin-inline-start: var(--size-4);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    background: var(--surface-2);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  svg {
+    color: inherit;
+		inline-size: 1rem;
+  }
+}
+
+.loadingState,
+.errorState {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+
+  p {
+    font-size: var(--font-size-2);
+    color: var(--text-2);
+  }
+}
+
+.discussion {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  padding: var(--size-6);
+  box-shadow: var(--shadow-1);
+}
+
+.pinnedIcon {
+  color: var(--accent-warm);
+  margin-right: var(--size-2);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-7);
+  color: var(--text-1);
+  line-height: var(--font-lineheight-2);
+  margin: 0 0 var(--size-1) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+  margin-bottom: var(--size-5);
+  font-size: var(--font-size-1);
+}
+
+.author {
+  font-weight: var(--font-weight-6);
+  color: var(--brand);
+}
+
+.separator {
+  color: var(--text-2);
+}
+
+.timestamp {
+  color: var(--text-2);
+	font-size: var(--font-size-0);
+}
+
+.edited {
+  font-style: italic;
+  color: var(--text-2);
+	font-size: var(--font-size-0);
+}
+
+.content {
+  font-size: var(--font-size-2);
+  line-height: var(--font-lineheight-4);
+  color: var(--text-2);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: var(--size-5);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--size-4);
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: var(--size-4);
+}
+
+.stats {
+  display: flex;
+  gap: var(--size-4);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-1);
+  color: var(--text-1);
+
+  svg {
+    color: var(--text-2);
+		inline-size: 1.5rem;
+  }
+}
+
+.moderationActions {
+  display: flex;
+  gap: var(--size-3);
+}
+
+.moderationButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--brand);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  border: 1px solid var(--border-subtle);
+
+  &:hover:not(:disabled) {
+    background: var(--brand);
+    color: var(--surface-canvas);
+    border-color: var(--brand);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  svg {
+    color: inherit;
+  }
+}
+
+.deleteButton {
+  color: var(--accent-danger);
+  border-color: var(--accent-danger);
+
+  &:hover:not(:disabled) {
+    background: var(--accent-danger);
+    color: var(--surface-canvas);
+  }
+
+  &:focus {
+    outline-color: var(--accent-danger);
+  }
+}
+
+// Edit form styles
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.editTitleInput {
+  all: unset;
+  padding: var(--size-3) var(--size-4);
+  background: var(--surface-canvas);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+  transition: border-color var(--animation-duration-fast) ease-out;
+
+  &:focus {
+    border-color: var(--brand);
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.editContentTextarea {
+  all: unset;
+  padding: var(--size-4);
+  background: var(--surface-canvas);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-2);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-2);
+  resize: vertical;
+  min-height: 150px;
+  font-family: inherit;
+  transition: border-color var(--animation-duration-fast) ease-out;
+
+  &:focus {
+    border-color: var(--brand);
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.editActions {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: flex-end;
+}
+
+.saveButton {
+  all: unset;
+  padding: var(--size-3) var(--size-5);
+  background: var(--brand);
+  color: var(--surface-canvas);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover:not(:disabled) {
+    background: var(--brand-hover, #4a3d00);
+    transform: translateY(-1px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  all: unset;
+  padding: var(--size-3) var(--size-5);
+  background: transparent;
+  color: var(--text-2);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-2);
+    border-color: var(--text-2);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

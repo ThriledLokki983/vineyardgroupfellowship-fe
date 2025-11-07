@@ -1,0 +1,61 @@
+@use 'styles/_component-utils.scss' as *;
+
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+
+  @include mobile {
+    flex-direction: column;
+  }
+}
+
+.filterLabel {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+}
+
+.filterButtons {
+  display: flex;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-2);
+  color: var(--text-1);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-2);
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg,
+    :global(svg) {
+      fill: currentColor;
+      inline-size: 16px;
+      block-size: 16px;
+    }
+  }
+
+  &:hover {
+    border-color: var(--brand);
+    background: var(--surface-1);
+  }
+
+  &.active {
+    @include base;
+    border-color: var(--brand);
+  }
+}

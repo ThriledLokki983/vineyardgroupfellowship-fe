@@ -1,0 +1,126 @@
+@use 'styles/_component-utils.scss' as *;
+
+// Fade-in animation for individual comments
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+}
+
+.childComment {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  padding: var(--size-1);
+  background: var(--surface-elevated);
+  border-radius: var(--radius-2);
+  border-left: 2px solid var(--brand-primary);
+  opacity: 0.95;
+  animation: fadeInUp 0.25s ease-out forwards;
+
+  // Stagger animation for multiple items
+  &:nth-child(1) { animation-delay: 0s; }
+  &:nth-child(2) { animation-delay: 0.05s; }
+  &:nth-child(3) { animation-delay: 0.1s; }
+  &:nth-child(4) { animation-delay: 0.15s; }
+  &:nth-child(5) { animation-delay: 0.2s; }
+  // After 5 items, no more delay to avoid too much waiting
+  &:nth-child(n+6) { animation-delay: 0.2s; }
+}
+
+// Inline container - responsive layout
+.inlineContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  align-items: flex-start;
+
+  // Desktop: inline layout (meta • content • reply all in one line)
+  @include desktop {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--size-3);
+  }
+}
+
+// Meta info (author, time, edited)
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+  font-size: var(--font-size-0);
+  flex-shrink: 0;
+
+  @include desktop {
+    white-space: nowrap;
+  }
+}
+
+.author {
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+}
+
+.separator {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.timestamp {
+  color: var(--text-secondary);
+  font-size: var(--font-size-00);
+}
+
+.editedLabel {
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: var(--font-size-00);
+}
+
+.content {
+  font-size: var(--font-size-0);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-2);
+  white-space: pre-wrap;
+  word-break: break-word;
+  flex: 1;
+
+  @include desktop {
+    max-width: none;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: var(--size-3);
+  margin-top: var(--size-1);
+  opacity: 1;
+}
+
+.actionButton {
+  padding: var(--size-1) var(--size-2);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    background: var(--surface-canvas);
+    color: var(--brand-primary);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}

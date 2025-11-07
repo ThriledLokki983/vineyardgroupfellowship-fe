@@ -12,5 +12,8 @@ export * from './hooks';
 // Re-export all utility types
 export * from './utils';
 
+// Re-export all page types
+export * from './pages';
+
 // Re-export existing types
 export * from './group';

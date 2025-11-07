@@ -1,0 +1,123 @@
+@use 'styles/_component-utils.scss' as *;
+
+.card {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  padding: var(--size-5);
+  transition: all var(--animation-duration-fast) ease-out;
+  position: relative;
+
+  &:hover {
+    background: var(--surface-canvas);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+.cardButton {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.cardLink {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pinnedIcon {
+  color: var(--accent-warm);
+  margin-right: var(--size-2);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--size-3);
+  margin-bottom: var(--size-0);
+}
+
+.title {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+  margin: 0;
+  line-height: var(--font-lineheight-2);
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+.timestamp {
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.author {
+  margin-bottom: var(--size-1);
+	color: var(--text-1);
+}
+
+.authorName {
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-5);
+}
+
+.contentPreview {
+  font-size: var(--font-size-1);
+  color: var(--text-2);
+  line-height: var(--font-lineheight-3);
+  margin: 0 0 var(--size-4) 0;
+	max-inline-size: 100%;
+
+  // Line clamp for preview
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--size-3);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stats {
+  display: flex;
+  gap: var(--size-4);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  font-size: var(--font-size-1);
+  color: var(--text-secondary);
+
+  svg {
+    color: var(--text-secondary);
+		inline-size: 1.5rem;
+  }
+}

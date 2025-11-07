@@ -1,0 +1,159 @@
+@use 'styles/_component-utils.scss' as *;
+
+.commentItem {
+  // padding: var(--size-4);
+  // background: var(--surface-2);
+  // border-radius: var(--radius-2);
+  transition: background var(--animation-duration-fast) ease-out;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-2);
+  margin-bottom: var(--size-2);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.author {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+	text-transform: uppercase;
+}
+
+.separator {
+  color: var(--text-secondary);
+  font-size: var(--font-size-0);
+}
+
+.timestamp {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+}
+
+.editedBadge {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.replyButton {
+  all: unset;
+  cursor: pointer;
+  font-size: var(--font-size-0);
+  color: var(--brand);
+  font-weight: var(--font-weight-6);
+  padding: var(--size-1) var(--size-3);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--brand);
+  transition: all var(--animation-duration-fast) ease-out;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--brand);
+    color: var(--surface-canvas);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+.content {
+  font-size: var(--font-size-1);
+  color: var(--text-2);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.actions {
+  display: flex;
+	justify-self: flex-end;
+  gap: var(--size-3);
+  margin-top: var(--size-2);
+  opacity: 1; // Always visible for easier testing
+  transition: opacity var(--animation-duration-fast) ease-out;
+}
+
+// Uncomment for hover-based visibility after testing
+// .commentItem:not(:hover) .actions {
+//   opacity: 0;
+// }
+//
+// .commentItem:hover .actions {
+//   opacity: 1;
+// }
+
+.actionButton {
+  all: unset;
+  cursor: pointer;
+  font-size: var(--font-size-0);
+  color: var(--text-1);
+  font-weight: var(--font-weight-5);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    background: var(--brand);
+    color: var(--surface-1);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+}
+
+.deleteButton {
+  color: var(--accent-danger);
+
+  &:hover {
+    background: var(--accent-danger);
+    color: var(--text-1);
+  }
+}
+
+.toggleRepliesButton {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+	justify-self: flex-end;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  color: var(--brand);
+  font-weight: var(--font-weight-6);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover {
+    background: var(--surface-3);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  svg {
+    transition: transform var(--animation-duration-fast) ease-out;
+  }
+}
+
+.iconRotated {
+  transform: rotate(180deg);
+}
