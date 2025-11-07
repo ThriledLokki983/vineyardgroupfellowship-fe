@@ -117,10 +117,13 @@ export const discussionsApi = {
 
 export const commentsApi = {
   /**
-   * List comments for a discussion
+   * List comments for content (discussion, prayer, testimony, or scripture)
    */
   list: async (params: {
-    discussion: string;
+    discussion?: string;
+    prayer?: string;
+    testimony?: string;
+    scripture?: string;
     parent?: string;
     ordering?: string;
     page?: number;
@@ -128,7 +131,13 @@ export const commentsApi = {
     signal?: AbortSignal;
   }): Promise<PaginatedResponse<Comment>> => {
     const queryParams = new URLSearchParams();
-    queryParams.append('discussion', params.discussion);
+
+    // Add content type parameter - only one should be present
+    if (params.discussion) queryParams.append('discussion', params.discussion);
+    if (params.prayer) queryParams.append('prayer', params.prayer);
+    if (params.testimony) queryParams.append('testimony', params.testimony);
+    if (params.scripture) queryParams.append('scripture', params.scripture);
+
     if (params.parent) queryParams.append('parent', params.parent);
     if (params.ordering) queryParams.append('ordering', params.ordering);
     if (params.page) queryParams.append('page', String(params.page));

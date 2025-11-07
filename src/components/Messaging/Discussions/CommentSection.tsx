@@ -11,11 +11,14 @@ import ChildCommentsList from './ChildCommentsList';
 import type { Comment } from 'types/messaging';
 import styles from './CommentSection.module.scss';
 
+type ContentType = 'discussion' | 'prayer' | 'testimony' | 'scripture';
+
 interface CommentSectionProps {
-  discussionId: string;
+  discussionId: string; // Keep this prop name for backwards compatibility
+  contentType?: ContentType; // New optional prop to specify content type
 }
 
-const CommentSection = ({ discussionId }: CommentSectionProps) => {
+const CommentSection = ({ discussionId, contentType = 'discussion' }: CommentSectionProps) => {
   const { user } = useAuthContext();
   const [newCommentContent, setNewCommentContent] = useState('');
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
@@ -25,7 +28,7 @@ const CommentSection = ({ discussionId }: CommentSectionProps) => {
   const [expandedReplies, setExpandedReplies] = useState<Set<string>>(new Set()); // Track expanded reply lists
 
   // Hooks
-  const { data: commentsData, isLoading } = useComments(discussionId);
+  const { data: commentsData, isLoading } = useComments(discussionId, contentType);
   const { mutate: createComment, isPending: isCreating } = useCreateComment();
   const { mutate: updateComment, isPending: isUpdating } = useUpdateComment();
   const { mutate: deleteComment } = useDeleteComment();
@@ -35,6 +38,7 @@ const CommentSection = ({ discussionId }: CommentSectionProps) => {
   // TEMPORARY DEBUG: Log comments when they change
   if (import.meta.env.DEV) {
     console.log('📝 Comments data updated:', {
+      contentType,
       total: comments.length,
       totalFromData: commentsData?.count,
       hasParentField: comments.length > 0 && 'parent' in comments[0],
@@ -78,9 +82,9 @@ const CommentSection = ({ discussionId }: CommentSectionProps) => {
 
     createComment(
       {
-        discussion: discussionId,
+        [contentType]: discussionId, // discussion, prayer, testimony, or scripture
         content: newCommentContent.trim(),
-        parent: null,
+        // parent is undefined for top-level comments
       },
       {
         onSuccess: () => {
@@ -99,7 +103,7 @@ const CommentSection = ({ discussionId }: CommentSectionProps) => {
 
     createComment(
       {
-        discussion: discussionId,
+        [contentType]: discussionId, // discussion, prayer, testimony, or scripture
         content: replyContent.trim(),
         parent: parentCommentId,
       },
@@ -152,7 +156,11 @@ const CommentSection = ({ discussionId }: CommentSectionProps) => {
   };
 
   const handleDelete = (commentId: string) => {
-    deleteComment({ id: commentId, discussionId });
+    deleteComment({
+      id: commentId,
+      contentId: discussionId,
+      contentType,
+    });
   };
 
   const handleToggleReplies = (commentId: string) => {

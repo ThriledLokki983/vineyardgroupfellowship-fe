@@ -382,7 +382,7 @@ const ContentDetail = ({ itemId, contentType, groupId: _groupId, onBack, onDelet
       </article>
 
       {/* Comments Section */}
-      <CommentSection discussionId={itemId} />
+      <CommentSection discussionId={itemId} contentType={contentType} />
     </div>
   );
 };

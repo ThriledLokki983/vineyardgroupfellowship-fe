@@ -48,22 +48,30 @@ export interface UpdateDiscussionPayload {
 
 export interface Comment {
   id: string;
-  discussion: string;
+  // Content type reference - only one should be present
+  discussion?: string;
+  prayer?: string;
+  testimony?: string;
+  scripture?: string;
   author: Author;
   parent: string | null;
   content: string;
-  is_edited: boolean;
-  edit_count: number;
-  reaction_count: number;
-  can_edit: boolean;
   created_at: string;
   updated_at: string;
+  is_edited: boolean;
+  is_reported: boolean;
+  can_edit: boolean;
+  replies?: Comment[];
 }
 
 export interface CreateCommentPayload {
-  discussion: string;
+  // Content type reference - only one should be present
+  discussion?: string;
+  prayer?: string;
+  testimony?: string;
+  scripture?: string;
   content: string;
-  parent?: string | null;
+  parent?: string;
 }
 
 export interface UpdateCommentPayload {
