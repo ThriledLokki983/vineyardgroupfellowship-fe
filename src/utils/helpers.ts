@@ -2,6 +2,8 @@
  * Helper functions for ProfileCard component
  */
 
+import type { IconName } from '../types/components/common';
+
 /**
  * Check if a friend request can be resent based on hours elapsed
  * @param profile - The user profile
@@ -77,4 +79,86 @@ export const formatRelativeDate = (dateString: string): string => {
   if (diffDays < 7) return `${diffDays}d ago`;
 
   return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+};
+
+/**
+ * Get icon name for feed content type
+ * @param contentType - Type of content in feed
+ * @returns Icon name string
+ */
+export const getContentTypeIcon = (contentType: 'discussion' | 'prayer' | 'testimony' | 'scripture'): IconName => {
+  switch (contentType) {
+    case 'discussion':
+      return 'ChatBubbleIcon';
+    case 'prayer':
+      return 'HandIcon';
+    case 'testimony':
+      return 'PraiseIcon';
+    case 'scripture':
+      return 'AgendaCheck';
+    default:
+      return 'ChatBubbleIcon';
+  }
+};
+
+/**
+ * Get singular label for feed content type
+ * @param contentType - Type of content in feed
+ * @returns Singular label string
+ */
+export const getContentTypeLabel = (contentType: 'discussion' | 'prayer' | 'testimony' | 'scripture'): string => {
+  switch (contentType) {
+    case 'discussion':
+      return 'Discussion';
+    case 'prayer':
+      return 'Prayer Request';
+    case 'testimony':
+      return 'Testimony';
+    case 'scripture':
+      return 'Scripture';
+    default:
+      return contentType;
+  }
+};
+
+/**
+ * Get plural label for feed content type
+ * @param contentType - Type of content in feed
+ * @returns Plural label string
+ */
+export const getContentTypeLabelPlural = (contentType: 'discussion' | 'prayer' | 'testimony' | 'scripture'): string => {
+  switch (contentType) {
+    case 'discussion':
+      return 'discussions';
+    case 'prayer':
+      return 'prayer requests';
+    case 'testimony':
+      return 'testimonies';
+    case 'scripture':
+      return 'scriptures';
+    default:
+      return contentType;
+  }
+};
+
+/**
+ * Truncate text to a maximum length with ellipsis
+ * @param text - Text to truncate
+ * @param maxLength - Maximum length before truncation
+ * @returns Truncated text with ellipsis if needed
+ */
+export const truncate = (text: string, maxLength: number = 100): string => {
+  if (!text || text.length <= maxLength) {
+    return text || '';
+  }
+  return text.slice(0, maxLength).trim() + '...';
+};
+
+/**
+ * Format relative time for feed items (compact format)
+ * @param timestamp - ISO timestamp string or Date object
+ * @returns Compact relative time string (e.g., "2h ago", "3d ago")
+ */
+export const formatRelativeTime = (timestamp: string | Date): string => {
+  return formatRelativeDate(typeof timestamp === 'string' ? timestamp : timestamp.toISOString());
 };

@@ -1,0 +1,218 @@
+@use 'styles/_component-utils.scss' as *;
+
+/* Backdrop - semi-transparent overlay when menu is open */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  animation: fadeIn var(--animation-duration-fast) ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* FAB Container - positioned bottom-right */
+.fabContainer {
+  position: fixed;
+  bottom: var(--size-6);
+  right: var(--size-6);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--size-3);
+
+  @include mobile {
+    bottom: var(--size-5);
+    right: var(--size-5);
+  }
+}
+
+/* Action Menu - vertical stack of action items */
+.actionMenu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin-bottom: var(--size-2);
+  animation: slideUp var(--animation-duration-fast) ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(var(--size-3));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Action Item - individual menu option */
+.actionItem {
+  display: flex;
+  align-items: center;
+  gap: var(--size-3);
+  padding: var(--size-3) var(--size-4);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease;
+  box-shadow: var(--shadow-2);
+  min-width: 200px;
+
+  &:hover {
+    background: var(--surface-canvas);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  @include mobile {
+    min-width: 180px;
+    padding: var(--size-2) var(--size-3);
+    gap: var(--size-2);
+  }
+}
+
+/* Action Icon Wrapper */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--brand-primary);
+  border-radius: var(--radius-2);
+  flex-shrink: 0;
+
+  @include mobile {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Action Icon */
+.actionIcon {
+  width: 18px;
+  height: 18px;
+  color: var(--surface-elevated);
+
+  @include mobile {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* Action Label */
+.actionLabel {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+  white-space: nowrap;
+
+  @include mobile {
+    font-size: var(--font-size-0);
+  }
+}
+
+/* Main FAB Button */
+.fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-4);
+  transition: all var(--animation-duration-fast) ease;
+  position: relative;
+
+  &:hover {
+    background: var(--accent-warm);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-5);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: 3px solid var(--accent-warm);
+    outline-offset: 2px;
+  }
+
+  @include mobile {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* FAB Expanded State */
+.fabExpanded {
+  background: var(--accent-danger);
+
+  &:hover {
+    background: var(--accent-danger);
+    filter: brightness(1.1);
+  }
+}
+
+/* FAB Icon */
+.fabIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--surface-elevated);
+  transition: transform var(--animation-duration-fast) ease;
+
+  .fabExpanded & {
+    transform: rotate(180deg);
+  }
+
+  @include mobile {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* Accessibility - reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .actionMenu,
+  .fab,
+  .fabIcon {
+    animation: none;
+    transition: none;
+  }
+
+  .fab:hover {
+    transform: none;
+  }
+
+  .actionItem:hover {
+    transform: none;
+  }
+}

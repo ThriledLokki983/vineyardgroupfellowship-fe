@@ -15,6 +15,7 @@ interface DiscussionListProps {
   groupId: string;
   isLoading?: boolean;
   onDiscussionClick?: (discussion: Discussion) => void;
+  discussionRefs?: React.RefObject<Map<string, HTMLElement>>;
 }
 
 type SortOption = 'recent' | 'popular' | 'oldest';
@@ -42,6 +43,7 @@ const DiscussionList = ({
   groupId,
   isLoading = false,
   onDiscussionClick,
+  discussionRefs,
 }: DiscussionListProps) => {
   const [sortBy, setSortBy] = useState<SortOption>('recent');
 
@@ -110,12 +112,24 @@ const DiscussionList = ({
       {/* Discussion List */}
       <div className={styles.list}>
         {sortedDiscussions.map((discussion) => (
-          <DiscussionCard
+          <div
             key={discussion.id}
-            discussion={discussion}
-            groupId={groupId}
-            onClick={onDiscussionClick ? () => onDiscussionClick(discussion) : undefined}
-          />
+            ref={(el) => {
+              if (discussionRefs?.current) {
+                if (el) {
+                  discussionRefs.current.set(discussion.id, el);
+                } else {
+                  discussionRefs.current.delete(discussion.id);
+                }
+              }
+            }}
+          >
+            <DiscussionCard
+              discussion={discussion}
+              groupId={groupId}
+              onClick={onDiscussionClick ? () => onDiscussionClick(discussion) : undefined}
+            />
+          </div>
         ))}
       </div>
     </div>

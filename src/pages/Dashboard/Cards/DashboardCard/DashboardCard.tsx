@@ -14,6 +14,7 @@ export const DashboardCard = ({
 	actionButtonText,
 	onActionClick,
 	groupData,
+	isSecondaryBtn = false,
 	children
 }: DashboardCardProps) => {
 
@@ -37,7 +38,7 @@ export const DashboardCard = ({
 							onClick={onActionClick}
 							size="small"
 							isDisabled={isLoading}
-							variant={hasGroup ? 'secondary' : 'primary'}
+							variant={(hasGroup || isSecondaryBtn) ? 'secondary' : 'primary'}
 							data-create-button
 						>
 							<Icon name="MeetingIcon" />

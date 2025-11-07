@@ -5,7 +5,7 @@
 
 import { useState } from 'react';
 import { useCreateDiscussion, usePinDiscussion } from 'hooks/messaging';
-import { Modal } from 'components/Modal/Modal';
+import { Modal, Button } from 'components';
 import styles from './CreateDiscussionModal.module.scss';
 
 interface CreateDiscussionModalProps {
@@ -168,17 +168,20 @@ const CreateDiscussionModal = ({
 
         {/* Actions */}
         <div className={styles.actions}>
-          <button
-            type="button"
-            onClick={handleClose}
-            className={styles.cancelButton}
-            disabled={isPending}
+          <Button
+            variant="secondary"
+            onPress={handleClose}
+            isDisabled={isPending}
           >
             Cancel
-          </button>
-          <button type="submit" className={styles.submitButton} disabled={isPending}>
+          </Button>
+          <Button
+            variant="primary"
+            type="submit"
+            isDisabled={isPending}
+          >
             {isPending ? 'Creating...' : 'Create Discussion'}
-          </button>
+          </Button>
         </div>
       </form>
     </Modal>

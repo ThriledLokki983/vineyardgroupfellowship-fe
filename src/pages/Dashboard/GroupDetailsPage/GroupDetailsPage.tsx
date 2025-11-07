@@ -3,11 +3,11 @@
  * Displays comprehensive information about a group
  */
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useRef } from 'react';
 import { getGroup, uploadGroupPhoto, joinGroup } from '../../../services/groupApi';
-import { Layout, LoadingState, Icon, Button, Tabs } from 'components';
+import { Layout, LoadingState, Icon, Button, Tabs, Modal } from 'components';
 import { toast } from '../../../components/Toast';
 import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
 import { useMyGroups } from '../../../hooks/useMyGroups';
@@ -15,15 +15,32 @@ import { getEditGroupPath } from '../../../configs/paths';
 import { validateImageFile, shareGroup } from './helpers';
 import { GroupDetailsContent } from './GroupDetailsContent';
 import { DiscussionsTabPanel } from './DiscussionsTabPanel';
+import { ScriptureTabPanel } from './ScriptureTabPanel';
+import { PrayerTabPanel } from './PrayerTabPanel';
+import { TestimonyTabPanel } from './TestimonyTabPanel';
+import { FeedView } from '../../../components/Messaging/Feed/FeedView';
+import { QuickActionButton } from '../../../components/Messaging/QuickActions/QuickActionButton';
+import { PrayerRequestForm } from '../../../components/Messaging/QuickActions/PrayerRequestForm';
+import { TestimonyForm } from '../../../components/Messaging/QuickActions/TestimonyForm';
+import { ScriptureShareForm } from '../../../components/Messaging/QuickActions/ScriptureShareForm';
 import styles from './GroupDetailsPage.module.scss';
+
+type ActiveModal = 'prayer' | 'testimony' | 'scripture' | null;
 
 export const GroupDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { user } = useAuthContext();
   const queryClient = useQueryClient();
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [activeModal, setActiveModal] = useState<ActiveModal>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Get current tab from URL or default to 'details'
+  const currentTab = searchParams.get('tab') || 'details';
+  const contentType = searchParams.get('type'); // Content type filter for feed
+  const contentId = searchParams.get('id'); // Specific item to highlight
 
   const { data: group, isLoading, error } = useQuery({
     queryKey: ['group', id],
@@ -144,6 +161,11 @@ export const GroupDetailsPage = () => {
   const handleJoinGroup = async () => {
     if (!group) return;
     await joinGroupMutation.mutateAsync();
+  };
+
+  // Handle tab change and update URL
+  const handleTabChange = (tabId: string) => {
+    setSearchParams({ tab: tabId });
   };
 
   if (isLoading) {
@@ -291,10 +313,18 @@ export const GroupDetailsPage = () => {
         </header>
 
         {/* Tabs Navigation */}
-        <Tabs defaultSelectedKey="details" aria-label="Group sections">
+        <Tabs
+          selectedKey={currentTab}
+          onSelectionChange={(key) => handleTabChange(key as string)}
+          aria-label="Group sections"
+        >
           <Tabs.List>
             <Tabs.Tab id="details">Details</Tabs.Tab>
             <Tabs.Tab id="discussions">Discussions</Tabs.Tab>
+            <Tabs.Tab id="scripture">Scripture</Tabs.Tab>
+            <Tabs.Tab id="prayer">Prayers</Tabs.Tab>
+            <Tabs.Tab id="testimony">Testimonies</Tabs.Tab>
+            <Tabs.Tab id="feed">Feed</Tabs.Tab>
           </Tabs.List>
 
           {/* Details Tab Panel */}
@@ -313,9 +343,103 @@ export const GroupDetailsPage = () => {
               groupId={id!}
               isGroupLeader={isGroupLeader}
               isActiveMember={isActiveMember}
+              highlightedDiscussionId={currentTab === 'discussions' ? contentId : undefined}
+            />
+          </Tabs.Panel>
+
+          {/* Scripture Tab Panel */}
+          <Tabs.Panel id="scripture">
+            <ScriptureTabPanel
+              groupId={id!}
+              isActiveMember={isActiveMember}
+              highlightedItemId={currentTab === 'scripture' ? contentId : undefined}
+            />
+          </Tabs.Panel>
+
+          {/* Prayer Tab Panel */}
+          <Tabs.Panel id="prayer">
+            <PrayerTabPanel
+              groupId={id!}
+              isActiveMember={isActiveMember}
+              highlightedItemId={currentTab === 'prayer' ? contentId : undefined}
+            />
+          </Tabs.Panel>
+
+          {/* Testimony Tab Panel */}
+          <Tabs.Panel id="testimony">
+            <TestimonyTabPanel
+              groupId={id!}
+              isActiveMember={isActiveMember}
+              highlightedItemId={currentTab === 'testimony' ? contentId : undefined}
+            />
+          </Tabs.Panel>
+
+          {/* Feed Tab Panel */}
+          <Tabs.Panel id="feed">
+            <FeedView
+              groupId={id!}
+              initialContentType={contentType}
+              highlightedItemId={currentTab === 'feed' ? contentId : undefined}
             />
           </Tabs.Panel>
         </Tabs>
+
+        {/* Quick Action Button - visible on Discussions and Feed tabs only */}
+        {isActiveMember && (
+          <QuickActionButton
+            onCreatePrayer={() => setActiveModal('prayer')}
+            onCreateTestimony={() => setActiveModal('testimony')}
+            onCreateScripture={() => setActiveModal('scripture')}
+          />
+        )}
+
+        {/* Prayer Request Modal */}
+        {activeModal === 'prayer' && (
+          <Modal
+            isOpen={true}
+            onClose={() => setActiveModal(null)}
+            title="New Prayer Request"
+            size="md"
+          >
+            <PrayerRequestForm
+              groupId={id!}
+              onSuccess={() => setActiveModal(null)}
+              onCancel={() => setActiveModal(null)}
+            />
+          </Modal>
+        )}
+
+        {/* Testimony Modal */}
+        {activeModal === 'testimony' && (
+          <Modal
+            isOpen={true}
+            onClose={() => setActiveModal(null)}
+            title="Share a Testimony"
+            size="md"
+          >
+            <TestimonyForm
+              groupId={id!}
+              onSuccess={() => setActiveModal(null)}
+              onCancel={() => setActiveModal(null)}
+            />
+          </Modal>
+        )}
+
+        {/* Scripture Modal */}
+        {activeModal === 'scripture' && (
+          <Modal
+            isOpen={true}
+            onClose={() => setActiveModal(null)}
+            title="Share Scripture"
+            size="md"
+          >
+            <ScriptureShareForm
+              groupId={id!}
+              onSuccess={() => setActiveModal(null)}
+              onCancel={() => setActiveModal(null)}
+            />
+          </Modal>
+        )}
       </div>
     </Layout>
   );

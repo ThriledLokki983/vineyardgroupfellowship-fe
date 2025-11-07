@@ -1,0 +1,272 @@
+@use 'styles/_component-utils.scss' as *;
+
+.testimonyCard {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-3);
+  padding: var(--size-5);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+
+  &:hover {
+    background: var(--surface-canvas);
+    box-shadow: var(--shadow-2);
+    transform: translateY(-2px);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Header
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  flex-wrap: wrap;
+}
+
+.testimonyBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-1) var(--size-2);
+  background: #F0F8FF;
+  color: #4A90E2;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.linkedPrayerBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-1) var(--size-2);
+  background: #E8F5E9;
+  color: #2E7D32;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+}
+
+// Status Badges
+.statusBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-1) var(--size-2);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+
+  &.approved {
+    background: #D4EDDA;
+    color: #155724;
+  }
+
+  &.pending {
+    background: #FFF3CD;
+    color: #856404;
+  }
+}
+
+// Content
+.title {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-6);
+  color: var(--text-1);
+  margin: 0;
+  line-height: var(--font-lineheight-2);
+}
+
+.content {
+  font-size: var(--font-size-1);
+  color: var(--text-2);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.contentPreview {
+  @extend .content;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Approval Info
+.approvalInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  background: #F0F8FF;
+  border-left: 3px solid #4A90E2;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+  margin-top: var(--size-1);
+
+  svg {
+    color: #4A90E2;
+    flex-shrink: 0;
+  }
+}
+
+// Footer
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--size-3);
+  flex-wrap: wrap;
+  margin-top: var(--size-2);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  color: var(--text-2);
+  flex-wrap: wrap;
+}
+
+.author {
+  font-weight: var(--font-weight-5);
+  color: var(--text-1);
+}
+
+.separator {
+  color: var(--text-3);
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+// Share Button
+.shareButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  background: transparent;
+  color: var(--brand-primary);
+  border: 1px solid var(--brand-primary);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--brand-primary);
+    color: var(--surface-canvas);
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+// Share Confirmation
+.shareConfirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  padding: var(--size-4);
+  background: var(--surface-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  margin-top: var(--size-3);
+}
+
+.confirmMessage {
+  font-size: var(--font-size-1);
+  color: var(--text-1);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+}
+
+.confirmActions {
+  display: flex;
+  gap: var(--size-2);
+  justify-content: flex-end;
+}
+
+.confirmButton {
+  padding: var(--size-2) var(--size-4);
+  background: var(--brand-primary);
+  color: var(--surface-canvas);
+  border: none;
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+.cancelButton {
+  padding: var(--size-2) var(--size-4);
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-elevated);
+    border-color: var(--text-2);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}

@@ -17,6 +17,33 @@
   display: flex;
   flex-direction: column;
   gap: var(--size-3);
+
+  // Wrapper div that can be highlighted
+  > div {
+    transition: all var(--animation-duration-fast) ease-out;
+
+    &.highlighted {
+      animation: highlight-pulse 2s ease-out;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+        background-color: var(--accent-warm);
+      }
+    }
+  }
+}
+
+@keyframes highlight-pulse {
+  0% {
+    background-color: var(--accent-warm);
+    box-shadow: 0 0 0 0 rgba(244, 199, 123, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(244, 199, 123, 0);
+  }
+  100% {
+    background-color: transparent;
+  }
 }
 
 .loadingState,

@@ -8,3 +8,5 @@ export * from './useComments';
 export * from './useReactions';
 export * from './useFeed';
 export * from './usePrayerRequests';
+export * from './useTestimonies';
+export * from './useScriptures';

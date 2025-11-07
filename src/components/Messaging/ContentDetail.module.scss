@@ -1,0 +1,411 @@
+/**
+ * ContentDetail Component Styles
+ * Full detail view for content items
+ */
+
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+  padding: var(--size-4) 0;
+}
+
+/* Back Button */
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--brand-primary);
+  background: none;
+  border: none;
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--surface-elevated);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Content Article */
+.content {
+  background: var(--surface-elevated);
+  border-radius: var(--radius-3);
+  padding: var(--size-6);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  &.answered {
+    border-left: 4px solid var(--brand-primary);
+    background: color-mix(in srgb, var(--brand-primary) 5%, var(--surface-elevated));
+  }
+}
+
+/* Title */
+.title {
+  font-size: var(--font-size-6);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-4);
+  line-height: var(--font-lineheight-2);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+}
+
+.pinnedIcon {
+  color: var(--accent-warm);
+  flex-shrink: 0;
+}
+
+.answeredIcon {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+/* Meta Info */
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  margin-bottom: var(--size-5);
+}
+
+.author {
+  font-weight: var(--font-weight-6);
+  color: var(--brand-primary);
+}
+
+.separator {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.timestamp {
+  color: var(--text-secondary);
+}
+
+.edited {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--size-1) var(--size-2);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-1);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+
+  &.urgent {
+    background: color-mix(in srgb, orange 20%, var(--surface-canvas));
+    color: darkorange;
+  }
+
+  &.critical {
+    background: color-mix(in srgb, red 20%, var(--surface-canvas));
+    color: darkred;
+  }
+}
+
+/* Main Content */
+.mainContent {
+  font-size: var(--font-size-2);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: var(--size-5);
+}
+
+/* Secondary Content (Scripture Reflection) */
+.secondaryContent {
+  margin-top: var(--size-5);
+  padding: var(--size-4);
+  background: var(--surface-canvas);
+  border-left: 3px solid var(--brand-primary);
+  border-radius: var(--radius-2);
+
+  h3 {
+    font-size: var(--font-size-3);
+    font-weight: var(--font-weight-6);
+    color: var(--brand-primary);
+    margin: 0 0 var(--size-2);
+  }
+
+  p {
+    font-size: var(--font-size-1);
+    line-height: var(--font-lineheight-3);
+    color: var(--text-primary);
+    margin: 0;
+  }
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--size-4);
+  padding-top: var(--size-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stats {
+  display: flex;
+  gap: var(--size-4);
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+}
+
+/* Prayer Actions */
+.prayerActions {
+  display: flex;
+  gap: var(--size-2);
+  align-items: center;
+}
+
+.prayButton,
+.answeredButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-4);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.prayButton {
+  background: var(--accent-warm);
+  color: var(--text-primary);
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--accent-warm) 85%, black);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 2px;
+  }
+}
+
+.answeredButton {
+  background: var(--brand-primary);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--brand-primary) 85%, black);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Moderation Actions */
+.moderationActions {
+  display: flex;
+  gap: var(--size-2);
+  align-items: center;
+}
+
+.moderationButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-canvas);
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+.deleteButton {
+  color: var(--accent-danger);
+
+  &:hover:not(:disabled) {
+    border-color: var(--accent-danger);
+    background: color-mix(in srgb, var(--accent-danger) 10%, var(--surface-canvas));
+  }
+}
+
+/* Edit Form */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+}
+
+.editTitleInput {
+  width: 100%;
+  padding: var(--size-3);
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-6);
+  font-family: inherit;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.editContentTextarea {
+  width: 100%;
+  padding: var(--size-3);
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+  font-family: inherit;
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  resize: vertical;
+  min-height: 150px;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.editActions {
+  display: flex;
+  gap: var(--size-3);
+  justify-content: flex-end;
+}
+
+.saveButton,
+.cancelButton {
+  padding: var(--size-3) var(--size-5);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.saveButton {
+  background: var(--brand-primary);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--brand-primary) 85%, black);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+.cancelButton {
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+
+  &:hover:not(:disabled) {
+    background: var(--surface-elevated);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Loading & Error States */
+.loadingState,
+.errorState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--size-10) var(--size-4);
+  text-align: center;
+
+  p {
+    font-size: var(--font-size-2);
+    color: var(--text-secondary);
+  }
+}
+
+.errorState p {
+  color: var(--accent-danger);
+}

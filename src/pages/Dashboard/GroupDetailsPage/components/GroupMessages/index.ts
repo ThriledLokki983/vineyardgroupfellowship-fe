@@ -1,0 +1,1 @@
+export { GroupMessagesPage } from './GroupMessagesPage';

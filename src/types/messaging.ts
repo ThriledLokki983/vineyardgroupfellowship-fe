@@ -160,27 +160,35 @@ export type BibleTranslation = 'KJV' | 'NIV' | 'ESV' | 'NLT' | 'NKJV' | 'NASB' |
 export interface Scripture {
   id: string;
   group: string;
+  group_name?: string;
   author: Author;
   reference: string;
   verse_text: string;
   translation: BibleTranslation;
-  reflection: string;
-  bible_api_source: string;
+  reflection?: string;
+  has_reflection: boolean;
+  source: string;
+  reaction_count: number;
   comment_count: number;
+  is_reported: boolean;
   created_at: string;
+  updated_at: string;
+  can_edit: boolean;
 }
 
 export interface CreateScripturePayload {
   group: string;
   reference: string;
+  verse_text: string;
   translation: BibleTranslation;
   reflection?: string;
 }
 
 export interface VerseLookupResponse {
   reference: string;
-  verse_text: string;
+  text: string;
   translation: BibleTranslation;
+  translation_note?: string;
   source: string;
 }
 
@@ -188,7 +196,7 @@ export interface VerseLookupResponse {
 // FEED TYPES
 // ============================================================
 
-export type FeedContentType = 'discussion' | 'prayer_request' | 'testimony' | 'scripture';
+export type FeedContentType = 'discussion' | 'prayer' | 'testimony' | 'scripture';
 
 export interface FeedItem {
   id: string;
@@ -203,6 +211,7 @@ export interface FeedItem {
   is_pinned: boolean;
   created_at: string;
   updated_at: string;
+  has_viewed?: boolean; // Optional until backend implements
 }
 
 // ============================================================

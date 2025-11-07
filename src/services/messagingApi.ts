@@ -259,6 +259,13 @@ export const prayerRequestsApi = {
   },
 
   /**
+   * Get a single prayer request by ID
+   */
+  get: async (id: string, signal?: AbortSignal): Promise<PrayerRequest> => {
+    return api.get(`${BASE_URL}/prayer-requests/${id}/`, { signal });
+  },
+
+  /**
    * Mark a prayer request as answered (author only)
    */
   markAnswered: async (id: string, payload: MarkPrayerAnsweredPayload): Promise<PrayerRequest> => {
@@ -311,6 +318,13 @@ export const testimoniesApi = {
   },
 
   /**
+   * Get a single testimony by ID
+   */
+  get: async (id: string, signal?: AbortSignal): Promise<Testimony> => {
+    return api.get(`${BASE_URL}/testimonies/${id}/`, { signal });
+  },
+
+  /**
    * Request public sharing (author only)
    */
   sharePublic: async (id: string): Promise<Testimony> => {
@@ -352,10 +366,17 @@ export const scripturesApi = {
   },
 
   /**
-   * Create a new scripture share (verse text auto-fetched)
+   * Create a new scripture share
    */
   create: async (payload: CreateScripturePayload): Promise<Scripture> => {
     return api.post(`${BASE_URL}/scriptures/`, payload);
+  },
+
+  /**
+   * Get a single scripture share by ID
+   */
+  get: async (id: string, signal?: AbortSignal): Promise<Scripture> => {
+    return api.get(`${BASE_URL}/scriptures/${id}/`, { signal });
   },
 
   /**
@@ -366,7 +387,12 @@ export const scripturesApi = {
     queryParams.append('reference', reference);
     queryParams.append('translation', translation);
 
-    return api.get(`${BASE_URL}/scriptures/verse_lookup/?${queryParams.toString()}`);
+    const response = await api.get<{ detail: string; verse: VerseLookupResponse }>(
+      `${BASE_URL}/scriptures/verse-lookup/?${queryParams.toString()}`
+    );
+
+    // Extract and return the verse object from the nested response
+    return response.verse;
   },
 };
 

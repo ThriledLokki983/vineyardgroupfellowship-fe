@@ -200,13 +200,20 @@ const apiRequest = async <T>(
     const responseData = await response.json()
     return responseData
   } catch (error) {
-    // Log error in development
-    if (import.meta.env.DEV) {
+    // Don't log AbortErrors in development (they're normal from React Query cancellations)
+    const isAbortError = error instanceof Error && error.name === 'AbortError';
+
+    if (import.meta.env.DEV && !isAbortError) {
       console.error(`❌ API Error: ${options.method || 'GET'} ${endpoint}`, error)
     }
 
     if (error instanceof ApiError) {
       throw error
+    }
+
+    // Silently re-throw AbortErrors (TanStack Query handles these)
+    if (isAbortError) {
+      throw error;
     }
 
     // Handle network errors, timeouts, etc.

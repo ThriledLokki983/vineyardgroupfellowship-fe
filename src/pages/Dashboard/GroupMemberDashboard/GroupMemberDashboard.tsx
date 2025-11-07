@@ -13,6 +13,8 @@ import type { GroupMemberDashboardProps } from 'types';
 import { Layout, Icon, AlertBar, Button, BrowseGroupsModal, Greetings } from 'components';
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import { GroupSummaryCard } from '../Cards/GroupSummaryCard';
+import { UnviewedFeedCard } from '../Cards/UnviewedFeedCard';
+import { PendingRequestsCard } from '../Cards/PendingRequestsCard';
 import styles from './GroupMemberDashboard.module.scss';
 
 export const GroupMemberDashboard = ({ dashboardState }: GroupMemberDashboardProps) => {
@@ -183,6 +185,10 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
   const hasGroups = activeGroups.length > 0;
   const hasPendingRequests = pendingRequests.length > 0;
 
+  // Determine which card to show: Pending Requests OR Feed
+  const shouldShowFeedCard = hasGroups && !hasPendingRequests;
+  const shouldShowPendingCard = !hasGroups || hasPendingRequests;
+
   return (
     <Fragment>
       <Greetings
@@ -219,9 +225,6 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           titleIconName="PeopleIcon"
           title="My fellowship group"
           emptyMessage="You haven't joined any groups yet. Find one to get started!"
-          // showActionButton={!hasGroups}
-          // actionButtonText={!hasGroups ? 'Browse Groups' : 'View More Groups'}
-          // onActionClick={onBrowseGroups}
           isEmpty={!hasGroups}
           isLoading={isLoading}
         >
@@ -238,27 +241,20 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
           )}
         </DashboardCard>
 
-        {/* Pending Requests Card */}
-        <DashboardCard
-          emptyIconName="EmptyMailboxIcon"
-          titleIconName="ClockIcon"
-          title="Pending Requests"
-          emptyMessage="You have no pending group requests at the moment."
-          isEmpty={!hasPendingRequests}
-          isLoading={isLoading}
-        >
-          {hasPendingRequests && (
-            <div className={styles.requestsList}>
-              {pendingRequests.map((group) => (
-                <GroupSummaryCard
-                  key={group.id}
-                  groupData={group}
-                  showStatus={true}
-                />
-              ))}
-            </div>
-          )}
-        </DashboardCard>
+        {/* Conditional Second Card: Pending Requests OR Recent Activity */}
+        {shouldShowPendingCard && (
+          <PendingRequestsCard
+            pendingRequests={pendingRequests}
+            isLoading={isLoading}
+          />
+        )}
+
+        {shouldShowFeedCard && activeGroups[0] && (
+          <UnviewedFeedCard
+            groupId={activeGroups[0].id}
+            maxItems={5}
+          />
+        )}
 
         {/* Find More Groups Card */}
         {/* <DashboardCard

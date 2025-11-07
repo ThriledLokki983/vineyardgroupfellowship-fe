@@ -11,12 +11,20 @@ import { listGroups } from '../../services/groupApi';
 import { getGroupDetailsPath } from '../../configs/paths';
 import Modal from '../Modal';
 import Icon from '../Icon';
-import { Button, InlineLoader } from 'components';
+import { Button, InlineLoader, FilterButtonGroup } from 'components';
+import type { FilterOption } from 'components';
 import type { GroupListItem } from '../../types/group';
 import type { BrowseGroupsModalProps, GroupCardProps } from 'types';
 import styles from './BrowseGroupsModal.module.scss';
 
 type LocationTypeFilter = 'all' | 'in_person' | 'virtual' | 'hybrid';
+
+const locationTypeOptions: FilterOption<LocationTypeFilter>[] = [
+  { value: 'all', label: 'All' },
+  { value: 'in_person', label: 'In-Person', icon: <Icon name="LocationIcon" size={16} /> },
+  { value: 'virtual', label: 'Virtual', icon: <Icon name="PhoneIcon" size={16} /> },
+  { value: 'hybrid', label: 'Hybrid', icon: <Icon name="MeetingIcon" size={16} /> },
+];
 
 export default function BrowseGroupsModal({ isOpen, onClose }: BrowseGroupsModalProps) {
   useSignals();
@@ -117,38 +125,12 @@ export default function BrowseGroupsModal({ isOpen, onClose }: BrowseGroupsModal
 
           <div className={styles.filters}>
             {/* Location Type Filter */}
-            <div className={styles.filterGroup}>
-              <label className={styles.filterLabel}>Location Type:</label>
-              <div className={styles.filterButtons}>
-                <button
-                  className={`${styles.filterButton} ${locationTypeFilter === 'all' ? styles.active : ''}`}
-                  onClick={() => setLocationTypeFilter('all')}
-                >
-                  All
-                </button>
-                <button
-                  className={`${styles.filterButton} ${locationTypeFilter === 'in_person' ? styles.active : ''}`}
-                  onClick={() => setLocationTypeFilter('in_person')}
-                >
-                  <Icon name="LocationIcon" />
-                  In-Person
-                </button>
-                <button
-                  className={`${styles.filterButton} ${locationTypeFilter === 'virtual' ? styles.active : ''}`}
-                  onClick={() => setLocationTypeFilter('virtual')}
-                >
-                  <Icon name="PhoneIcon" />
-                  Virtual
-                </button>
-                <button
-                  className={`${styles.filterButton} ${locationTypeFilter === 'hybrid' ? styles.active : ''}`}
-                  onClick={() => setLocationTypeFilter('hybrid')}
-                >
-                  <Icon name="MeetingIcon" />
-                  Hybrid
-                </button>
-              </div>
-            </div>
+            <FilterButtonGroup
+              label="Location Type:"
+              options={locationTypeOptions}
+              value={locationTypeFilter}
+              onChange={setLocationTypeFilter}
+            />
 
             {/* Toggle Filters */}
             <div className={styles.toggleFilters}>

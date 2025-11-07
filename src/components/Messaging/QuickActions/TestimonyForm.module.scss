@@ -1,0 +1,303 @@
+@use 'styles/_component-utils.scss' as *;
+
+/* Form Container */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-5);
+  padding: var(--size-6);
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include mobile {
+    padding: var(--size-4);
+    gap: var(--size-4);
+  }
+}
+
+/* Header Section */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+  margin-bottom: var(--size-3);
+}
+
+.title {
+  font-size: var(--font-size-4);
+  font-weight: var(--font-weight-7);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  margin: 0;
+}
+
+.titleIcon {
+  width: 24px;
+  height: 24px;
+  color: var(--brand-primary);
+}
+
+.subtitle {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+}
+
+/* Field Container */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+
+/* Label */
+.label {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+}
+
+/* Text Input */
+.input {
+  @include input-base;
+  font-size: var(--font-size-1);
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: var(--surface-elevated);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    font-size: var(--font-size-0);
+    padding: var(--size-2);
+  }
+}
+
+/* Textarea */
+.textarea {
+  @include input-base;
+  font-size: var(--font-size-1);
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  resize: vertical;
+  min-height: 180px;
+  line-height: var(--font-lineheight-3);
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background: var(--surface-elevated);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    font-size: var(--font-size-0);
+    padding: var(--size-2);
+  }
+}
+
+/* Character Count */
+.charCount {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* Select Dropdown */
+.select {
+  @include input-base;
+  font-size: var(--font-size-1);
+  padding: var(--size-3);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232A2A2A' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--size-3) center;
+  padding-right: var(--size-7);
+
+  &:focus {
+    outline: 2px solid var(--brand-primary);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    background-color: var(--surface-elevated);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    font-size: var(--font-size-0);
+    padding: var(--size-2);
+    padding-right: var(--size-6);
+  }
+}
+
+/* Help Text */
+.helpText {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-3);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+}
+
+.helpIcon {
+  width: 14px;
+  height: 14px;
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+/* Info Box */
+.infoBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-3);
+  padding: var(--size-3);
+  background: #F0F8FF;
+  border: 1px solid #4A90E2;
+  border-left: 4px solid #4A90E2;
+  border-radius: var(--radius-2);
+}
+
+.infoIcon {
+  width: 20px;
+  height: 20px;
+  color: #4A90E2;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.infoContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  flex: 1;
+}
+
+.infoTitle {
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+  color: #2A2A2A;
+  margin: 0;
+}
+
+.infoText {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  line-height: var(--font-lineheight-2);
+  margin: 0;
+}
+
+/* Error Message */
+.error {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--size-2);
+  padding: var(--size-3);
+  background: #FFE5E5;
+  border: 1px solid var(--accent-danger);
+  border-radius: var(--radius-2);
+  color: var(--accent-danger);
+  font-size: var(--font-size-0);
+  line-height: var(--font-lineheight-3);
+}
+
+.errorIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Actions Row */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-3);
+  margin-top: var(--size-3);
+
+  @include mobile {
+    flex-direction: column-reverse;
+    gap: var(--size-2);
+  }
+}
+
+/* Cancel Button */
+.cancelButton {
+  @include button-base;
+  padding: var(--size-3) var(--size-5);
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  color: var(--text-primary);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease;
+
+  &:hover:not(:disabled) {
+    background: var(--surface-elevated);
+    border-color: var(--text-secondary);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include mobile {
+    padding: var(--size-2) var(--size-4);
+    font-size: var(--font-size-0);
+    width: 100%;
+  }
+}
+
+/* Submit Button */
+.submitButton {
+  @include button-primary;
+  padding: var(--size-3) var(--size-6);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-2);
+
+  &:disabled {
+    background: var(--surface-elevated);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    border-color: var(--border-subtle);
+  }
+
+  @include mobile {
+    padding: var(--size-2) var(--size-5);
+    font-size: var(--font-size-0);
+    width: 100%;
+  }
+}
+
+/* Accessibility - reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .cancelButton,
+  .submitButton {
+    transition: none;
+  }
+}

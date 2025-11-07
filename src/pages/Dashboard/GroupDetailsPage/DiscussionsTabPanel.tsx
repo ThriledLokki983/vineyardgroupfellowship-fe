@@ -3,7 +3,7 @@
  * Displays discussions for a group with create discussion button for leaders
  */
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useDiscussions } from 'hooks/messaging';
 import { DiscussionList, DiscussionThread, CreateDiscussionModal } from 'components/Messaging/Discussions';
 import { Button, Icon } from 'components';
@@ -13,15 +13,18 @@ interface DiscussionsTabPanelProps {
   groupId: string;
   isGroupLeader: boolean;
   isActiveMember: boolean;
+  highlightedDiscussionId?: string | null;
 }
 
 export const DiscussionsTabPanel = ({
   groupId,
   isGroupLeader,
   isActiveMember,
+  highlightedDiscussionId,
 }: DiscussionsTabPanelProps) => {
   const [selectedDiscussionId, setSelectedDiscussionId] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const discussionRefs = useRef<Map<string, HTMLElement>>(new Map());
 
   // Fetch discussions for this group - disable when viewing a single thread
   const { data: discussionsData, isLoading } = useDiscussions(groupId, {
@@ -30,6 +33,25 @@ export const DiscussionsTabPanel = ({
   });
 
   const discussions = discussionsData?.results || [];
+
+  // Handle scroll and highlight for deep-linked discussion
+  useEffect(() => {
+    if (highlightedDiscussionId && discussionRefs.current.has(highlightedDiscussionId)) {
+      const element = discussionRefs.current.get(highlightedDiscussionId);
+      if (!element) return;
+
+      // Wait for DOM to render
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        element.classList.add(styles.highlighted);
+
+        // Remove highlight after 2 seconds
+        setTimeout(() => {
+          element.classList.remove(styles.highlighted);
+        }, 2000);
+      }, 100);
+    }
+  }, [highlightedDiscussionId]);
 
   // Handle discussion selection
   const handleDiscussionClick = (discussionId: string) => {
@@ -105,6 +127,7 @@ export const DiscussionsTabPanel = ({
         groupId={groupId}
         isLoading={isLoading}
         onDiscussionClick={(discussion) => handleDiscussionClick(discussion.id)}
+        discussionRefs={discussionRefs}
       />
 
       {/* Create Discussion Modal (Leaders Only) */}

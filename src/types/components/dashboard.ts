@@ -66,6 +66,7 @@ export interface DashboardCardProps {
   isLoading?: boolean;
   onActionClick?: () => void;
   groupData?: GroupData | null;
+  isSecondaryBtn?: boolean;
   children?: ReactNode;
 }
 

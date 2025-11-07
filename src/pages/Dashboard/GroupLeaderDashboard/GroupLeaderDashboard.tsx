@@ -15,6 +15,7 @@ import { Layout, Icon, AlertBar, CreateGroupModal, ProfileReviewModal, Button, G
 import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import Action from '../Cards/ActionCard/Action';
 import { PendingRequestCard } from '../Cards/PendingRequestCard';
+import { UnviewedFeedCard } from '../Cards/UnviewedFeedCard';
 
 import styles from './GroupLeaderDashboard.module.scss';
 
@@ -291,6 +292,19 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
   const groupsWithNames = leaderGroups?.map((g) => ({ id: g.id, name: g.name })) || [];
   const { pendingRequests, totalPending, isLoading: isLoadingRequests } = useAllGroupsPendingRequests(groupsWithNames);
 
+  // Determine which cards to show
+  const hasJoinRequests = totalPending > 0;
+  const isGroupFull = groupData ? groupData.current_member_count >= groupData.member_limit : false;
+  const hasOnboardingTasks = MissingFields.length > 0 || nextSteps.length > 0;
+
+  // Show Pending Actions when:
+  // - Has join requests AND group not full
+  // - Has onboarding tasks (profile completion, next steps)
+  const shouldShowPendingActions = (hasJoinRequests && !isGroupFull) || hasOnboardingTasks;
+
+  // Always show feed when leader has a group
+  const shouldShowFeedCard = hasGroup && groupData;
+
   return (
     <Fragment>
       {/* Create Group Modal */}
@@ -325,68 +339,79 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
 
       {/* Main Content Grid */}
       <div className={styles.mainContentGrid}>
-        <DashboardCard
-          emptyIconName='EmptyMailboxIcon'
-          titleIconName='InboxIcon'
-          title='Pending Actions'
-          emptyMessage='You have no actions to take care of.'
-          isEmpty={MissingFields.length <= 0 && nextSteps.length <= 0 && totalPending <= 0}
-          isLoading={isLoadingRequests}
-        >
-          {/* Pending join requests */}
-          {totalPending > 0 && (
-            <div style={{ marginBottom: 'var(--size-4)' }}>
-              <h4 style={{
-                fontSize: 'var(--font-size-2)',
-                fontWeight: 'var(--font-weight-6)',
-                color: 'var(--brand)',
-                marginBottom: 'var(--size-3)'
-              }}>
-                Join Requests ({totalPending})
-              </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--size-3)' }}>
-                {pendingRequests.map((item) => (
-                  <PendingRequestCard
-                    key={item.request.id}
-                    request={item.request}
-                    groupId={item.groupId}
-                    groupName={item.groupName}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Missing profile fields */}
-          {MissingFields.length > 0 && (
-            <ol>
-              {MissingFields.map((action, i) => (
-                <li key={`${action}-${i}`}>
-                  <Action action={action} type="missing"/>
-                </li>
-              ))}
-            </ol>
-          )}
-
-          {/* Next steps */}
-          {nextSteps && nextSteps.length > 0 && nextSteps.map((action, i) => (
-              <ol key={`${action}-${i}`}>
-                <li>
-                  <Action action={action} type="support"/>
-                </li>
-              </ol>
-          ))}
-        </DashboardCard>
+        {/* Your Group Card - Always show */}
         <DashboardCard
           emptyIconName='EmptyGroupIcon'
           titleIconName='OutboxIcon'
           title='Your Group'
           emptyMessage='You have no groups yet. Create one to get started!'
-          // showActionButton={true}
-          // onActionClick={() => {modals.createGroup.setTrue()}}
           isEmpty={!hasGroup}
           groupData={groupData}
         />
+
+        {/* Pending Actions Card - Conditional (only when actionable) */}
+        {shouldShowPendingActions && (
+          <DashboardCard
+            emptyIconName='EmptyMailboxIcon'
+            titleIconName='InboxIcon'
+            title='Pending Actions'
+            emptyMessage='You have no actions to take care of.'
+            isEmpty={false}
+            isLoading={isLoadingRequests}
+          >
+            {/* Pending join requests (only if group not full) */}
+            {hasJoinRequests && !isGroupFull && (
+              <div style={{ marginBottom: 'var(--size-4)' }}>
+                <h4 style={{
+                  fontSize: 'var(--font-size-2)',
+                  fontWeight: 'var(--font-weight-6)',
+                  color: 'var(--brand)',
+                  marginBottom: 'var(--size-3)'
+                }}>
+                  Join Requests ({totalPending})
+                </h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--size-3)' }}>
+                  {pendingRequests.map((item) => (
+                    <PendingRequestCard
+                      key={item.request.id}
+                      request={item.request}
+                      groupId={item.groupId}
+                      groupName={item.groupName}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Missing profile fields */}
+            {MissingFields.length > 0 && (
+              <ol>
+                {MissingFields.map((action, i) => (
+                  <li key={`${action}-${i}`}>
+                    <Action action={action} type="missing"/>
+                  </li>
+                ))}
+              </ol>
+            )}
+
+            {/* Next steps */}
+            {nextSteps && nextSteps.length > 0 && nextSteps.map((action, i) => (
+                <ol key={`${action}-${i}`}>
+                  <li>
+                    <Action action={action} type="support"/>
+                  </li>
+                </ol>
+            ))}
+          </DashboardCard>
+        )}
+
+        {/* Group Activity Feed Card - Always show when group exists */}
+        {shouldShowFeedCard && (
+          <UnviewedFeedCard
+            groupId={groupData.id}
+            maxItems={5}
+          />
+        )}
       </div>
     </Fragment>
   );

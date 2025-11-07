@@ -20,6 +20,8 @@ export const prayerRequestKeys = {
   lists: () => [...prayerRequestKeys.all, 'list'] as const,
   list: (groupId: string, filters?: Record<string, unknown>) =>
     [...prayerRequestKeys.lists(), groupId, filters] as const,
+  details: () => [...prayerRequestKeys.all, 'detail'] as const,
+  detail: (id: string) => [...prayerRequestKeys.details(), id] as const,
 };
 
 /**
@@ -63,6 +65,18 @@ export const usePrayerRequests = (
     enabled: options?.enabled !== false && !!groupId,
     staleTime: 20_000,
     refetchInterval: options?.refetchInterval,
+  });
+};
+
+/**
+ * Fetch a single prayer request by ID
+ */
+export const usePrayerRequest = (id: string, options?: { enabled?: boolean }) => {
+  return useQuery({
+    queryKey: prayerRequestKeys.detail(id),
+    queryFn: ({ signal }) => messagingApi.prayerRequests.get(id, signal),
+    enabled: options?.enabled !== false && !!id,
+    staleTime: 20_000,
   });
 };
 
