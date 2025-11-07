@@ -214,6 +214,7 @@ export const feedApi = {
   list: async (params: {
     group: string;
     content_type?: FeedContentType;
+    has_viewed?: boolean;
     page?: number;
     page_size?: number;
     signal?: AbortSignal;
@@ -221,10 +222,18 @@ export const feedApi = {
     const queryParams = new URLSearchParams();
     queryParams.append('group', params.group);
     if (params.content_type) queryParams.append('content_type', params.content_type);
+    if (params.has_viewed !== undefined) queryParams.append('has_viewed', String(params.has_viewed));
     if (params.page) queryParams.append('page', String(params.page));
     if (params.page_size) queryParams.append('page_size', String(params.page_size));
 
     return api.get(`${BASE_URL}/feed/?${queryParams.toString()}`, { signal: params.signal });
+  },
+
+  /**
+   * Mark a feed item as viewed
+   */
+  markViewed: async (feedItemId: string): Promise<void> => {
+    return api.post(`${BASE_URL}/feed/${feedItemId}/mark-viewed/`, {});
   },
 };
 

@@ -7,7 +7,7 @@ import type { FeedItem, FeedContentType } from '../types/messaging';
 
 /**
  * Navigate to a specific feed item in GroupDetailsPage
- * Routes discussions to discussions tab, other content to feed tab
+ * Routes each content type to its dedicated tab with the item ID for highlighting
  *
  * @param item - The feed item to navigate to
  * @param navigate - React Router navigate function
@@ -15,14 +15,14 @@ import type { FeedItem, FeedContentType } from '../types/messaging';
 export const navigateToFeedItem = (item: FeedItem, navigate: NavigateFunction): void => {
   const { group, content_type, content_id } = item;
 
-  // Discussions go to discussions tab
-  if (content_type === 'discussion') {
-    navigate(`/groups/${group}?tab=discussions&id=${content_id}`);
-    return;
-  }
+  // Map content type to tab name (they match directly)
+  // discussion -> discussions tab
+  // prayer -> prayer tab
+  // testimony -> testimony tab
+  // scripture -> scripture tab
+  const tabName = content_type === 'discussion' ? 'discussions' : content_type;
 
-  // All other content types (prayer, testimony, scripture) go to feed tab
-  navigate(`/groups/${group}?tab=feed&type=${content_type}&id=${content_id}`);
+  navigate(`/dashboard/groups/${group}?tab=${tabName}&id=${content_id}`);
 };
 
 /**

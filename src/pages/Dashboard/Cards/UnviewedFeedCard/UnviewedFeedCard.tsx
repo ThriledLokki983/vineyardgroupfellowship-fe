@@ -9,9 +9,9 @@
 import { useNavigate } from 'react-router-dom';
 import { DashboardCard } from '../DashboardCard/DashboardCard';
 import { FeedItemPreview } from './FeedItemPreview';
-import { useUnviewedFeed } from '../../../../hooks/messaging';
-import { navigateToGroupFeed } from '../../../../utils/navigation';
-import type { FeedContentType, FeedItem } from '../../../../types/messaging';
+import { useUnviewedFeed, useMarkFeedViewed } from '../../../../hooks/messaging';
+import { navigateToFeedItem } from '../../../../utils/navigation';
+import type { FeedItem } from '../../../../types/messaging';
 import styles from './UnviewedFeedCard.module.scss';
 
 export interface UnviewedFeedCardProps {
@@ -27,22 +27,29 @@ export const UnviewedFeedCard = ({
 }: UnviewedFeedCardProps) => {
   const navigate = useNavigate();
   const { data, isLoading, error } = useUnviewedFeed(groupId, { maxItems });
+  const { mutate: markViewed } = useMarkFeedViewed();
 
-  const feedItems = data?.results || [];
+  // Client-side filter to ensure we only show unviewed items
+  // This is a safety measure in case the backend returns viewed items
+  const allItems = data?.results || [];
+  const feedItems = allItems.filter(item => !item.has_viewed);
   const isEmpty = !isLoading && feedItems.length === 0;
 
   const handleViewAll = () => {
     if (onViewAll) {
       onViewAll();
     } else {
-      navigateToGroupFeed(groupId, navigate);
+      // Navigate to feed tab in group details
+      navigate(`/dashboard/group/${groupId}/feed`);
     }
   };
 
-  const handleItemClick = (_item: FeedItem, contentType: FeedContentType) => {
-		navigateToGroupFeed(groupId, navigate, contentType);
-    // Mark as viewed in the future
-    // markAsViewed.mutate(item.id);
+  const handleItemClick = (item: FeedItem) => {
+    // Mark the feed item as viewed
+    markViewed(item.id);
+
+    // Navigate to the specific content item
+    navigateToFeedItem(item, navigate);
   };
 
   return (
@@ -74,7 +81,7 @@ export const UnviewedFeedCard = ({
             <FeedItemPreview
               key={item.id}
               item={item}
-              onClick={() => handleItemClick(item, item.content_type)}
+              onClick={() => handleItemClick(item)}
             />
           ))}
         </div>

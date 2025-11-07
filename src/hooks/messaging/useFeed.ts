@@ -51,8 +51,7 @@ export const useFeed = (
 /**
  * Fetch unviewed feed items for a group (for dashboard)
  * Shows recent activity that user hasn't interacted with yet
- *
- * Note: Currently shows all recent items until backend implements has_viewed filtering
+ * Filters for items where has_viewed is false
  */
 export const useUnviewedFeed = (
   groupId: string,
@@ -66,7 +65,7 @@ export const useUnviewedFeed = (
     queryFn: ({ signal }) =>
       messagingApi.feed.list({
         group: groupId,
-        // has_viewed: false,  // TODO: Add when backend supports
+        has_viewed: false, // Only fetch unviewed items
         page_size: options?.maxItems || 5,
         signal,
       }),
@@ -79,19 +78,13 @@ export const useUnviewedFeed = (
 /**
  * Mark a feed item as viewed
  * Updates user's viewed status for a specific feed item
- *
- * Note: Backend endpoint not yet implemented
+ * Invalidates unviewed feed queries to refresh dashboard
  */
 export const useMarkFeedViewed = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (itemId: string) => {
-      // TODO: Implement when backend endpoint is ready
-      // return messagingApi.feed.markViewed(itemId);
-      console.log('Mark feed item viewed:', itemId);
-      return Promise.resolve({ has_viewed: true });
-    },
+    mutationFn: (feedItemId: string) => messagingApi.feed.markViewed(feedItemId),
     onSuccess: () => {
       // Invalidate unviewed feed queries to refresh dashboard
       queryClient.invalidateQueries({ queryKey: feedKeys.all });
