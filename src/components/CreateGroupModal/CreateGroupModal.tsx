@@ -265,12 +265,6 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
       className={styles.createGroupModal}
     >
       <div className={styles.container}>
-        {/* Step Header */}
-        {/* <div className={styles.stepHeader}>
-          <h2 className={styles.stepTitle}>{currentStepData?.title}</h2>
-          <p className={styles.stepDescription}>{currentStepData?.description}</p>
-        </div> */}
-
         {/* Form Content */}
         <div className={styles.formContent}>
           {/* Step 1: Basic Information */}

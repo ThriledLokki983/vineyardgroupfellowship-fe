@@ -1,7 +1,6 @@
 @use 'styles/_component-utils.scss' as *;
 
 .createGroupModal {
-  // Override modal size
   overflow: auto;
 	max-inline-size: 750px;
 

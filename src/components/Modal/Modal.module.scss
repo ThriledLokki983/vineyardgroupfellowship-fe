@@ -140,12 +140,12 @@
 
 // Content
 .content {
-  padding: var(--size-2);
+  padding: var(--size-6);
   overflow-y: auto;
   overflow-x: hidden;
   flex: 1 1 auto;
-  min-height: 0; // Allow flex child to shrink below content size
-  max-height: calc(100vh - var(--size-fluid-5) - 100px); // Account for header + spacing
+  min-height: 0;
+  max-height: calc(100vh - var(--size-fluid-6));
 
   // Apply custom scrollbar styling
   @include styled-scrollbar(color-mix(in srgb, var(--brand-primary) 25%, transparent), 8px);
