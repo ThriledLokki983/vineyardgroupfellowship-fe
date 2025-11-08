@@ -25,11 +25,8 @@ const URGENCY_OPTIONS: { value: PrayerUrgency; label: string; description: strin
 const CATEGORY_OPTIONS: { value: PrayerCategory; label: string }[] = [
   { value: 'personal', label: 'Personal' },
   { value: 'family', label: 'Family' },
-  { value: 'health', label: 'Health' },
-  { value: 'work', label: 'Work' },
-  { value: 'ministry', label: 'Ministry' },
-  { value: 'salvation', label: 'Salvation' },
-  { value: 'other', label: 'Other' },
+  { value: 'community', label: 'Community' },
+  { value: 'thanksgiving', label: 'Thanksgiving' },
 ];
 
 const MAX_TITLE_LENGTH = 200;

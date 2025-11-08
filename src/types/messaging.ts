@@ -102,7 +102,7 @@ export interface CreateReactionPayload {
 // ============================================================
 
 export type PrayerUrgency = 'normal' | 'urgent' | 'critical';
-export type PrayerCategory = 'personal' | 'family' | 'health' | 'work' | 'ministry' | 'salvation' | 'other';
+export type PrayerCategory = 'personal' | 'family' | 'community' | 'thanksgiving';
 
 export interface PrayerRequest {
   id: string;
