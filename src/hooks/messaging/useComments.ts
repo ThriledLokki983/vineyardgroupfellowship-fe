@@ -6,6 +6,9 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { messagingApi } from '../../services/messagingApi';
 import { discussionKeys } from './useDiscussions';
+import { prayerRequestKeys } from './usePrayerRequests';
+import { testimonyKeys } from './useTestimonies';
+import { scriptureKeys } from './useScriptures';
 import type {
   Comment,
   CreateCommentPayload,
@@ -122,7 +125,7 @@ export const useCreateComment = () => {
         refetchType: 'active',
       });
 
-      // Update discussion comment count optimistically (only for discussions)
+      // Update comment count optimistically for all content types
       if (contentInfo.type === 'discussion') {
         const discussionKey = discussionKeys.detail(contentInfo.id);
         queryClient.setQueryData(discussionKey, (old: unknown) => {
@@ -136,6 +139,45 @@ export const useCreateComment = () => {
 
         // Invalidate discussion lists and feed
         queryClient.invalidateQueries({ queryKey: discussionKeys.lists() });
+      } else if (contentInfo.type === 'prayer') {
+        const prayerKey = prayerRequestKeys.detail(contentInfo.id);
+        queryClient.setQueryData(prayerKey, (old: unknown) => {
+          if (!old || typeof old !== 'object') return old;
+          const prayer = old as { comment_count?: number };
+          return {
+            ...old,
+            comment_count: (prayer.comment_count || 0) + 1,
+          };
+        });
+
+        // Invalidate prayer lists and feed
+        queryClient.invalidateQueries({ queryKey: prayerRequestKeys.lists() });
+      } else if (contentInfo.type === 'testimony') {
+        const testimonyKey = testimonyKeys.detail(contentInfo.id);
+        queryClient.setQueryData(testimonyKey, (old: unknown) => {
+          if (!old || typeof old !== 'object') return old;
+          const testimony = old as { comment_count?: number };
+          return {
+            ...old,
+            comment_count: (testimony.comment_count || 0) + 1,
+          };
+        });
+
+        // Invalidate testimony lists and feed
+        queryClient.invalidateQueries({ queryKey: testimonyKeys.lists() });
+      } else if (contentInfo.type === 'scripture') {
+        const scriptureKey = scriptureKeys.detail(contentInfo.id);
+        queryClient.setQueryData(scriptureKey, (old: unknown) => {
+          if (!old || typeof old !== 'object') return old;
+          const scripture = old as { comment_count?: number };
+          return {
+            ...old,
+            comment_count: (scripture.comment_count || 0) + 1,
+          };
+        });
+
+        // Invalidate scripture lists and feed
+        queryClient.invalidateQueries({ queryKey: scriptureKeys.lists() });
       }
 
       queryClient.invalidateQueries({ queryKey: ['feed'] });
