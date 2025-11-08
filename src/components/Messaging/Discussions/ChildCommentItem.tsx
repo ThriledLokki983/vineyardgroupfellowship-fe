@@ -42,7 +42,7 @@ const ChildCommentItem = ({ comment, onEdit, onDelete, depth }: ChildCommentItem
       <div className={styles.inlineContent}>
         {/* Author and timestamp */}
         <div className={styles.meta}>
-          <span className={styles.author}>@{comment.author.username}</span>
+          <span className={styles.author}>@{comment.author.display_name || comment.author.username}</span>
           <span className={styles.separator}>•</span>
           <span className={styles.timestamp}>{formattedTime}</span>
           {comment.is_edited && (

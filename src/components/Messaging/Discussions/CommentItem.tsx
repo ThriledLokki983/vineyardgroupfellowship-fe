@@ -94,11 +94,8 @@ const CommentItem = ({
     return commentDate.toLocaleDateString();
   };
 
-  // Get author display name
-  const authorName =
-    comment.author.first_name && comment.author.last_name
-      ? `${comment.author.first_name} ${comment.author.last_name}`
-      : comment.author.username;
+  // Get author display name - prefer display_name, fallback to username
+  const authorName = comment.author.display_name || comment.author.username;
 
   return (
     <div
