@@ -300,7 +300,8 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
   // Show Pending Actions when:
   // - Has join requests AND group not full
   // - Has onboarding tasks (profile completion, next steps)
-  const shouldShowPendingActions = (hasJoinRequests && !isGroupFull) || hasOnboardingTasks;
+  // - Leader has no group (show getting started guidance)
+  const shouldShowPendingActions = (hasJoinRequests && !isGroupFull) || hasOnboardingTasks || !hasGroup;
 
   // Always show feed when leader has a group
   const shouldShowFeedCard = hasGroup && groupData;
@@ -402,6 +403,41 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
                   </li>
                 </ol>
             ))}
+
+            {/* Getting Started guidance for leaders without groups */}
+            {!hasGroup && !hasOnboardingTasks && (
+              <div style={{
+                padding: 'var(--size-4)',
+                backgroundColor: 'var(--surface-elevated)',
+                borderRadius: 'var(--radius-3)',
+                marginTop: 'var(--size-3)'
+              }}>
+                <h4 style={{
+                  fontSize: 'var(--font-size-2)',
+                  fontWeight: 'var(--font-weight-6)',
+                  color: 'var(--brand)',
+                  marginBottom: 'var(--size-3)'
+                }}>
+                  Getting Started as a Group Leader
+                </h4>
+                <p style={{
+                  fontSize: 'var(--font-size-1)',
+                  lineHeight: 'var(--font-lineheight-3)',
+                  marginBottom: 'var(--size-4)',
+                  color: 'var(--text-primary)'
+                }}>
+                  Create your first fellowship group to start building a supportive community for recovery and wellness.
+                </p>
+                {/* <Button
+                  onClick={() => {modals.createGroup.setTrue()}}
+                  variant="primary"
+                  size="medium"
+                >
+                  <Icon name="MeetingIcon" />
+                  <span>Create Your First Group</span>
+                </Button> */}
+              </div>
+            )}
           </DashboardCard>
         )}
 
