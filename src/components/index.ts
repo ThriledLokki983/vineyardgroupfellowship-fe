@@ -1,5 +1,9 @@
 // Component exports - centralized for easy importing
 
+// ActionMenu
+export { default as ActionMenu } from './ActionMenu';
+export type { ActionMenuItem } from './ActionMenu';
+
 // AlertBar
 export { AlertBar } from './AlertBar';
 // Avatar
@@ -70,6 +74,9 @@ export { default as Header } from './Header';
 // Icon
 export { default as Icon } from './Icon';
 
+// Input
+export { Input } from './Input';
+
 // Layout
 export {
   Layout,
@@ -115,6 +122,9 @@ export {
 // Radio
 export { default as Radio } from './Radio';
 
+// RadioGroup
+export { RadioGroup } from './RadioGroup';
+
 // Select
 export { Select, SelectItem } from './Select';
 
@@ -127,6 +137,9 @@ export { default as TabPanel } from './TabPanel';
 // Tabs (compound component with Tab.List, Tab.Tab, Tab.Panel)
 export { Tabs } from './Tabs';
 export type { TabsProps } from './Tabs';
+
+// Textarea
+export { Textarea } from './Textarea';
 
 // Toast
 export {

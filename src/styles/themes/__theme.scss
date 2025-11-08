@@ -260,3 +260,7 @@ html {
   inline-size: 100dvw;
   // overflow: hidden;
 }
+
+* > ::placeholder {
+  color: var(--text-2);
+}

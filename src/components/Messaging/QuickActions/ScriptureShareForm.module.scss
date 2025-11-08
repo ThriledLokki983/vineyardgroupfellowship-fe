@@ -44,6 +44,7 @@
   color: var(--text-secondary);
   line-height: var(--font-lineheight-3);
   margin: 0;
+  max-inline-size: 100%;
 }
 
 /* Field Container */
@@ -62,7 +63,7 @@
 
 /* Reference Row - input + button */
 .referenceRow {
-  display: flex;
+  display: flex; align-items: flex-end;
   gap: var(--size-2);
 }
 
@@ -93,12 +94,12 @@
 
 /* Lookup Button */
 .lookupButton {
-  @include button-primary;
-  padding: var(--size-3) var(--size-5);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6);
-  border-radius: var(--radius-2);
-  white-space: nowrap;
+  padding: var(--size-2) var(--size-4);
+  margin-bottom: var(--size-3);
+
+  &:hover {
+    border-color: transparent;
+  }
 
   &:disabled {
     background: var(--surface-elevated);
@@ -319,25 +320,10 @@
 
 /* Cancel Button */
 .cancelButton {
-  @include button-base;
-  padding: var(--size-3) var(--size-5);
-  border: 1px solid var(--border-subtle);
-  background: transparent;
-  color: var(--text-primary);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6);
-  border-radius: var(--radius-2);
-  cursor: pointer;
-  transition: all var(--animation-duration-fast) ease;
+  padding: var(--size-2) var(--size-5);
 
   &:hover:not(:disabled) {
-    background: var(--surface-elevated);
-    border-color: var(--text-secondary);
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.6;
+    border-color: transparent;
   }
 
   @include mobile {
@@ -349,17 +335,10 @@
 
 /* Submit Button */
 .submitButton {
-  @include button-primary;
-  padding: var(--size-3) var(--size-6);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6);
-  border-radius: var(--radius-2);
+  padding: var(--size-2) var(--size-5);
 
-  &:disabled {
-    background: var(--surface-elevated);
-    color: var(--text-secondary);
-    cursor: not-allowed;
-    border-color: var(--border-subtle);
+  &:hover:not(:disabled) {
+    border-color: transparent;
   }
 
   @include mobile {

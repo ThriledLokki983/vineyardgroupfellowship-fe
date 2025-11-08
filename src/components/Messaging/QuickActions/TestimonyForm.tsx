@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { Input } from '../../Input';
+import { Textarea } from '../../Textarea';
+import { Select, SelectItem } from '../../Select';
+import { Button } from '../../Button';
 import { useCreateTestimony } from '../../../hooks/messaging/useTestimonies';
 import { usePrayerRequests } from '../../../hooks/messaging/usePrayerRequests';
 import Icon from '../../Icon';
@@ -88,67 +92,61 @@ export function TestimonyForm({
       </div>
 
       {/* Title Input */}
-      <div className={styles.field}>
-        <label htmlFor="testimony-title" className={styles.label}>
-          Testimony Title
-        </label>
-        <input
-          id="testimony-title"
-          type="text"
-          className={styles.input}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Brief summary of your testimony..."
-          maxLength={MAX_TITLE_LENGTH}
-          disabled={createMutation.isPending}
-          required
-        />
-        <div className={styles.charCount}>
-          {title.length}/{MAX_TITLE_LENGTH}
-        </div>
-      </div>
+      <Input
+        label="Testimony Title"
+        placeholder="Brief summary of your testimony..."
+        isRequired
+        isDisabled={createMutation.isPending}
+        inputProps={{
+          value: title,
+          onChange: (e) => setTitle(e.target.value),
+          maxLength: MAX_TITLE_LENGTH,
+        }}
+        helperText={
+          <div className={styles.charCount}>
+            {title.length}/{MAX_TITLE_LENGTH}
+          </div>
+        }
+      />
 
       {/* Content Textarea */}
-      <div className={styles.field}>
-        <label htmlFor="testimony-content" className={styles.label}>
-          Your Testimony
-        </label>
-        <textarea
-          id="testimony-content"
-          className={styles.textarea}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Share the full story of what God has done..."
-          maxLength={MAX_CONTENT_LENGTH}
-          rows={8}
-          disabled={createMutation.isPending}
-          required
-        />
-        <div className={styles.charCount}>
-          {content.length}/{MAX_CONTENT_LENGTH}
-        </div>
-      </div>
+      <Textarea
+        label="Your Testimony"
+        placeholder="Share the full story of what God has done..."
+        rows={5}
+        isRequired
+        isDisabled={createMutation.isPending}
+        textAreaProps={{
+          value: content,
+          onChange: (e) => setContent(e.target.value),
+          maxLength: MAX_CONTENT_LENGTH,
+        }}
+        helperText={
+          <div className={styles.charCount}>
+            {content.length}/{MAX_CONTENT_LENGTH}
+          </div>
+        }
+      />
 
       {/* Link to Answered Prayer */}
       {answeredPrayers.length > 0 && (
         <div className={styles.field}>
-          <label htmlFor="linked-prayer" className={styles.label}>
-            Link to Answered Prayer (Optional)
-          </label>
-          <select
-            id="linked-prayer"
-            className={styles.select}
-            value={linkedPrayerId}
-            onChange={(e) => setLinkedPrayerId(e.target.value)}
-            disabled={createMutation.isPending}
+          <Select
+            label="Link to Answered Prayer (Optional)"
+            placeholder="None - not related to a prayer"
+            selectedKey={linkedPrayerId || undefined}
+            onSelectionChange={(key) => setLinkedPrayerId((key as string) || '')}
+            isDisabled={createMutation.isPending}
           >
-            <option value="">None - not related to a prayer</option>
+            <SelectItem key="" id="">
+              None - not related to a prayer
+            </SelectItem>
             {answeredPrayers.map((prayer) => (
-              <option key={prayer.id} value={prayer.id}>
+              <SelectItem key={prayer.id} id={prayer.id}>
                 {prayer.title}
-              </option>
+              </SelectItem>
             ))}
-          </select>
+          </Select>
           <p className={styles.helpText}>
             <Icon name="HandIcon" className={styles.helpIcon} />
             Connect this testimony to a prayer that God answered
@@ -182,21 +180,21 @@ export function TestimonyForm({
 
       {/* Actions */}
       <div className={styles.actions}>
-        <button
+        <Button
           type="button"
-          className={styles.cancelButton}
+          variant="secondary"
           onClick={onCancel}
-          disabled={createMutation.isPending}
+          isDisabled={createMutation.isPending}
         >
           Cancel
-        </button>
-        <button
+        </Button>
+        <Button
           type="submit"
-          className={styles.submitButton}
-          disabled={!canSubmit}
+          variant="primary"
+          isDisabled={!canSubmit}
         >
           {createMutation.isPending ? 'Posting...' : 'Post Testimony'}
-        </button>
+        </Button>
       </div>
     </form>
   );

@@ -2,6 +2,10 @@ import { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useCreateScripture, useVerseLookup } from '../../../hooks/messaging/useScriptures';
 import Icon from '../../Icon';
+import { Input } from '../../Input';
+import { Textarea } from '../../Textarea';
+import { Select, SelectItem } from '../../Select';
+import { Button } from '../../Button';
 import styles from './ScriptureShareForm.module.scss';
 import type { BibleTranslation } from '../../../types/messaging';
 
@@ -112,61 +116,48 @@ export function ScriptureShareForm({
       </div>
 
       {/* Reference Input */}
-      <div className={styles.field}>
-        <label htmlFor="scripture-reference" className={styles.label}>
-          Bible Reference
-        </label>
-        <div className={styles.referenceRow}>
-          <input
-            id="scripture-reference"
-            type="text"
-            className={styles.input}
-            value={reference}
-            onChange={handleReferenceChange}
-            placeholder="e.g., John 3:16 or Psalm 23:1-3"
-            disabled={createMutation.isPending}
-            required
-          />
-          <button
-            type="button"
-            className={styles.lookupButton}
-            onClick={handleLookupClick}
-            disabled={!reference.trim() || isLoadingVerse || createMutation.isPending}
-          >
-            {isLoadingVerse ? 'Looking up...' : 'Lookup'}
-          </button>
-        </div>
-        <p className={styles.helpText}>
-          Enter a verse reference (e.g., John 3:16, Psalm 23, Romans 8:28-30)
-        </p>
+      <div className={styles.referenceRow}>
+        <Input
+          label="Bible Reference"
+          description="Enter a verse reference (e.g., John 3:16, Psalm 23, Romans 8:28-30)"
+          inputProps={{
+            value: reference,
+            onChange: handleReferenceChange,
+            placeholder: "e.g., John 3:16 or Psalm 23:1-3",
+            disabled: createMutation.isPending,
+          }}
+          isRequired
+        />
+        <Button
+          variant="secondary"
+          onPress={handleLookupClick}
+          isDisabled={!reference.trim() || isLoadingVerse || createMutation.isPending}
+          className={styles.lookupButton}
+        >
+          {isLoadingVerse ? 'Looking up...' : 'Lookup'}
+        </Button>
       </div>
 
       {/* Translation Selector */}
-      <div className={styles.field}>
-        <label htmlFor="scripture-translation" className={styles.label}>
-          Bible Translation
-        </label>
-        <select
-          id="scripture-translation"
-          className={styles.select}
-          value={translation}
-          onChange={(e) => {
-            setTranslation(e.target.value as BibleTranslation);
-            // Reset lookup when translation changes
-            if (lookupEnabled && reference.trim()) {
-              setLookupEnabled(false);
-              setTimeout(() => setLookupEnabled(true), 100);
-            }
-          }}
-          disabled={createMutation.isPending}
-        >
-          {TRANSLATION_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Select
+        label="Bible Translation"
+        selectedKey={translation}
+        onSelectionChange={(key) => {
+          setTranslation(key as BibleTranslation);
+          // Reset lookup when translation changes
+          if (lookupEnabled && reference.trim()) {
+            setLookupEnabled(false);
+            setTimeout(() => setLookupEnabled(true), 100);
+          }
+        }}
+        isDisabled={createMutation.isPending}
+      >
+        {TRANSLATION_OPTIONS.map((option) => (
+          <SelectItem key={option.value} id={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </Select>
 
       {/* Verse Preview */}
       {lookupEnabled && (
@@ -204,24 +195,18 @@ export function ScriptureShareForm({
       )}
 
       {/* Personal Reflection (Optional) */}
-      <div className={styles.field}>
-        <label htmlFor="scripture-reflection" className={styles.label}>
-          Personal Reflection (Optional)
-        </label>
-        <textarea
-          id="scripture-reflection"
-          className={styles.textarea}
-          value={reflection}
-          onChange={(e) => setReflection(e.target.value)}
-          placeholder="Share what this verse means to you or how it applies to your life..."
-          maxLength={MAX_REFLECTION_LENGTH}
-          rows={4}
-          disabled={createMutation.isPending}
-        />
-        <div className={styles.charCount}>
-          {reflection.length}/{MAX_REFLECTION_LENGTH}
-        </div>
-      </div>
+      <Textarea
+        label="Personal Reflection (Optional)"
+        textAreaProps={{
+          value: reflection,
+          onChange: (e) => setReflection(e.target.value),
+          placeholder: "Share what this verse means to you or how it applies to your life...",
+          maxLength: MAX_REFLECTION_LENGTH,
+          disabled: createMutation.isPending,
+        }}
+        rows={4}
+        helperText={`${reflection.length}/${MAX_REFLECTION_LENGTH} characters`}
+      />
 
       {/* Error Message */}
       {createMutation.isError && (
@@ -237,21 +222,22 @@ export function ScriptureShareForm({
 
       {/* Actions */}
       <div className={styles.actions}>
-        <button
-          type="button"
+        <Button
+          variant="secondary"
+          onPress={onCancel}
+          isDisabled={createMutation.isPending}
           className={styles.cancelButton}
-          onClick={onCancel}
-          disabled={createMutation.isPending}
         >
           Cancel
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="primary"
           type="submit"
+          isDisabled={!canSubmit}
           className={styles.submitButton}
-          disabled={!canSubmit}
         >
           {createMutation.isPending ? 'Sharing...' : 'Share Scripture'}
-        </button>
+        </Button>
       </div>
     </form>
   );

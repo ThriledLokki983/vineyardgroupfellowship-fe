@@ -44,6 +44,7 @@
   color: var(--text-secondary);
   line-height: var(--font-lineheight-3);
   margin: 0;
+  max-inline-size: 100%;
 }
 
 /* Field Container */
@@ -235,6 +236,14 @@
   justify-content: flex-end;
   gap: var(--size-3);
   margin-top: var(--size-3);
+
+  > button {
+    padding: var(--size-2) var(--size-5);
+
+    &:hover:not(:disabled) {
+      border-color: transparent;
+    }
+  }
 
   @include mobile {
     flex-direction: column-reverse;

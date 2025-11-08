@@ -29,8 +29,8 @@
   background: var(--surface-1);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-6);
-  max-height: calc(100vh - var(--size-8));
-  overflow: hidden;
+  max-height: calc(100vh - var(--size-fluid-10)); // ~128px spacing (64px top + 64px bottom)
+  overflow: auto;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -43,7 +43,7 @@
 
   &--md {
     width: 100%;
-    max-width: 500px;
+    max-width: 650px;
   }
 
   &--lg {
@@ -76,11 +76,16 @@
   // Mobile responsiveness
   @include mobile {
     margin: var(--size-2);
-    max-height: calc(100vh - var(--size-4));
+    max-height: calc(var(--visual-viewport-height, 100vh) - var(--size-4));
 
     &--fullscreen {
       margin: 0;
     }
+  }
+
+  // Tablet responsiveness
+  @include tablet {
+    max-height: calc(var(--visual-viewport-height, 100vh) - var(--size-6));
   }
 }
 
@@ -103,7 +108,7 @@
 }
 
 .title {
-  font-size: var(--font-size-5);
+  font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
   color: var(--text-1);
   margin: 0;
@@ -135,26 +140,25 @@
 
 // Content
 .content {
-  padding: var(--size-6);
+  padding: var(--size-2);
   overflow-y: auto;
-  flex: 1;
+  overflow-x: hidden;
+  flex: 1 1 auto;
+  min-height: 0; // Allow flex child to shrink below content size
+  max-height: calc(100vh - var(--size-fluid-5) - 100px); // Account for header + spacing
 
-  // Custom scrollbar
-  &::-webkit-scrollbar {
-    width: 6px;
+  // Apply custom scrollbar styling
+  @include styled-scrollbar(color-mix(in srgb, var(--brand-primary) 25%, transparent), 8px);
+
+  // Mobile responsive max-height
+  @include mobile {
+    max-height: calc(var(--visual-viewport-height, 100vh) - var(--size-8) - 60px);
+    padding: var(--size-3);
   }
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--border-subtle);
-    border-radius: var(--radius-1);
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--text-2);
+  // Tablet responsive max-height
+  @include tablet {
+    max-height: calc(var(--visual-viewport-height, 100vh) - var(--size-fluid-4) - 80px);
   }
 }
 

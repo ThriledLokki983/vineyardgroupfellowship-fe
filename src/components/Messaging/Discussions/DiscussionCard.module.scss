@@ -1,16 +1,13 @@
 @use 'styles/_component-utils.scss' as *;
 
-.card {
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-3);
-  padding: var(--size-5);
-  transition: all var(--animation-duration-fast) ease-out;
+.discussionCard {
+  border: 1px solid var(--surface-1);
+  padding: var(--size-2) 0;
   position: relative;
+  transition: all var(--ease-in-4);
 
   &:hover {
-    background: var(--surface-canvas);
-    box-shadow: var(--shadow-2);
+    box-shadow: var(--shadow-1);
     transform: translateY(-2px);
   }
 
@@ -18,6 +15,27 @@
     outline: 2px solid var(--brand-primary);
     outline-offset: 2px;
   }
+
+  &.pinned {
+    background: linear-gradient(
+      to right,
+      rgba(244, 199, 123, 0.05),
+      var(--surface-elevated)
+    );
+
+    @media (prefers-color-scheme: dark) {
+      background: linear-gradient(
+        to right,
+        rgba(244, 199, 123, 0.08),
+        var(--surface-elevated)
+      );
+    }
+  }
+}
+
+// Legacy support - keep .card for backwards compatibility
+.card {
+  @extend .discussionCard;
 }
 
 .cardButton {

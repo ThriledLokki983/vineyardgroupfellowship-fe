@@ -7,7 +7,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 998;
   animation: fadeIn var(--animation-duration-fast) ease-out;
 }
@@ -42,6 +42,9 @@
 .actionMenu {
   display: flex;
   flex-direction: column;
+  padding: var(--size-5) var(--size-3);
+  background-color: var(--surface-1);
+  border-radius: var(--radius-3);
   gap: var(--size-2);
   margin-bottom: var(--size-2);
   animation: slideUp var(--animation-duration-fast) ease-out;
@@ -63,9 +66,9 @@
   display: flex;
   align-items: center;
   gap: var(--size-3);
-  padding: var(--size-3) var(--size-4);
-  background: var(--surface-elevated);
-  border: 1px solid var(--border-subtle);
+  padding: var(--size-2) var(--size-4);
+  background: var(--surface-2);
+  border: 1px solid var(--surface-3);
   border-radius: var(--radius-3);
   cursor: pointer;
   transition: all var(--animation-duration-fast) ease;
@@ -140,7 +143,8 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: var(--brand-primary);
+  background: var(--brand);
+  color: var(--surface-1);
   border: none;
   cursor: pointer;
   display: flex;
@@ -151,7 +155,7 @@
   position: relative;
 
   &:hover {
-    background: var(--accent-warm);
+    background: var(--brand-secondary);
     transform: scale(1.1);
     box-shadow: var(--shadow-5);
   }
@@ -171,12 +175,24 @@
   }
 }
 
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+
+    .fab {
+      color: var(--text-1);
+    }
+  }
+}
+
 /* FAB Expanded State */
 .fabExpanded {
-  background: var(--accent-danger);
+  background: var(--warning-color-text);
+  color: var(--surface-1);
 
   &:hover {
-    background: var(--accent-danger);
+    background: var(--warning-color-text);
     filter: brightness(1.1);
   }
 }

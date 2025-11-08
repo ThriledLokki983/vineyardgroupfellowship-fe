@@ -114,7 +114,7 @@ export const DiscussionsTabPanel = ({
           </p>
         </div>
         {isGroupLeader && (
-          <Button onPress={() => setIsCreateModalOpen(true)} className={styles.createButton}>
+          <Button variant='secondary' onPress={() => setIsCreateModalOpen(true)} className={styles.createButton}>
             <Icon name="PlusIcon" size={20} />
             New Discussion
           </Button>

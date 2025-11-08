@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--size-5);
-  padding: var(--size-6);
+  padding: var(--size-4);
   max-width: 600px;
   margin: 0 auto;
 
@@ -26,7 +26,8 @@
 .title {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
+  color: var(--text);
+  max-inline-size: 100%;
   display: flex;
   align-items: center;
   gap: var(--size-2);
@@ -40,8 +41,9 @@
 }
 
 .subtitle {
-  font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  max-inline-size: 100%;
+  font-size: var(--font-size-1);
+  color: var(--text-2);
   line-height: var(--font-lineheight-3);
   margin: 0;
 }
@@ -254,20 +256,10 @@
 
 /* Cancel Button */
 .cancelButton {
-  @include button-base;
-  padding: var(--size-3) var(--size-5);
-  border: 1px solid var(--border-subtle);
-  background: transparent;
-  color: var(--text-primary);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6);
-  border-radius: var(--radius-2);
-  cursor: pointer;
-  transition: all var(--animation-duration-fast) ease;
+  padding: var(--size-2) var(--size-5);
 
   &:hover:not(:disabled) {
-    background: var(--surface-elevated);
-    border-color: var(--text-secondary);
+    border-color: transparent;
   }
 
   &:disabled {
@@ -284,18 +276,7 @@
 
 /* Submit Button */
 .submitButton {
-  @include button-primary;
-  padding: var(--size-3) var(--size-6);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6);
-  border-radius: var(--radius-2);
-
-  &:disabled {
-    background: var(--surface-elevated);
-    color: var(--text-secondary);
-    cursor: not-allowed;
-    border-color: var(--border-subtle);
-  }
+  padding: var(--size-2) var(--size-5);
 
   @include mobile {
     padding: var(--size-2) var(--size-5);

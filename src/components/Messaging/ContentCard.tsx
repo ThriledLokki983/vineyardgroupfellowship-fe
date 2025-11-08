@@ -28,8 +28,19 @@ export const ContentCard: React.FC<ContentCardProps> = ({
   // Get title based on content type
   const title = useMemo(() => {
     if ('title' in content) return content.title;
-    if (contentType === 'scripture' && 'reference' in content) return content.reference;
+    if (contentType === 'scripture' && 'reference' in content) {
+      // For scripture, we'll render reference and translation separately
+      return content.reference;
+    }
     return 'Untitled';
+  }, [content, contentType]);
+
+  // Get translation for scripture (to be rendered inline)
+  const translation = useMemo(() => {
+    if (contentType === 'scripture' && 'translation' in content) {
+      return content.translation;
+    }
+    return null;
   }, [content, contentType]);
 
   // Get content preview
@@ -66,11 +77,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
         prayerCount: content.prayer_count,
       };
     }
-    if (contentType === 'scripture' && 'translation' in content) {
-      return {
-        badge: content.translation,
-      };
-    }
+    // Scripture translation is now shown inline with title, not as a badge
     return {};
   }, [content, contentType]);
 
@@ -91,6 +98,7 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             <Icon name="CheckMarkIcon" size={18} className={styles.answeredIcon} />
           )}
           {title}
+          {translation && <span className={styles.translationBadge}> ({translation})</span>}
         </h3>
         <time className={styles.timestamp} dateTime={content.created_at}>
           {relativeTime}
@@ -125,6 +133,12 @@ export const ContentCard: React.FC<ContentCardProps> = ({
             <Icon name="ChatBubbleIcon" size={16} />
             <span>{commentCount}</span>
           </div>
+          {'reaction_count' in content && (
+            <div className={`${styles.stat} ${styles.statBigger}`}>
+              <Icon name="PraiseIcon" size={16} />
+              <span>{content.reaction_count}</span>
+            </div>
+          )}
           {metadata.prayerCount !== undefined && (
             <div className={styles.stat}>
               <Icon name="HandIcon" size={16} />

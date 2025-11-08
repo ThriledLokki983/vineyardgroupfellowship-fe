@@ -3,7 +3,7 @@
  * Displays list of comments with add comment form and nested replies
  */
 
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import { useComments, useCreateComment, useUpdateComment, useDeleteComment } from 'hooks/messaging';
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
 import CommentItem from './CommentItem';
@@ -16,9 +16,11 @@ type ContentType = 'discussion' | 'prayer' | 'testimony' | 'scripture';
 interface CommentSectionProps {
   discussionId: string; // Keep this prop name for backwards compatibility
   contentType?: ContentType; // New optional prop to specify content type
+  inputRef?: React.RefObject<HTMLTextAreaElement | null>;
 }
 
-const CommentSection = ({ discussionId, contentType = 'discussion' }: CommentSectionProps) => {
+const CommentSection = forwardRef<HTMLTextAreaElement, CommentSectionProps>(
+  ({ discussionId, contentType = 'discussion', inputRef }, _ref) => {
   const { user } = useAuthContext();
   const [newCommentContent, setNewCommentContent] = useState('');
   const [editingCommentId, setEditingCommentId] = useState<string | null>(null);
@@ -196,6 +198,7 @@ const CommentSection = ({ discussionId, contentType = 'discussion' }: CommentSec
       {user && (
         <form onSubmit={handleSubmitNewComment} className={styles.addCommentForm}>
           <textarea
+            ref={inputRef}
             value={newCommentContent}
             onChange={(e) => setNewCommentContent(e.target.value)}
             placeholder="Share your thoughts..."
@@ -308,6 +311,8 @@ const CommentSection = ({ discussionId, contentType = 'discussion' }: CommentSec
       </div>
     </div>
   );
-};
+});
+
+CommentSection.displayName = 'CommentSection';
 
 export default CommentSection;

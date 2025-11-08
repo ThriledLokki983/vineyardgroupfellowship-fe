@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { Input } from '../../Input';
+import { Textarea } from '../../Textarea';
+import { RadioGroup } from '../../RadioGroup';
+import { Select, SelectItem } from '../../Select';
+import { Button } from '../../Button';
 import { useCreatePrayerRequest } from '../../../hooks/messaging/usePrayerRequests';
 import Icon from '../../Icon';
 import styles from './PrayerRequestForm.module.scss';
@@ -99,90 +104,66 @@ export function PrayerRequestForm({
       </div>
 
       {/* Title Input */}
-      <div className={styles.field}>
-        <label htmlFor="prayer-title" className={styles.label}>
-          Prayer Title
-        </label>
-        <input
-          id="prayer-title"
-          type="text"
-          className={styles.input}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Brief summary of your prayer request..."
-          maxLength={MAX_TITLE_LENGTH}
-          disabled={createMutation.isPending}
-          required
-        />
-        <div className={styles.charCount}>
-          {title.length}/{MAX_TITLE_LENGTH}
-        </div>
-      </div>
+      <Input
+        label="Prayer Title"
+        placeholder="Brief summary of your prayer request..."
+        isRequired
+        isDisabled={createMutation.isPending}
+        inputProps={{
+          value: title,
+          onChange: (e) => setTitle(e.target.value),
+          maxLength: MAX_TITLE_LENGTH,
+        }}
+        helperText={
+          <div className={styles.charCount}>
+            {title.length}/{MAX_TITLE_LENGTH}
+          </div>
+        }
+      />
 
       {/* Content Textarea */}
-      <div className={styles.field}>
-        <label htmlFor="prayer-content" className={styles.label}>
-          Prayer Details
-        </label>
-        <textarea
-          id="prayer-content"
-          className={styles.textarea}
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Share the details of your prayer request..."
-          maxLength={MAX_CONTENT_LENGTH}
-          rows={6}
-          disabled={createMutation.isPending}
-          required
-        />
-        <div className={styles.charCount}>
-          {content.length}/{MAX_CONTENT_LENGTH}
-        </div>
-      </div>
+      <Textarea
+        label="Prayer Details"
+        placeholder="Share the details of your prayer request..."
+        rows={5}
+        isRequired
+        isDisabled={createMutation.isPending}
+        textAreaProps={{
+          value: content,
+          onChange: (e) => setContent(e.target.value),
+          maxLength: MAX_CONTENT_LENGTH,
+        }}
+        helperText={
+          <div className={styles.charCount}>
+            {content.length}/{MAX_CONTENT_LENGTH}
+          </div>
+        }
+      />
 
       {/* Urgency Selector */}
-      <div className={styles.field}>
-        <label className={styles.label}>Urgency Level</label>
-        <div className={styles.radioGroup}>
-          {URGENCY_OPTIONS.map((option) => (
-            <label key={option.value} className={styles.radioLabel}>
-              <input
-                type="radio"
-                name="urgency"
-                value={option.value}
-                checked={urgency === option.value}
-                onChange={(e) => setUrgency(e.target.value as PrayerUrgency)}
-                disabled={createMutation.isPending}
-                className={styles.radioInput}
-              />
-              <span className={styles.radioContent}>
-                <span className={styles.radioTitle}>{option.label}</span>
-                <span className={styles.radioDescription}>{option.description}</span>
-              </span>
-            </label>
-          ))}
-        </div>
-      </div>
+      <RadioGroup
+        label="Urgency Level"
+        value={urgency}
+        onChange={(value) => setUrgency(value as PrayerUrgency)}
+        isDisabled={createMutation.isPending}
+        options={URGENCY_OPTIONS}
+        orientation="vertical"
+      />
 
       {/* Category Dropdown */}
-      <div className={styles.field}>
-        <label htmlFor="prayer-category" className={styles.label}>
-          Category
-        </label>
-        <select
-          id="prayer-category"
-          className={styles.select}
-          value={category}
-          onChange={(e) => setCategory(e.target.value as PrayerCategory)}
-          disabled={createMutation.isPending}
-        >
-          {CATEGORY_OPTIONS.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
+      <Select
+        label="Category"
+        placeholder="Select a category"
+        selectedKey={category}
+        onSelectionChange={(key) => setCategory(key as PrayerCategory)}
+        isDisabled={createMutation.isPending}
+      >
+        {CATEGORY_OPTIONS.map((option) => (
+          <SelectItem key={option.value} id={option.value}>
+            {option.label}
+          </SelectItem>
+        ))}
+      </Select>
 
       {/* Error Message */}
       {createMutation.isError && (
@@ -198,21 +179,25 @@ export function PrayerRequestForm({
 
       {/* Actions */}
       <div className={styles.actions}>
-        <button
+        <Button
           type="button"
+          variant='secondary'
+          size='small'
           className={styles.cancelButton}
           onClick={onCancel}
-          disabled={createMutation.isPending}
+          isDisabled={createMutation.isPending}
         >
           Cancel
-        </button>
-        <button
+        </Button>
+        <Button
           type="submit"
+          variant='primary'
+          size='small'
           className={styles.submitButton}
-          disabled={!canSubmit}
+          isDisabled={!canSubmit}
         >
           {createMutation.isPending ? 'Creating...' : 'Create Prayer Request'}
-        </button>
+        </Button>
       </div>
     </form>
   );

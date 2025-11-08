@@ -4,6 +4,7 @@
  */
 
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
+import ActionMenu, { type ActionMenuItem } from 'components/ActionMenu';
 import type { Comment } from 'types/messaging';
 import styles from './CommentItem.module.scss';
 
@@ -39,6 +40,44 @@ const CommentItem = ({
   const canEdit = isOwner && isWithinEditWindow();
   const canDelete = isOwner;
 
+  // Build action menu items
+  const actionMenuItems: ActionMenuItem[] = [];
+
+  // Reply action - available to everyone
+  if (onReply) {
+    actionMenuItems.push({
+      id: 'reply',
+      label: 'Reply',
+      icon: 'ChatBubbleIcon',
+      onClick: () => onReply(comment),
+    });
+  }
+
+  // Edit action - available to owner within 15 minutes
+  if (canEdit && onEdit) {
+    actionMenuItems.push({
+      id: 'edit',
+      label: 'Edit',
+      icon: 'PencilIcon',
+      onClick: () => onEdit(comment),
+    });
+  }
+
+  // Delete action - available to owner
+  if (canDelete && onDelete) {
+    actionMenuItems.push({
+      id: 'delete',
+      label: 'Delete',
+      icon: 'CrossIcon',
+      onClick: () => {
+        if (window.confirm('Are you sure you want to delete this comment?')) {
+          onDelete(comment.id);
+        }
+      },
+      variant: 'danger',
+    });
+  }
+
   // Format timestamp as relative time
   const getRelativeTime = () => {
     const now = new Date();
@@ -66,7 +105,7 @@ const CommentItem = ({
       className={styles.commentItem}
       style={{ marginLeft: depth > 0 ? `${depth * 24}px` : undefined }}
     >
-      {/* Author & Timestamp + Reply Button */}
+      {/* Author & Timestamp + Action Menu */}
       <div className={styles.header}>
         <div className={styles.headerLeft}>
           <span className={styles.author}>{authorName}</span>
@@ -76,45 +115,13 @@ const CommentItem = ({
           </time>
           {comment.is_edited && <span className={styles.editedBadge}>(edited)</span>}
         </div>
-        {onReply && (
-          <button
-            type="button"
-            onClick={() => onReply(comment)}
-            className={styles.replyButton}
-          >
-            Reply
-          </button>
+        {actionMenuItems.length > 0 && (
+          <ActionMenu items={actionMenuItems} ariaLabel="Comment actions" />
         )}
       </div>
 
       {/* Content */}
       <p className={styles.content}>{comment.content}</p>
-
-      {/* Edit/Delete Actions */}
-      <div className={styles.actions}>
-        {canEdit && onEdit && (
-          <button
-            type="button"
-            onClick={() => onEdit(comment)}
-            className={styles.actionButton}
-          >
-            Edit
-          </button>
-        )}
-        {canDelete && onDelete && (
-          <button
-            type="button"
-            onClick={() => {
-              if (window.confirm('Are you sure you want to delete this comment?')) {
-                onDelete(comment.id);
-              }
-            }}
-            className={`${styles.actionButton} ${styles.deleteButton}`}
-          >
-            Delete
-          </button>
-        )}
-      </div>
     </div>
   );
 };

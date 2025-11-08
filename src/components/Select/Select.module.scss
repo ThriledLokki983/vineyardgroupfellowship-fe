@@ -177,7 +177,14 @@
 
     &.focused {
       background: var(--brand);
-      color: var(--brand);
+
+      @media (prefers-color-scheme: light) {
+        color: var(--surface-1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        color: var(--text-1);
+      }
     }
   }
 

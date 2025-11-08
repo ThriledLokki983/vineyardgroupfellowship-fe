@@ -58,16 +58,16 @@ export const ScriptureCard = ({
             <Icon name="AgendaCheck" size={14} />
             <span>Scripture</span>
           </span>
-
-          {/* Translation Badge */}
-          <span className={`${styles.translationBadge} ${getTranslationClass(scripture.translation)}`}>
-            {scripture.translation}
-          </span>
         </div>
       </div>
 
-      {/* Reference */}
-      <h3 className={styles.reference}>{scripture.reference}</h3>
+      {/* Reference with Translation Badge */}
+      <h3 className={styles.reference}>
+        {scripture.reference}{' '}
+        <span className={`${styles.translationBadge} ${getTranslationClass(scripture.translation)}`}>
+          ({scripture.translation})
+        </span>
+      </h3>
 
       {/* Verse Text */}
       <blockquote className={styles.verseText}>

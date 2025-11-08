@@ -53,10 +53,11 @@
 }
 
 .discussion {
-  background: var(--surface-elevated);
-  border-radius: var(--radius-3);
+  border-radius: var(--radius-2);
+  background-color: var(--surface-2);
   padding: var(--size-6);
-  box-shadow: var(--shadow-1);
+  box-shadow: var(--shadow-3);
+  margin-block: var(--size-4);
 }
 
 .pinnedIcon {
@@ -66,15 +67,24 @@
   flex-shrink: 0;
 }
 
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--size-3);
+  margin-bottom: var(--size-1);
+}
+
 .title {
   font-size: var(--font-size-4);
   font-weight: var(--font-weight-7);
   color: var(--text-1);
   line-height: var(--font-lineheight-2);
-  margin: 0 0 var(--size-1) 0;
+  margin: 0;
   display: flex;
   align-items: center;
   gap: var(--size-2);
+  flex: 1;
 }
 
 .meta {
@@ -140,6 +150,46 @@
   svg {
     color: var(--text-2);
 		inline-size: 1.5rem;
+  }
+}
+
+.statButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-1);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  border: 1px solid transparent;
+
+  svg {
+    color: var(--text-2);
+    inline-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    background: var(--surface-2);
+    border-color: var(--border-subtle);
+    color: var(--brand);
+
+    svg {
+      color: var(--brand);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
   }
 }
 

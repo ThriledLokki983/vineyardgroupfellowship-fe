@@ -6,23 +6,23 @@
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useRef } from 'react';
-import { getGroup, uploadGroupPhoto, joinGroup } from '../../../services/groupApi';
+import { getGroup, uploadGroupPhoto, joinGroup } from 'services/groupApi';
 import { Layout, LoadingState, Icon, Button, Tabs, Modal } from 'components';
-import { toast } from '../../../components/Toast';
-import { useAuthContext } from '../../../contexts/Auth/useAuthContext';
-import { useMyGroups } from '../../../hooks/useMyGroups';
-import { getEditGroupPath } from '../../../configs/paths';
+import { toast } from 'components/Toast';
+import { useAuthContext } from 'contexts/Auth/useAuthContext';
+import { useMyGroups } from 'hooks/useMyGroups';
+import { getEditGroupPath } from 'configs/paths';
 import { validateImageFile, shareGroup } from './helpers';
 import { GroupDetailsContent } from './GroupDetailsContent';
 import { DiscussionsTabPanel } from './DiscussionsTabPanel';
 import { ScriptureTabPanel } from './ScriptureTabPanel';
 import { PrayerTabPanel } from './PrayerTabPanel';
 import { TestimonyTabPanel } from './TestimonyTabPanel';
-import { FeedView } from '../../../components/Messaging/Feed/FeedView';
-import { QuickActionButton } from '../../../components/Messaging/QuickActions/QuickActionButton';
-import { PrayerRequestForm } from '../../../components/Messaging/QuickActions/PrayerRequestForm';
-import { TestimonyForm } from '../../../components/Messaging/QuickActions/TestimonyForm';
-import { ScriptureShareForm } from '../../../components/Messaging/QuickActions/ScriptureShareForm';
+import { FeedView } from 'components/Messaging/Feed/FeedView';
+import { QuickActionButton } from 'components/Messaging/QuickActions/QuickActionButton';
+import { PrayerRequestForm } from 'components/Messaging/QuickActions/PrayerRequestForm';
+import { TestimonyForm } from 'components/Messaging/QuickActions/TestimonyForm';
+import { ScriptureShareForm } from 'components/Messaging/QuickActions/ScriptureShareForm';
 import styles from './GroupDetailsPage.module.scss';
 
 type ActiveModal = 'prayer' | 'testimony' | 'scripture' | null;
@@ -192,7 +192,6 @@ export const GroupDetailsPage = () => {
   return (
     <Layout variant="default">
       <div className={styles.groupDetailsPage}>
-        {/* Group Info Header */}
         <header className={styles.groupInfoHeader}>
           <div
             className={`${styles.groupAvatar} ${isGroupLeader ? styles.groupAvatarEditable : ''}`}

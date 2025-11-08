@@ -1,0 +1,129 @@
+@use 'styles/_component-utils.scss' as *;
+
+.actionMenu {
+  position: relative;
+  display: inline-block;
+}
+
+.triggerButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-8);
+  height: var(--size-8);
+  border-radius: var(--radius-2);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  color: var(--text-2);
+
+  &:hover {
+    background: var(--surface-3);
+    color: var(--text-1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  svg {
+    pointer-events: none;
+  }
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + var(--size-2));
+  right: 0;
+  z-index: 100;
+  inline-size: 150px;
+  background: var(--surface-2);
+  border: var(--border-size-1) solid var(--surface-3);
+  border-radius: var(--radius-2);
+  box-shadow: var(--shadow-3);
+  padding: var(--size-2);
+  animation: menuSlideIn var(--animation-duration-fast) ease-out;
+
+  @keyframes menuSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+.menuItem {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: var(--size-2);
+  max-inline-size: 100%;
+	inline-size: -webkit-fill-available;
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-1);
+  cursor: pointer;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-1);
+  transition: all var(--animation-duration-fast) ease-out;
+  white-space: nowrap;
+
+	> span {
+		@include line-clamp(1);
+	}
+
+	&:not(:last-child) {
+		margin-bottom: var(--size-2);
+	}
+
+  svg {
+    flex-shrink: 0;
+    color: var(--text-2);
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--surface-3);
+		border-color: var(--brand);
+		border-radius: var(--radius-2);
+    color: var(--brand);
+
+    svg {
+      color: var(--brand);
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &.danger {
+    color: var(--accent-danger);
+
+    svg {
+      color: var(--accent-danger);
+    }
+
+    &:hover:not(:disabled) {
+      background: rgba(194, 90, 90, 0.1);
+      color: var(--accent-danger);
+
+      svg {
+        color: var(--accent-danger);
+      }
+    }
+  }
+}

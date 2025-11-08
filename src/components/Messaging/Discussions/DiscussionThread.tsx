@@ -3,12 +3,13 @@
  * Full discussion view with original post, comments, and moderation actions
  */
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDiscussion, usePinDiscussion, useDeleteDiscussion, useUpdateDiscussion } from 'hooks/messaging';
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
 import { useUserPermissions } from 'hooks/useUserPermissions';
 import CommentSection from './CommentSection';
 import Icon from 'components/Icon';
+import ActionMenu, { type ActionMenuItem } from 'components/ActionMenu';
 import styles from './DiscussionThread.module.scss';
 
 interface DiscussionThreadProps {
@@ -23,6 +24,7 @@ const DiscussionThread = ({ discussionId, groupId: _groupId, onBack, onDeleted }
   const [isEditing, setIsEditing] = useState(false);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
+  const commentInputRef = useRef<HTMLTextAreaElement>(null);
 
   const { data: discussion, isLoading } = useDiscussion(discussionId);
   const { mutate: pinDiscussion, isPending: isPinning } = usePinDiscussion();
@@ -54,7 +56,6 @@ const DiscussionThread = ({ discussionId, groupId: _groupId, onBack, onDeleted }
   }
 
   const isAuthor = user?.id === discussion.author.id;
-  const canModerate = isGroupLeader || isAuthor;
 
   // Format timestamp
   const formatDate = (dateString: string) => {
@@ -130,6 +131,72 @@ const DiscussionThread = ({ discussionId, groupId: _groupId, onBack, onDeleted }
     );
   };
 
+  // Handle clicking on comment stat - scroll to comment input
+  const handleCommentClick = () => {
+    commentInputRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    commentInputRef.current?.focus();
+  };
+
+  // Check if edit is allowed (within 15 minutes of creation)
+  const isEditAllowed = () => {
+    if (!discussion) return false;
+    const createdAt = new Date(discussion.created_at);
+    const now = new Date();
+    const diffMinutes = (now.getTime() - createdAt.getTime()) / (1000 * 60);
+    return diffMinutes <= 15;
+  };
+
+  // Build action menu items
+  const actionMenuItems: ActionMenuItem[] = [];
+
+  // Edit action - available to author and moderators (both within 15 mins only)
+  const canEdit = isEditAllowed();
+  if (isAuthor || isGroupLeader) {
+    actionMenuItems.push({
+      id: 'edit',
+      label: 'Edit',
+      icon: 'PencilIcon',
+      onClick: handleStartEdit,
+      disabled: !canEdit, // Disabled for everyone after 15 mins
+    });
+  }
+
+  // Pin action - available to moderators only
+  if (isGroupLeader) {
+    actionMenuItems.push({
+      id: 'pin',
+      label: discussion?.is_pinned ? 'Unpin' : 'Pin',
+      icon: discussion?.is_pinned ? 'StarIconFill' : 'StarIconOutline',
+      onClick: handleTogglePin,
+      disabled: isPinning,
+    });
+  }
+
+  // Report action - available to moderators only
+  if (isGroupLeader) {
+    actionMenuItems.push({
+      id: 'report',
+      label: 'Report',
+      icon: 'CircleWarning',
+      onClick: () => {
+        // TODO: Implement report functionality
+        console.log('Report functionality to be implemented');
+      },
+    });
+  }
+
+  // Delete action - available to author and moderators
+  if (isAuthor || isGroupLeader) {
+    actionMenuItems.push({
+      id: 'delete',
+      label: 'Delete',
+      icon: 'CrossIcon',
+      onClick: handleDelete,
+      variant: 'danger',
+      disabled: isDeleting,
+    });
+  }
+
   return (
     <div className={styles.container}>
       {/* Back Button */}
@@ -185,13 +252,18 @@ const DiscussionThread = ({ discussionId, groupId: _groupId, onBack, onDeleted }
         ) : (
           /* View Mode */
           <>
-            {/* Title */}
-            <h1 className={styles.title}>
-              {discussion.is_pinned && (
-                <Icon name="StarIconFill" size={22} className={styles.pinnedIcon} />
+            {/* Header with Title and Actions */}
+            <div className={styles.titleRow}>
+              <h1 className={styles.title}>
+                {discussion.is_pinned && (
+                  <Icon name="StarIconFill" size={22} className={styles.pinnedIcon} />
+                )}
+                {discussion.title}
+              </h1>
+              {actionMenuItems.length > 0 && (
+                <ActionMenu items={actionMenuItems} ariaLabel="Discussion actions" />
               )}
-              {discussion.title}
-            </h1>
+            </div>
 
             {/* Meta Info */}
             <div className={styles.meta}>
@@ -211,61 +283,34 @@ const DiscussionThread = ({ discussionId, groupId: _groupId, onBack, onDeleted }
             {/* Content */}
             <div className={styles.content}>{discussion.content}</div>
 
-            {/* Stats & Actions Footer */}
+            {/* Interactive Stats Footer */}
             <div className={styles.footer}>
               <div className={styles.stats}>
-                <span className={styles.stat}>
+                <button
+                  type="button"
+                  onClick={handleCommentClick}
+                  className={styles.statButton}
+                  aria-label={`${discussion.comment_count} comments - click to add comment`}
+                >
                   <Icon name="ChatBubbleIcon" size={16} />
-                  {discussion.comment_count} {discussion.comment_count === 1 ? 'comment' : 'comments'}
-                </span>
-                <span className={styles.stat}>
+                  <span>{discussion.comment_count} {discussion.comment_count === 1 ? 'comment' : 'comments'}</span>
+                </button>
+                <button
+                  type="button"
+                  className={styles.statButton}
+                  aria-label={`${discussion.reaction_count} reactions - click to add reaction`}
+                >
                   <Icon name="PraiseIcon" size={16} />
-                  {discussion.reaction_count} {discussion.reaction_count === 1 ? 'reaction' : 'reactions'}
-                </span>
+                  <span>{discussion.reaction_count} {discussion.reaction_count === 1 ? 'reaction' : 'reactions'}</span>
+                </button>
               </div>
-
-              {/* Moderation Actions */}
-              {canModerate && (
-                <div className={styles.moderationActions}>
-                  {isAuthor && (
-                    <button
-                      type="button"
-                      onClick={handleStartEdit}
-                      className={styles.moderationButton}
-                    >
-                      <Icon name="PencilIcon" size={16} />
-                      Edit
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={handleTogglePin}
-                    className={styles.moderationButton}
-                    disabled={isPinning}
-                  >
-                    <Icon name={discussion.is_pinned ? 'StarIconFill' : 'StarIconOutline'} size={16} />
-                    {discussion.is_pinned ? 'Unpin' : 'Pin'}
-                  </button>
-                  {isAuthor && (
-                    <button
-                      type="button"
-                      onClick={handleDelete}
-                      className={`${styles.moderationButton} ${styles.deleteButton}`}
-                      disabled={isDeleting}
-                    >
-                      <Icon name="CrossIcon" size={16} />
-                      Delete
-                    </button>
-                  )}
-                </div>
-              )}
             </div>
           </>
         )}
       </article>
 
       {/* Comments Section */}
-      <CommentSection discussionId={discussionId} />
+      <CommentSection discussionId={discussionId} inputRef={commentInputRef} />
     </div>
   );
 };

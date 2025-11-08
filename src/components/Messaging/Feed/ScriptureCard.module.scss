@@ -53,50 +53,40 @@
 
 // Translation Badges (different colors for each translation)
 .translationBadge {
-  padding: var(--size-1) var(--size-2);
-  border-radius: var(--radius-2);
-  font-size: var(--font-size-00);
-  font-weight: var(--font-weight-7);
-  letter-spacing: 0.5px;
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  letter-spacing: 0.3px;
 
   &.kjv {
-    background: #E8EAF6;
     color: #3F51B5;
   }
 
   &.niv {
-    background: #E0F2F1;
     color: #00897B;
   }
 
   &.esv {
-    background: #FFF3E0;
     color: #F57C00;
   }
 
   &.nlt {
-    background: #FCE4EC;
     color: #C2185B;
   }
 
   &.nkjv {
-    background: #E1F5FE;
     color: #0277BD;
   }
 
   &.nasb {
-    background: #F3E5F5;
     color: #7B1FA2;
   }
 
   &.msg {
-    background: #FFF9C4;
     color: #F57F17;
   }
 
   &.default {
-    background: var(--surface-canvas);
-    color: var(--text-1);
+    color: var(--text-2);
   }
 }
 

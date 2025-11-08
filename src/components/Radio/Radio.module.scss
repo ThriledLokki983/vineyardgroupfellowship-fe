@@ -27,10 +27,11 @@
   &[data-pressed] {
     transform: translateY(0);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
   }
 
   &[data-focus-visible] {
-    outline: 2px solid var(--brand);
+    // outline: 2px solid var(--brand);
     outline-offset: var(--size-1);
   }
 

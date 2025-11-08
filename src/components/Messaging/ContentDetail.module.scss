@@ -19,7 +19,7 @@
   padding: var(--size-2) var(--size-3);
   font-size: var(--font-size-1);
   font-weight: var(--font-weight-5);
-  color: var(--brand-primary);
+  color: var(--text-1);
   background: none;
   border: none;
   border-radius: var(--radius-2);
@@ -27,38 +27,55 @@
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: var(--surface-elevated);
+    background-color: var(--surface-1);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--brand-primary);
+    outline: 2px solid var(--brand);
     outline-offset: 2px;
   }
 }
 
 /* Content Article */
 .content {
-  background: var(--surface-elevated);
-  border-radius: var(--radius-3);
+  background: var(--surface-2);
+  border-radius: var(--radius-2);
   padding: var(--size-6);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-3);
 
   &.answered {
-    border-left: 4px solid var(--brand-primary);
-    background: color-mix(in srgb, var(--brand-primary) 5%, var(--surface-elevated));
+    border-left: 4px solid var(--brand);
+    background: color-mix(in srgb, var(--brand) 5%, var(--surface-1));
   }
+}
+
+/* Title Row */
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--size-3);
+  margin-bottom: var(--size-4);
 }
 
 /* Title */
 .title {
   font-size: var(--font-size-6);
   font-weight: var(--font-weight-7);
-  color: var(--text-primary);
-  margin: 0 0 var(--size-4);
+  color: var(--text-1);
+  margin: 0;
   line-height: var(--font-lineheight-2);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--size-3);
+  flex: 1;
+}
+
+.translationBadge {
+  font-size: var(--font-size-3);
+  font-weight: var(--font-weight-5);
+  color: var(--text-2);
+  padding-block-start: var(--size-3);
 }
 
 .pinnedIcon {
@@ -67,7 +84,7 @@
 }
 
 .answeredIcon {
-  color: var(--brand-primary);
+  color: var(--text-1);
   flex-shrink: 0;
 }
 
@@ -78,22 +95,22 @@
   align-items: center;
   gap: var(--size-2);
   font-size: var(--font-size-0);
-  color: var(--text-secondary);
+  color: var(--text-2);
   margin-bottom: var(--size-5);
 }
 
 .author {
   font-weight: var(--font-weight-6);
-  color: var(--brand-primary);
+  color: var(--text-1);
 }
 
 .separator {
-  color: var(--text-secondary);
+  color: var(--text-2);
   opacity: 0.5;
 }
 
 .timestamp {
-  color: var(--text-secondary);
+  color: var(--text-2);
 }
 
 .edited {
@@ -128,7 +145,7 @@
 .mainContent {
   font-size: var(--font-size-2);
   line-height: var(--font-lineheight-3);
-  color: var(--text-primary);
+  color: var(--text-2);
   white-space: pre-wrap;
   word-wrap: break-word;
   margin-bottom: var(--size-5);
@@ -138,21 +155,21 @@
 .secondaryContent {
   margin-top: var(--size-5);
   padding: var(--size-4);
-  background: var(--surface-canvas);
-  border-left: 3px solid var(--brand-primary);
+  background: var(--surface-1);
+  border-left: 3px solid var(--brand);
   border-radius: var(--radius-2);
 
   h3 {
     font-size: var(--font-size-3);
     font-weight: var(--font-weight-6);
-    color: var(--brand-primary);
+    color: var(--text-1);
     margin: 0 0 var(--size-2);
   }
 
   p {
     font-size: var(--font-size-1);
     line-height: var(--font-lineheight-3);
-    color: var(--text-primary);
+    color: var(--text-2);
     margin: 0;
   }
 }
@@ -171,6 +188,7 @@
 .stats {
   display: flex;
   gap: var(--size-4);
+  align-items: center;
 }
 
 .stat {
@@ -179,6 +197,51 @@
   gap: var(--size-2);
   font-size: var(--font-size-0);
   color: var(--text-secondary);
+}
+
+.statButton {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  padding: var(--size-2) var(--size-3);
+  border-radius: var(--radius-2);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-1);
+  cursor: pointer;
+  transition: all var(--animation-duration-fast) ease-out;
+  border: 1px solid transparent;
+
+  svg {
+    color: var(--text-2);
+    inline-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  &:hover:not(:disabled) {
+    background: var(--surface-1);
+    border-color: var(--surface-3);
+    color: var(--brand);
+
+    svg {
+      color: var(--brand);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 /* Prayer Actions */
@@ -209,7 +272,7 @@
 
 .prayButton {
   background: var(--accent-warm);
-  color: var(--text-primary);
+  color: var(--text-1);
 
   &:hover:not(:disabled) {
     background: color-mix(in srgb, var(--accent-warm) 85%, black);
@@ -382,7 +445,7 @@
   border: 1px solid var(--border-subtle);
 
   &:hover:not(:disabled) {
-    background: var(--surface-elevated);
+    background: var(--surface-1);
   }
 
   &:focus-visible {
