@@ -5,7 +5,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSignals } from '@preact/signals-react/runtime';
-import { Button } from 'react-aria-components';
+import { Button } from 'components';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createGroup, updateGroup } from '../../services/groupApi';
 import { createGroupSchema, createGroupDefaults, type CreateGroupFormData } from '../../schemas/createGroupSchema';
@@ -462,13 +462,14 @@ export default function CreateGroupModal({ isOpen, onClose, groupData = null, mo
                     className={styles.input}
                     placeholder="e.g., Alcohol Recovery, Young Adults, Faith-Based"
                   />
-                  <button
+                  <Button
                     type="button"
+                    variant="secondary"
                     onClick={handleAddFocusArea}
                     className={styles.addTagButton}
                   >
                     Add
-                  </button>
+                  </Button>
                 </div>
                 {focusAreas.length > 0 && (
                   <div className={styles.tags}>

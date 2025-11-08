@@ -170,19 +170,10 @@
 }
 
 .addTagButton {
-  @include base;
-  padding: var(--size-3) var(--size-4);
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6);
-  border: none;
-  border-radius: var(--radius-2);
-  cursor: pointer;
-  transition: background 0.2s var(--ease-2);
   padding: var(--size-2) var(--size-4);
 
   &:hover {
-    background: var(--brand);
-    color: var(--brand);
+    border-color: transparent;
   }
 
   &:active {
