@@ -81,7 +81,6 @@ export const RegistrationPage = () => {
           `Welcome to Vineyard Group Fellowship! Please check your email to verify your account.`
         )
 
-        // Always navigate to account creation success page first
         // User should verify email before proceeding to onboarding
         navigate('/account-created', {
           state: {
@@ -153,7 +152,7 @@ export const RegistrationPage = () => {
           <svg className={styles.lockIcon} width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 7V5C12 2.79 10.21 1 8 1C5.79 1 4 2.79 4 5V7C2.9 7 2 7.9 2 9V13C2 14.1 2.9 15 4 15H12C13.1 15 14 14.1 14 13V9C14 7.9 13.1 7 12 7ZM8 11.5C7.17 11.5 6.5 10.83 6.5 10C6.5 9.17 7.17 8.5 8 8.5C8.83 8.5 9.5 9.17 9.5 10C9.5 10.83 8.83 11.5 8 11.5ZM10.1 7H5.9V5C5.9 3.84 6.84 2.9 8 2.9C9.16 2.9 10.1 3.84 10.1 5V7Z" fill="currentColor"/>
           </svg>
-          <Text>We'll never share your data. Your privacy is our priority.</Text>
+          <Text>We'll NOT share your data. Your privacy is our priority.</Text>
         </div>
 
         <div className={styles.formFooter}>

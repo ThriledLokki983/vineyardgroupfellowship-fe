@@ -27,10 +27,10 @@
 .medium {
   padding: var(--size-3) var(--size-4);
   font-size: var(--font-size-1);
-  min-block-size: var(--size-10); // 48px - Extra space for easier tapping
+  min-block-size: var(--size-10);
 
   @include bp-min($tablet) {
-    min-block-size: var(--size-9); // 40px
+    min-block-size: var(--size-9);
     padding: var(--size-3) var(--size-4);
   }
 }
@@ -39,10 +39,10 @@
   padding: var(--size-4) var(--size-6);
   font-size: var(--font-size-2);
   border-radius: var(--radius-2);
-  min-block-size: var(--size-11); // 56px - Large touch targets
+  min-block-size: var(--size-11);
 
   @include bp-min($tablet) {
-    min-block-size: var(--size-10); // 48px
+    min-block-size: var(--size-10);
   }
 }
 

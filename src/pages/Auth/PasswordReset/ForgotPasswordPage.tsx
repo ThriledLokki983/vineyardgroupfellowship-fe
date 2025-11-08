@@ -1,21 +1,19 @@
-import { useNavigate } from 'react-router-dom'
-import { useSignals } from '@preact/signals-react/runtime'
-import { Text } from 'react-aria-components'
-import Layout from '../../../components/Layout/Layout'
-import ConfigurableForm from '../../../components/ConfigurableForm'
-import Button from '../../../components/Button'
-import { type FormConfig, type FieldValue } from '../../../components/ConfigurableForm/types'
-import { forgotPasswordSchema } from '../../../schemas'
-import { useForgotPassword } from '../../../hooks/useAuth'
-import { ApiError } from '../../../services/api'
-import { type ForgotPasswordData } from '../../../configs/hooks-interfaces'
-import { forgotPasswordPage } from '../../../signals/auth-signals'
+import { useNavigate } from 'react-router-dom';
+import { useSignals } from '@preact/signals-react/runtime';
+import { Text } from 'react-aria-components';
+import { Layout, ConfigurableForm, Button } from 'components';
+import { type FormConfig, type FieldValue } from 'components/ConfigurableForm/types';
+import { forgotPasswordSchema } from 'schemas';
+import { useForgotPassword } from 'hooks/useAuth';
+import { ApiError } from 'services/api';
+import { type ForgotPasswordData } from 'configs/hooks-interfaces';
+import { forgotPasswordPage } from 'signals/auth-signals';
 import styles from './ForgotPasswordPage.module.scss'
 
 export const ForgotPasswordPage = () => {
+
   useSignals()
   const navigate = useNavigate()
-
   const mutation = useForgotPassword()
 
   // Extract server errors from ApiError
@@ -51,7 +49,6 @@ export const ForgotPasswordPage = () => {
     })
   }
 
-  // Get signal value for rendering
   const isEmailSent = forgotPasswordPage.isEmailSent.value.value
 
   // Success state after email is sent

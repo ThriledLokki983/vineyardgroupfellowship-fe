@@ -1,7 +1,6 @@
 // import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/Button';
-import Icon from '../../components/Icon';
+import { Button, Icon } from 'components';
 import logoLight from '../../assets/new-logopng.png';
 // import logoLight1 from '../../assets/new-header-logo-light-theme.png';
 // import logoDark from '../../assets/new-header-logo-dark-theme.png';
@@ -85,7 +84,7 @@ export default function MinimalPublicHome() {
         </div>
 
         <h1 className={styles.heroTitle}>
-          Find Your Fellowship.<br />Find Your Freedom.
+          Find Your Fellowship.
         </h1>
 
         <p className={styles.heroSubtitle}>
@@ -97,6 +96,7 @@ export default function MinimalPublicHome() {
             variant="primary"
             size="large"
             onPress={() => navigate('/register')}
+            className={styles.joinButton}
           >
             Join Fellowship
           </Button>
@@ -104,6 +104,7 @@ export default function MinimalPublicHome() {
             variant="secondary"
             size="large"
             onPress={() => navigate('/login')}
+            className={styles.joinButton}
           >
             Sign In
           </Button>

@@ -293,7 +293,7 @@
 .detailsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--size-4);
+  gap: var(--size-8) var(--size-4);
 
   @include mobile {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));

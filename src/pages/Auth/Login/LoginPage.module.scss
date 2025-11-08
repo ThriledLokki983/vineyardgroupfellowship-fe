@@ -276,27 +276,8 @@
 }
 
 .linkButton {
-  background: none;
-  border: none;
-  color: var(--text-2);
+  @include button-link;
   text-decoration: underline;
-  font-size: var(--font-size-1);
-  cursor: pointer;
-  padding: var(--size-1);
-  border-radius: var(--radius-2);
-  transition: all var(--ease-3);
-  font-weight: var(--font-weight-5);
-  text-underline-offset: 2px;
-
-  &:hover {
-    color: var(--text-1);
-    text-decoration-color: var(--text-1);
-  }
-
-  &:focus-visible {
-    outline: var(--border-size-2) solid var(--brand);
-    outline-offset: var(--size-1);
-  }
 }
 
 // Mobile responsiveness

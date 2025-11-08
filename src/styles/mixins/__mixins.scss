@@ -100,10 +100,22 @@
 
 
 @mixin button-primary {
-  --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 45% / 0.9);
+  --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 55% / 0.9);
 
-  @include button-base; @include base;
+  @include button-base;
   font-weight: var(--font-weight-6);
+
+  // Light theme: brand background, surface-1 text
+  background: var(--brand);
+  color: var(--surface-1);
+  border-color: var(--brand);
+
+  // Dark theme: brand background, text-1 color
+  @media (prefers-color-scheme: dark) {
+    background: var(--brand);
+    color: var(--text-1);
+    border-color: var(--brand);
+  }
 
   &:hover {
     background: var(--hover-clr);
@@ -138,16 +150,33 @@
 }
 
 @mixin button-secondary {
-  --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 45% / 0.9);
+  --hover-clr: hsla(var(--brand-hue) var(--brand-saturation) 55% / 0.9);
 
-  @include button-base; @include base-alt;
+  @include button-base;
   font-weight: var(--font-weight-6);
-  border: 1px solid var(--brand);
+
+  // Light theme: surface-1 background, text-1 color, brand border
+  background: var(--surface-1);
+  color: var(--text-1);
+  border: var(--border-size-1) solid var(--brand);
+
+  // Dark theme: surface-1 background, text-1 color, text-2 border
+  @media (prefers-color-scheme: dark) {
+    background: var(--surface-1);
+    color: var(--text-1);
+    border-color: var(--text-2);
+  }
 
   &:hover {
-    @include base;
+    background: var(--hover-clr);
+    color: var(--surface-1);
+    border-color: var(--brand);
     transform: translateY(-1px);
     box-shadow: var(--shadow-1);
+
+    @media (prefers-color-scheme: dark) {
+      color: var(--text-1);
+    }
   }
 
   &:active {
@@ -217,6 +246,40 @@
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+  }
+}
+
+@mixin button-link {
+  @include button-base;
+  all: unset;
+  box-sizing: border-box;
+  color: var(--brand);
+  cursor: pointer;
+  text-underline-offset: var(--size-1);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: var(--font-weight-5);
+  transition: color var(--animation-duration-fast);
+
+  &:hover {
+    text-decoration: underline;
+    color: var(--brand-dark);
+  }
+
+  &:focus-visible {
+    outline: var(--border-size-2) solid var(--brand);
+    outline-offset: var(--size-1);
+    border-radius: var(--radius-1);
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    color: var(--text-2);
+    cursor: not-allowed;
+    text-decoration: none;
   }
 }
 

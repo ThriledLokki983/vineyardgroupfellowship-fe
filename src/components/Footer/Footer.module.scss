@@ -38,29 +38,7 @@
 }
 
 .link {
-  color: var(--brand);
-  text-decoration: none;
-  font-weight: var(--font-weight-5);
-  transition: color 0.2s ease;
-  position: relative;
-  padding: var(--size-1) 0;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-
-  &:hover {
-    color: var(--brand);
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    outline: var(--border-size-2) solid var(--brand);
-    outline-offset: var(--size-1);
-    border-radius: var(--radius-1);
-  }
-
-  &:active {
-    opacity: 0.8;
-  }
+  @include button-link;
 }
 
 .copyright {

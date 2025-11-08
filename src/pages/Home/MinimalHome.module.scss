@@ -1,9 +1,5 @@
 @use 'styles/_component-utils.scss' as *;
 
-// ================================
-// Minimal Home - Premium Wellness Aesthetic
-// ================================
-
 .minimalHome {
   width: 100%;
   // min-height: 100vh;
@@ -39,7 +35,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--size-10) var(--size-6);
+  padding: var(--size-1) var(--size-6);
   background: linear-gradient(180deg, var(--surface-canvas) 0%, var(--surface-elevated) 100%);
   position: relative;
 
@@ -130,6 +126,10 @@
     gap: var(--size-3);
     margin-bottom: var(--size-8);
   }
+}
+
+.joinButton {
+  padding-inline: var(--size-8);
 }
 
 .scrollIndicator {
