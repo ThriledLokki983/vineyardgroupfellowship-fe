@@ -144,21 +144,20 @@ export const PrayerRequestCard = ({
       <div className={styles.footer}>
         <div className={styles.meta}>
           <span className={styles.author}>
-            {prayer.author.first_name && prayer.author.last_name
-              ? `${prayer.author.first_name} ${prayer.author.last_name}`
-              : prayer.author.username}
+            {prayer.author.display_name || prayer.author.username}
           </span>
           <span className={styles.separator}>•</span>
           <time dateTime={prayer.created_at}>{formatDate(prayer.created_at)}</time>
-          {prayer.comment_count > 0 && (
-            <>
-              <span className={styles.separator}>•</span>
-              <div className={styles.metaItem}>
-                <Icon name="ChatBubbleIcon" size={14} />
-                <span>{prayer.comment_count}</span>
-              </div>
-            </>
-          )}
+        </div>
+        <div className={styles.stats}>
+          <div className={styles.stat}>
+            <Icon name="ChatBubbleIcon" size={14} />
+            <span>{prayer.comment_count || 0}</span>
+          </div>
+          <div className={styles.stat}>
+            <Icon name="HandIcon" size={14} />
+            <span>{prayer.prayer_count || 0}</span>
+          </div>
         </div>
 
         {/* Action Buttons */}

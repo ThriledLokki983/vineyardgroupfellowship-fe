@@ -131,21 +131,16 @@ export const TestimonyCard = ({
       <div className={styles.footer}>
         <div className={styles.meta}>
           <span className={styles.author}>
-            {testimony.author.first_name && testimony.author.last_name
-              ? `${testimony.author.first_name} ${testimony.author.last_name}`
-              : testimony.author.username}
+            {testimony.author.display_name || testimony.author.username}
           </span>
           <span className={styles.separator}>•</span>
           <time dateTime={testimony.created_at}>{formatDate(testimony.created_at)}</time>
-          {testimony.comment_count > 0 && (
-            <>
-              <span className={styles.separator}>•</span>
-              <div className={styles.metaItem}>
-                <Icon name="ChatBubbleIcon" size={14} />
-                <span>{testimony.comment_count}</span>
-              </div>
-            </>
-          )}
+        </div>
+        <div className={styles.stats}>
+          <div className={styles.stat}>
+            <Icon name="ChatBubbleIcon" size={14} />
+            <span>{testimony.comment_count || 0}</span>
+          </div>
         </div>
 
         {/* Share Publicly Button (Author only, not yet public) */}

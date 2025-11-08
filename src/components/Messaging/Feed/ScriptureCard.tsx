@@ -98,21 +98,20 @@ export const ScriptureCard = ({
       <div className={styles.footer}>
         <div className={styles.meta}>
           <span className={styles.author}>
-            {scripture.author.first_name && scripture.author.last_name
-              ? `${scripture.author.first_name} ${scripture.author.last_name}`
-              : scripture.author.username}
+            {scripture.author.display_name || scripture.author.username}
           </span>
           <span className={styles.separator}>•</span>
           <time dateTime={scripture.created_at}>{formatDate(scripture.created_at)}</time>
-          {scripture.comment_count > 0 && (
-            <>
-              <span className={styles.separator}>•</span>
-              <div className={styles.metaItem}>
-                <Icon name="ChatBubbleIcon" size={14} />
-                <span>{scripture.comment_count}</span>
-              </div>
-            </>
-          )}
+        </div>
+        <div className={styles.stats}>
+          <div className={styles.stat}>
+            <Icon name="ChatBubbleIcon" size={14} />
+            <span>{scripture.comment_count || 0}</span>
+          </div>
+          <div className={styles.stat}>
+            <Icon name="PraiseIcon" size={14} />
+            <span>{scripture.reaction_count || 0}</span>
+          </div>
         </div>
       </div>
     </article>
