@@ -29,7 +29,7 @@
   background: var(--surface-1);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-6);
-  max-height: calc(100vh - var(--size-fluid-10)); // ~128px spacing (64px top + 64px bottom)
+  max-height: calc(100vh - var(--size-fluid-6)); // ~128px spacing (64px top + 64px bottom)
   overflow: auto;
   display: flex;
   flex-direction: column;
