@@ -22,7 +22,7 @@ const MARGIN = 20;
 const ContactCard = ({
   data: initialData,
   hasParentFocus = false,
-  showActions = true,
+  showActions: _showActions = true,
   enableNavigation = false
 }: ContactCardProps) => {
   const rootRef = useRef<HTMLElement>(null);
@@ -257,10 +257,10 @@ const ContactCard = ({
         </ul>
 
         {/* Optional divider before actions */}
-        {showActions && <hr className={styles.divider} />}
+        {/* {showActions && <hr className={styles.divider} />} */}
 
-        {/* Actions section */}
-        {showActions && data.email && (
+        {/* Actions section - Disabled */}
+        {/* {showActions && data.email && (
           <div className={styles.actions}>
             <a
               href={`mailto:${data.email}`}
@@ -272,7 +272,7 @@ const ContactCard = ({
               Send Message
             </a>
           </div>
-        )}
+        )} */}
       </div>
     </article>
   );
