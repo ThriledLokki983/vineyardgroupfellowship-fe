@@ -15,12 +15,19 @@ import type { FeedItem, FeedContentType } from '../types/messaging';
 export const navigateToFeedItem = (item: FeedItem, navigate: NavigateFunction): void => {
   const { group, content_type, content_id } = item;
 
-  // Map content type to tab name (they match directly)
+  // Map content type to tab name
   // discussion -> discussions tab
-  // prayer -> prayer tab
+  // prayer -> prayer_request tab
   // testimony -> testimony tab
   // scripture -> scripture tab
-  const tabName = content_type === 'discussion' ? 'discussions' : content_type;
+  let tabName: string;
+  if (content_type === 'discussion') {
+    tabName = 'discussions';
+  } else if (content_type === 'prayer') {
+    tabName = 'prayer_request';
+  } else {
+    tabName = content_type;
+  }
 
   navigate(`/dashboard/groups/${group}?tab=${tabName}&id=${content_id}`);
 };
