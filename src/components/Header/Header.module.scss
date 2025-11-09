@@ -175,6 +175,70 @@
   line-height: 1;
 }
 
+// Separator between nav sections
+.navSeparator {
+  width: 1px;
+  height: var(--size-6);
+  background: var(--border-subtle);
+  margin: 0 var(--size-2);
+
+  @include bp-min(tablet) {
+    margin: 0 var(--size-3);
+  }
+}
+
+// Icon button for messages
+.iconButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-9);
+  height: var(--size-9);
+  padding: var(--size-2);
+  text-decoration: none;
+  color: var(--text-2);
+  background: transparent;
+  border-radius: var(--radius-2);
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--text-1);
+    background: var(--surface-2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+
+  &.iconButtonActive {
+    color: var(--brand);
+    background: color-mix(in srgb, var(--brand) 10%, transparent);
+  }
+}
+
+// Badge for icon buttons (positioned absolutely)
+.iconBadge {
+  position: absolute;
+  top: var(--size-1);
+  right: var(--size-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--size-4);
+  height: var(--size-4);
+  padding: 0 var(--size-1);
+  background: var(--accent-danger);
+  color: var(--surface-1);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-round);
+  line-height: 1;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
 // Auth buttons for non-authenticated users
 .authButtons {
   // Hide on mobile since public homepage has prominent CTAs

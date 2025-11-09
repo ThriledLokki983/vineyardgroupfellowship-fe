@@ -8,6 +8,7 @@ import { PATH_LOGIN, PATH_REGISTER, PATH_FORGOT_PASSWORD } from 'configs/paths'
 import type { HeaderProps } from 'types'
 import ProfileDropdown from './ProfileDropdown.tsx'
 import { useTotalUnreadCount } from 'hooks/messaging/useConversations'
+import { Icon } from 'components'
 // import { NotificationBell } from 'src/features/groups/components/NotificationCenter'
 import headerLogoLight from 'assets/new-header-logo-light-theme.png';
 import headerLogoDark from 'assets/new-header-logo-dark-theme.png';
@@ -115,15 +116,6 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
                     >
                       Dashboard
                     </ViewTransitionLink>
-                    <ViewTransitionLink
-                      to="/messages"
-                      className={`${styles.navLink} ${location.pathname.startsWith('/messages') ? styles.navLinkActive : ''}`}
-                    >
-                      <span>Messages</span>
-                      {unreadCount > 0 && (
-                        <span className={styles.badge}>{unreadCount}</span>
-                      )}
-                    </ViewTransitionLink>
                     {import.meta.env.DEV ? (
                       <ViewTransitionLink
                         to="/features"
@@ -133,6 +125,21 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
                       </ViewTransitionLink>
                     ) : ( null )}
                   </div>
+
+                  {/* Separator */}
+                  <div className={styles.navSeparator} />
+
+                  {/* Messages Icon Button */}
+                  <ViewTransitionLink
+                    to="/messages"
+                    className={`${styles.iconButton} ${location.pathname.startsWith('/messages') ? styles.iconButtonActive : ''}`}
+                    aria-label="Messages"
+                  >
+                    <Icon name="InboxIcon" width={24} height={24} />
+                    {unreadCount > 0 && (
+                      <span className={styles.iconBadge}>{unreadCount}</span>
+                    )}
+                  </ViewTransitionLink>
 
                   {/* Notification Bell */}
                   {/* <NotificationBell /> */}
