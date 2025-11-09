@@ -72,10 +72,10 @@ export const ConversationDetailPage = () => {
 		);
 	}
 
-	const otherParticipant = conversation.participants.find((p) => p.id !== user?.id) || conversation.participants[0];
+	const otherParticipant = conversation.participants.find((p) => p.email !== user?.email) || conversation.participants[0];
 	const isClosed = conversation.status === 'closed';
-	console.log('CurrentUser:', user?.id);
-	console.log('OtherUser', conversation.participants[0]);
+	console.log('CurrentUser:', user?.email);
+	console.log('OtherUser', conversation.participants[0].email);
 
 
 
@@ -156,7 +156,7 @@ export const ConversationDetailPage = () => {
 					{conversation.messages && conversation.messages.length > 0 ? (
 						<div className={styles.messagesList}>
 							{conversation.messages.map((message) => {
-								const isOwn = message.sender.id === user?.id;
+								const isOwn = message.sender.email === user?.email;
 
 								return (
 									<div
