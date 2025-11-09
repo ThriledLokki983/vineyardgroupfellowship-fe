@@ -40,7 +40,7 @@ export const UnviewedFeedCard = ({
       onViewAll();
     } else {
       // Navigate to feed tab in group details
-      navigate(`/dashboard/group/${groupId}/feed`);
+      navigate(`/dashboard/groups/${groupId}?tab=feed`);
     }
   };
 
