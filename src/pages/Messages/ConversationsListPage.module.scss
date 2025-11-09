@@ -3,7 +3,7 @@
  * Premium wellness inbox aesthetic
  */
 
-@import '../../__themes.scss';
+@use 'styles/_component-utils.scss' as *;
 
 .container {
 	max-width: 800px;

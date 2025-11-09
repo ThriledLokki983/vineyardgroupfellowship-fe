@@ -7,6 +7,7 @@ import { navigation, header } from 'src/signals'
 import { PATH_LOGIN, PATH_REGISTER, PATH_FORGOT_PASSWORD } from 'configs/paths'
 import type { HeaderProps } from 'types'
 import ProfileDropdown from './ProfileDropdown.tsx'
+import { useTotalUnreadCount } from 'hooks/messaging/useConversations'
 // import { NotificationBell } from 'src/features/groups/components/NotificationCenter'
 import headerLogoLight from 'assets/new-header-logo-light-theme.png';
 import headerLogoDark from 'assets/new-header-logo-dark-theme.png';
@@ -19,6 +20,7 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
   const isAuthenticated = useIsAuthenticated()
   const { data: user } = useCurrentUser()
   const location = useLocation()
+  const unreadCount = useTotalUnreadCount()
 
   // Detect theme (light or dark)
   const [isDarkMode, setIsDarkMode] = useState(false)
@@ -113,6 +115,15 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
                     >
                       Dashboard
                     </ViewTransitionLink>
+                    <ViewTransitionLink
+                      to="/messages"
+                      className={`${styles.navLink} ${location.pathname.startsWith('/messages') ? styles.navLinkActive : ''}`}
+                    >
+                      <span>Messages</span>
+                      {unreadCount > 0 && (
+                        <span className={styles.badge}>{unreadCount}</span>
+                      )}
+                    </ViewTransitionLink>
                     {import.meta.env.DEV ? (
                       <ViewTransitionLink
                         to="/features"
@@ -186,6 +197,16 @@ export default function Header({ hideLogin = false, hideRegister = false, logoOn
                         onClick={closeMobileMenu}
                       >
                         Dashboard
+                      </ViewTransitionLink>
+                      <ViewTransitionLink
+                        to="/messages"
+                        className={`${styles.mobileNavLink} ${location.pathname.startsWith('/messages') ? styles.mobileNavLinkActive : ''}`}
+                        onClick={closeMobileMenu}
+                      >
+                        <span>Messages</span>
+                        {unreadCount > 0 && (
+                          <span className={styles.mobileBadge}>{unreadCount}</span>
+                        )}
                       </ViewTransitionLink>
                       {import.meta.env.DEV ? (
                         <ViewTransitionLink

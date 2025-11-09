@@ -115,6 +115,7 @@
 .navLink {
   display: inline-flex;
   align-items: center;
+  gap: var(--size-2);
   text-decoration: none;
   font-family: var(--font-sans);
   font-weight: var(--font-weight-5);
@@ -156,6 +157,22 @@
     padding: var(--size-2) var(--size-4);
     font-size: var(--font-size-1);
   }
+}
+
+// Badge for unread counts in navigation
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--size-4);
+  height: var(--size-4);
+  padding: 0 var(--size-1);
+  background: var(--accent-danger);
+  color: var(--surface-1);
+  font-size: var(--font-size-00);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-round);
+  line-height: 1;
 }
 
 // Auth buttons for non-authenticated users
@@ -412,6 +429,7 @@
 .mobileNavLink {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   text-decoration: none;
   color: var(--text-1);
   padding: var(--size-3) var(--size-4);
@@ -431,6 +449,22 @@
     color: var(--brand);
     font-weight: var(--font-weight-6);
   }
+}
+
+// Badge for mobile navigation
+.mobileBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--size-5);
+  height: var(--size-5);
+  padding: 0 var(--size-2);
+  background: var(--accent-danger);
+  color: var(--surface-1);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-6);
+  border-radius: var(--radius-round);
+  line-height: 1;
 }
 
 .mobileLogoutButton {
