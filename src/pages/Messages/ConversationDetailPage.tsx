@@ -7,14 +7,14 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Layout, LoadingState, Icon, Button, BackLink } from 'components';
 import { useConversation, useSendMessage, useCloseConversation, useReopenConversation } from 'hooks/messaging/useConversations';
-import { useAuthContext } from 'contexts/Auth/useAuthContext';
+import { useCurrentUser } from 'hooks/useAuth';
 import type { CloseReason } from 'types/private-messaging';
 import styles from './ConversationDetailPage.module.scss';
 
 export const ConversationDetailPage = () => {
 	const { id } = useParams<{ id: string }>();
 	const navigate = useNavigate();
-	const { user } = useAuthContext();
+	const { data: user } = useCurrentUser();
 	const [messageText, setMessageText] = useState('');
 	const [showCloseModal, setShowCloseModal] = useState(false);
 	const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -64,7 +64,7 @@ export const ConversationDetailPage = () => {
 				<div className={styles.error}>
 					<Icon name="ExclamationCircleIcon" width={24} height={24} />
 					<p>Failed to load conversation. Please try again.</p>
-					<Button variant="secondary" onPress={() => navigate('/messages')}>
+					<Button variant="secondary" onPress={() => navigate('/messages')} className={styles.backButton}>
 						Back to Messages
 					</Button>
 				</div>
@@ -72,8 +72,12 @@ export const ConversationDetailPage = () => {
 		);
 	}
 
-	const otherParticipant = conversation.participants.find(p => p.id !== user?.id) || conversation.participants[0];
+	const otherParticipant = conversation.participants.find((p) => p.id !== user?.id) || conversation.participants[0];
 	const isClosed = conversation.status === 'closed';
+	console.log('CurrentUser:', user?.id);
+	console.log('OtherUser', conversation.participants[0]);
+
+
 
 	return (
 		<Layout variant="default">
@@ -92,16 +96,16 @@ export const ConversationDetailPage = () => {
 									/>
 								) : (
 									<span>
-										{otherParticipant.display_name?.[0]?.toUpperCase() || 
-										 otherParticipant.first_name?.[0]?.toUpperCase() || 
-										 otherParticipant.username?.[0]?.toUpperCase() || 
+										{otherParticipant.display_name?.[0]?.toUpperCase() ||
+										 otherParticipant.first_name?.[0]?.toUpperCase() ||
+										 otherParticipant.username?.[0]?.toUpperCase() ||
 										 '?'}
 									</span>
 								)}
 							</div>
 							<div>
 								<h1 className={styles.participantName}>
-									{otherParticipant.display_name || 
+									{otherParticipant.display_name ||
 									 `${otherParticipant.first_name} ${otherParticipant.last_name}`.trim() ||
 									 otherParticipant.username}
 								</h1>
@@ -169,9 +173,9 @@ export const ConversationDetailPage = () => {
 													/>
 												) : (
 													<span>
-														{message.sender.display_name?.[0]?.toUpperCase() || 
-														 message.sender.first_name?.[0]?.toUpperCase() || 
-														 message.sender.username?.[0]?.toUpperCase() || 
+														{message.sender.display_name?.[0]?.toUpperCase() ||
+														 message.sender.first_name?.[0]?.toUpperCase() ||
+														 message.sender.username?.[0]?.toUpperCase() ||
 														 '?'}
 													</span>
 												)}
