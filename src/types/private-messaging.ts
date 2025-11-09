@@ -112,3 +112,62 @@ export interface StartDirectMessageResponse {
 	message: PrivateMessage;
 	is_existing_conversation: boolean;
 }
+
+// Safety & Moderation Types
+
+export type ReportReason = 
+	| 'spam'
+	| 'harassment'
+	| 'inappropriate_content'
+	| 'safety_concern'
+	| 'other';
+
+export interface BlockUserRequest {
+	user_id: string;
+	reason?: string;
+}
+
+export interface BlockUserResponse {
+	blocked_user_id: string;
+	blocked_at: string;
+	message: string;
+}
+
+export interface UnblockUserRequest {
+	user_id: string;
+}
+
+export interface UnblockUserResponse {
+	unblocked_user_id: string;
+	message: string;
+}
+
+export interface BlockedUser {
+	id: string;
+	blocked_user: ConversationParticipant;
+	blocked_at: string;
+	reason?: string;
+}
+
+export interface BlockedUsersListResponse {
+	count: number;
+	results: BlockedUser[];
+}
+
+export interface ReportConversationRequest {
+	conversation_id: string;
+	reason: ReportReason;
+	details?: string;
+}
+
+export interface ReportMessageRequest {
+	message_id: string;
+	reason: ReportReason;
+	details?: string;
+}
+
+export interface ReportResponse {
+	report_id: string;
+	status: 'submitted' | 'under_review';
+	message: string;
+}

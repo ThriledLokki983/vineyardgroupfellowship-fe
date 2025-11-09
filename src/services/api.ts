@@ -22,6 +22,13 @@ import type {
   ReopenConversationResponse,
   StartDirectMessageRequest,
   StartDirectMessageResponse,
+  BlockUserRequest,
+  BlockUserResponse,
+  UnblockUserResponse,
+  BlockedUsersListResponse,
+  ReportConversationRequest,
+  ReportMessageRequest,
+  ReportResponse,
 } from '../types/private-messaging';
 
 /**
@@ -655,6 +662,104 @@ export const api = {
   ): Promise<StartDirectMessageResponse> => {
     return apiRequest<StartDirectMessageResponse>(
       '/messaging/conversations/start/',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        signal,
+      }
+    );
+  },
+
+  // Safety & Moderation Methods
+
+  /**
+   * Block a user from messaging
+   * Prevents user from initiating new conversations and hides existing ones
+   * @param data - User ID to block and optional reason
+   * @param signal - AbortSignal for request cancellation
+   */
+  blockUser: async (
+    data: BlockUserRequest,
+    signal?: AbortSignal
+  ): Promise<BlockUserResponse> => {
+    return apiRequest<BlockUserResponse>(
+      '/messaging/blocks/',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Unblock a previously blocked user
+   * Allows user to message again and shows conversations
+   * @param userId - ID of user to unblock
+   * @param signal - AbortSignal for request cancellation
+   */
+  unblockUser: async (
+    userId: string,
+    signal?: AbortSignal
+  ): Promise<UnblockUserResponse> => {
+    return apiRequest<UnblockUserResponse>(
+      `/messaging/blocks/${userId}/`,
+      {
+        method: 'DELETE',
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Get list of blocked users
+   * Returns all users currently blocked by the authenticated user
+   * @param signal - AbortSignal for request cancellation
+   */
+  getBlockedUsers: async (
+    signal?: AbortSignal
+  ): Promise<BlockedUsersListResponse> => {
+    return apiRequest<BlockedUsersListResponse>(
+      '/messaging/blocks/',
+      {
+        method: 'GET',
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Report a conversation for moderation
+   * Flags conversation for admin review
+   * @param data - Conversation ID, reason, and optional details
+   * @param signal - AbortSignal for request cancellation
+   */
+  reportConversation: async (
+    data: ReportConversationRequest,
+    signal?: AbortSignal
+  ): Promise<ReportResponse> => {
+    return apiRequest<ReportResponse>(
+      '/messaging/reports/conversation/',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Report a specific message for moderation
+   * Flags individual message for admin review
+   * @param data - Message ID, reason, and optional details
+   * @param signal - AbortSignal for request cancellation
+   */
+  reportMessage: async (
+    data: ReportMessageRequest,
+    signal?: AbortSignal
+  ): Promise<ReportResponse> => {
+    return apiRequest<ReportResponse>(
+      '/messaging/reports/message/',
       {
         method: 'POST',
         body: JSON.stringify(data),
