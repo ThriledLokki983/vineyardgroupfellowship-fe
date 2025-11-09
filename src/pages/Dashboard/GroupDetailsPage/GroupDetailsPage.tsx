@@ -268,6 +268,18 @@ export const GroupDetailsPage = () => {
           {!isActiveMember && user && (
             <div className={styles.groupActions}>
               <Button
+                variant="secondary"
+                onPress={() => {
+                  const subject = `Inquiry about ${group.name}`;
+                  const body = `Hi ${group.leader_info.display_name},\n\nI'm interested in joining ${group.name} and would like to learn more about the group.\n\nThank you!`;
+                  window.location.href = `mailto:${group.leader_info.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                }}
+                className={styles.actionButton}
+              >
+                <Icon name="EmailIcon" width={18} height={18} />
+                Message Leader
+              </Button>
+              <Button
                 variant="primary"
                 onPress={handleJoinGroup}
                 className={styles.actionButton}

@@ -98,7 +98,7 @@ export default function MinimalPublicHome() {
             onPress={() => navigate('/register')}
             className={styles.joinButton}
           >
-            Join Fellowship
+            Register
           </Button>
           <Button
             variant="secondary"
