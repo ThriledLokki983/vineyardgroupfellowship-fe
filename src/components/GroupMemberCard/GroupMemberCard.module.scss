@@ -95,3 +95,37 @@
     color: #616161;
   }
 }
+
+// Message Button
+.messageButton {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+  padding: var(--size-2) var(--size-3);
+  font-size: var(--font-size-0);
+  font-weight: var(--font-weight-5);
+  border-radius: var(--radius-2);
+  background: var(--accent-warm);
+  color: var(--text-1);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  margin-left: auto; // Push to right side
+
+  &:hover {
+    background: color-mix(in srgb, var(--accent-warm) 85%, black);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.messageButtonText {
+  @include mobile {
+    display: none; // Hide text on mobile, show icon only
+  }
+}

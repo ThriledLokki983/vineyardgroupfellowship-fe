@@ -97,6 +97,10 @@ export type { LocationAutocompleteProps, PlaceData } from 'types/components/loca
 // Modal
 export { Modal } from './Modal';
 
+// MessageMemberModal
+export { MessageMemberModal } from './MessageMemberModal';
+export type { MessageMemberModalProps } from './MessageMemberModal';
+
 // OnboardingModal
 export { OnboardingModal } from './OnboardingModal';
 

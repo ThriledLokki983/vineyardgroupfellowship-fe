@@ -1,0 +1,67 @@
+@use 'styles/_component-utils.scss' as *;
+
+.modalContent {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4);
+	padding: var(--size-2) 0;
+}
+
+.contextInfo {
+	font-size: var(--font-size-0);
+	color: var(--text-2);
+	margin: 0;
+	padding: var(--size-2) var(--size-3);
+	background: var(--surface-2);
+	border-radius: var(--radius-2);
+	border-left: 3px solid var(--accent-warm);
+
+	strong {
+		color: var(--text-1);
+		font-weight: var(--font-weight-6);
+	}
+}
+
+.textarea {
+	width: 100%;
+	padding: var(--size-3);
+	font-size: var(--font-size-1);
+	font-family: inherit;
+	color: var(--text-1);
+	background: var(--surface-1);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-2);
+	resize: vertical;
+	min-height: 120px;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+	&:focus {
+		outline: none;
+		border-color: var(--brand-primary);
+		box-shadow: 0 0 0 3px rgba(96, 48, 0, 0.1);
+	}
+
+	&::placeholder {
+		color: var(--text-3);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+.characterCount {
+	font-size: var(--font-size-0);
+	color: var(--text-3);
+	text-align: right;
+	margin-top: calc(-1 * var(--size-2));
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--size-3);
+	padding-top: var(--size-2);
+	border-top: 1px solid var(--border-subtle);
+}

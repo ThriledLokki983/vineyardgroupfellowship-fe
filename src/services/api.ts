@@ -20,6 +20,8 @@ import type {
   CloseConversationRequest,
   CloseConversationResponse,
   ReopenConversationResponse,
+  StartDirectMessageRequest,
+  StartDirectMessageResponse,
 } from '../types/private-messaging';
 
 /**
@@ -635,6 +637,27 @@ export const api = {
       {
         method: 'PATCH',
         body: JSON.stringify({}),
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Start a direct message conversation with another user
+   * Creates a peer-to-peer conversation between group members
+   * If conversation already exists, returns the existing one with new message
+   * @param data - Recipient ID, message content, and optional group context
+   * @param signal - AbortSignal for request cancellation
+   */
+  startDirectMessage: async (
+    data: StartDirectMessageRequest,
+    signal?: AbortSignal
+  ): Promise<StartDirectMessageResponse> => {
+    return apiRequest<StartDirectMessageResponse>(
+      '/messaging/conversations/start/',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
         signal,
       }
     );

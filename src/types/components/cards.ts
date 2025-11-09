@@ -91,6 +91,8 @@ export interface UserProfileActionsProps {
 export interface GroupMemberCardProps {
   member: GroupMember;
   onViewProfile?: (memberId: string) => void;
+  groupId?: string; // Optional: enables messaging feature
+  groupName?: string; // Optional: context for messaging
 }
 // Action Card (Dashboard)
 export interface ActionProps {

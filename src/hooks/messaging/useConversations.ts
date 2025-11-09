@@ -5,11 +5,13 @@
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
-import api from '../../services/api';
+import api, { ApiError } from '../../services/api';
+import { toast } from '../../components/Toast';
 import type {
 	Conversation,
 	ConversationStatus,
 	CreateGroupInquiryRequest,
+	StartDirectMessageRequest,
 	CloseReason,
 } from '../../types/private-messaging';
 
@@ -261,4 +263,51 @@ export const useTotalUnreadCount = () => {
 		(sum, conv) => sum + conv.unread_count,
 		0
 	) || 0;
+};
+
+/**
+ * Start a direct message conversation with another user
+ * Creates peer-to-peer conversations between group members
+ * Automatically redirects to the conversation page on success
+ */
+export const useStartDirectMessage = () => {
+	const queryClient = useQueryClient();
+	const navigate = useNavigate();
+
+	return useMutation({
+		mutationFn: (data: StartDirectMessageRequest) =>
+			api.startDirectMessage(data),
+		onSuccess: (response) => {
+			// Invalidate conversations list to show new/updated conversation
+			queryClient.invalidateQueries({ queryKey: conversationKeys.lists() });
+
+			// Cache the full conversation detail
+			queryClient.setQueryData(
+				conversationKeys.detail(response.conversation.id),
+				response.conversation
+			);
+
+			// Navigate to the conversation
+			navigate(`/messages/${response.conversation.id}`);
+
+			// Show appropriate toast message
+			if (response.is_existing_conversation) {
+				toast.success('Continuing existing conversation');
+			} else {
+				toast.success('Message sent!');
+			}
+		},
+		onError: (error: ApiError) => {
+			// Handle specific error cases from backend
+			if (error.errors?.error?.[0] === 'cannot_message_self') {
+				toast.error('You cannot message yourself');
+			} else if (error.errors?.error?.[0] === 'no_shared_group') {
+				toast.error('You must be in the same group to message this person');
+			} else if (error.errors?.recipient_id) {
+				toast.error('Invalid recipient. User not found.');
+			} else {
+				toast.error(error.message || 'Failed to send message');
+			}
+		},
+	});
 };

@@ -100,3 +100,15 @@ export interface ReopenConversationResponse {
 	conversation: Conversation;
 	message: string;
 }
+
+export interface StartDirectMessageRequest {
+	recipient_id: string;
+	message: string;
+	group_id?: string; // Optional group context
+}
+
+export interface StartDirectMessageResponse {
+	conversation: Conversation;
+	message: PrivateMessage;
+	is_existing_conversation: boolean;
+}
