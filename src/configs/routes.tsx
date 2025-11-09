@@ -111,6 +111,26 @@ export const appRoutes = createBrowserRouter([
 		),
 	},
 	{
+		path: '/messages',
+		element: (
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.ConversationsListPage />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
+		),
+	},
+	{
+		path: '/messages/:id',
+		element: (
+			<LazyRoute>
+				<Auth.ProtectedRoute>
+					<Pages.ConversationDetailPage />
+				</Auth.ProtectedRoute>
+			</LazyRoute>
+		),
+	},
+	{
 		path: PATH.PATH_PRIVACY_POLICY,
 		element: (
 			<LazyRoute>

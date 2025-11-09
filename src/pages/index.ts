@@ -30,6 +30,10 @@ const SettingsPage = lazy(() => import('./Settings/Settings/SettingsPage'));
 const ProfilePage = lazy(() => import('./Profile/ProfilePage'));
 const SupporterBackground = lazy(() => import('./Profile').then(m => ({ default: m.SupporterBackground })));
 
+// Messaging Pages
+const ConversationsListPage = lazy(() => import('./Messages').then(m => ({ default: m.ConversationsListPage })));
+const ConversationDetailPage = lazy(() => import('./Messages').then(m => ({ default: m.ConversationDetailPage })));
+
 export {
 	Home,
 	Dashboard,
@@ -53,6 +57,10 @@ export {
 	ProfilePage,
 	SettingsPage,
 	SupporterBackground,
+
+	// Messaging Pages
+	ConversationsListPage,
+	ConversationDetailPage,
 
 	// Development Pages
 	Features,

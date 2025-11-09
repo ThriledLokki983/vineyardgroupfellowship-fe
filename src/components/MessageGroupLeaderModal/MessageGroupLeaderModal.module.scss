@@ -3,7 +3,7 @@
  * Premium wellness aesthetic with clean form design
  */
 
-@import '../../__themes.scss';
+@use 'styles/_component-utils.scss' as *;
 
 .modalContent {
 	padding: var(--size-4);
@@ -90,4 +90,8 @@
 	gap: var(--size-3);
 	justify-content: flex-end;
 	margin-top: var(--size-2);
+
+	button {
+		padding: var(--size-2) var(--size-4);
+	}
 }
