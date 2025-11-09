@@ -42,7 +42,7 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
 
   return (
     <>
-      <div 
+      <div
         className={styles.card}
         onMouseEnter={hoverToggleHandler(true)}
         onMouseLeave={hoverToggleHandler(false)}
@@ -52,7 +52,12 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             profile={member}
             size="48px"
           />
-          <ContactCard data={contactData} hasParentFocus={isHovered} />
+          <ContactCard 
+            data={contactData} 
+            hasParentFocus={isHovered}
+            groupId={groupId}
+            groupName={groupName}
+          />
         </div>
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>

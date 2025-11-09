@@ -11,6 +11,8 @@ export interface ContactCardProps {
   hasParentFocus?: boolean;
   showActions?: boolean;
   enableNavigation?: boolean;
+  groupId?: string; // Optional: enables messaging feature
+  groupName?: string; // Optional: context for messaging
 }
 
 // Profile Card (Calendar Access Context)

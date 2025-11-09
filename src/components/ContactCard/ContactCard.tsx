@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { Avatar, BackLink } from 'components';
-import { Icon } from '..';
+import { Avatar, BackLink, Button, Icon, MessageMemberModal } from 'components';
+import { useCurrentUser } from '../../hooks/useAuth';
+import { canMessageMember } from '../../utils/messaging-permissions';
 import type { GroupMember } from '../../types/group';
 import styles from './ContactCard.module.scss';
 
@@ -9,6 +10,8 @@ interface ContactCardProps {
   hasParentFocus?: boolean;
   showActions?: boolean;
   enableNavigation?: boolean; // Allow navigating between related contacts
+  groupId?: string; // Optional: enables messaging feature
+  groupName?: string; // Optional: context for messaging
 }
 
 const DEFAULT_TOP_OFFSET = 'calc(1rem + (48px * 0.75))';
@@ -23,7 +26,9 @@ const ContactCard = ({
   data: initialData,
   hasParentFocus = false,
   showActions: _showActions = true,
-  enableNavigation = false
+  enableNavigation = false,
+  groupId,
+  groupName
 }: ContactCardProps) => {
   const rootRef = useRef<HTMLElement>(null);
   const [hasFocus, setHasFocus] = useState(false);
@@ -32,8 +37,10 @@ const ContactCard = ({
   const [topOffset, setTopOffset] = useState(DEFAULT_TOP_OFFSET);
   const [width, setWidth] = useState(DEFAULT_WIDTH);
   const [data, setData] = useState<GroupMember>(initialData);
+  const [showMessageModal, setShowMessageModal] = useState(false);
   const showTimeoutRef = useRef<number | null>(null);
   const hideTimeoutRef = useRef<number | null>(null);
+  const { data: currentUser } = useCurrentUser();
 
   // Update data when initialData changes
   useEffect(() => {
@@ -44,6 +51,12 @@ const ContactCard = ({
                       data.display_name || data.email ||  'Unknown';
 
   const isViewingDifferentContact = enableNavigation && initialData.id !== data.id;
+
+  // Check if current user can message this member
+  const messagingEnabled = groupId && currentUser;
+  const { canMessage } = messagingEnabled
+    ? canMessageMember(currentUser.id, data, [groupId])
+    : { canMessage: false };
 
   /**
    * Swap to view a different contact with transition
@@ -172,6 +185,7 @@ const ContactCard = ({
   const handleMouseLeave = () => setHasFocus(false);
 
   return (
+    <>
     <article
       className={styles.root}
       style={{ top: topOffset, width }}
@@ -204,11 +218,6 @@ const ContactCard = ({
             )}
           </div>
         </header>
-
-        {/* Bio/About */}
-        {/* {data.bio && (
-          <p className={styles.bio}>{data.bio}</p>
-        )} */}
 
         {/* Contact metadata */}
         <ul className={styles.metadata}>
@@ -257,25 +266,54 @@ const ContactCard = ({
         </ul>
 
         {/* Optional divider before actions */}
-        {/* {showActions && <hr className={styles.divider} />} */}
+        {(_showActions || canMessage) && <hr className={styles.divider} />}
 
-        {/* Actions section - Disabled */}
-        {/* {showActions && data.email && (
+        {/* Actions section */}
+        {(_showActions || canMessage) && (
           <div className={styles.actions}>
-            <a
-              href={`mailto:${data.email}`}
-              className={styles.actionButton}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="EmailIcon" />
-              Send Message
-            </a>
+            {/* Email action */}
+            {_showActions && data.email && (
+              <a
+                href={`mailto:${data.email}`}
+                className={styles.actionButton}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Icon name="EmailIcon" />
+                Email
+              </a>
+            )}
+            
+            {/* Message action */}
+            {canMessage && (
+              <Button
+                variant="secondary"
+                onPress={() => setShowMessageModal(true)}
+                className={styles.actionButton}
+              >
+                <Icon name="ChatBubbleIcon" width={16} height={16} />
+                Message
+              </Button>
+            )}
           </div>
-        )} */}
+        )}
       </div>
     </article>
+
+    {/* Message Modal */}
+    {canMessage && groupId && (
+      <MessageMemberModal
+        isOpen={showMessageModal}
+        onClose={() => setShowMessageModal(false)}
+        recipientName={displayName}
+        recipientId={data.user_id}
+        groupId={groupId}
+        groupName={groupName}
+      />
+    )}
+  </>
   );
+
 };
 
 export default ContactCard;

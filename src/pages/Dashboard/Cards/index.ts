@@ -6,3 +6,4 @@ export {
 
 export * from './UnviewedFeedCard';
 export * from './PendingRequestsCard';
+export * from './RecentConversationsCard';
