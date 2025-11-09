@@ -106,9 +106,9 @@ export const ConversationsListPage = () => {
 								>
 									{/* Avatar placeholder */}
 									<div className={styles.avatar}>
-										{otherPerson?.display_name?.[0]?.toUpperCase() || 
-										 otherPerson?.first_name?.[0]?.toUpperCase() || 
-										 otherPerson?.username?.[0]?.toUpperCase() || 
+										{otherPerson?.display_name?.[0]?.toUpperCase() ||
+										 otherPerson?.first_name?.[0]?.toUpperCase() ||
+										 otherPerson?.username?.[0]?.toUpperCase() ||
 										 '?'}
 									</div>
 
@@ -116,7 +116,7 @@ export const ConversationsListPage = () => {
 										{/* Header: Name and timestamp */}
 										<div className={styles.conversationHeader}>
 											<span className={styles.participantName}>
-												{otherPerson?.display_name || 
+												{otherPerson?.display_name ||
 												 `${otherPerson?.first_name} ${otherPerson?.last_name}`.trim() ||
 												 otherPerson?.username}
 											</span>

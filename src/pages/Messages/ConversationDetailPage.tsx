@@ -74,10 +74,6 @@ export const ConversationDetailPage = () => {
 
 	const otherParticipant = conversation.participants.find((p) => p.email !== user?.email) || conversation.participants[0];
 	const isClosed = conversation.status === 'closed';
-	console.log('CurrentUser:', user?.email);
-	console.log('OtherUser', conversation.participants[0].email);
-
-
 
 	return (
 		<Layout variant="default">
@@ -163,24 +159,22 @@ export const ConversationDetailPage = () => {
 										key={message.id}
 										className={`${styles.messageWrapper} ${isOwn ? styles.own : styles.other}`}
 									>
-										{!isOwn && (
-											<div className={styles.messageAvatar}>
-												{message.sender.photo_thumbnail_url || message.sender.photo_url ? (
-													<img
-														src={(message.sender.photo_thumbnail_url || message.sender.photo_url) as string}
-														alt={message.sender.display_name || message.sender.username}
-														className={styles.messageAvatarImage}
-													/>
-												) : (
-													<span>
-														{message.sender.display_name?.[0]?.toUpperCase() ||
-														 message.sender.first_name?.[0]?.toUpperCase() ||
-														 message.sender.username?.[0]?.toUpperCase() ||
-														 '?'}
-													</span>
-												)}
-											</div>
-										)}
+										<div className={styles.messageAvatar}>
+											{message.sender.photo_thumbnail_url || message.sender.photo_url ? (
+												<img
+													src={(message.sender.photo_thumbnail_url || message.sender.photo_url) as string}
+													alt={message.sender.display_name || message.sender.username}
+													className={styles.messageAvatarImage}
+												/>
+											) : (
+												<span>
+													{message.sender.display_name?.[0]?.toUpperCase() ||
+													 message.sender.first_name?.[0]?.toUpperCase() ||
+													 message.sender.username?.[0]?.toUpperCase() ||
+													 '?'}
+												</span>
+											)}
+										</div>
 
 										<div className={styles.messageBubble}>
 											<div className={styles.messageContent}>

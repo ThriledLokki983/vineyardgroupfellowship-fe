@@ -125,10 +125,9 @@
 	gap: var(--size-2);
 	max-width: 70%;
 	width: fit-content;
-	clear: both; // Clear any floats
+	clear: both;
 
 	&.own {
-		// Own messages on the RIGHT
 		align-self: flex-end;
 		flex-direction: row-reverse;
 		margin-left: auto;
@@ -136,12 +135,14 @@
 		justify-content: flex-end;
 
 		.messageBubble {
-			background: var(--brand-primary);
-			color: var(--surface-canvas);
+			background: var(--surface-3);
+			color: var(--text-2);
+			border-top-right-radius: 0;
 		}
 
 		.messageTimestamp {
 			text-align: right;
+			color: var(--text-1);
 		}
 	}
 
@@ -154,9 +155,10 @@
 		justify-content: flex-start;
 
 		.messageBubble {
-			background: var(--surface-canvas);
-			color: var(--text-primary);
+			background: var(--surface-2);
+			color: var(--text-1);
 			border: 1px solid var(--border-subtle);
+			border-top-left-radius: 0;
 		}
 	}
 }

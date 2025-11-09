@@ -79,7 +79,7 @@ export const useCreateGroupInquiry = () => {
 	const navigate = useNavigate();
 
 	return useMutation({
-		mutationFn: (data: CreateGroupInquiryRequest) => 
+		mutationFn: (data: CreateGroupInquiryRequest) =>
 			api.createGroupInquiry(data),
 		onSuccess: (response) => {
 			// Add/update conversation in the list cache
@@ -109,12 +109,12 @@ export const useSendMessage = (conversationId: string) => {
 	const queryClient = useQueryClient();
 
 	return useMutation({
-		mutationFn: (content: string) => 
+		mutationFn: (content: string) =>
 			api.sendMessage(conversationId, content),
 		onMutate: async (content) => {
 			// Cancel any outgoing refetches
-			await queryClient.cancelQueries({ 
-				queryKey: conversationKeys.detail(conversationId) 
+			await queryClient.cancelQueries({
+				queryKey: conversationKeys.detail(conversationId)
 			});
 
 			// Snapshot the previous value
@@ -128,7 +128,7 @@ export const useSendMessage = (conversationId: string) => {
 					conversationKeys.detail(conversationId),
 					(old) => {
 						if (!old) return old;
-						
+
 						// Create temporary message (will be replaced by real one from server)
 						const tempMessage = {
 							id: `temp-${Date.now()}`,
@@ -161,13 +161,13 @@ export const useSendMessage = (conversationId: string) => {
 		},
 		onSuccess: () => {
 			// Refresh the conversation to get the real message from server
-			queryClient.invalidateQueries({ 
-				queryKey: conversationKeys.detail(conversationId) 
+			queryClient.invalidateQueries({
+				queryKey: conversationKeys.detail(conversationId)
 			});
 
 			// Update the conversation list (last_message, last_message_at)
-			queryClient.invalidateQueries({ 
-				queryKey: conversationKeys.lists() 
+			queryClient.invalidateQueries({
+				queryKey: conversationKeys.lists()
 			});
 		},
 	});
@@ -200,8 +200,8 @@ export const useCloseConversation = (onSuccess?: () => void) => {
 			);
 
 			// Invalidate lists to move conversation to correct status filter
-			queryClient.invalidateQueries({ 
-				queryKey: conversationKeys.lists() 
+			queryClient.invalidateQueries({
+				queryKey: conversationKeys.lists()
 			});
 
 			// Call optional callback
@@ -238,8 +238,8 @@ export const useReopenConversation = (onSuccess?: () => void) => {
 			);
 
 			// Invalidate lists to move conversation to correct status filter
-			queryClient.invalidateQueries({ 
-				queryKey: conversationKeys.lists() 
+			queryClient.invalidateQueries({
+				queryKey: conversationKeys.lists()
 			});
 
 			// Call optional callback
