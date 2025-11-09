@@ -8,6 +8,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState, useRef } from 'react';
 import { getGroup, uploadGroupPhoto, joinGroup } from 'services/groupApi';
 import { Layout, LoadingState, Icon, Button, Tabs, Modal } from 'components';
+import { MessageGroupLeaderModal } from 'components/MessageGroupLeaderModal';
 import { toast } from 'components/Toast';
 import { useAuthContext } from 'contexts/Auth/useAuthContext';
 import { useMyGroups } from 'hooks/useMyGroups';
@@ -25,7 +26,7 @@ import { TestimonyForm } from 'components/Messaging/QuickActions/TestimonyForm';
 import { ScriptureShareForm } from 'components/Messaging/QuickActions/ScriptureShareForm';
 import styles from './GroupDetailsPage.module.scss';
 
-type ActiveModal = 'prayer' | 'testimony' | 'scripture' | null;
+type ActiveModal = 'prayer' | 'testimony' | 'scripture' | 'messageLeader' | null;
 
 export const GroupDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
@@ -269,11 +270,7 @@ export const GroupDetailsPage = () => {
             <div className={styles.groupActions}>
               <Button
                 variant="secondary"
-                onPress={() => {
-                  const subject = `Inquiry about ${group.name}`;
-                  const body = `Hi ${group.leader_info.display_name},\n\nI'm interested in joining ${group.name} and would like to learn more about the group.\n\nThank you!`;
-                  window.location.href = `mailto:${group.leader_info.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-                }}
+                onPress={() => setActiveModal('messageLeader')}
                 className={styles.actionButton}
               >
                 <Icon name="EmailIcon" width={18} height={18} />
@@ -450,6 +447,14 @@ export const GroupDetailsPage = () => {
               onCancel={() => setActiveModal(null)}
             />
           </Modal>
+        )}
+
+        {/* Message Group Leader Modal */}
+        {activeModal === 'messageLeader' && group && (
+          <MessageGroupLeaderModal
+            group={group}
+            onClose={() => setActiveModal(null)}
+          />
         )}
       </div>
     </Layout>

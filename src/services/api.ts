@@ -9,6 +9,18 @@ import {
   RECOVERY_APPROACH_URL
 } from '../configs/api-endpoints';
 import { getCsrfTokenMatch } from '../configs/config-utils';
+import type {
+  Conversation,
+  ConversationListResponse,
+  ConversationStatus,
+  CreateGroupInquiryRequest,
+  CreateGroupInquiryResponse,
+  SendMessageRequest,
+  SendMessageResponse,
+  CloseConversationRequest,
+  CloseConversationResponse,
+  ReopenConversationResponse,
+} from '../types/private-messaging';
 
 /**
  * API Service - Django-compatible HTTP client for Vineyard Group Fellowship
@@ -511,6 +523,121 @@ export const api = {
   // Get access token (useful for manual fetch calls)
   getAccessToken: (): string | null => {
     return getAccessTokenFn ? getAccessTokenFn() : null
+  },
+
+  // ===== Private Messaging / Conversations API =====
+
+  /**
+   * List all conversations for the authenticated user
+   * @param status - Optional filter by conversation status
+   * @param signal - AbortSignal for request cancellation
+   */
+  listConversations: async (
+    status?: ConversationStatus,
+    signal?: AbortSignal
+  ): Promise<ConversationListResponse> => {
+    const params = status ? `?status=${status}` : '';
+    return apiRequest<ConversationListResponse>(
+      `/messaging/conversations/${params}`,
+      { method: 'GET', signal }
+    );
+  },
+
+  /**
+   * Get a single conversation with full message history
+   * Auto-marks messages as read for the current user
+   * @param id - Conversation UUID
+   * @param signal - AbortSignal for request cancellation
+   */
+  getConversation: async (
+    id: string,
+    signal?: AbortSignal
+  ): Promise<Conversation> => {
+    return apiRequest<Conversation>(
+      `/messaging/conversations/${id}/`,
+      { method: 'GET', signal }
+    );
+  },
+
+  /**
+   * Create or retrieve a conversation with a group leader
+   * If conversation already exists, returns the existing one
+   * @param data - Group ID and initial message content
+   * @param signal - AbortSignal for request cancellation
+   */
+  createGroupInquiry: async (
+    data: CreateGroupInquiryRequest,
+    signal?: AbortSignal
+  ): Promise<CreateGroupInquiryResponse> => {
+    return apiRequest<CreateGroupInquiryResponse>(
+      '/messaging/conversations/group-inquiry/',
+      {
+        method: 'POST',
+        body: JSON.stringify(data),
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Send a message in an existing conversation
+   * @param conversationId - Conversation UUID
+   * @param content - Message content
+   * @param signal - AbortSignal for request cancellation
+   */
+  sendMessage: async (
+    conversationId: string,
+    content: string,
+    signal?: AbortSignal
+  ): Promise<SendMessageResponse> => {
+    return apiRequest<SendMessageResponse>(
+      `/messaging/conversations/${conversationId}/messages/`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ content } satisfies SendMessageRequest),
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Close a conversation (marks as resolved/completed)
+   * @param conversationId - Conversation UUID
+   * @param reason - Optional reason for closing
+   * @param signal - AbortSignal for request cancellation
+   */
+  closeConversation: async (
+    conversationId: string,
+    reason?: CloseConversationRequest['reason'],
+    signal?: AbortSignal
+  ): Promise<CloseConversationResponse> => {
+    return apiRequest<CloseConversationResponse>(
+      `/messaging/conversations/${conversationId}/close/`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify(reason ? { reason } : {}),
+        signal,
+      }
+    );
+  },
+
+  /**
+   * Reopen a closed conversation
+   * @param conversationId - Conversation UUID
+   * @param signal - AbortSignal for request cancellation
+   */
+  reopenConversation: async (
+    conversationId: string,
+    signal?: AbortSignal
+  ): Promise<ReopenConversationResponse> => {
+    return apiRequest<ReopenConversationResponse>(
+      `/messaging/conversations/${conversationId}/reopen/`,
+      {
+        method: 'PATCH',
+        body: JSON.stringify({}),
+        signal,
+      }
+    );
   },
 }
 
