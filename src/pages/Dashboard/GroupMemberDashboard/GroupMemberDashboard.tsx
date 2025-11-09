@@ -15,6 +15,7 @@ import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import { GroupSummaryCard } from '../Cards/GroupSummaryCard';
 import { UnviewedFeedCard } from '../Cards/UnviewedFeedCard';
 import { PendingRequestsCard } from '../Cards/PendingRequestsCard';
+import { RecentConversationsCard } from '../Cards/RecentConversationsCard';
 import styles from './GroupMemberDashboard.module.scss';
 
 export const GroupMemberDashboard = ({ dashboardState }: GroupMemberDashboardProps) => {
@@ -254,6 +255,11 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
             groupId={activeGroups[0].id}
             maxItems={5}
           />
+        )}
+
+        {/* Recent Conversations Card */}
+        {hasGroups && (
+          <RecentConversationsCard maxItems={5} />
         )}
 
         {/* Find More Groups Card */}

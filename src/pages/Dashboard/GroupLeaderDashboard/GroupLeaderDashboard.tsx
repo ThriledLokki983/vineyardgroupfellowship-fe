@@ -16,6 +16,7 @@ import DashboardCard from '../Cards/DashboardCard/DashboardCard';
 import Action from '../Cards/ActionCard/Action';
 import { PendingRequestCard } from '../Cards/PendingRequestCard';
 import { UnviewedFeedCard } from '../Cards/UnviewedFeedCard';
+import { RecentConversationsCard } from '../Cards/RecentConversationsCard';
 
 import styles from './GroupLeaderDashboard.module.scss';
 
@@ -447,6 +448,11 @@ const ActiveSupporterContent = ({ user }: { user: User | null }) => {
             groupId={groupData.id}
             maxItems={5}
           />
+        )}
+
+        {/* Recent Conversations Card - Show when leader has a group */}
+        {hasGroup && (
+          <RecentConversationsCard maxItems={5} />
         )}
       </div>
     </Fragment>
