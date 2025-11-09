@@ -6,7 +6,7 @@
 @use 'styles/_component-utils.scss' as *;
 
 .container {
-	max-width: 800px;
+	min-inline-size: 900px;
 	margin: 0 auto;
 	padding: var(--size-6) var(--size-4);
 }

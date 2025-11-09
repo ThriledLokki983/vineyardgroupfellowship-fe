@@ -9,6 +9,8 @@ export interface ConversationParticipant {
 	first_name: string;
 	last_name: string;
 	display_name?: string;
+	photo_url?: string;
+	photo_thumbnail_url?: string;
 }
 
 export type ConversationContextType = 'group_inquiry' | 'direct_message';

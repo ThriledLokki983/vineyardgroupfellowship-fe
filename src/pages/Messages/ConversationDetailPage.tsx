@@ -84,10 +84,20 @@ export const ConversationDetailPage = () => {
 						<BackLink to="/messages">Back to messages</BackLink>
 						<div className={styles.participantInfo}>
 							<div className={styles.avatar}>
-								{otherParticipant.display_name?.[0]?.toUpperCase() || 
-								 otherParticipant.first_name?.[0]?.toUpperCase() || 
-								 otherParticipant.username?.[0]?.toUpperCase() || 
-								 '?'}
+								{otherParticipant.photo_thumbnail_url || otherParticipant.photo_url ? (
+									<img
+										src={(otherParticipant.photo_thumbnail_url || otherParticipant.photo_url) as string}
+										alt={otherParticipant.display_name || otherParticipant.username}
+										className={styles.avatarImage}
+									/>
+								) : (
+									<span>
+										{otherParticipant.display_name?.[0]?.toUpperCase() || 
+										 otherParticipant.first_name?.[0]?.toUpperCase() || 
+										 otherParticipant.username?.[0]?.toUpperCase() || 
+										 '?'}
+									</span>
+								)}
 							</div>
 							<div>
 								<h1 className={styles.participantName}>
@@ -151,10 +161,20 @@ export const ConversationDetailPage = () => {
 									>
 										{!isOwn && (
 											<div className={styles.messageAvatar}>
-												{message.sender.display_name?.[0]?.toUpperCase() || 
-												 message.sender.first_name?.[0]?.toUpperCase() || 
-												 message.sender.username?.[0]?.toUpperCase() || 
-												 '?'}
+												{message.sender.photo_thumbnail_url || message.sender.photo_url ? (
+													<img
+														src={(message.sender.photo_thumbnail_url || message.sender.photo_url) as string}
+														alt={message.sender.display_name || message.sender.username}
+														className={styles.messageAvatarImage}
+													/>
+												) : (
+													<span>
+														{message.sender.display_name?.[0]?.toUpperCase() || 
+														 message.sender.first_name?.[0]?.toUpperCase() || 
+														 message.sender.username?.[0]?.toUpperCase() || 
+														 '?'}
+													</span>
+												)}
 											</div>
 										)}
 

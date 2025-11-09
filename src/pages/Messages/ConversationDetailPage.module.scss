@@ -49,6 +49,14 @@
 	color: var(--surface-canvas);
 	background: var(--brand-primary);
 	border-radius: var(--radius-round);
+	overflow: hidden;
+}
+
+.avatarImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: var(--radius-round);
 }
 
 .participantName {
@@ -104,16 +112,19 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--size-4);
+	align-items: flex-start; // Ensure proper alignment
 }
 
 .messageWrapper {
 	display: flex;
 	gap: var(--size-2);
 	max-width: 70%;
+	width: fit-content;
 
 	&.own {
 		align-self: flex-end;
 		flex-direction: row-reverse;
+		margin-left: auto; // Force to right side
 
 		.messageBubble {
 			background: var(--brand-primary);
@@ -127,6 +138,7 @@
 
 	&.other {
 		align-self: flex-start;
+		margin-right: auto; // Force to left side
 
 		.messageBubble {
 			background: var(--surface-canvas);
@@ -146,6 +158,14 @@
 	font-weight: var(--font-weight-6);
 	color: var(--surface-canvas);
 	background: var(--text-secondary);
+	border-radius: var(--radius-round);
+	overflow: hidden;
+}
+
+.messageAvatarImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	border-radius: var(--radius-round);
 }
 
