@@ -101,6 +101,14 @@ export { Modal } from './Modal';
 export { MessageMemberModal } from './MessageMemberModal';
 export type { MessageMemberModalProps } from './MessageMemberModal';
 
+// BlockUserModal
+export { BlockUserModal } from './BlockUserModal';
+export type { BlockUserModalProps } from './BlockUserModal';
+
+// ReportModal
+export { ReportModal } from './ReportModal';
+export type { ReportModalProps } from './ReportModal';
+
 // OnboardingModal
 export { OnboardingModal } from './OnboardingModal';
 

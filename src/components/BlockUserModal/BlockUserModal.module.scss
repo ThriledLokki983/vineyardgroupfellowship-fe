@@ -1,0 +1,111 @@
+/**
+ * BlockUserModal Styles
+ * Premium wellness design for safety actions
+ */
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+  padding: var(--size-2) 0;
+}
+
+.warningText {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-5);
+  color: var(--text-primary);
+  margin: 0 0 var(--size-2);
+}
+
+.consequencesList {
+  margin: 0;
+  padding-left: var(--size-5);
+  font-size: var(--font-size-1);
+  color: var(--text-primary);
+  line-height: var(--font-lineheight-3);
+  
+  li {
+    margin-bottom: var(--size-2);
+  }
+}
+
+.note {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  font-style: italic;
+  margin: 0;
+  padding: var(--size-3);
+  background-color: var(--surface-elevated);
+  border-radius: var(--radius-2);
+  border-left: 3px solid var(--accent-warm);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+
+.label {
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-6);
+  color: var(--text-primary);
+}
+
+.textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: var(--size-3);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-1);
+  line-height: var(--font-lineheight-3);
+  color: var(--text-primary);
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-2);
+  resize: vertical;
+  transition: border-color 0.2s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+
+.characterCount {
+  font-size: var(--font-size-0);
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--size-3);
+  margin-top: var(--size-3);
+  padding-top: var(--size-4);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.blockButton {
+  background-color: var(--accent-danger) !important;
+  color: white !important;
+  
+  &:hover:not(:disabled) {
+    background-color: color-mix(in srgb, var(--accent-danger) 85%, black) !important;
+  }
+  
+  &:active:not(:disabled) {
+    background-color: color-mix(in srgb, var(--accent-danger) 75%, black) !important;
+  }
+}
