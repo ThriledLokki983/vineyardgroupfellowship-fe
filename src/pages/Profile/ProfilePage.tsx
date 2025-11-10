@@ -9,15 +9,15 @@ import { useRef, useEffect, useState } from 'react'
 import { useSignals } from '@preact/signals-react/runtime'
 import { useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
-import { useAuthContext } from '../../contexts/Auth/useAuthContext'
+import { useAuthContext } from 'contexts/Auth/useAuthContext'
 import { useCurrentUser, authKeys } from '../../hooks/useAuth'
-import { useMyGroups } from '../../hooks/useMyGroups'
-import { profilePage } from '../../signals/profile-signals'
-import type { ExtendedProfile } from '../../signals/profile-signals'
+import { useMyGroups } from 'hooks/useMyGroups'
+import { profilePage } from 'signals/profile-signals'
+import type { ExtendedProfile } from 'signals/profile-signals'
 import { Layout, Button, Icon, Checkbox, LocationAutocomplete, toast } from 'components'
-import { StatCard, ProgressBar, CheckListItem } from '../../components/ProfileStats'
+import { StatCard, ProgressBar, CheckListItem } from 'components/ProfileStats'
 import type { PlaceData } from 'types/components/location'
-import { api } from '../../services/api'
+import { api } from 'services/api'
 import styles from './ProfilePage.module.scss'
 
 export default function ProfilePage() {
@@ -572,7 +572,7 @@ export default function ProfilePage() {
                   <h3 className={styles.sectionTitle}>My Groups</h3>
                   <Button
                     variant="tertiary"
-                    onPress={() => navigate('/groups')}
+                    onPress={() => navigate('/dashboard/')}
                   >
                     <Icon name="PlusIcon" width={16} height={16} />
                     Join Another Group
@@ -583,13 +583,13 @@ export default function ProfilePage() {
                     <div
                       key={group.id}
                       className={styles.groupCard}
-                      onClick={() => navigate(`/groups/${group.id}`)}
+                      onClick={() => navigate(`/dashboard/groups/${group.id}`)}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => {
                         if (e.key === 'Enter' || e.key === ' ') {
                           e.preventDefault();
-                          navigate(`/groups/${group.id}`);
+                          navigate(`/dashboard/groups/${group.id}`);
                         }
                       }}
                     >
@@ -622,7 +622,7 @@ export default function ProfilePage() {
                   <p>Join your first fellowship group to connect with your community and start your journey together.</p>
                   <Button
                     variant="primary"
-                    onPress={() => navigate('/groups')}
+                    onPress={() => navigate('/dashboard')}
                   >
                     <Icon name="PlusIcon" width={16} height={16} />
                     Browse Groups
