@@ -5,8 +5,8 @@
   align-items: center;
   gap: var(--size-4);
   padding: var(--size-4);
-  background: var(--surface-elevated);
-  border-radius: var(--radius-3);
+  background: var(--surface-2);
+  border-radius: var(--radius-base);
   border: var(--border-size-1) solid var(--border-subtle);
   transition: all 0.2s ease;
 
@@ -16,7 +16,7 @@
   }
 
   &.accent {
-    background: color-mix(in srgb, var(--brand-accent) 10%, var(--surface-elevated));
+    background: color-mix(in srgb, var(--brand-accent) 2%, var(--surface-2));
     border-color: var(--brand-accent);
   }
 }
@@ -28,13 +28,12 @@
   inline-size: var(--size-8);
   block-size: var(--size-8);
   border-radius: 50%;
-  background: color-mix(in srgb, var(--brand) 10%, transparent);
-  color: var(--brand);
+  background: color-mix(in srgb, var(--brand) 70%, transparent);
+  color: var(--text-1);
   flex-shrink: 0;
 
   .accent & {
-    background: color-mix(in srgb, var(--brand-accent) 20%, transparent);
-    color: var(--brand-accent);
+    background: color-mix(in srgb, var(--brand-accent) 40%, transparent);
   }
 
   svg {
@@ -67,6 +66,6 @@
 
 .statSublabel {
   font-size: var(--font-size-0);
-  color: var(--text-3);
+  color: var(--text-2);
   margin-top: var(--size-1);
 }

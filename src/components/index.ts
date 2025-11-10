@@ -163,5 +163,6 @@ export type { ToastContent, ToastType } from './Toast';
 
 // WelcomeScreen
 export { WelcomeScreen } from './WelcomeScreen';
-// Messaging (Phase 1 & Phase 2)
+
+// Everything related to messages
 export * from './Messaging';

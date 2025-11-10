@@ -7,6 +7,7 @@ html {
   /* Secondary brand accent */
   --accent-hue: 75;
   --accent: hsl(75, 80%, 50%);
+  --radius-base: calc(var(--radius-2) + var(--size-2));
 
   /* LIGHT THEME PALETTE */
   --brand-light: hsl(var(--brand-hue) var(--brand-saturation) var(--brand-lightness));
