@@ -22,8 +22,13 @@
   }
 }
 
-.avatarWrapper {
+.avatarContainer {
   position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.avatarWrapper {
   display: flex;
   align-items: center;
   cursor: pointer;
