@@ -94,6 +94,7 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
               groupId={groupId}
               groupName={groupName}
               isPopover={true}
+              onMessageClick={handleOpenMessageModal}
             />
           </Popover>
         </div>

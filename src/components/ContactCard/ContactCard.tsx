@@ -12,6 +12,7 @@ interface ContactCardProps {
   groupId?: string; // Optional: enables messaging feature
   groupName?: string; // Optional: context for messaging
   isPopover?: boolean; // Whether this is rendered inside a Popover
+  onMessageClick?: () => void; // Optional: callback when message button clicked (for lifting state)
 }
 
 /**
@@ -25,7 +26,8 @@ const ContactCard = ({
   enableNavigation = false,
   groupId,
   groupName,
-  isPopover: _isPopover = false
+  isPopover: _isPopover = false,
+  onMessageClick
 }: ContactCardProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [data, setData] = useState<GroupMember>(initialData);
@@ -163,7 +165,13 @@ const ContactCard = ({
             {canMessage && (
               <Button
                 variant="secondary"
-                onPress={() => setShowMessageModal(true)}
+                onPress={() => {
+                  if (onMessageClick) {
+                    onMessageClick();
+                  } else {
+                    setShowMessageModal(true);
+                  }
+                }}
                 className={styles.actionButton}
               >
                 <Icon name="ChatBubbleIcon" width={16} height={16} />
@@ -175,8 +183,8 @@ const ContactCard = ({
       </div>
     </article>
 
-    {/* Message Modal */}
-    {canMessage && groupId && (
+    {/* Message Modal - only render when not using external callback (standalone mode) */}
+    {canMessage && groupId && !onMessageClick && (
       <MessageMemberModal
         isOpen={showMessageModal}
         onClose={() => setShowMessageModal(false)}
