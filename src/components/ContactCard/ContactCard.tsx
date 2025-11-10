@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Avatar, BackLink, Button, Icon, MessageMemberModal } from 'components';
 import { useCurrentUser } from '../../hooks/useAuth';
 import { canMessageMember } from '../../utils/messaging-permissions';
@@ -7,45 +7,30 @@ import styles from './ContactCard.module.scss';
 
 interface ContactCardProps {
   data: GroupMember;
-  hasParentFocus?: boolean;
   showActions?: boolean;
   enableNavigation?: boolean; // Allow navigating between related contacts
   groupId?: string; // Optional: enables messaging feature
   groupName?: string; // Optional: context for messaging
+  isPopover?: boolean; // Whether this is rendered inside a Popover
 }
 
-const DEFAULT_TOP_OFFSET = 'calc(1rem + (48px * 0.75))';
-const DEFAULT_WIDTH = '320px';
-const MARGIN = 20;
-
 /**
- * ContactCard - Hover card for viewing member contact information
+ * ContactCard - Card for viewing member contact information
+ * Can be used standalone or inside a React Aria Popover
  * Designed for Vineyard Group Fellowship recovery community
  */
 const ContactCard = ({
   data: initialData,
-  hasParentFocus = false,
   showActions: _showActions = true,
   enableNavigation = false,
   groupId,
-  groupName
+  groupName,
+  isPopover: _isPopover = false
 }: ContactCardProps) => {
-  const rootRef = useRef<HTMLElement>(null);
-  const [hasFocus, setHasFocus] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [topOffset, setTopOffset] = useState(DEFAULT_TOP_OFFSET);
-  const [width, setWidth] = useState(DEFAULT_WIDTH);
   const [data, setData] = useState<GroupMember>(initialData);
   const [showMessageModal, setShowMessageModal] = useState(false);
-  const showTimeoutRef = useRef<number | null>(null);
-  const hideTimeoutRef = useRef<number | null>(null);
   const { data: currentUser } = useCurrentUser();
-
-  // Update data when initialData changes
-  useEffect(() => {
-    setData(initialData);
-  }, [initialData]);
 
   const displayName = `${data.first_name || ''} ${data.last_name || ''}`.trim() ||
                       data.display_name || data.email ||  'Unknown';
@@ -79,120 +64,10 @@ const ContactCard = ({
     swapData(initialData);
   };
 
-  /**
-   * Set visibility based on parent and internal focus
-   * Add slight delay to prevent flickering on quick mouse movements
-   */
-  useEffect(() => {
-    // Clear any existing timeouts
-    if (showTimeoutRef.current) {
-      window.clearTimeout(showTimeoutRef.current);
-    }
-    if (hideTimeoutRef.current) {
-      window.clearTimeout(hideTimeoutRef.current);
-    }
-
-    const shouldShow = hasFocus || hasParentFocus;
-
-    if (shouldShow) {
-      // Show immediately or with tiny delay
-      showTimeoutRef.current = window.setTimeout(() => {
-        setIsVisible(true);
-      }, 50); // 50ms delay for smoother feel
-    } else {
-      // Hide with slight delay to allow moving between avatar and card
-      hideTimeoutRef.current = window.setTimeout(() => {
-        setIsVisible(false);
-      }, 100); // 100ms delay before hiding
-    }
-
-    // Cleanup timeouts on unmount
-    return () => {
-      if (showTimeoutRef.current) {
-        window.clearTimeout(showTimeoutRef.current);
-      }
-      if (hideTimeoutRef.current) {
-        window.clearTimeout(hideTimeoutRef.current);
-      }
-    };
-  }, [hasFocus, hasParentFocus]);
-
-  /**
-   * Make sure the card is never out of screen at the bottom or right
-   * Position is reset when the card is hidden again
-   * Intelligently positions the card relative to the avatar
-   */
-  useEffect(() => {
-    if (!rootRef.current || !isVisible) {
-      if (!isVisible) {
-        setWidth(DEFAULT_WIDTH);
-        setTopOffset(DEFAULT_TOP_OFFSET);
-      }
-      return;
-    }
-
-    const card = rootRef.current;
-    const parent = card.parentElement;
-    if (!parent) return;
-
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const parentRect = parent.getBoundingClientRect();
-
-    // Default position: to the right of avatar
-    let leftPos = parentRect.width + 12; // 12px gap from avatar
-    let topPos = 0;
-    let cardWidth = 320;
-
-    // Calculate if card would go off the right edge
-    const wouldOverflowRight = parentRect.left + leftPos + cardWidth > windowWidth - MARGIN;
-
-    // If it would overflow right, try positioning to the left
-    if (wouldOverflowRight) {
-      leftPos = -(cardWidth + 12); // Position to the left of avatar
-
-      // If left position would go off screen, position to the right with adjusted width
-      if (parentRect.left + leftPos < MARGIN) {
-        leftPos = parentRect.width + 12; // Back to right side
-        cardWidth = windowWidth - (parentRect.left + leftPos) - MARGIN - 10;
-      }
-    }
-
-    // Check vertical positioning
-    const cardRect = card.getBoundingClientRect();
-    const wouldOverflowBottom = parentRect.top + cardRect.height > windowHeight - MARGIN;
-
-    if (wouldOverflowBottom) {
-      // Position above if it would overflow bottom
-      const spaceAbove = parentRect.top - MARGIN;
-      const spaceBelow = windowHeight - parentRect.bottom - MARGIN;
-
-      if (spaceAbove > spaceBelow) {
-        topPos = -(cardRect.height - parentRect.height);
-      }
-    }
-
-    // Apply positioning
-    card.style.left = `${leftPos}px`;
-    card.style.top = `${topPos}px`;
-    setWidth(`${cardWidth}px`);
-  }, [isVisible]);
-
-  /**
-   * Hover handlers
-   */
-  const handleMouseOver = () => setHasFocus(true);
-  const handleMouseLeave = () => setHasFocus(false);
-
   return (
     <>
     <article
       className={styles.root}
-      style={{ top: topOffset, width }}
-      ref={rootRef}
-      hidden={!isVisible}
-      onMouseOver={handleMouseOver}
-      onMouseLeave={handleMouseLeave}
       onClick={(e) => e.stopPropagation()}
       data-is-transitioning={isTransitioning}
     >

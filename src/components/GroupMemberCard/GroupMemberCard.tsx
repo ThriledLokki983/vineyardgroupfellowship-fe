@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { DialogTrigger, Popover } from 'react-aria-components';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
 import { Button, Icon, MessageMemberModal } from 'components';
@@ -10,19 +11,15 @@ import styles from './GroupMemberCard.module.scss';
 /**
  * GroupMemberCard - Display card for a group member
  * Shows avatar, name, role, and status
- * Displays ContactCard on avatar hover
+ * Displays ContactCard in a Popover on avatar hover/focus
  * Shows message button for eligible members (when groupId provided)
  */
 export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardProps) => {
   const { first_name, last_name, role, status } = member;
-  const [isHovered, setIsHovered] = useState(false);
   const [showMessageModal, setShowMessageModal] = useState(false);
   const { data: currentUser } = useCurrentUser();
 
   const fullName = `${first_name || ''} ${last_name || ''}`.trim() || 'Unknown Member';
-
-  // Toggle Hover state
-  const hoverToggleHandler = (state: boolean) => () => setIsHovered(state);
 
   // Check if current user can message this member
   const messagingEnabled = groupId && currentUser;
@@ -42,23 +39,29 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
 
   return (
     <>
-      <div
-        className={styles.card}
-        onMouseEnter={hoverToggleHandler(true)}
-        onMouseLeave={hoverToggleHandler(false)}
-      >
-        <div className={styles.avatarWrapper}>
-          <Avatar
-            profile={member}
-            size="48px"
-          />
-          <ContactCard
-            data={contactData}
-            hasParentFocus={isHovered}
-            groupId={groupId}
-            groupName={groupName}
-          />
-        </div>
+      <div className={styles.card}>
+        {/* Avatar with ContactCard Popover */}
+        <DialogTrigger>
+          <div className={styles.avatarWrapper}>
+            <Avatar
+              profile={member}
+              size="48px"
+            />
+          </div>
+          <Popover
+            placement="right"
+            offset={12}
+            className={styles.contactPopover}
+          >
+            <ContactCard
+              data={contactData}
+              groupId={groupId}
+              groupName={groupName}
+              isPopover={true}
+            />
+          </Popover>
+        </DialogTrigger>
+
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>
           <div className={styles.meta}>
@@ -78,8 +81,8 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
           </div>
         </div>
 
-        {/* Message Button - shows on hover for eligible members */}
-        {canMessage && (isHovered || showMessageModal) && (
+        {/* Message Button - always visible for eligible members */}
+        {canMessage && (
           <Button
             variant="secondary"
             onPress={handleOpenMessageModal}
