@@ -34,7 +34,7 @@ export const ReportModal = ({
 }: ReportModalProps) => {
 	const [reason, setReason] = useState<ReportReason>('spam');
 	const [details, setDetails] = useState('');
-	
+
 	const reportConversation = useReportConversation();
 	const reportMessage = useReportMessage();
 
@@ -128,7 +128,7 @@ export const ReportModal = ({
 				</div>
 
 				<p className={styles.note}>
-					<strong>Note:</strong> False reports may result in account restrictions. 
+					<strong>Note:</strong> False reports may result in account restrictions.
 					Reports are confidential and will not be shared with the reported user.
 				</p>
 

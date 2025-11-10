@@ -23,7 +23,7 @@
   font-size: var(--font-size-1);
   color: var(--text-primary);
   line-height: var(--font-lineheight-3);
-  
+
   li {
     margin-bottom: var(--size-2);
   }
@@ -65,18 +65,18 @@
   border-radius: var(--radius-2);
   resize: vertical;
   transition: border-color 0.2s ease;
-  
+
   &:focus {
     outline: none;
     border-color: var(--brand-primary);
     box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1);
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
-  
+
   &::placeholder {
     color: var(--text-secondary);
   }
@@ -100,11 +100,11 @@
 .blockButton {
   background-color: var(--accent-danger) !important;
   color: white !important;
-  
+
   &:hover:not(:disabled) {
     background-color: color-mix(in srgb, var(--accent-danger) 85%, black) !important;
   }
-  
+
   &:active:not(:disabled) {
     background-color: color-mix(in srgb, var(--accent-danger) 75%, black) !important;
   }

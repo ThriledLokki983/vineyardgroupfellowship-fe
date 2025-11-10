@@ -122,8 +122,8 @@ export function GroupDetailsContent({
           </h2>
           <div className={styles.membersList}>
             {group.group_members.map((member) => (
-              <GroupMemberCard 
-                key={member.id} 
+              <GroupMemberCard
+                key={member.id}
                 member={member}
                 groupId={group.id}
                 groupName={group.name}

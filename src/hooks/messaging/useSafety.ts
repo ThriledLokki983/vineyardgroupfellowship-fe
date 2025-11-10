@@ -49,12 +49,12 @@ export function useBlockUser() {
     onMutate: async (_data) => {
       // Cancel outgoing refetches
       await queryClient.cancelQueries({ queryKey: safetyKeys.blockedUsers() });
-      
+
       // Snapshot previous value
       const previousBlocked = queryClient.getQueryData<BlockedUsersListResponse>(
         safetyKeys.blockedUsers()
       );
-      
+
       return { previousBlocked };
     },
     onError: (error: Error, _variables, context) => {
@@ -62,16 +62,16 @@ export function useBlockUser() {
       if (context?.previousBlocked) {
         queryClient.setQueryData(safetyKeys.blockedUsers(), context.previousBlocked);
       }
-      
+
       toast.error(error.message || 'Failed to block user');
     },
     onSuccess: (_data: BlockUserResponse) => {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: safetyKeys.blockedUsers() });
       queryClient.invalidateQueries({ queryKey: ['conversations'] });
-      
+
       toast.success('User blocked successfully');
-      
+
       // Navigate away from conversation if currently viewing
       navigate('/messages');
     },
@@ -96,7 +96,7 @@ export function useUnblockUser() {
       // Invalidate and refetch
       queryClient.invalidateQueries({ queryKey: safetyKeys.blockedUsers() });
       queryClient.invalidateQueries({ queryKey: ['conversations'] });
-      
+
       toast.success('User unblocked successfully');
     },
   });

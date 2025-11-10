@@ -52,8 +52,8 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             profile={member}
             size="48px"
           />
-          <ContactCard 
-            data={contactData} 
+          <ContactCard
+            data={contactData}
             hasParentFocus={isHovered}
             groupId={groupId}
             groupName={groupName}
