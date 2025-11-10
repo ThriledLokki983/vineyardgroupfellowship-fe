@@ -3,7 +3,7 @@
 // Global overflow prevention for this page
 * {
   box-sizing: border-box;
-  max-width: 100%;
+  inline-size: 100%;
 }
 
 // Loading state
@@ -16,7 +16,7 @@
 // Main container
 .settingsContainer {
   width: 100%;
-  max-width: 1200px;
+  max-inline-size: 1200px;
   margin: 0 auto;
   padding: var(--size-3);
   overflow-x: hidden; // Prevent horizontal overflow
@@ -24,7 +24,7 @@
 
   @include bp-min($tablet) {
     padding: var(--size-6);
-    max-width: 100dvw;
+    max-inline-size: 100dvw;
     width: 100%;
   }
 }
@@ -59,7 +59,7 @@
     gap: var(--size-2);
     grid-template-areas: "sidebar content";
     width: 100%;
-    max-width: 1200px;
+    max-inline-size: 1200px;
   }
 }
 
@@ -86,7 +86,7 @@
     left: auto;
     right: auto;
     width: auto;
-    max-width: 320px;
+    max-inline-size: 320px;
     background: var(--surface-2);
     border-top: none;
     border-radius: var(--radius-3);
@@ -103,7 +103,7 @@
   padding: 0;
   margin: 0;
   // width: 100vw;
-  // max-width: 100vw;
+  // max-inline-size: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -115,7 +115,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    max-width: none;
+    max-inline-size: none;
     width: auto;
   }
 }
@@ -124,7 +124,7 @@
 .settingsNavItemActive {
   button {
     width: 100%;
-    max-width: none;
+    max-inline-size: none;
     padding: var(--size-2);
     background: transparent;
     border: none;
@@ -214,7 +214,7 @@
 // Main content area
 .settingsContent {
   grid-area: content;
-  max-width: 100%;
+  max-inline-size: 100%;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -229,7 +229,7 @@
 
   @include bp-min($tablet) {
     gap: var(--size-6);
-    max-width: 100%;
+    max-inline-size: 100%;
     width: 100%;
     height: auto;
     overflow-y: visible;
@@ -467,7 +467,7 @@
 
 .modalContent {
   @include card;
-  max-width: 500px;
+  max-inline-size: 500px;
   width: 100%;
   padding: var(--size-7);
   animation: modalSlideIn var(--animation-duration-normal) ease-out;

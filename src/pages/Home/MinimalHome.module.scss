@@ -221,13 +221,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--size-10);
-  max-width: 1000px;
+  max-inline-size: 1000px;
   margin: 0 auto;
 
   @include tablet {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--size-6);
-    max-width: 100%;
+    inline-size: 100%;
   }
 
   @include mobile {

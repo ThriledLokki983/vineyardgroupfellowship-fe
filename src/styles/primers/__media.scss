@@ -16,7 +16,7 @@ img,
 object,
 iframe,
 video {
-    max-width: 100%; height: auto;
+    max-inline-size: 100%; height: auto;
 }
 
 img {
@@ -26,7 +26,7 @@ img {
 }
 
 svg {
-    max-width: 100%;
+    max-inline-size: 100%;
     &[hidden] {
         display: none;
     }
