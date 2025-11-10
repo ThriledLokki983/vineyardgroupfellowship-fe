@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { DialogTrigger, Popover } from 'react-aria-components';
+import { useState, useRef } from 'react';
+import { Popover } from 'react-aria-components';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
 import { Button, Icon, MessageMemberModal } from 'components';
@@ -17,6 +17,9 @@ import styles from './GroupMemberCard.module.scss';
 export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardProps) => {
   const { first_name, last_name, role, status } = member;
   const [showMessageModal, setShowMessageModal] = useState(false);
+  const [showContactCard, setShowContactCard] = useState(false);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  const hideTimeoutRef = useRef<number | null>(null);
   const { data: currentUser } = useCurrentUser();
 
   const fullName = `${first_name || ''} ${last_name || ''}`.trim() || 'Unknown Member';
@@ -37,21 +40,51 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
     setShowMessageModal(true);
   };
 
+  // Handle hover to show/hide contact card with delay
+  const handleAvatarMouseEnter = () => {
+    // Clear any pending hide timeout
+    if (hideTimeoutRef.current) {
+      window.clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
+    setShowContactCard(true);
+  };
+
+  const handleAvatarMouseLeave = () => {
+    // Add delay before hiding to allow moving to the popover
+    hideTimeoutRef.current = window.setTimeout(() => {
+      setShowContactCard(false);
+    }, 150);
+  };
+
   return (
     <>
       <div className={styles.card}>
         {/* Avatar with ContactCard Popover */}
-        <DialogTrigger>
-          <div className={styles.avatarWrapper}>
-            <Avatar
-              profile={member}
-              size="48px"
-            />
-          </div>
-          <Popover
-            placement="right"
-            offset={12}
-            className={styles.contactPopover}
+        <div
+          ref={avatarRef}
+          className={styles.avatarWrapper}
+          onMouseEnter={handleAvatarMouseEnter}
+          onMouseLeave={handleAvatarMouseLeave}
+        >
+          <Avatar
+            profile={member}
+            size="48px"
+          />
+        </div>
+
+        {/* Controlled Popover */}
+        <Popover
+          triggerRef={avatarRef}
+          isOpen={showContactCard}
+          onOpenChange={setShowContactCard}
+          placement="right"
+          offset={12}
+          className={styles.contactPopover}
+        >
+          <div
+            onMouseEnter={handleAvatarMouseEnter}
+            onMouseLeave={handleAvatarMouseLeave}
           >
             <ContactCard
               data={contactData}
@@ -59,8 +92,8 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
               groupName={groupName}
               isPopover={true}
             />
-          </Popover>
-        </DialogTrigger>
+          </div>
+        </Popover>
 
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>
