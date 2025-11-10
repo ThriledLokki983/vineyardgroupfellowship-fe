@@ -203,6 +203,10 @@
   transition: all 0.2s ease;
   cursor: pointer;
 
+  > svg {
+    inline-size: 2rem;
+  }
+
   &:hover {
     color: var(--text-1);
     background: var(--surface-2);

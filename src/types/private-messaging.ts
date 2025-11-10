@@ -115,7 +115,7 @@ export interface StartDirectMessageResponse {
 
 // Safety & Moderation Types
 
-export type ReportReason = 
+export type ReportReason =
 	| 'spam'
 	| 'harassment'
 	| 'inappropriate_content'

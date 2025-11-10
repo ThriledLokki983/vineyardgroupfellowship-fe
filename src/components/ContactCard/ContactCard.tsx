@@ -283,7 +283,7 @@ const ContactCard = ({
                 Email
               </a>
             )}
-            
+
             {/* Message action */}
             {canMessage && (
               <Button
