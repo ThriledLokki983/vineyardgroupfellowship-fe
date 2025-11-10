@@ -142,12 +142,12 @@
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-4);
   border: var(--border-size-1) solid var(--border-subtle);
-  
+
   // Smooth entry animation
   &[data-entering] {
     animation: popoverSlideIn 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-  
+
   // Smooth exit animation
   &[data-exiting] {
     animation: popoverSlideOut 150ms cubic-bezier(0.4, 0, 1, 1);

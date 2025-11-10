@@ -65,14 +65,12 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
     <>
       <div className={styles.card}>
         {/* Avatar wrapper with hover area */}
-        <div
-          className={styles.avatarContainer}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className={styles.avatarContainer}>
           <div
             ref={avatarRef}
             className={styles.avatarWrapper}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <Avatar
               profile={member}
@@ -88,6 +86,8 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             placement="right"
             offset={12}
             className={styles.contactPopover}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <ContactCard
               data={contactData}
