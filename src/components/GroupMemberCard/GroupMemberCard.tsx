@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { TooltipTrigger, Tooltip, Button as AriaButton } from 'react-aria-components';
+import { useState, useRef } from 'react';
+import { Popover } from 'react-aria-components';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
 import { Button, Icon, MessageMemberModal } from 'components';
@@ -11,12 +11,14 @@ import styles from './GroupMemberCard.module.scss';
 /**
  * GroupMemberCard - Display card for a group member
  * Shows avatar, name, role, and status
- * Displays ContactCard in a Tooltip on avatar hover/focus
+ * Displays ContactCard in a Popover on avatar hover
  * Shows message button for eligible members (when groupId provided)
  */
 export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardProps) => {
   const { first_name, last_name, role, status } = member;
   const [showMessageModal, setShowMessageModal] = useState(false);
+  const [isHoveringCard, setIsHoveringCard] = useState(false);
+  const avatarRef = useRef<HTMLDivElement>(null);
   const { data: currentUser } = useCurrentUser();
 
   const fullName = `${first_name || ''} ${last_name || ''}`.trim() || 'Unknown Member';
@@ -37,27 +39,62 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
     setShowMessageModal(true);
   };
 
+  // Hover handlers for showing contact card
+  const handleAvatarMouseEnter = () => {
+    setIsHoveringCard(true);
+  };
+
+  const handleAvatarMouseLeave = () => {
+    // Small delay to allow moving to the popover
+    setTimeout(() => {
+      setIsHoveringCard(false);
+    }, 100);
+  };
+
+  const handlePopoverMouseEnter = () => {
+    setIsHoveringCard(true);
+  };
+
+  const handlePopoverMouseLeave = () => {
+    setIsHoveringCard(false);
+  };
+
   return (
     <>
       <div className={styles.card}>
-        {/* Avatar with tooltip on hover */}
-        <TooltipTrigger delay={150} closeDelay={100}>
-          <AriaButton className={styles.avatarButton} aria-label={`View ${fullName}'s contact info`}>
-            <Avatar
-              profile={member}
-              size="48px"
-            />
-          </AriaButton>
-          <Tooltip placement="right" offset={12} className={styles.contactTooltip}>
-            <ContactCard
-              data={contactData}
-              groupId={groupId}
-              groupName={groupName}
-              isPopover={true}
-              onMessageClick={handleOpenMessageModal}
-            />
-          </Tooltip>
-        </TooltipTrigger>
+        {/* Avatar with popover on hover */}
+        <div
+          ref={avatarRef}
+          className={styles.avatarWrapper}
+          onMouseEnter={handleAvatarMouseEnter}
+          onMouseLeave={handleAvatarMouseLeave}
+        >
+          <Avatar
+            profile={member}
+            size="48px"
+          />
+        </div>
+
+        {/* Controlled Popover positioned relative to avatar */}
+        <Popover
+          triggerRef={avatarRef}
+          isOpen={isHoveringCard}
+          onOpenChange={setIsHoveringCard}
+          placement="right"
+          offset={12}
+          shouldFlip={true}
+          className={styles.contactPopover}
+          onMouseEnter={handlePopoverMouseEnter}
+          onMouseLeave={handlePopoverMouseLeave}
+        >
+          <ContactCard
+            data={contactData}
+            groupId={groupId}
+            groupName={groupName}
+            isPopover={true}
+            onMessageClick={handleOpenMessageModal}
+          />
+        </Popover>
 
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>
