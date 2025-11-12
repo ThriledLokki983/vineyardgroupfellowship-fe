@@ -22,16 +22,27 @@
   }
 }
 
-.avatarContainer {
-  position: relative;
+.avatarButton {
   display: flex;
   align-items: center;
-}
-
-.avatarWrapper {
-  display: flex;
-  align-items: center;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
   cursor: pointer;
+  border-radius: var(--radius-round);
+  
+  // Subtle hover effect for the avatar
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+  
+  &:focus-visible {
+    outline: 2px solid var(--accent-warm);
+    outline-offset: 2px;
+  }
 }
 
 .info {
@@ -135,33 +146,36 @@
   }
 }
 
-// Contact Card Popover
-.contactPopover {
+// Contact Card Tooltip
+.contactTooltip {
   z-index: 9999;
   background: var(--surface-2);
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-4);
   border: var(--border-size-1) solid var(--border-subtle);
+  
+  // No max-width - let ContactCard control its own width
+  width: max-content;
 
-  // Smooth entry animation
+  // Smooth entry animation with transform-origin for natural feel
   &[data-entering] {
-    animation: popoverSlideIn 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    animation: tooltipSlideIn 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   // Smooth exit animation
   &[data-exiting] {
-    animation: popoverSlideOut 150ms cubic-bezier(0.4, 0, 1, 1);
+    animation: tooltipSlideOut 150ms cubic-bezier(0.4, 0, 1, 1);
   }
 }
 
-@keyframes popoverSlideIn {
+@keyframes tooltipSlideIn {
   from {
     opacity: 0;
-    transform: scale(0.95) translateY(-8px);
+    transform: scale(0.95) translateX(-8px);
   }
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    transform: scale(1) translateX(0);
   }
 }
 

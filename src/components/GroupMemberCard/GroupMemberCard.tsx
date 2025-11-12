@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { Popover } from 'react-aria-components';
+import { useState } from 'react';
+import { TooltipTrigger, Tooltip, Button as AriaButton } from 'react-aria-components';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
 import { Button, Icon, MessageMemberModal } from 'components';
@@ -11,15 +11,12 @@ import styles from './GroupMemberCard.module.scss';
 /**
  * GroupMemberCard - Display card for a group member
  * Shows avatar, name, role, and status
- * Displays ContactCard in a Popover on avatar hover/focus
+ * Displays ContactCard in a Tooltip on avatar hover/focus
  * Shows message button for eligible members (when groupId provided)
  */
 export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardProps) => {
   const { first_name, last_name, role, status } = member;
   const [showMessageModal, setShowMessageModal] = useState(false);
-  const [showContactCard, setShowContactCard] = useState(false);
-  const avatarRef = useRef<HTMLDivElement>(null);
-  const hideTimeoutRef = useRef<number | null>(null);
   const { data: currentUser } = useCurrentUser();
 
   const fullName = `${first_name || ''} ${last_name || ''}`.trim() || 'Unknown Member';
@@ -40,55 +37,18 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
     setShowMessageModal(true);
   };
 
-  // Handle hover to show/hide contact card with stable behavior
-  const handleMouseEnter = () => {
-    // Clear any pending hide timeout
-    if (hideTimeoutRef.current) {
-      window.clearTimeout(hideTimeoutRef.current);
-      hideTimeoutRef.current = null;
-    }
-    // Only set to true if not already true (prevent re-renders)
-    setShowContactCard(true);
-  };
-
-  const handleMouseLeave = () => {
-    // Add delay before hiding to allow moving between avatar and popover
-    if (hideTimeoutRef.current) {
-      window.clearTimeout(hideTimeoutRef.current);
-    }
-    hideTimeoutRef.current = window.setTimeout(() => {
-      setShowContactCard(false);
-    }, 200); // Increased delay for smoother UX
-  };
-
   return (
     <>
       <div className={styles.card}>
-        {/* Avatar wrapper with hover area */}
-        <div className={styles.avatarContainer}>
-          <div
-            ref={avatarRef}
-            className={styles.avatarWrapper}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
+        {/* Avatar with tooltip on hover */}
+        <TooltipTrigger delay={150} closeDelay={100}>
+          <AriaButton className={styles.avatarButton} aria-label={`View ${fullName}'s contact info`}>
             <Avatar
               profile={member}
               size="48px"
             />
-          </div>
-
-          {/* Controlled Popover */}
-          <Popover
-            triggerRef={avatarRef}
-            isOpen={showContactCard}
-            onOpenChange={setShowContactCard}
-            placement="right"
-            offset={12}
-            className={styles.contactPopover}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
+          </AriaButton>
+          <Tooltip placement="right" offset={12} className={styles.contactTooltip}>
             <ContactCard
               data={contactData}
               groupId={groupId}
@@ -96,8 +56,8 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
               isPopover={true}
               onMessageClick={handleOpenMessageModal}
             />
-          </Popover>
-        </div>
+          </Tooltip>
+        </TooltipTrigger>
 
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>
