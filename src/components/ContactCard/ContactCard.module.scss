@@ -1,47 +1,22 @@
 @use 'styles/_component-utils.scss' as *;
 
 // ContactCard - Card for member contact information
-// Absolute positioned relative to parent GroupMemberCard
+// Rendered inside React Aria Popover
 .root {
-  z-index: 9999;
-  position: absolute;
-  top: calc(var(--size-3) + (48px * 0.75)); // Position below avatar
-  left: calc(var(--size-3) + (48px * 0.75)); // Offset from avatar
   display: block;
   width: 340px;
-  max-width: calc(100% - var(--size-3) - 48px);
+  max-width: 90vw;
   padding: var(--size-4) var(--size-5) var(--size-4);
   background: var(--surface-2);
   box-shadow: var(--shadow-4);
   border-radius: var(--radius-3);
   border: var(--border-size-1) solid var(--border-subtle);
-  line-height: 1.15;
   cursor: initial;
   user-select: text;
-  transition: opacity 0.15s ease, visibility 0.15s ease;
 
   @media (min-width: 768px) {
-    max-width: 80vw;
+    max-width: 400px;
   }
-}
-
-// Hidden state
-.root[hidden] {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  // Prevent layout shift during transition
-  display: none;
-}
-
-// Hover helper - creates invisible bridge between avatar and card
-.root::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: -(48px * 0.5);
-  width: 50px;
-  height: 50px;
 }
 
 // Inner container

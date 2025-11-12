@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { Popover } from 'react-aria-components';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
 import { Button, Icon, MessageMemberModal } from 'components';
@@ -10,13 +11,15 @@ import styles from './GroupMemberCard.module.scss';
 /**
  * GroupMemberCard - Display card for a group member
  * Shows avatar, name, role, and status
- * Displays ContactCard on avatar hover with absolute positioning
+ * Displays ContactCard in Popover on avatar hover
  * Shows message button for eligible members (when groupId provided)
  */
 export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardProps) => {
   const { first_name, last_name, role, status } = member;
   const [showMessageModal, setShowMessageModal] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [showPopover, setShowPopover] = useState(false);
+  const avatarRef = useRef<HTMLDivElement>(null);
+  const popoverTimeoutRef = useRef<number | null>(null);
   const { data: currentUser } = useCurrentUser();
 
   const fullName = `${first_name || ''} ${last_name || ''}`.trim() || 'Unknown Member';
@@ -37,15 +40,46 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
     setShowMessageModal(true);
   };
 
-  // Hover handlers for avatar
-  const handleAvatarMouseEnter = () => setIsHovered(true);
-  const handleAvatarMouseLeave = () => setIsHovered(false);
+  // Clear any pending timeout
+  const clearPopoverTimeout = () => {
+    if (popoverTimeoutRef.current) {
+      window.clearTimeout(popoverTimeoutRef.current);
+      popoverTimeoutRef.current = null;
+    }
+  };
+
+  // Show popover immediately on avatar hover
+  const handleAvatarMouseEnter = () => {
+    clearPopoverTimeout();
+    setShowPopover(true);
+  };
+
+  // Delay hiding to allow moving to popover
+  const handleAvatarMouseLeave = () => {
+    clearPopoverTimeout();
+    popoverTimeoutRef.current = window.setTimeout(() => {
+      setShowPopover(false);
+    }, 150);
+  };
+
+  // Keep popover open when hovering on it
+  const handlePopoverMouseEnter = () => {
+    clearPopoverTimeout();
+    setShowPopover(true);
+  };
+
+  // Hide popover when leaving it
+  const handlePopoverMouseLeave = () => {
+    clearPopoverTimeout();
+    setShowPopover(false);
+  };
 
   return (
-    <li className={styles.card}>
-      <article>
-        {/* Avatar with hover to show contact card */}
+    <>
+      <div className={styles.card}>
+        {/* Avatar with Popover on hover */}
         <div
+          ref={avatarRef}
           className={styles.avatarWrapper}
           onMouseEnter={handleAvatarMouseEnter}
           onMouseLeave={handleAvatarMouseLeave}
@@ -55,6 +89,27 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             size="48px"
           />
         </div>
+
+        {/* Popover positioned relative to avatar */}
+        <Popover
+          triggerRef={avatarRef}
+          isOpen={showPopover}
+          onOpenChange={setShowPopover}
+          placement="right"
+          offset={12}
+          shouldFlip={true}
+          containerPadding={12}
+          className={styles.contactPopover}
+          onMouseEnter={handlePopoverMouseEnter}
+          onMouseLeave={handlePopoverMouseLeave}
+        >
+          <ContactCard
+            data={contactData}
+            groupId={groupId}
+            groupName={groupName}
+            onMessageClick={handleOpenMessageModal}
+          />
+        </Popover>
 
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>
@@ -87,16 +142,7 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             <span className={styles.messageButtonText}>Message</span>
           </Button>
         )}
-      </article>
-
-      {/* ContactCard - absolute positioned, shown on avatar hover */}
-      <ContactCard
-        data={contactData}
-        groupId={groupId}
-        groupName={groupName}
-        hasParentFocus={isHovered}
-        onMessageClick={handleOpenMessageModal}
-      />
+      </div>
 
       {/* Message Modal */}
       {canMessage && groupId && (
@@ -109,6 +155,6 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
           groupName={groupName}
         />
       )}
-    </li>
+    </>
   );
 };
