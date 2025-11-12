@@ -462,3 +462,27 @@
     background-color: color-mix(in srgb, var(--brand-primary) 55%, transparent);
   }
 }
+
+/**
+ * Hide element visually.
+ */
+@mixin visually-hidden {
+  position: absolute !important; overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px; height: 1px; word-wrap: normal;
+  user-select: none;
+}
+
+
+/**
+* Z-index hack (particularly for grid layout)
+*/
+@mixin z-index-hack {
+  animation: zIndexHack 500ms;
+
+  @keyframes zIndexHack {
+    0%, 100% {
+      z-index: 2;
+    }
+  }
+};

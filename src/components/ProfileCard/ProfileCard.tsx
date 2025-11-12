@@ -17,13 +17,9 @@ const ProfileCard = ({
   resendRequest,
   profile,
 }: ProfileCardProps) => {
-  const [isHovered, setIsHovered] = useState(false);
   const [isHoveredItem, setIsHoveredItem] = useState(false);
 
   const showActions = isHoveredItem;
-
-  // Toggle Hover state
-  const hoverToggleHandler = (state: boolean) => () => setIsHovered(state);
 
   /**
    * Toggle hover on the main item
@@ -38,10 +34,7 @@ const ProfileCard = ({
       data-pending={false}
     >
       <article>
-        <div
-          onMouseEnter={hoverToggleHandler(true)}
-          onMouseLeave={hoverToggleHandler(false)}
-        >
+        <div>
           <Avatar profile={profile as GroupMember} size="35px" />
         </div>
         <div className={styles.root__details}>
@@ -57,7 +50,7 @@ const ProfileCard = ({
         />
       </article>
       {profile?.display_name ? (
-        <ContactCard data={profile as GroupMember} hasParentFocus={isHovered} />
+        <ContactCard data={profile as GroupMember} />
       ) : null}
     </li>
   )

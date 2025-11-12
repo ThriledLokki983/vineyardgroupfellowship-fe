@@ -1,66 +1,85 @@
 @use 'styles/_component-utils.scss' as *;
 
-.card {
+.root {
+  position: relative;
+  list-style-type: none;
+  padding: 0; margin: 0;
+  z-index: 1;
+
+  // When ANY card has contact open, push ALL siblings to z-index 0
+  &:has(~ [data-contact-open="true"]),
+  &:has([data-contact-open="true"]) ~ & {
+    z-index: 0;
+  }
+
+  // Elevate THIS card when its contact is open
+  &[data-contact-open="true"] {
+    z-index: 9999;
+  }
+}
+
+.root[data-pending="true"] {
+  opacity: 0.7;
+}
+
+.root > article:first-child {
+  // z-index: z('contact-card'); // Keep article below contact card
+  z-index: 0;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: var(--size-3); // 12px
-  padding: var(--size-3) var(--size-3); // 16px
+  // flex-direction: column;
+  gap: var(--size-3);
+  padding: var(--size-3) var(--size-3);
   background: var(--surface-2);
-  border-radius: var(--radius-2); // 12px
+  border-radius: var(--radius-2);
   box-shadow: var(--shadow-1);
 
-  // Smooth transitions for all interactive states
+    // Smooth transitions for all interactive states
   transition:
     background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
+
   &:hover {
-    background: var(--surface-1);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--surface-3);
+    box-shadow: var(--shadow-2);
     transform: translateY(-2px);
   }
 }
 
 .avatarWrapper {
-  position: relative;
   display: flex;
-  align-items: center;
-  cursor: pointer;
-  border-radius: var(--radius-round);
-
-  // Subtle hover effect for the avatar
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    transform: scale(1.05);
-  }
 }
 
 .info {
-  flex: 1;
-  min-width: 0; // Allow text truncation
+  position: relative;
 }
 
 .name {
   font-size: var(--font-size-1);
-  font-weight: var(--font-weight-6); // Semi-bold
+  font-weight: var(--font-weight-6);
   color: var(--text-1);
-  margin: 0 0 var(--size-1) 0; // 4px bottom margin
+  margin: 0 0 var(--size-2) 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  inline-size: 100%;
+  text-align: center;
 }
 
 .meta {
   display: flex;
   align-items: center;
-  gap: var(--size-2); // 8px
+  justify-content: center;
+  gap: var(--size-2);
   font-size: var(--font-size-0);
 }
 
 .role {
-  padding: var(--size-1) var(--size-2); // 4px 8px
+  padding: var(--size-1) var(--size-2);
   border-radius: var(--radius-2);
   font-weight: var(--font-weight-5);
   font-size: var(--font-size-00);
@@ -145,7 +164,7 @@
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-4);
   border: var(--border-size-1) solid var(--border-subtle);
-  
+
   // Smooth entry animation
   &[data-entering] {
     animation: popoverSlideIn 200ms cubic-bezier(0.4, 0, 0.2, 1);

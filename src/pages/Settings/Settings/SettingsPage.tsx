@@ -26,8 +26,9 @@ export default function SettingsPage() {
   };
 
   const handleDeleteAccount = () => {
-    // TODO: Implement account deletion
+    // Account deletion not yet available - contact support instead
     settingsPage.showDeleteConfirm.setFalse();
+    // Future: Implement API call to DELETE /api/v1/users/me/
   };
 
   // Get signal values for rendering
@@ -249,14 +250,15 @@ export default function SettingsPage() {
                 <div className={styles.settingInfo}>
                   <div className={styles.settingLabel}>Delete Account</div>
                   <div className={styles.settingDescription}>
-                    Permanently delete your account and all data
+                    Contact support to request account deletion
                   </div>
                 </div>
                 <button
                   className={styles.deleteButton}
-                  onClick={() => settingsPage.showDeleteConfirm.setTrue()}
+                  disabled
+                  title="Contact support to delete your account"
                 >
-                  Delete Account
+                  Not Available
                 </button>
               </div>
             </div>

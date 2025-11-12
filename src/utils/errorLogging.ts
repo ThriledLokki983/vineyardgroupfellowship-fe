@@ -2,9 +2,10 @@
  * Error Logging Utility
  *
  * Centralized error logging for the Vineyard Group Fellowship application.
- * Logs errors to console in development and can be extended to send to monitoring services
- * (e.g., Sentry, LogRocket, DataDog) in production.
+ * Logs errors to console in development and sends to Sentry in production.
  */
+
+import { captureException, addBreadcrumb } from './monitoring';
 
 export interface ErrorContext {
   componentStack?: string;
@@ -47,6 +48,13 @@ class ErrorLoggingService {
       context,
       severity,
     };
+
+    // Add breadcrumb to Sentry for error trail
+    addBreadcrumb(
+      `${severity.toUpperCase()}: ${error.message}`,
+      'error',
+      severity === 'critical' || severity === 'high' ? 'error' : 'warning'
+    );
 
     // Add to queue
     this.errorQueue.push(errorLog);
@@ -92,21 +100,28 @@ class ErrorLoggingService {
   }
 
   /**
-   * Send error to monitoring service (e.g., Sentry)
-   * This is a placeholder - replace with actual monitoring service integration
+   * Send error to monitoring service (Sentry)
    */
   private sendToMonitoringService(errorLog: ErrorLog): void {
-    // TODO: Integrate with monitoring service
-    // Example: Sentry.captureException(errorLog.error, { contexts: errorLog.context });
+    // Send to Sentry in production
+    if (!import.meta.env.DEV) {
+      captureException(errorLog.error, {
+        severity: errorLog.severity,
+        context: errorLog.context,
+      });
+    }
 
-    // For now, just make sure critical errors are visible
+    // Make critical errors visible in console
     if (errorLog.severity === 'critical') {
       console.error('CRITICAL ERROR:', errorLog);
     }
 
-    // Could also send to backend API for logging
+    // Also send to backend API for custom logging (optional)
     this.sendToBackend(errorLog).catch((err) => {
-      console.warn('Failed to send error to backend:', err);
+      // Silent fail - don't want logging errors to break the app
+      if (import.meta.env.DEV) {
+        console.warn('Failed to send error to backend:', err);
+      }
     });
   }
 

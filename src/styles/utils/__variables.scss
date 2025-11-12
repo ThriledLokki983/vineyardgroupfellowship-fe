@@ -1,3 +1,6 @@
+@use 'sass:math';
+@use 'sass:map';
+
 $line_height: 1.2;
 
 /**
@@ -75,3 +78,35 @@ $border-radius: var(--radius-2); // Standard border radius using Open Props
 $input-border-color: $grey-dark;
 $input-focus-color: $brand-primary;
 $input-disabled-color: $whitish;
+
+
+/*
+ * Z-index
+ */
+$z-index: (
+    skip-links: 10000,
+    tooltip: 5000,
+    toast: 2500,
+    fetch-loader: 2000,
+    modal: 1550,
+    modal-backdrop: 1500,
+    contact-card: 1420,
+    calendar-snapshot-popup: 1410,
+    response-history-card: 1400,
+    calendar-event-detail-popup: 1501,
+    slot-sidebar: 1400,
+    site-header: 1000,
+    dropdown-menu: 200,
+    page-bottom-nav: 100,
+    people-search-results: 10,
+    meet-update-button: 9,
+);
+
+// Function to get z-index value from map
+@function z($key) {
+    @if map.has-key($z-index, $key) {
+        @return map.get($z-index, $key);
+    }
+    @warn "Unknown z-index key: #{$key}";
+    @return null;
+}

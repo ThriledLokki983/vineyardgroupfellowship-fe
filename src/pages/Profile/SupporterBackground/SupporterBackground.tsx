@@ -85,14 +85,16 @@ export default function SupporterBackground() {
   const handleDocumentUpload = async (file: File) => {
     supporterBackgroundPage.startDocumentUpload();
     try {
-      // TODO: Implement actual file upload to backend
+      // Future: Implement file upload to backend
+      // POST /api/v1/users/me/supporter-documents with FormData
+      // Backend should handle file storage (S3/CloudFlare R2) and return document metadata
 
-      // Simulate upload for now
+      // Current: Simulate upload with local preview (documents not persisted to backend)
       const mockDocument = {
         id: Date.now().toString(),
         name: file.name,
         type: file.type.includes('pdf') ? 'pdf' : 'document',
-        url: URL.createObjectURL(file), // Temporary URL for preview
+        url: URL.createObjectURL(file), // Temporary URL for preview only
         uploadedAt: new Date().toISOString(),
         size: file.size,
       };

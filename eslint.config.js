@@ -28,6 +28,13 @@ export default defineConfig([
           varsIgnorePattern: '^_',
         },
       ],
+      // Prevent console statements in production code
+      'no-console': [
+        'warn',
+        {
+          allow: ['warn', 'error'], // Only allow console.warn and console.error temporarily
+        },
+      ],
     },
   },
 ])

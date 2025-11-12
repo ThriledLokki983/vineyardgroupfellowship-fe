@@ -3,20 +3,26 @@
 // ContactCard - Card for member contact information
 // Rendered inside React Aria Popover
 .root {
-  display: block;
-  width: 340px;
-  max-width: 90vw;
-  padding: var(--size-4) var(--size-5) var(--size-4);
-  background: var(--surface-2);
-  box-shadow: var(--shadow-4);
-  border-radius: var(--radius-3);
-  border: var(--border-size-1) solid var(--border-subtle);
-  cursor: initial;
-  user-select: text;
-
-  @media (min-width: 768px) {
-    max-width: 400px;
+  z-index: z('contact-card'); position: absolute;
+  top: calc(1rem + (32px * 0.75)); left: calc(1.5rem + (32px * 0.75));
+  display: block; width: 340px; max-width: calc(100% - 0.5rem - 32px);
+  padding: 1.35rem 1.5rem 1rem;
+  background: var(--surface-3); box-shadow: var(--shadow-2);
+  border-radius: var(--radius-2);
+  line-height: 1.15; cursor: initial; user-select: text;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  @include bp-min($medium) {
+    max-width: 80vw;
   }
+}
+
+.root[hidden] {
+    opacity: 0; visibility: hidden;
+    pointer-events: none;
+
+    // @TODO: we want to prevent layout shifts, but also transitions, so add
+    // some JS to handle two consecutive 'hidden' states in the future.
+    display: none;
 }
 
 // Inner container
@@ -203,16 +209,7 @@
 }
 
 .actionButton {
-  @include base;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--size-2); // 8px
-  padding: var(--size-2) var(--size-4); // 8px 16px
-  text-decoration: none;
-  font-size: var(--font-size-1);
-  font-weight: var(--font-weight-5);
-  border-radius: var(--radius-2);
-  transition: all 0.2s var(--ease-3);
+  padding: var(--size-2) var(--size-4);
 
   svg {
     width: 16px;

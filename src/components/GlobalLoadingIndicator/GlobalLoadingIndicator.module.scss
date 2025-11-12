@@ -1,0 +1,65 @@
+/**
+ * Global Loading Indicator Styles
+ * Thin progress bar at the top of the viewport
+ */
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  pointer-events: none;
+  background-color: transparent;
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--brand, #603000) 0%,
+    var(--brand-accent, #F4C77B) 50%,
+    var(--brand-secondary, #603000) 100%
+  );
+  background-size: 200% 100%;
+  animation: loading 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(244, 199, 123, 0.5);
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+    width: 0%;
+  }
+  50% {
+    background-position: 0% 0;
+    width: 70%;
+  }
+  100% {
+    background-position: -200% 0;
+    width: 100%;
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    animation: loading-reduced 1.5s linear infinite;
+  }
+
+  @keyframes loading-reduced {
+    0% {
+      width: 0%;
+      opacity: 0.5;
+    }
+    50% {
+      width: 70%;
+      opacity: 1;
+    }
+    100% {
+      width: 100%;
+      opacity: 0.5;
+    }
+  }
+}

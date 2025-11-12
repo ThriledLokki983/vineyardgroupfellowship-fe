@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Avatar, BackLink, Button, Icon, MessageMemberModal } from 'components';
 import { useCurrentUser } from '../../hooks/useAuth';
 import { canMessageMember } from '../../utils/messaging-permissions';
@@ -8,11 +8,16 @@ import styles from './ContactCard.module.scss';
 interface ContactCardProps {
   data: GroupMember;
   showActions?: boolean;
-  enableNavigation?: boolean; // Allow navigating between related contacts
+  enableNavigation?: boolean;
   groupId?: string; // Optional: enables messaging feature
   groupName?: string; // Optional: context for messaging
-  onMessageClick?: () => void; // Optional: callback when message button clicked (for lifting state)
+  onMessageClick?: () => void;
+  hasParentFocus?: boolean;
 }
+
+const DEFAULT_TOP_OFFSET = 'calc(1rem + (32px * 0.75))';
+const DEFAULT_WIDTH = '340px';
+const MARGIN = 20;
 
 /**
  * ContactCard - Card for viewing member contact information
@@ -22,20 +27,29 @@ interface ContactCardProps {
 const ContactCard = ({
   data: initialData,
   showActions: _showActions = true,
-  enableNavigation = false,
   groupId,
   groupName,
-  onMessageClick
+  onMessageClick,
+  hasParentFocus = false
 }: ContactCardProps) => {
+    const rootRef = useRef<HTMLElement>(null);
+
+
+    const [data, setData] = useState<GroupMember>(initialData);
+
+  const [hasFocus, setHasFocus] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [data, setData] = useState<GroupMember>(initialData);
+  const [topOffset, setTopOffset] = useState(DEFAULT_TOP_OFFSET);
+  const [width, setWidth] = useState(DEFAULT_WIDTH)
+
   const [showMessageModal, setShowMessageModal] = useState(false);
   const { data: currentUser } = useCurrentUser();
 
   const displayName = `${data.first_name || ''} ${data.last_name || ''}`.trim() ||
                       data.display_name || data.email ||  'Unknown';
 
-  const isViewingDifferentContact = enableNavigation && initialData.id !== data.id;
+  const isViewingDifferentContact =  initialData.id !== data.id;
 
   // Check if current user can message this member
   const messagingEnabled = groupId && currentUser;
@@ -64,15 +78,60 @@ const ContactCard = ({
     swapData(initialData);
   };
 
+  /**
+   * Set visibility based on parent and internal focus.
+   */
+  useEffect(() => {
+    setIsVisible(hasFocus || hasParentFocus);
+  }, [hasFocus, hasParentFocus]);
+
+
+
+  /**
+   * Make sure the card is never out of screen at the bottom or right.
+   * Position is reset when the card is hidden again.
+   */
+  useEffect(() => {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    if (!rootRef?.current) return;
+
+    const rect = rootRef?.current?.getBoundingClientRect();
+    const x = windowWidth - rect.right;
+    const y = windowHeight - rect.bottom;
+    if (x < MARGIN) {
+      // Adding `10` extra for potential scrollbar.
+      setWidth(`calc(${DEFAULT_WIDTH} - (${x + MARGIN + 10}px))`);
+    }
+    if (y < MARGIN) {
+      setTopOffset(`${y + MARGIN}px`);
+    }
+    if (!isVisible) {
+      setWidth(DEFAULT_WIDTH);
+      setTopOffset(DEFAULT_TOP_OFFSET);
+    }
+  }, [isVisible]);
+
+
+    /**
+   * Avatar hover handlers.
+   */
+  const avatarMouseOverHandler = () => setHasFocus(true);
+  const avatarMouseLeaveHandler = () => setHasFocus(false);
+
   return (
     <>
     <article
       className={styles.root}
+      style={{ top: topOffset, width: width }}
       onClick={(e) => e.stopPropagation()}
+      ref={rootRef}
+      hidden={!isVisible}
       data-is-transitioning={isTransitioning}
+      onMouseOver={avatarMouseOverHandler}
+      onMouseLeave={avatarMouseLeaveHandler}
     >
       <div className={styles.inner}>
-        {/* Back navigation - shown when viewing a different contact */}
         {isViewingDifferentContact && (
           <div className={styles.nav}>
             <BackLink onClick={handleBackClick}>Back</BackLink>
@@ -144,40 +203,16 @@ const ContactCard = ({
         {(_showActions || canMessage) && <hr className={styles.divider} />}
 
         {/* Actions section */}
-        {(_showActions || canMessage) && (
-          <div className={styles.actions}>
-            {/* Email action */}
-            {_showActions && data.email && (
-              <a
-                href={`mailto:${data.email}`}
-                className={styles.actionButton}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Icon name="EmailIcon" />
-                Email
-              </a>
-            )}
+        {onMessageClick ? (
+          <CardActions
+          show={_showActions}
+          canMessage={canMessage}
+          email={data.email}
+          onMessageClick={onMessageClick}
+          setShowMessageModal={setShowMessageModal}
+        />
+        ) : null }
 
-            {/* Message action */}
-            {canMessage && (
-              <Button
-                variant="secondary"
-                onPress={() => {
-                  if (onMessageClick) {
-                    onMessageClick();
-                  } else {
-                    setShowMessageModal(true);
-                  }
-                }}
-                className={styles.actionButton}
-              >
-                <Icon name="ChatBubbleIcon" width={16} height={16} />
-                Message
-              </Button>
-            )}
-          </div>
-        )}
       </div>
     </article>
 
@@ -198,3 +233,51 @@ const ContactCard = ({
 };
 
 export default ContactCard;
+
+interface CardActionsProps {
+  show: boolean;
+  canMessage: boolean;
+  email: string
+  onMessageClick: () => void;
+  setShowMessageModal: (show: boolean) => void;
+}
+
+const CardActions = ({
+  show = false,
+  canMessage = false,
+  email = '',
+  onMessageClick,
+  setShowMessageModal
+}: CardActionsProps) => {
+  if (!show && !canMessage && !email) return null;
+
+  return (
+    <div className={styles.actions}>
+      {show ? (
+        <Button href={`mailto:${email}`} className={styles.actionButton} variant='secondary'>
+          <Icon name="EmailIcon" />
+          Email
+        </Button>
+      ) : null }
+
+      {/* Message action */}
+      {canMessage && (
+        <Button
+          variant="primary"
+          onPress={() => {
+            if (onMessageClick) {
+              onMessageClick();
+            } else {
+              setShowMessageModal(true);
+            }
+          }}
+          className={styles.actionButton}
+        >
+          <Icon name="ChatBubbleIcon" width={16} height={16} />
+          Message
+        </Button>
+      )}
+    </div>
+  );
+
+};

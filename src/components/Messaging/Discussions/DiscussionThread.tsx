@@ -176,11 +176,12 @@ const DiscussionThread = ({ discussionId, groupId: _groupId, onBack, onDeleted }
   if (isGroupLeader) {
     actionMenuItems.push({
       id: 'report',
-      label: 'Report',
+      label: 'Report (Coming Soon)',
       icon: 'CircleWarning',
       onClick: () => {
-        // TODO: Implement report functionality
-        console.log('Report functionality to be implemented');
+        // Report functionality for group content not yet available
+        // Future: Implement POST /api/v1/groups/{groupId}/discussions/{id}/report
+        alert('Report functionality coming soon. Please contact group administrators directly for now.');
       },
     });
   }

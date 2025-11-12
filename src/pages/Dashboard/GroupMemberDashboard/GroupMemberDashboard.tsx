@@ -76,9 +76,9 @@ const FirstVisitMemberContent = ({
 }) => {
   const { message: dailyMessage, isLoading: messageLoading } = useDailyMessage();
 
-  // TODO: Replace with actual data from API
-  // const hasGroups = false;
-  // const pendingRequestsCount = 0;
+  // Future enhancement: Add real-time data when API endpoints become available
+  // const hasGroups = false; // useMyGroups() hook already handles this
+  // const pendingRequestsCount = 0; // usePendingRequests() hook already handles this
 
   return (
     <>
@@ -292,8 +292,8 @@ const ActiveMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBr
 
 // Returning Member Dashboard
 const ReturningMemberContent = ({ user, onBrowseGroups }: { user: User | null; onBrowseGroups: () => void }) => {
-  // TODO: Replace with actual data from API
-  // const hasGroups = false;
+  // Future enhancement: Fetch recent activity from API when endpoint is available
+  // const recentActivity = await fetchRecentActivity(); // GET /api/v1/users/me/activity
   const recentActivity = null;
 
   return (

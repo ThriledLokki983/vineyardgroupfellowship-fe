@@ -92,9 +92,9 @@ export const useDashboardState = (): DashboardStateData => {
 
     // These will be determined by future API calls or user fields
     // For now, assume first visit if basic profile is incomplete
-    // const hasGoals = false // TODO: Implement goals API
-    const hasMentees = false // TODO: Implement mentees API
-    const hasGroups = false // TODO: Implement groups API
+    // Future: const hasGoals = await fetchUserGoals() // API endpoint not yet available
+    const hasMentees = false // Future: Implement GET /api/v1/users/me/mentees
+    const hasGroups = false // Future: Implement GET /api/v1/users/me/groups (currently handled by useMyGroups hook)
 
     // Check for returning user (more than 14 days inactive)
     const isReturning = daysSinceLastActivity >= 14

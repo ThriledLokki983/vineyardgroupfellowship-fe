@@ -120,16 +120,22 @@ export function GroupDetailsContent({
             <Icon name="PeopleIcon" />
             Group Members ({group.group_members.length})
           </h2>
-          <div className={styles.membersList}>
-            {group.group_members.map((member) => (
-              <GroupMemberCard
-                key={member.id}
-                member={member}
-                groupId={group.id}
-                groupName={group.name}
-              />
-            ))}
-          </div>
+          <ul className={styles.membersList}>
+            {[...group.group_members]
+              .sort((a, b) => {
+                // Sort order: leader (0) -> co_leader (1) -> member (2)
+                const roleOrder = { leader: 0, co_leader: 1, member: 2 };
+                return roleOrder[a.role] - roleOrder[b.role];
+              })
+              .map((member) => (
+                <GroupMemberCard
+                  key={member.id}
+                  member={member}
+                  groupId={group.id}
+                  groupName={group.name}
+                />
+              ))}
+          </ul>
         </section>
       )}
     </div>
