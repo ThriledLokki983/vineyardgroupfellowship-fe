@@ -1,5 +1,4 @@
-import { useState, useRef } from 'react';
-import { Popover } from 'react-aria-components';
+import { useState } from 'react';
 import Avatar from '../Avatar/Avatar';
 import ContactCard from '../ContactCard/ContactCard';
 import { Button, Icon, MessageMemberModal } from 'components';
@@ -11,14 +10,13 @@ import styles from './GroupMemberCard.module.scss';
 /**
  * GroupMemberCard - Display card for a group member
  * Shows avatar, name, role, and status
- * Displays ContactCard in a Popover on avatar hover
+ * Displays ContactCard on avatar hover with absolute positioning
  * Shows message button for eligible members (when groupId provided)
  */
 export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardProps) => {
   const { first_name, last_name, role, status } = member;
   const [showMessageModal, setShowMessageModal] = useState(false);
-  const [isHoveringCard, setIsHoveringCard] = useState(false);
-  const avatarRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const { data: currentUser } = useCurrentUser();
 
   const fullName = `${first_name || ''} ${last_name || ''}`.trim() || 'Unknown Member';
@@ -39,32 +37,15 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
     setShowMessageModal(true);
   };
 
-  // Hover handlers for showing contact card
-  const handleAvatarMouseEnter = () => {
-    setIsHoveringCard(true);
-  };
-
-  const handleAvatarMouseLeave = () => {
-    // Small delay to allow moving to the popover
-    setTimeout(() => {
-      setIsHoveringCard(false);
-    }, 100);
-  };
-
-  const handlePopoverMouseEnter = () => {
-    setIsHoveringCard(true);
-  };
-
-  const handlePopoverMouseLeave = () => {
-    setIsHoveringCard(false);
-  };
+  // Hover handlers for avatar
+  const handleAvatarMouseEnter = () => setIsHovered(true);
+  const handleAvatarMouseLeave = () => setIsHovered(false);
 
   return (
-    <>
-      <div className={styles.card}>
-        {/* Avatar with popover on hover */}
+    <li className={styles.card}>
+      <article>
+        {/* Avatar with hover to show contact card */}
         <div
-          ref={avatarRef}
           className={styles.avatarWrapper}
           onMouseEnter={handleAvatarMouseEnter}
           onMouseLeave={handleAvatarMouseLeave}
@@ -74,27 +55,6 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             size="48px"
           />
         </div>
-
-        {/* Controlled Popover positioned relative to avatar */}
-        <Popover
-          triggerRef={avatarRef}
-          isOpen={isHoveringCard}
-          onOpenChange={setIsHoveringCard}
-          placement="right"
-          offset={12}
-          shouldFlip={true}
-          className={styles.contactPopover}
-          onMouseEnter={handlePopoverMouseEnter}
-          onMouseLeave={handlePopoverMouseLeave}
-        >
-          <ContactCard
-            data={contactData}
-            groupId={groupId}
-            groupName={groupName}
-            isPopover={true}
-            onMessageClick={handleOpenMessageModal}
-          />
-        </Popover>
 
         <div className={styles.info}>
           <h4 className={styles.name}>{fullName}</h4>
@@ -127,7 +87,16 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
             <span className={styles.messageButtonText}>Message</span>
           </Button>
         )}
-      </div>
+      </article>
+
+      {/* ContactCard - absolute positioned, shown on avatar hover */}
+      <ContactCard
+        data={contactData}
+        groupId={groupId}
+        groupName={groupName}
+        hasParentFocus={isHovered}
+        onMessageClick={handleOpenMessageModal}
+      />
 
       {/* Message Modal */}
       {canMessage && groupId && (
@@ -140,6 +109,6 @@ export const GroupMemberCard = ({ member, groupId, groupName }: GroupMemberCardP
           groupName={groupName}
         />
       )}
-    </>
+    </li>
   );
 };

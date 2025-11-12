@@ -11,13 +11,13 @@ interface ContactCardProps {
   enableNavigation?: boolean; // Allow navigating between related contacts
   groupId?: string; // Optional: enables messaging feature
   groupName?: string; // Optional: context for messaging
-  isPopover?: boolean; // Whether this is rendered inside a Popover
+  hasParentFocus?: boolean; // Whether parent (avatar) is being hovered - controls visibility
   onMessageClick?: () => void; // Optional: callback when message button clicked (for lifting state)
 }
 
 /**
  * ContactCard - Card for viewing member contact information
- * Can be used standalone or inside a React Aria Popover
+ * Uses absolute positioning when triggered by hover
  * Designed for Vineyard Group Fellowship recovery community
  */
 const ContactCard = ({
@@ -26,7 +26,7 @@ const ContactCard = ({
   enableNavigation = false,
   groupId,
   groupName,
-  isPopover: _isPopover = false,
+  hasParentFocus = false,
   onMessageClick
 }: ContactCardProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -72,6 +72,7 @@ const ContactCard = ({
       className={styles.root}
       onClick={(e) => e.stopPropagation()}
       data-is-transitioning={isTransitioning}
+      hidden={!hasParentFocus}
     >
       <div className={styles.inner}>
         {/* Back navigation - shown when viewing a different contact */}

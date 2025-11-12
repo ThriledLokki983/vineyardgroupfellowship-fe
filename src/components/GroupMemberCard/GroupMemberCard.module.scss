@@ -1,21 +1,27 @@
 @use 'styles/_component-utils.scss' as *;
 
 .card {
-  display: flex;
-  align-items: center;
-  gap: var(--size-3); // 12px
-  padding: var(--size-3) var(--size-3); // 16px
-  background: var(--surface-2);
-  border-radius: var(--radius-2); // 12px
-	box-shadow: var(--shadow-1);
+  position: relative; // For ContactCard absolute positioning
+  list-style-type: none;
+  
+  // Article wrapper for the card content
+  > article {
+    display: flex;
+    align-items: center;
+    gap: var(--size-3); // 12px
+    padding: var(--size-3) var(--size-3); // 16px
+    background: var(--surface-2);
+    border-radius: var(--radius-2); // 12px
+    box-shadow: var(--shadow-1);
 
-  // Smooth transitions for all interactive states
-  transition:
-    background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    // Smooth transitions for all interactive states
+    transition:
+      background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-  &:hover {
+  &:hover > article {
     background: var(--surface-1);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     transform: translateY(-2px);
@@ -135,46 +141,5 @@
 .messageButtonText {
   @include mobile {
     display: none; // Hide text on mobile, show icon only
-  }
-}
-
-// Contact Card Popover
-.contactPopover {
-  z-index: 9999;
-  background: var(--surface-2);
-  border-radius: var(--radius-3);
-  box-shadow: var(--shadow-4);
-  border: var(--border-size-1) solid var(--border-subtle);
-
-  // Smooth entry animation
-  &[data-entering] {
-    animation: popoverSlideIn 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  // Smooth exit animation
-  &[data-exiting] {
-    animation: popoverSlideOut 150ms cubic-bezier(0.4, 0, 1, 1);
-  }
-}
-
-@keyframes popoverSlideIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateX(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateX(0);
-  }
-}
-
-@keyframes popoverSlideOut {
-  from {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: scale(0.95) translateY(-8px);
   }
 }
